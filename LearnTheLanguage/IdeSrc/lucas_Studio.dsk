@@ -1,0 +1,30 @@
+[Workspace]
+CurrentProject=HelloWorld.src
+Location=C:\DataFlex Learning\LearnTheLanguage\IdeSrc\lucas_Studio.dsk
+CreateNew=-1
+[TabWindows]
+GroupCount=1
+HorizontalGroups=1
+[TabGroup0]
+GroupSize=40
+SelectedTab=1
+[Window0]
+Filename=Workspace Dashboard
+ViewType=101
+Top=21
+Left=0
+Bottom=382
+Right=932
+TabIndex=0
+TabGroup=0
+[Window1]
+Filename=C:\DataFlex Learning\LearnTheLanguage\AppSrc\HelloWorld.src
+ViewType=1
+Top=21
+Left=0
+Bottom=382
+Right=932
+CursorLine=3
+CursorColumn=0
+TabIndex=1
+TabGroup=0
