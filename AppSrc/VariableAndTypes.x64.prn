@@ -1,12 +1,11 @@
-Compiling Program: C:\DataFlexLearning\AppSrc\VariableAndTypes.src
-Memory Available: 5085749248
-1>Use dfAllEnt.PKG
+Compiling Program: C:\dataflex_learning\AppSrc\VariableAndTypes.src
+Memory Available: 4955029504
+1>Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
 Using pre-compiled package DFALLENT.PKG
 Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.1\Pkg\dfallent.x64.pkd)
 73081>
-/*
 73081>Procedure LearnVariables
-73083>    String sText
+73083>    String sText //Now define the variable within the PROCEDURE:
 73083>    
 73083>    Move "Hello from variable" to sText
 73084>    
@@ -14,32 +13,71 @@ Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.1\Pkg\dfallent
 73085>End_Procedure
 73086>
 73086>Send LearnVariables
-73087>*/
-*/
-ERROR: 4298 Command not found */ ON LINE: 13 (73087) OF FILE: C:\DataFlexLearning\AppSrc\VariableAndTypes.src
+73087>
+73087>////////////////////////////////////
 73087>
 73087>Procedure LearnVariables
-73089>    Integer iVal1 iVal2
+73089>    Integer iVal1 iVal2 //Type
 73089>    
 73089>    Move 5 to iVal1
-73090>    Move (iVal1*7) to iVal2
+73090>    Move (iVal1 * 7) to iVal2
 73091>    
-73091>    Send Info_Box iVal2 “Hello”
-ERROR: 4328 Undefined symbol in argument � ON LINE: 21 (73091) OF FILE: C:\DataFlexLearning\AppSrc\VariableAndTypes.src
+73091>    Send Info_Box iVal2 "Hello"
 73092>End_Procedure
 73093>
 73093>Send LearnVariables
 73094>
+73094>////////////////////////////////////
+73094>
+73094>Procedure LearnVariables
+73096>    Integer iVal1 iVal2
+73096>    
+73096>    Move 5 to iVal1
+73097>    Move (iVal1 / 2) to iVal2
+73098>    
+73098>    Send Info_Box iVal2 "Hello"
+73099>End_Procedure
+73100>
+73100>Send LearnVariables
+73101>
+73101>//////////////////////////////////
+73101>
+73101>Procedure LearnVariables
+73103>    Number iVal1 iVal2
+73103>    
+73103>    Move 5 to iVal1
+73104>    Move (iVal1 / 2) to iVal2
+73105>    
+73105>    Send Info_Box iVal2 "Hello"
+73106>End_Procedure
+73107>
+73107>Send LearnVariables
+73108>
+73108>//////////////////////////////////
+73108>
+73108>Procedure LearnVariables
+73110>    Date dToday
+73110>    String sMessage
+73110>    
+73110>    Move (CurrentDateTime()) to dToday
+73111>    Move ("Today is: " + String(dToday)) to sMessage
+73112>    
+73112>    Send Info_Box sMessage "Hello"
+73113>End_Procedure
+73114>
+73114>Send LearnVariables
+73115>
+73115>//////////////////////////////////
+73115>
 Summary
-Memory Available: 5107085312
+Memory Available: 4931252224
 Total Warnings : 0
-Total Errors   : 2
-Total Symbols  : 42308
+Total Errors   : 0
+Total Symbols  : 42314
 Total Resources: 0
-Total Commands : 73093
+Total Commands : 73114
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 505017
-Message area   : 506412
-Total Blocks   : 27362
-2 ERRORS HAVE BEEN FOUND.
+Static Data    : 505187
+Message area   : 506529
+Total Blocks   : 27368

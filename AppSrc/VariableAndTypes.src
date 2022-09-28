@@ -1,8 +1,7 @@
-﻿Use dfAllEnt.pkg
+﻿Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
 
-/*
 Procedure LearnVariables
-    String sText
+    String sText //Now define the variable within the PROCEDURE:
     
     Move "Hello from variable" to sText
     
@@ -10,15 +9,58 @@ Procedure LearnVariables
 End_Procedure
 
 Send LearnVariables
-*/
+
+////////////////////////////////////
+
+Procedure LearnVariables
+    Integer iVal1 iVal2 //Type
+    
+    Move 5 to iVal1
+    Move (iVal1 * 7) to iVal2
+    
+    Send Info_Box iVal2 "Hello"
+End_Procedure
+
+Send LearnVariables
+
+////////////////////////////////////
 
 Procedure LearnVariables
     Integer iVal1 iVal2
     
     Move 5 to iVal1
-    Move (iVal1*7) to iVal2
+    Move (iVal1 / 2) to iVal2
     
-    Send Info_Box iVal2 “Hello”
+    Send Info_Box iVal2 "Hello"
 End_Procedure
 
 Send LearnVariables
+
+//////////////////////////////////
+
+Procedure LearnVariables
+    Number iVal1 iVal2
+    
+    Move 5 to iVal1
+    Move (iVal1 / 2) to iVal2
+    
+    Send Info_Box iVal2 "Hello"
+End_Procedure
+
+Send LearnVariables
+
+//////////////////////////////////
+
+Procedure LearnVariables
+    Date dToday
+    String sMessage
+    
+    Move (CurrentDateTime()) to dToday
+    Move ("Today is: " + String(dToday)) to sMessage
+    
+    Send Info_Box sMessage "Hello"
+End_Procedure
+
+Send LearnVariables
+
+//////////////////////////////////
