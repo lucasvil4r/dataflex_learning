@@ -1,0 +1,24 @@
+﻿Use dfAllEnt.pkg
+
+/*
+Procedure LearnVariables
+    String sText
+    
+    Move "Hello from variable" to sText
+    
+    Send Info_Box sText "Hello"
+End_Procedure
+
+Send LearnVariables
+*/
+
+Procedure LearnVariables
+    Integer iVal1 iVal2
+    
+    Move 5 to iVal1
+    Move (iVal1*7) to iVal2
+    
+    Send Info_Box iVal2 “Hello”
+End_Procedure
+
+Send LearnVariables

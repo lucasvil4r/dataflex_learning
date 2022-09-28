@@ -1,0 +1,20 @@
+[Flow control.src]
+0=msg_paint
+1=msg_notify_application_activation
+2=set_focus
+3=msg_onwmpaint
+[MoreFlowControl.src]
+0=msg_paint
+1=msg_notify_application_activation
+2=set_focus
+3=msg_onwmpaint
+[LearnTheLanguage.src]
+0=msg_paint
+1=msg_notify_application_activation
+2=set_focus
+3=msg_onwmpaint
+[VariableAndTypes.src]
+0=msg_paint
+1=msg_notify_application_activation
+2=set_focus
+3=msg_onwmpaint

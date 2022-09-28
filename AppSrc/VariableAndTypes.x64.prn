@@ -1,0 +1,45 @@
+Compiling Program: C:\DataFlexLearning\AppSrc\VariableAndTypes.src
+Memory Available: 5085749248
+1>Use dfAllEnt.PKG
+Using pre-compiled package DFALLENT.PKG
+Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.1\Pkg\dfallent.x64.pkd)
+73081>
+/*
+73081>Procedure LearnVariables
+73083>    String sText
+73083>    
+73083>    Move "Hello from variable" to sText
+73084>    
+73084>    Send Info_Box sText "Hello"
+73085>End_Procedure
+73086>
+73086>Send LearnVariables
+73087>*/
+*/
+ERROR: 4298 Command not found */ ON LINE: 13 (73087) OF FILE: C:\DataFlexLearning\AppSrc\VariableAndTypes.src
+73087>
+73087>Procedure LearnVariables
+73089>    Integer iVal1 iVal2
+73089>    
+73089>    Move 5 to iVal1
+73090>    Move (iVal1*7) to iVal2
+73091>    
+73091>    Send Info_Box iVal2 “Hello”
+ERROR: 4328 Undefined symbol in argument � ON LINE: 21 (73091) OF FILE: C:\DataFlexLearning\AppSrc\VariableAndTypes.src
+73092>End_Procedure
+73093>
+73093>Send LearnVariables
+73094>
+Summary
+Memory Available: 5107085312
+Total Warnings : 0
+Total Errors   : 2
+Total Symbols  : 42308
+Total Resources: 0
+Total Commands : 73093
+Total Windows  : 0
+Total Pages    : 0
+Static Data    : 505017
+Message area   : 506412
+Total Blocks   : 27362
+2 ERRORS HAVE BEEN FOUND.
