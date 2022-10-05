@@ -12,3 +12,6 @@ Project0=Flow control.src
 Project1=MoreFlowControl.src
 Project2=LearnTheLanguage.src
 Project3=VariableAndTypes.src
+Project4=FunctionsAndProcedures.src
+Project5=MoreFunctionsAndProcedures.src
+Project6=StructsAndArrays.src

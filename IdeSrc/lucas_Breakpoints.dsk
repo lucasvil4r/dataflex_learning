@@ -2,4 +2,4 @@
 Source2=Send Info_Box "Hello World" "DataFlex Basic Project"
 ConditionEnabled2=0
 Condition2= 
-2=1
+2=2

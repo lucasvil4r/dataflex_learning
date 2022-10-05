@@ -4,10 +4,10 @@ Active=0
 SubDirectories=1
 WholeWordOnly=0
 SearchWhere=0
-Location=C:\DataFlexLearning\IdeSrc\lucas_FindInFiles.dsk
-[C:\DataFlexLearning\AppSrc]
+Location=C:\dataflex_learning\IdeSrc\lucas_FindInFiles.dsk
+[C:\dataflex_learning\AppSrc]
 IsEnabled=1
-[C:\DataFlexLearning\DDSrc]
+[C:\dataflex_learning\DDSrc]
 IsEnabled=1
-[C:\DataFlexLearning\AppHtml]
+[C:\dataflex_learning\AppHtml]
 IsEnabled=1

@@ -1,12 +1,12 @@
-﻿Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
+﻿    Procedure LearnVariables
+        String sText //Now define the variable within the PROCEDURE:
+        
+        Move "Hello from variable" to sText
+        
+        Send Info_Box sText "Hello"
+    End_Procedure
 
-Procedure LearnVariables
-    String sText //Now define the variable within the PROCEDURE:
-    
-    Move "Hello from variable" to sText
-    
-    Send Info_Box sText "Hello"
-End_Procedure
+    Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
 
 Send LearnVariables
 
@@ -64,3 +64,4 @@ End_Procedure
 Send LearnVariables
 
 //////////////////////////////////
+

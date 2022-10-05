@@ -1,0 +1,7 @@
+#REPLACE FILE1 cadastro_cliente
+#REPLACE cadastro_cliente.File_Number |CI1
+#REPLACE cadastro_cliente.id_cliente |FN1,1
+#REPLACE cadastro_cliente.nome_cliente |FS1,2
+#REPLACE cadastro_cliente.razao_social |FS1,3
+#REPLACE cadastro_cliente.cnpj |FS1,4
+#REPLACE cadastro_cliente.date |FM1,5
