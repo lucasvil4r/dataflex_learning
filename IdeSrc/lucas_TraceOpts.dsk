@@ -8,11 +8,6 @@
 1=msg_notify_application_activation
 2=set_focus
 3=msg_onwmpaint
-[Flow control.src]
-0=msg_paint
-1=msg_notify_application_activation
-2=set_focus
-3=msg_onwmpaint
 [MoreFlowControl.src]
 0=msg_paint
 1=msg_notify_application_activation
@@ -29,6 +24,21 @@
 2=set_focus
 3=msg_onwmpaint
 [MoreFunctionsAndProcedures.src]
+0=msg_paint
+1=msg_notify_application_activation
+2=set_focus
+3=msg_onwmpaint
+[Flow control.src]
+0=msg_paint
+1=msg_notify_application_activation
+2=set_focus
+3=msg_onwmpaint
+[SaveDateBase.src]
+0=msg_paint
+1=msg_notify_application_activation
+2=set_focus
+3=msg_onwmpaint
+[StructsAndArrays.src]
 0=msg_paint
 1=msg_notify_application_activation
 2=set_focus

@@ -1,0 +1,12 @@
+ERROR: 4313 Include file not found TBLCADASTRO_CLIENTE.FD ON LINE: 21 (74078) OF FILE: C:\dataflex_learning\AppSrc\SaveDateBase.src
+ERROR: 52 Bad format of expression (operator)  ON LINE: 21 (74078) OF FILE: C:\dataflex_learning\AppSrc\SaveDateBase.src
+ERROR: 4345 Type check error TBLCADASTRO_CLIENTE.ID_CLIENTE, MUST BE DEFINED ON LINE: 34 (74080) OF FILE: C:\dataflex_learning\AppSrc\SaveDateBase.src
+ERROR: 4328 Undefined symbol in argument TBLCADASTRO_CLIENTE.ID_CLIENTE ON LINE: 34 (74080) OF FILE: C:\dataflex_learning\AppSrc\SaveDateBase.src
+ERROR: 4345 Type check error TBLCADASTRO_CLIENTE.NOME_CLIENTE, MUST BE DEFINED ON LINE: 35 (74081) OF FILE: C:\dataflex_learning\AppSrc\SaveDateBase.src
+ERROR: 4328 Undefined symbol in argument TBLCADASTRO_CLIENTE.NOME_CLIENTE ON LINE: 35 (74081) OF FILE: C:\dataflex_learning\AppSrc\SaveDateBase.src
+ERROR: 4345 Type check error TBLCADASTRO_CLIENTE.RAZAO_SOCIAL, MUST BE DEFINED ON LINE: 36 (74082) OF FILE: C:\dataflex_learning\AppSrc\SaveDateBase.src
+ERROR: 4328 Undefined symbol in argument TBLCADASTRO_CLIENTE.RAZAO_SOCIAL ON LINE: 36 (74082) OF FILE: C:\dataflex_learning\AppSrc\SaveDateBase.src
+ERROR: 4345 Type check error TBLCADASTRO_CLIENTE.CNPJ, MUST BE DEFINED ON LINE: 37 (74083) OF FILE: C:\dataflex_learning\AppSrc\SaveDateBase.src
+ERROR: 4328 Undefined symbol in argument TBLCADASTRO_CLIENTE.CNPJ ON LINE: 37 (74083) OF FILE: C:\dataflex_learning\AppSrc\SaveDateBase.src
+ERROR: 4345 Type check error TBLCADASTRO_CLIENTE.DATE, MUST BE DEFINED ON LINE: 38 (74084) OF FILE: C:\dataflex_learning\AppSrc\SaveDateBase.src
+ERROR: 4328 Undefined symbol in argument TBLCADASTRO_CLIENTE.DATE ON LINE: 38 (74084) OF FILE: C:\dataflex_learning\AppSrc\SaveDateBase.src

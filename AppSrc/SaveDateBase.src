@@ -1,0 +1,42 @@
+﻿Use cConnection.pkg
+Use DfAllEnt.pkg
+Use cCJCommandBarSystem.pkg
+Use Windows.pkg
+Use DFRptVw.pkg
+Use cLinkLabel.pkg
+Use cProgressBar.pkg
+Use dfLine.pkg
+Use dfSpnFrm.pkg
+
+Object oApplication is a cApplication
+    
+    Object oConnection is a cConnection
+        Set pbLoginOnOpen to False
+        Use LoginEncryption.pkg
+        Use DatabaseLoginDialog.dg  // (Windows applications only)
+    End_Object
+
+End_Object
+
+Open tblCadastro_cliente
+
+Clear tblCadastro_cliente
+//Move 1 to tblCadastro_cliente.id_cliente
+//Find eq tblCadastro_cliente by 1
+
+//If (Found) Begin
+//    Move "POLICOM" to tblCadastro_cliente.razao_social
+//    Move (CurrentDateTime()) to tblCadastro_cliente.Date
+//    SaveRecord tblCadastro_cliente
+//End
+//Else Begin
+//    Clear tblCadastro_cliente
+Move 3 to tblCadastro_cliente.id_cliente
+Move "Ricardo Santiago" to tblCadastro_cliente.nome_cliente
+Move "GP CABLING" to tblCadastro_cliente.razao_social
+Move "121211212" to tblCadastro_cliente.cnpj
+Move (CurrentDateTime()) to tblCadastro_cliente.Date
+SaveRecord tblCadastro_cliente
+//End
+
+Send Info_Box "Dados gravados com sucesso"

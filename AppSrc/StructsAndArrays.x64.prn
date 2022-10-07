@@ -1,5 +1,5 @@
 Compiling Program: C:\dataflex_learning\AppSrc\StructsAndArrays.src
-Memory Available: 7327776768
+Memory Available: 7249965056
 1>Use DfAllEnt.pkg
 Using pre-compiled package DFALLENT.PKG
 Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.1\Pkg\dfallent.x64.pkd)
@@ -19,8 +19,6 @@ Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.1\Pkg\dfallent
 73095>        Showln aNames[iIndex]
 73097>    Loop
 73098>    
-73098>    
-73098>    
 73098>End_Procedure
 73099>
 73099>Send DemoArray
@@ -28,7 +26,7 @@ Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.1\Pkg\dfallent
 73100>Send Info_Box "Done"
 73101>
 Summary
-Memory Available: 7327072256
+Memory Available: 7236288512
 Total Warnings : 0
 Total Errors   : 0
 Total Symbols  : 42310
