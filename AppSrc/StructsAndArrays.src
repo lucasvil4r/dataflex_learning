@@ -15,6 +15,9 @@ Procedure DemoArray
         Showln aNames[iIndex]
     Loop
     
+    Move (SearchArray("Nick", aNames)) to iIndex
+    Showln (SFormat("Found '%1' at position %2", aNames[iIndex], iIndex))
+    
 End_Procedure
 
 Send DemoArray
