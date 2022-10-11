@@ -1,12 +1,5 @@
 ﻿Use cConnection.pkg
 Use DfAllEnt.pkg
-Use cCJCommandBarSystem.pkg
-Use Windows.pkg
-Use DFRptVw.pkg
-Use cLinkLabel.pkg
-Use cProgressBar.pkg
-Use dfLine.pkg
-Use dfSpnFrm.pkg
 
 Object oApplication is a cApplication
     
@@ -18,9 +11,9 @@ Object oApplication is a cApplication
 
 End_Object
 
-Open tblCadastro_cliente
+Open cCadastroCliente
 
-Clear tblCadastro_cliente
+Clear cCadastroCliente
 //Move 1 to tblCadastro_cliente.id_cliente
 //Find eq tblCadastro_cliente by 1
 
@@ -31,12 +24,12 @@ Clear tblCadastro_cliente
 //End
 //Else Begin
 //    Clear tblCadastro_cliente
-Move 3 to tblCadastro_cliente.id_cliente
-Move "Ricardo Santiago" to tblCadastro_cliente.nome_cliente
-Move "GP CABLING" to tblCadastro_cliente.razao_social
-Move "121211212" to tblCadastro_cliente.cnpj
-Move (CurrentDateTime()) to tblCadastro_cliente.Date
-SaveRecord tblCadastro_cliente
+Move 1 to cCadastroCliente.id
+Move "Ricardo Santiago" to cCadastroCliente.nome
+Move "50323721885" to cCadastroCliente.cpf
+Move "299740420001" to cCadastroCliente.cnpj
+Move (CurrentDateTime()) to cCadastroCliente.Date
+SaveRecord cCadastroCliente
 //End
 
 Send Info_Box "Dados gravados com sucesso"
