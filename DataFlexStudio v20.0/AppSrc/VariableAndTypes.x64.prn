@@ -1,0 +1,83 @@
+Compiling Program: C:\dataflex_learning\DataFlexStudio v20.0\AppSrc\VariableAndTypes.src
+Memory Available: 7691026432
+1>Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
+Using pre-compiled package DFALLENT.PKG
+Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.x64.pkd)
+68480>
+68480>Procedure LearnVariables
+68482>    String sText //Now define the variable within the PROCEDURE:
+68482>        
+68482>    Move "Hello from variable" to sText
+68483>        
+68483>    Send Info_Box sText "Hello"
+68484>End_Procedure
+68485>
+68485>Send LearnVariables
+68486>
+68486>////////////////////////////////////
+68486>
+68486>Procedure LearnVariables
+68488>    Integer iVal1 iVal2 //Type
+68488>    
+68488>    Move 5 to iVal1
+68489>    Move (iVal1 * 7) to iVal2
+68490>    
+68490>    Send Info_Box iVal2 "Hello"
+68491>End_Procedure
+68492>
+68492>Send LearnVariables
+68493>
+68493>////////////////////////////////////
+68493>
+68493>Procedure LearnVariables
+68495>    Integer iVal1 iVal2
+68495>    
+68495>    Move 5 to iVal1
+68496>    Move (iVal1 / 2) to iVal2
+68497>    
+68497>    Send Info_Box iVal2 "Hello"
+68498>End_Procedure
+68499>
+68499>Send LearnVariables
+68500>
+68500>//////////////////////////////////
+68500>
+68500>Procedure LearnVariables
+68502>    Number iVal1 iVal2
+68502>    
+68502>    Move 5 to iVal1
+68503>    Move (iVal1 / 2) to iVal2
+68504>    
+68504>    Send Info_Box iVal2 "Hello"
+68505>End_Procedure
+68506>
+68506>Send LearnVariables
+68507>
+68507>//////////////////////////////////
+68507>
+68507>Procedure LearnVariables
+68509>    Date dToday
+68509>    String sMessage
+68509>    
+68509>    Move (CurrentDateTime()) to dToday
+68510>    Move ("Today is: " + String(dToday)) to sMessage
+68511>    
+68511>    Send Info_Box sMessage "Hello"
+68512>End_Procedure
+68513>
+68513>Send LearnVariables
+68514>
+68514>//////////////////////////////////
+68514>
+Summary
+Memory Available: 7670693888
+Total Warnings : 0
+Total Errors   : 0
+Total Symbols  : 40188
+Total Resources: 0
+Total Commands : 68513
+Total Windows  : 0
+Total Pages    : 0
+Static Data    : 451831
+Message area   : 480498
+Total Blocks   : 25719

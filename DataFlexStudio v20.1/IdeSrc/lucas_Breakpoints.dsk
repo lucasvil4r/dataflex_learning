@@ -1,0 +1,10 @@
+[C:\DataFlexLearning\AppSrc\LearnTheLanguage.src]
+Source2=Send Info_Box "Hello World" "DataFlex Basic Project"
+ConditionEnabled2=0
+Condition2= 
+2=2
+[C:\dataflex_learning\AppSrc\StructsAndArrays.src]
+Source17=Move (SearchArray("Nick", aNames)) to iIndex
+ConditionEnabled17=0
+Condition17= 
+17=1

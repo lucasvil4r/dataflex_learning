@@ -1,0 +1,3 @@
+[StructsAndArrays.src]
+0="(cadastro_cliente.Date + 10)"
+1="(cadastro_cliente.razao_social * "SP")"
