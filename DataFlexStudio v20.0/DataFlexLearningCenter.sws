@@ -9,3 +9,10 @@ Is$WebApp=False
 Is$Win64=True
 [Projects]
 Project0=VariableAndTypes.src
+Project1=Flow control.src
+Project2=LearnTheLanguage.src
+Project3=MoreFlowControl.src
+Project4=MoreFunctionsAndProcedures.src
+Project5=SaveDateBase.src
+Project6=StructsAndArrays.src
+Project7=FunctionsAndProcedures.src

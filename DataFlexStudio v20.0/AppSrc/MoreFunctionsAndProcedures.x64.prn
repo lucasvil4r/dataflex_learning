@@ -1,0 +1,61 @@
+Compiling Program: C:\dataflex_learning\DataFlexStudio v20.0\AppSrc\MoreFunctionsAndProcedures.src
+Memory Available: 7861788672
+1>Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
+Using pre-compiled package DFALLENT.PKG
+Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.x64.pkd)
+68480>
+68480>Function MultiplyByFive Integer iValue Returns Integer
+68482>    Function_Return (iValue * 5)
+68483>End_Function
+68484>
+68484>Procedure UppercaseDescription String sDescription
+68486>    Move (Uppercase(sDescription)) to sDescription
+68487>    Showln sDescription
+68489>End_Procedure
+68490>
+68490>Procedure DoTask Integer iNum String sDescription
+68492>    Get MultiplyByFive iNum to iNum //Chamando uma procedimento "procedure ou function" dentro de outro.
+68493>    
+68493>    Send UppercaseDescription sDescription
+68494>    Send Info_Box (SFormat("Performing task: %1, %2", iNum, sDescription)) "Hello"
+68495>End_Procedure
+68496>
+68496>//Send DoTask 4 "Something"
+68496>//Send DoTask 12 "Something else"
+68496>
+68496>Function Fibonacci Integer iNum Returns Integer
+68498>    Integer iNum1 iNum2
+68498>    
+68498>    If (iNum = 0)
+68500>    Function_Return 0
+68501>    If (iNum = 1)
+68503>    Function_Return 1
+68504>    
+68504>    Get Fibonacci (iNum - 1) to iNum1
+68505>    Get Fibonacci (iNum - 2) to iNum2
+68506>    
+68506>    Function_Return (iNum1 + iNum2)
+68507>End_Function
+68508>
+68508>Procedure TestFibonacci
+68510>    Integer iResult
+68510>    
+68510>    Get Fibonacci 30 to iResult
+68511>    
+68511>    Send Info_Box iResult "Fibonacci"
+68512>End_Procedure
+68513>
+68513>Send TestFibonacci
+68514>
+Summary
+Memory Available: 7850692608
+Total Warnings : 0
+Total Errors   : 0
+Total Symbols  : 40192
+Total Resources: 0
+Total Commands : 68513
+Total Windows  : 0
+Total Pages    : 0
+Static Data    : 451879
+Message area   : 480502
+Total Blocks   : 25722

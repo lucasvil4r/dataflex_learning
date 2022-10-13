@@ -1,0 +1,42 @@
+Compiling Program: C:\dataflex_learning\DataFlexStudio v20.0\AppSrc\StructsAndArrays.src
+Memory Available: 6571282432
+1>Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
+Using pre-compiled package DFALLENT.PKG
+Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.x64.pkd)
+68480>
+68480>Procedure DemoArray
+68482>    String[] aNames
+68483>    Integer iIndex
+68483>    
+68483>    Move "Lucas" to aNames[0]
+68484>    Move "Richard" to aNames[1]
+68485>    Move "Ricardo" to aNames[2]
+68486>    Move "Cris" to aNames[3]
+68487>    
+68487>    Move (SortArray(aNames)) to aNames
+68488>    
+68488>    For iIndex from 0 to (SizeOfArray(aNames) - 1)
+68494>        Showln aNames[iIndex]
+68496>    Loop
+68497>    
+68497>    Move (SearchArray("Nick", aNames)) to iIndex
+68498>    Showln (SFormat("Found '%1' at position %2", aNames[iIndex], iIndex))
+68500>    
+68500>End_Procedure
+68501>
+68501>Send DemoArray
+68502>
+68502>Send Info_Box "Done"
+68503>
+Summary
+Memory Available: 6553509888
+Total Warnings : 0
+Total Errors   : 0
+Total Symbols  : 40184
+Total Resources: 0
+Total Commands : 68502
+Total Windows  : 0
+Total Pages    : 0
+Static Data    : 452018
+Message area   : 480355
+Total Blocks   : 25719

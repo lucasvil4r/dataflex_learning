@@ -1,0 +1,25 @@
+﻿Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
+
+Procedure DemoArray
+    String[] aNames
+    Integer iIndex
+    
+    Move "Lucas" to aNames[0]
+    Move "Richard" to aNames[1]
+    Move "Ricardo" to aNames[2]
+    Move "Cris" to aNames[3]
+    
+    Move (SortArray(aNames)) to aNames
+    
+    For iIndex from 0 to (SizeOfArray(aNames) - 1)
+        Showln aNames[iIndex]
+    Loop
+    
+    Move (SearchArray("Nick", aNames)) to iIndex
+    Showln (SFormat("Found '%1' at position %2", aNames[iIndex], iIndex))
+    
+End_Procedure
+
+Send DemoArray
+
+Send Info_Box "Done"

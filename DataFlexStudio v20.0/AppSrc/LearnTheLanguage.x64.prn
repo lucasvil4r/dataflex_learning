@@ -1,0 +1,20 @@
+Compiling Program: C:\dataflex_learning\DataFlexStudio v20.0\AppSrc\LearnTheLanguage.src
+Memory Available: 7833075712
+1>Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
+Using pre-compiled package DFALLENT.PKG
+Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.x64.pkd)
+68480>
+68480>Send Info_Box "Hello World" "DataFlex Basic Project"
+68481>
+Summary
+Memory Available: 7820836864
+Total Warnings : 0
+Total Errors   : 0
+Total Symbols  : 40177
+Total Resources: 0
+Total Commands : 68480
+Total Windows  : 0
+Total Pages    : 0
+Static Data    : 451644
+Message area   : 480322
+Total Blocks   : 25711

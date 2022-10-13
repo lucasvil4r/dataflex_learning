@@ -1,0 +1,3 @@
+﻿Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
+
+Send Info_Box "Hello World" "DataFlex Basic Project"

@@ -1,0 +1,99 @@
+Compiling Program: C:\dataflex_learning\DataFlexStudio v20.0\AppSrc\MoreFlowControl.src
+Memory Available: 7898996736
+1>Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
+Using pre-compiled package DFALLENT.PKG
+Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.x64.pkd)
+68480>
+68480>Procedure DemoIf
+68482>    String sMessage
+68482>    
+68482>    If (DateGetHour(CurrentDateTime()) < 12) Begin
+68484>        Move "Good Morning" to sMessage
+68485>    End
+68485>    Else If (DateGetHour(CurrentDateTime()) < 18) Begin
+68488>        Move "Good Afternoon" to sMessage
+68489>    End
+68489>    Else Begin
+68490>        Move "Good Day" to sMessage
+68491>    End
+68491>    
+68491>    Send Info_Box sMessage
+68492>End_Procedure
+68493>
+68493>
+68493>Send DemoIf
+68494>
+68494>
+68494>Procedure DemoCase
+68496>    String sGreeting
+68496>    
+68496>    Case Begin
+68496>        Case (DateGetHour(CurrentDateTime()) < 12)
+68498>            Move "Good Morning" to sGreeting
+68499>            Break
+68500>        Case (DateGetHour(CurrentDateTime()) < 18)
+68503>            Move "Good Afternoon" to sGreeting
+68504>            Break
+68505>    Case End
+68505>    Send Info_Box sGreeting
+68506>End_Procedure
+68507>
+68507>
+68507>Send DemoCase
+68508>
+68508>
+68508>Procedure DemoFor
+68510>    Integer iVar
+68510>    
+68510>    For iVar from 0 to 9
+68516>        Showln ("Counting:" + String(iVar))
+68518>    Loop
+68519>    Send Info_Box "Done."
+68520>End_Procedure
+68521>
+68521>
+68521>Send DemoFor
+68522>
+68522>
+68522>Procedure DemoWhile
+68524>    Integer iNum
+68524>    
+68524>    Move 1 to iNum
+68525>    
+68525>    While (iNum <= 128)
+68529>        Showln ("iNum is:" + String(iNum))
+68531>        Move (iNum * 2) to iNum
+68532>    Loop
+68533>    Send Info_Box "Done."
+68534>End_Procedure
+68535>
+68535>Send DemoWhile
+68536>
+68536>
+68536>Procedure DemoUntil
+68538>    Integer iNum
+68538>    
+68538>        Move 1 to iNum
+68539>        
+68539>        Repeat
+68539>            Showln ("iNum is:" + String(iNum))
+68541>            Move (iNum * 2) to iNum
+68542>        Until (iNum > 128)
+68544>        
+68544>        Send Info_Box "Done."
+68545>End_Procedure
+68546>
+68546>Send DemoUntil
+68547>
+Summary
+Memory Available: 7896043520
+Total Warnings : 0
+Total Errors   : 0
+Total Symbols  : 40212
+Total Resources: 0
+Total Commands : 68546
+Total Windows  : 0
+Total Pages    : 0
+Static Data    : 452079
+Message area   : 480468
+Total Blocks   : 25731

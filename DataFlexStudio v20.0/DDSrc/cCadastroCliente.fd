@@ -1,0 +1,7 @@
+#REPLACE FILE1 cCadastroCliente
+#REPLACE cCadastroCliente.File_Number |CI1
+#REPLACE cCadastroCliente.id |FN1,1
+#REPLACE cCadastroCliente.nome |FS1,2
+#REPLACE cCadastroCliente.cpf |FS1,3
+#REPLACE cCadastroCliente.cnpj |FS1,4
+#REPLACE cCadastroCliente.date |FM1,5

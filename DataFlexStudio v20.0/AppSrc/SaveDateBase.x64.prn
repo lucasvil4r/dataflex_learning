@@ -1,0 +1,1109 @@
+Compiling Program: C:\dataflex_learning\DataFlexStudio v20.0\AppSrc\SaveDateBase.src
+Memory Available: 6714216448
+1>Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
+Using pre-compiled package DFALLENT.PKG
+Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.x64.pkd)
+68480>Use cConnection.pkg
+68480>
+68480>Object oApplication is a cApplication
+68482>    
+68482>    Object oConnection is a cConnection
+68484>        Set pbLoginOnOpen to False
+68485>        Use LoginEncryption.pkg
+Including file: LoginEncryption.pkg    (C:\Program Files\DataFlex 20.0\Pkg\LoginEncryption.pkg)
+68485>>>Use cLoginEncryption.pkg
+Including file: cLoginEncryption.pkg    (C:\Program Files\DataFlex 20.0\Pkg\cLoginEncryption.pkg)
+68485>>>>>Use cCryptographerEx.pkg
+Including file: cCryptographerEx.pkg    (C:\Program Files\DataFlex 20.0\Pkg\cCryptographerEx.pkg)
+68485>>>>>>>Use VdfBase.pkg
+68485>>>>>>>
+68485>>>>>>>Use CryptographerConstants.pkg
+Including file: CryptographerConstants.pkg    (C:\Program Files\DataFlex 20.0\Pkg\CryptographerConstants.pkg)
+68485>>>>>>>>>//   Author  : Ulbe Stellema
+68485>>>>>>>>>// Algorithm classes
+68485>>>>>>>>>Define ALG_CLASS_ANY                    for |CI$00000000 // (0)
+68485>>>>>>>>>Define ALG_CLASS_SIGNATURE              for |CI$00002000 // (1 << 13)
+68485>>>>>>>>>Define ALG_CLASS_MSG_ENCRYPT            for |CI$00004000 // (2 << 13)
+68485>>>>>>>>>Define ALG_CLASS_DATA_ENCRYPT           for |CI$00006000 // (3 << 13)
+68485>>>>>>>>>Define ALG_CLASS_HASH                   for |CI$00008000 // (4 << 13)
+68485>>>>>>>>>Define ALG_CLASS_KEY_EXCHANGE           for |CI$0000A000 // (5 << 13)
+68485>>>>>>>>>Define ALG_CLASS_ALL                    for |CI$0000E000 // (7 << 13)
+68485>>>>>>>>>
+68485>>>>>>>>>// Algorithm types
+68485>>>>>>>>>Define ALG_TYPE_ANY                     for |CI$00000000 // (0)
+68485>>>>>>>>>Define ALG_TYPE_DSS                     for |CI$00000200 // (1 << 9)
+68485>>>>>>>>>Define ALG_TYPE_RSA                     for |CI$00000400 // (2 << 9)
+68485>>>>>>>>>Define ALG_TYPE_BLOCK                   for |CI$00000600 // (3 << 9)
+68485>>>>>>>>>Define ALG_TYPE_STREAM                  for |CI$00000800 // (4 << 9)
+68485>>>>>>>>>Define ALG_TYPE_DH                      for |CI$00000A00 // (5 << 9)
+68485>>>>>>>>>Define ALG_TYPE_SECURECHANNEL           for |CI$00000C00 // (6 << 9)
+68485>>>>>>>>>
+68485>>>>>>>>>// Generic sub-ids
+68485>>>>>>>>>Define ALG_SID_ANY                      for |CI$00000000 // (0)
+68485>>>>>>>>>
+68485>>>>>>>>>// RSA sub-ids
+68485>>>>>>>>>Define ALG_SID_RSA_ANY                  for 0
+68485>>>>>>>>>Define ALG_SID_RSA_PKCS                 for 1
+68485>>>>>>>>>Define ALG_SID_RSA_MSATWORK             for 2
+68485>>>>>>>>>Define ALG_SID_RSA_ENTRUST              for 3
+68485>>>>>>>>>Define ALG_SID_RSA_PGP                  for 4
+68485>>>>>>>>>
+68485>>>>>>>>>// DSS sub-ids
+68485>>>>>>>>>Define ALG_SID_DSS_ANY                  for 0
+68485>>>>>>>>>Define ALG_SID_DSS_PKCS                 for 1
+68485>>>>>>>>>Define ALG_SID_DSS_DMS                  for 2
+68485>>>>>>>>>
+68485>>>>>>>>>// DES sub_ids
+68485>>>>>>>>>Define ALG_SID_DES                      for 1
+68485>>>>>>>>>Define ALG_SID_3DES                     for 3
+68485>>>>>>>>>Define ALG_SID_DESX                     for 4
+68485>>>>>>>>>Define ALG_SID_IDEA                     for 5
+68485>>>>>>>>>Define ALG_SID_CAST                     for 6
+68485>>>>>>>>>Define ALG_SID_SAFERSK64                for 7
+68485>>>>>>>>>Define ALG_SID_SAFERSK128               for 8
+68485>>>>>>>>>Define ALG_SID_3DES_112                 for 9
+68485>>>>>>>>>Define ALG_SID_CYLINK_MEK               for 12
+68485>>>>>>>>>Define ALG_SID_RC5                      for 13
+68485>>>>>>>>>Define ALG_SID_AES_128                  for 14
+68485>>>>>>>>>Define ALG_SID_AES_192                  for 15
+68485>>>>>>>>>Define ALG_SID_AES_256                  for 16
+68485>>>>>>>>>Define ALG_SID_AES                      for 17
+68485>>>>>>>>>
+68485>>>>>>>>>// Fortezza sub-ids
+68485>>>>>>>>>Define ALG_SID_SKIPJACK                 for 10
+68485>>>>>>>>>Define ALG_SID_TEK                      for 11
+68485>>>>>>>>>
+68485>>>>>>>>>// RC2 sub-ids
+68485>>>>>>>>>Define ALG_SID_RC2                      for 2
+68485>>>>>>>>>
+68485>>>>>>>>>// Stream cipher sub-ids
+68485>>>>>>>>>Define ALG_SID_RC4                      for 1
+68485>>>>>>>>>Define ALG_SID_SEAL                     for 2
+68485>>>>>>>>>
+68485>>>>>>>>>// Diffie-Hellman sub-ids
+68485>>>>>>>>>Define ALG_SID_DH_SANDF                 for 1
+68485>>>>>>>>>Define ALG_SID_DH_EPHEM                 for 2
+68485>>>>>>>>>Define ALG_SID_AGREED_KEY_ANY           for 3
+68485>>>>>>>>>Define ALG_SID_KEA                      for 4
+68485>>>>>>>>>
+68485>>>>>>>>>// Hash sub ids
+68485>>>>>>>>>Define ALG_SID_MD2                      for 1
+68485>>>>>>>>>Define ALG_SID_MD4                      for 2
+68485>>>>>>>>>Define ALG_SID_MD5                      for 3
+68485>>>>>>>>>Define ALG_SID_SHA                      for 4
+68485>>>>>>>>>Define ALG_SID_SHA1                     for 4
+68485>>>>>>>>>Define ALG_SID_MAC                      for 5
+68485>>>>>>>>>Define ALG_SID_RIPEMD                   for 6
+68485>>>>>>>>>Define ALG_SID_RIPEMD160                for 7
+68485>>>>>>>>>Define ALG_SID_SSL3SHAMD5               for 8
+68485>>>>>>>>>Define ALG_SID_HMAC                     for 9
+68485>>>>>>>>>Define ALG_SID_TLS1PRF                  for 10
+68485>>>>>>>>>Define ALG_SID_HASH_REPLACE_OWF         for 11
+68485>>>>>>>>>Define ALG_SID_SHA_256                  for 12
+68485>>>>>>>>>Define ALG_SID_SHA_384                  for 13
+68485>>>>>>>>>Define ALG_SID_SHA_512                  for 14
+68485>>>>>>>>>
+68485>>>>>>>>>// secure channel sub ids
+68485>>>>>>>>>Define ALG_SID_SSL3_MASTER              for 1
+68485>>>>>>>>>Define ALG_SID_SCHANNEL_MASTER_HASH     for 2
+68485>>>>>>>>>Define ALG_SID_SCHANNEL_MAC_KEY         for 3
+68485>>>>>>>>>Define ALG_SID_PCT1_MASTER              for 4
+68485>>>>>>>>>Define ALG_SID_SSL2_MASTER              for 5
+68485>>>>>>>>>Define ALG_SID_TLS1_MASTER              for 6
+68485>>>>>>>>>Define ALG_SID_SCHANNEL_ENC_KEY         for 7
+68485>>>>>>>>>
+68485>>>>>>>>>// algorithm identifier definitions
+68485>>>>>>>>>Define CALG_MD2                         for (ALG_CLASS_HASH ior ALG_TYPE_ANY ior ALG_SID_MD2)
+68485>>>>>>>>>Define CALG_MD4                         for (ALG_CLASS_HASH ior ALG_TYPE_ANY ior ALG_SID_MD4)
+68485>>>>>>>>>Define CALG_MD5                         for (ALG_CLASS_HASH ior ALG_TYPE_ANY ior ALG_SID_MD5)
+68485>>>>>>>>>Define CALG_SHA                         for (ALG_CLASS_HASH ior ALG_TYPE_ANY ior ALG_SID_SHA)
+68485>>>>>>>>>Define CALG_SHA1                        for (ALG_CLASS_HASH ior ALG_TYPE_ANY ior ALG_SID_SHA1)
+68485>>>>>>>>>Define CALG_MAC                         for (ALG_CLASS_HASH ior ALG_TYPE_ANY ior ALG_SID_MAC)
+68485>>>>>>>>>Define CALG_RSA_SIGN                    for (ALG_CLASS_SIGNATURE ior ALG_TYPE_RSA ior ALG_SID_RSA_ANY)
+68485>>>>>>>>>Define CALG_DSS_SIGN                    for (ALG_CLASS_SIGNATURE ior ALG_TYPE_DSS ior ALG_SID_DSS_ANY)
+68485>>>>>>>>>Define CALG_NO_SIGN                     for (ALG_CLASS_SIGNATURE ior ALG_TYPE_ANY ior ALG_SID_ANY)
+68485>>>>>>>>>Define CALG_RSA_KEYX                    for (ALG_CLASS_KEY_EXCHANGE ior ALG_TYPE_RSA ior ALG_SID_RSA_ANY)
+68485>>>>>>>>>Define CALG_DES                         for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_BLOCK ior ALG_SID_DES)
+68485>>>>>>>>>Define CALG_3DES_112                    for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_BLOCK ior ALG_SID_3DES_112)
+68485>>>>>>>>>Define CALG_3DES                        for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_BLOCK ior ALG_SID_3DES)
+68485>>>>>>>>>Define CALG_DESX                        for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_BLOCK ior ALG_SID_DESX)
+68485>>>>>>>>>Define CALG_RC2                         for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_BLOCK ior ALG_SID_RC2)
+68485>>>>>>>>>Define CALG_RC4                         for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_STREAM ior ALG_SID_RC4)
+68485>>>>>>>>>Define CALG_SEAL                        for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_STREAM ior ALG_SID_SEAL)
+68485>>>>>>>>>Define CALG_DH_SF                       for (ALG_CLASS_KEY_EXCHANGE ior ALG_TYPE_DH ior ALG_SID_DH_SANDF)
+68485>>>>>>>>>Define CALG_DH_EPHEM                    for (ALG_CLASS_KEY_EXCHANGE ior ALG_TYPE_DH ior ALG_SID_DH_EPHEM)
+68485>>>>>>>>>Define CALG_AGREEDKEY_ANY               for (ALG_CLASS_KEY_EXCHANGE ior ALG_TYPE_DH ior ALG_SID_AGREED_KEY_ANY)
+68485>>>>>>>>>Define CALG_KEA_KEYX                    for (ALG_CLASS_KEY_EXCHANGE ior ALG_TYPE_DH ior ALG_SID_KEA)
+68485>>>>>>>>>Define CALG_HUGHES_MD5                  for (ALG_CLASS_KEY_EXCHANGE ior ALG_TYPE_ANY ior ALG_SID_MD5)
+68485>>>>>>>>>Define CALG_SKIPJACK                    for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_BLOCK ior ALG_SID_SKIPJACK)
+68485>>>>>>>>>Define CALG_TEK                         for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_BLOCK ior ALG_SID_TEK)
+68485>>>>>>>>>Define CALG_CYLINK_MEK                  for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_BLOCK ior ALG_SID_CYLINK_MEK)
+68485>>>>>>>>>Define CALG_SSL3_SHAMD5                 for (ALG_CLASS_HASH ior ALG_TYPE_ANY ior ALG_SID_SSL3SHAMD5)
+68485>>>>>>>>>Define CALG_SSL3_MASTER                 for (ALG_CLASS_MSG_ENCRYPT ior ALG_TYPE_SECURECHANNEL ior ALG_SID_SSL3_MASTER)
+68485>>>>>>>>>Define CALG_SCHANNEL_MASTER_HASH        for (ALG_CLASS_MSG_ENCRYPT ior ALG_TYPE_SECURECHANNEL ior ALG_SID_SCHANNEL_MASTER_HASH)
+68485>>>>>>>>>Define CALG_SCHANNEL_MAC_KEY            for (ALG_CLASS_MSG_ENCRYPT ior ALG_TYPE_SECURECHANNEL ior ALG_SID_SCHANNEL_MAC_KEY)
+68485>>>>>>>>>Define CALG_SCHANNEL_ENC_KEY            for (ALG_CLASS_MSG_ENCRYPT ior ALG_TYPE_SECURECHANNEL ior ALG_SID_SCHANNEL_ENC_KEY)
+68485>>>>>>>>>Define CALG_PCT1_MASTER                 for (ALG_CLASS_MSG_ENCRYPT ior ALG_TYPE_SECURECHANNEL ior ALG_SID_PCT1_MASTER)
+68485>>>>>>>>>Define CALG_SSL2_MASTER                 for (ALG_CLASS_MSG_ENCRYPT ior ALG_TYPE_SECURECHANNEL ior ALG_SID_SSL2_MASTER)
+68485>>>>>>>>>Define CALG_TLS1_MASTER                 for (ALG_CLASS_MSG_ENCRYPT ior ALG_TYPE_SECURECHANNEL ior ALG_SID_TLS1_MASTER)
+68485>>>>>>>>>Define CALG_RC5                         for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_BLOCK ior ALG_SID_RC5)
+68485>>>>>>>>>Define CALG_HMAC                        for (ALG_CLASS_HASH ior ALG_TYPE_ANY ior ALG_SID_HMAC)
+68485>>>>>>>>>Define CALG_TLS1PRF                     for (ALG_CLASS_HASH ior ALG_TYPE_ANY ior ALG_SID_TLS1PRF)
+68485>>>>>>>>>Define CALG_HASH_REPLACE_OWF            for (ALG_CLASS_HASH ior ALG_TYPE_ANY ior ALG_SID_HASH_REPLACE_OWF)
+68485>>>>>>>>>Define CALG_AES_128                     for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_BLOCK ior ALG_SID_AES_128)
+68485>>>>>>>>>Define CALG_AES_192                     for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_BLOCK ior ALG_SID_AES_192)
+68485>>>>>>>>>Define CALG_AES_256                     for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_BLOCK ior ALG_SID_AES_256)
+68485>>>>>>>>>Define CALG_AES                         for (ALG_CLASS_DATA_ENCRYPT ior ALG_TYPE_BLOCK ior ALG_SID_AES)
+68485>>>>>>>>>Define CALG_SHA_256                     for (ALG_CLASS_HASH ior ALG_TYPE_ANY ior ALG_SID_SHA_256)
+68485>>>>>>>>>Define CALG_SHA_384                     for (ALG_CLASS_HASH ior ALG_TYPE_ANY ior ALG_SID_SHA_384)
+68485>>>>>>>>>Define CALG_SHA_512                     for (ALG_CLASS_HASH ior ALG_TYPE_ANY ior ALG_SID_SHA_512)
+68485>>>>>>>>>
+68485>>>>>>>>>// Providers
+68485>>>>>>>>>Define MS_DEF_PROV                      for "Microsoft Base Cryptographic Provider v1.0"
+68485>>>>>>>>>Define MS_ENHANCED_PROV                 for "Microsoft Enhanced Cryptographic Provider v1.0"
+68485>>>>>>>>>Define MS_STRONG_PROV                   for "Microsoft Strong Cryptographic Provider"
+68485>>>>>>>>>Define MS_DEF_RSA_SIG_PROV              for "Microsoft RSA Signature Cryptographic Provider"
+68485>>>>>>>>>Define MS_DEF_RSA_SCHANNEL_PROV         for "Microsoft RSA SChannel Cryptographic Provider"
+68485>>>>>>>>>Define MS_DEF_DSS_PROV                  for "Microsoft Base DSS Cryptographic Provider"
+68485>>>>>>>>>Define MS_DEF_DSS_DH_PROV               for "Microsoft Base DSS and Diffie-Hellman Cryptographic Provider"
+68485>>>>>>>>>Define MS_ENH_DSS_DH_PROV               for "Microsoft Enhanced DSS and Diffie-Hellman Cryptographic Provider"
+68485>>>>>>>>>Define MS_DEF_DH_SCHANNEL_PROV          for "Microsoft DH SChannel Cryptographic Provider"
+68485>>>>>>>>>Define MS_SCARD_PROV                    for "Microsoft Base Smart Card Crypto Provider"
+68485>>>>>>>>>Define MS_ENH_RSA_AES_PROV              for "Microsoft Enhanced RSA and AES Cryptographic Provider"
+68485>>>>>>>>>
+68485>>>>>>>>>// dwFlags definitions for CryptAcquireContext
+68485>>>>>>>>>Define CRYPT_VERIFYCONTEXT              for |CI$F0000000
+68485>>>>>>>>>Define CRYPT_NEWKEYSET                  for |CI$00000008
+68485>>>>>>>>>Define CRYPT_DELETEKEYSET               for |CI$00000010
+68485>>>>>>>>>Define CRYPT_MACHINE_KEYSET             for |CI$00000020
+68485>>>>>>>>>Define CRYPT_SILENT                     for |CI$00000040
+68485>>>>>>>>>
+68485>>>>>>>>>// dwFlag definitions for CryptGenKey
+68485>>>>>>>>>Define CRYPT_EXPORTABLE                 for |CI$00000001
+68485>>>>>>>>>Define CRYPT_USER_PROTECTED             for |CI$00000002
+68485>>>>>>>>>Define CRYPT_CREATE_SALT                for |CI$00000004
+68485>>>>>>>>>Define CRYPT_UPDATE_KEY                 for |CI$00000008
+68485>>>>>>>>>Define CRYPT_NO_SALT                    for |CI$00000010
+68485>>>>>>>>>Define CRYPT_PREGEN                     for |CI$00000040
+68485>>>>>>>>>Define CRYPT_RECIPIENT                  for |CI$00000010
+68485>>>>>>>>>Define CRYPT_INITIATOR                  for |CI$00000040
+68485>>>>>>>>>Define CRYPT_ONLINE                     for |CI$00000080
+68485>>>>>>>>>Define CRYPT_SF                         for |CI$00000100
+68485>>>>>>>>>Define CRYPT_CREATE_IV                  for |CI$00000200
+68485>>>>>>>>>Define CRYPT_KEK                        for |CI$00000400
+68485>>>>>>>>>Define CRYPT_DATA_KEY                   for |CI$00000800
+68485>>>>>>>>>Define CRYPT_VOLATILE                   for |CI$00001000
+68485>>>>>>>>>Define CRYPT_SGCKEY                     for |CI$00002000
+68485>>>>>>>>>Define CRYPT_ARCHIVABLE                 for |CI$00004000
+68485>>>>>>>>>
+68485>>>>>>>>>// Provider types
+68485>>>>>>>>>Define PROV_RSA_FULL                    for 1
+68485>>>>>>>>>Define PROV_RSA_SIG                     for 2
+68485>>>>>>>>>Define PROV_DSS                         for 3
+68485>>>>>>>>>Define PROV_FORTEZZA                    for 4
+68485>>>>>>>>>Define PROV_MS_EXCHANGE                 for 5
+68485>>>>>>>>>Define PROV_SSL                         for 6
+68485>>>>>>>>>Define PROV_RSA_SCHANNEL                for 12
+68485>>>>>>>>>Define PROV_DSS_DH                      for 13
+68485>>>>>>>>>Define PROV_EC_ECDSA_SIG                for 14
+68485>>>>>>>>>Define PROV_EC_ECNRA_SIG                for 15
+68485>>>>>>>>>Define PROV_EC_ECDSA_FULL               for 16
+68485>>>>>>>>>Define PROV_EC_ECNRA_FULL               for 17
+68485>>>>>>>>>Define PROV_DH_SCHANNEL                 for 18
+68485>>>>>>>>>Define PROV_SPYRUS_LYNKS                for 20
+68485>>>>>>>>>Define PROV_RNG                         for 21
+68485>>>>>>>>>Define PROV_INTEL_SEC                   for 22
+68485>>>>>>>>>Define PROV_REPLACE_OWF                 for 23
+68485>>>>>>>>>Define PROV_RSA_AES                     for 24
+68485>>>>>>>>>
+68485>>>>>>>>>// KP_MODE
+68485>>>>>>>>>// KP_MODE
+68485>>>>>>>>>Define CRYPT_MODE_CBC                   for 1       // Cipher block chaining
+68485>>>>>>>>>Define CRYPT_MODE_ECB                   for 2       // Electronic code book
+68485>>>>>>>>>Define CRYPT_MODE_OFB                   for 3       // Output feedback mode
+68485>>>>>>>>>Define CRYPT_MODE_CFB                   for 4       // Cipher feedback mode
+68485>>>>>>>>>Define CRYPT_MODE_CTS                   for 5       // Ciphertext stealing mode
+68485>>>>>>>>>Define CRYPT_MODE_CBCI                  for 6       // ANSI CBC Interleaved
+68485>>>>>>>>>Define CRYPT_MODE_CFBP                  for 7       // ANSI CFB Pipelined
+68485>>>>>>>>>Define CRYPT_MODE_OFBP                  for 8       // ANSI OFB Pipelined
+68485>>>>>>>>>Define CRYPT_MODE_CBCOFM                for 9       // ANSI CBC + OF Masking
+68485>>>>>>>>>Define CRYPT_MODE_CBCOFMI               for 10      // ANSI CBC + OFM Interleaved
+68485>>>>>>>>>
+68485>>>>>>>>>// dwParam definitions for CryptGetKeyParam
+68485>>>>>>>>>Define KP_IV                            for 1       // Initialization vector
+68485>>>>>>>>>Define KP_SALT                          for 2       // Salt value
+68485>>>>>>>>>Define KP_PADDING                       for 3       // Padding values
+68485>>>>>>>>>Define KP_MODE                          for 4       // Mode of the cipher
+68485>>>>>>>>>Define KP_MODE_BITS                     for 5       // Number of bits to feedback
+68485>>>>>>>>>Define KP_PERMISSIONS                   for 6       // Key permissions DWORD
+68485>>>>>>>>>Define KP_ALGID                         for 7       // Key algorithm
+68485>>>>>>>>>Define KP_BLOCKLEN                      for 8       // Block size of the cipher
+68485>>>>>>>>>Define KP_KEYLEN                        for 9       // Length of key in bits
+68485>>>>>>>>>Define KP_SALT_EX                       for 10      // Length of salt in bytes
+68485>>>>>>>>>Define KP_P                             for 11      // DSS/Diffie-Hellman P value
+68485>>>>>>>>>Define KP_G                             for 12      // DSS/Diffie-Hellman G value
+68485>>>>>>>>>Define KP_Q                             for 13      // DSS Q value
+68485>>>>>>>>>Define KP_X                             for 14      // Diffie-Hellman X value
+68485>>>>>>>>>Define KP_Y                             for 15      // Y value
+68485>>>>>>>>>Define KP_RA                            for 16      // Fortezza RA value
+68485>>>>>>>>>Define KP_RB                            for 17      // Fortezza RB value
+68485>>>>>>>>>Define KP_INFO                          for 18      // for putting information into an RSA envelope
+68485>>>>>>>>>Define KP_EFFECTIVE_KEYLEN              for 19      // setting and getting RC2 effective key length
+68485>>>>>>>>>Define KP_SCHANNEL_ALG                  for 20      // for setting the Secure Channel algorithms
+68485>>>>>>>>>Define KP_CLIENT_RANDOM                 for 21      // for setting the Secure Channel client random data
+68485>>>>>>>>>Define KP_SERVER_RANDOM                 for 22      // for setting the Secure Channel server random data
+68485>>>>>>>>>Define KP_RP                            for 23
+68485>>>>>>>>>Define KP_PRECOMP_MD5                   for 24
+68485>>>>>>>>>Define KP_PRECOMP_SHA                   for 25
+68485>>>>>>>>>Define KP_CERTIFICATE                   for 26      // for setting Secure Channel certificate data (PCT1)
+68485>>>>>>>>>Define KP_CLEAR_KEY                     for 27      // for setting Secure Channel clear key data (PCT1)
+68485>>>>>>>>>Define KP_PUB_EX_LEN                    for 28
+68485>>>>>>>>>Define KP_PUB_EX_VAL                    for 29
+68485>>>>>>>>>Define KP_KEYVAL                        for 30
+68485>>>>>>>>>Define KP_ADMIN_PIN                     for 31
+68485>>>>>>>>>Define KP_KEYEXCHANGE_PIN               for 32
+68485>>>>>>>>>Define KP_SIGNATURE_PIN                 for 33
+68485>>>>>>>>>Define KP_PREHASH                       for 34
+68485>>>>>>>>>Define KP_ROUNDS                        for 35
+68485>>>>>>>>>Define KP_OAEP_PARAMS                   for 36      // for setting OAEP params on RSA keys
+68485>>>>>>>>>Define KP_CMS_KEY_INFO                  for 37
+68485>>>>>>>>>Define KP_CMS_DH_KEY_INFO               for 38
+68485>>>>>>>>>Define KP_PUB_PARAMS                    for 39      // for setting public parameters
+68485>>>>>>>>>Define KP_VERIFY_PARAMS                 for 40      // for verifying DSA and DH parameters
+68485>>>>>>>>>Define KP_HIGHEST_VERSION               for 41      // for TLS protocol version setting
+68485>>>>>>>>>Define KP_GET_USE_COUNT                 for 42      // for use with PP_CRYPT_COUNT_KEY_USE contexts
+68485>>>>>>>>>
+68485>>>>>>>>>// dwParam definitions for CryptGetHashParam
+68485>>>>>>>>>Define HP_ALGID                         for |CI$0001  // Hash algorithm
+68485>>>>>>>>>Define HP_HASHVAL                       for |CI$0002  // Hash value
+68485>>>>>>>>>Define HP_HASHSIZE                      for |CI$0004  // Hash value size
+68485>>>>>>>>>Define HP_HMAC_INFO                     for |CI$0005  // information for creating an HMA
+68485>>>>>>>>>
+68485>>>>>>>>>// key BLOB types
+68485>>>>>>>>>Define KEYSTATEBLOB                     for |CI$0C
+68485>>>>>>>>>Define OPAQUEKEYBLOB                    for |CI$09
+68485>>>>>>>>>Define PLAINTEXTKEYBLOB                 for |CI$08
+68485>>>>>>>>>Define PRIVATEKEYBLOB                   for |CI$07
+68485>>>>>>>>>Define PUBLICKEYBLOB                    for |CI$06
+68485>>>>>>>>>Define PUBLICKEYBLOBEX                  for |CI$0A
+68485>>>>>>>>>Define SIMPLEBLOB                       for |CI$01
+68485>>>>>>>>>Define SYMMETRICWRAPKEYBLOB             for |CI$0B
+68485>>>>>>>>>
+68485>>>>>>>>>Define CUR_BLOB_VERSION                 for 2
+68485>>>>>>>>>
+68485>>>>>>>>>// KP_PADDING
+68485>>>>>>>>>Define PKCS5_PADDING                    for 1       // PKCS 5 (sec 6.2) padding method
+68485>>>>>>>>>Define RANDOM_PADDING                   for 2
+68485>>>>>>>>>Define ZERO_PADDING                     for 3
+68485>>>>>>>>>
+68485>>>>>>>>>//  Structure cryptimportkey
+68485>>>>>>>>>Struct PUBLICKEYSTRUC
+68485>>>>>>>>>    UChar    bType
+68485>>>>>>>>>    UChar    bVersion
+68485>>>>>>>>>    UShort   reserved
+68485>>>>>>>>>    UInteger aiKeyAlg
+68485>>>>>>>>>End_Struct
+68485>>>>>>>>>
+68485>>>>>>>>>Struct tPLAINTEXTKEYBLOB
+68485>>>>>>>>>    PUBLICKEYSTRUC hdr
+68485>>>>>>>>>    PUBLICKEYSTRUC hdr
+68485>>>>>>>>>    UInteger       dwKeySize
+68485>>>>>>>>>//    UChar[]        rgbKeyData
+68485>>>>>>>>>End_Struct
+68485>>>>>>>>>
+68485>>>>>>>>>
+68485>>>>>>>>>
+68485>>>>>>>>>//  Structure for specifying the inner and outer strings when calculating HMAC hash (use with CryptSetHashParam)
+68485>>>>>>>>>Struct HMAC_INFO
+68485>>>>>>>>>    UInteger HashAlgid
+68485>>>>>>>>>    Pointer pbInnerString
+68485>>>>>>>>>    DWord cbInnerString
+68485>>>>>>>>>    Pointer pbOuterString
+68485>>>>>>>>>    DWord cbOuterString
+68485>>>>>>>>>End_Struct
+68485>>>>>>>>>
+68485>>>>>>>>>Struct BLOBHEADER
+68485>>>>>>>>>    UChar   bType
+68485>>>>>>>>>    UChar   bVersion
+68485>>>>>>>>>    Short   reserved
+68485>>>>>>>>>    Integer aiKeyAlg
+68485>>>>>>>>>End_Struct
+68485>>>>>>>>>
+68485>>>>>>>>>Struct CryptoBlob
+68485>>>>>>>>>    BLOBHEADER  header
+68485>>>>>>>>>    BLOBHEADER  header
+68485>>>>>>>>>    Integer     cbKeySize
+68485>>>>>>>>>    UChar[32]   rgbKeyData
+68485>>>>>>>>>End_Struct
+68485>>>>>>>>>
+68485>>>>>>>>>
+68485>>>>>>>>>// Note: lpContainer and lpProvider refer to WString types.
+68485>>>>>>>>>External_Function CryptAcquireContextW "CryptAcquireContextW" advapi32.dll ;    Pointer phProv ;    Pointer lpContainer ;    Pointer lpProvider ;    Integer dwProvType ;    Integer dwFlags ;    Returns Boolean
+68486>>>>>>>>>
+68486>>>>>>>>>// Compatibilty wrapper Function CryptAcquireContext
+68486>>>>>>>>>Function CryptAcquireContext Global ;    Pointer phProv ;    Pointer szContainer ;    Pointer szProvider ;    Integer dwProvType ;    Integer dwFlags ;    Returns Boolean
+68488>>>>>>>>>    
+68488>>>>>>>>>    Boolean bResult
+68488>>>>>>>>>    UWide   uwContainer uwProvider
+68488>>>>>>>>>    UWide   uwContainer uwProvider
+68488>>>>>>>>>
+68488>>>>>>>>>    Send StringToWide szContainer (&uwContainer)
+68489>>>>>>>>>    Send StringToWide szProvider (&uwProvider)
+68490>>>>>>>>>    
+68490>>>>>>>>>    Move (CryptAcquireContextW (phProv, uwContainer.lpUText, uwProvider.lpUText, dwProvType, dwFlags)) to bResult                   
+68491>>>>>>>>>
+68491>>>>>>>>>    Function_Return bResult
+68492>>>>>>>>>End_Function
+68493>>>>>>>>>
+68493>>>>>>>>>External_Function CryptReleaseContext "CryptReleaseContext" advapi32.dll ;    Handle hProv ;    Integer dwFlags ;    Returns Boolean
+68494>>>>>>>>>
+68494>>>>>>>>>External_Function CryptCreateHash "CryptCreateHash" advapi32.dll ;    Handle hProv ;    Integer Algid ;    Handle hKey ;    Integer dwFlags ;    Pointer phHash ;    Returns Boolean
+68495>>>>>>>>>
+68495>>>>>>>>>External_Function CryptDestroyHash "CryptDestroyHash" advapi32.dll ;    Handle hHash ;    Returns Boolean
+68496>>>>>>>>>
+68496>>>>>>>>>External_Function CryptHashData "CryptHashData" advapi32.dll ;    Handle hHash ;    Pointer pbData ;    Integer dwDataLen ;    Integer dwFlags ;    Returns Boolean
+68497>>>>>>>>>
+68497>>>>>>>>>External_Function CryptDeriveKey "CryptDeriveKey" advapi32.dll ;    Handle hProv ;    Integer Algid ;    Handle hBaseData ;    Integer dwFlags ;    Pointer phKey ;    Returns Boolean
+68498>>>>>>>>>
+68498>>>>>>>>>External_Function CryptGetHashParam "CryptGetHashParam" advapi32.dll ;    Handle hHash ;    DWord dwParam ;    Pointer pbData ;    Pointer pdwDataLen ;    DWord dwFlags ;    Returns Integer
+68499>>>>>>>>>
+68499>>>>>>>>>External_Function CryptDestroyKey "CryptDestroyKey" advapi32.dll ;    Handle hKey ;    Returns Boolean
+68500>>>>>>>>>
+68500>>>>>>>>>External_Function CryptImportKey "CryptImportKey" advapi32.dll ;    Handle hProv ;    Pointer pbData ;    Integer dwDataLen ;    Handle hPubKey ;    Integer dwFlags ;    Pointer phKey ;    Returns Boolean
+68501>>>>>>>>>
+68501>>>>>>>>>External_Function CryptGetKeyParam "CryptGetKeyParam" advapi32.dll ;    Handle hKey ;    Integer dwParam ;    Pointer pbData ;    Pointer pdwDataLen ;    Integer dwFlags ;    Returns Boolean
+68502>>>>>>>>>    
+68502>>>>>>>>>External_Function CryptSetKeyParam "CryptSetKeyParam" advapi32.dll ;    Handle   hKey ;    UInteger dwParam ;    Pointer  pbdata ;    UInteger dwFlags ;    Returns  Boolean
+68503>>>>>>>>>
+68503>>>>>>>>>External_Function CryptEncrypt "CryptEncrypt" advapi32.dll ;    Handle hKey ;    Handle hHash ;    Boolean bFinal ;    Integer dwFlags ;    Pointer pbData ;    Pointer pdwDataLen ;    Integer dwBufLen ;    Returns Boolean
+68504>>>>>>>>>
+68504>>>>>>>>>External_Function CryptDecrypt "CryptDecrypt" advapi32.dll ;    Handle hKey ;    Handle hHash ;    Boolean bFinal ;    Integer dwFlags ;    Pointer pbData ;    Pointer pdwDataLen ;    Returns Boolean
+68505>>>>>>>>>
+68505>>>>>>>>>External_Function CryptGenRandom "CryptGenRandom" advapi32.dll ;    Handle hProv ;    DWord dwLen ;    Pointer pbBuffer ;    Returns Boolean
+68506>>>>>>>>>    
+68506>>>>>>>>>External_Function CryptSetHashParam "CryptSetHashParam" advapi32.dll ;    Handle hHash ;    DWord dwParam ;    Pointer pbData ;    Integer dwFlags ;    Returns Boolean
+68507>>>>>>>>>    
+68507>>>>>>>>>External_Function CryptGenKey "CryptGenKey" advapi32.dll ;    Handle hProv ;    Integer Algid ;    Integer dwFlags ;    Pointer phKey ;    Returns Boolean
+68508>>>>>>>>>    
+68508>>>>>>>>>External_Function CryptExportKey "CryptExportKey" advapi32.dll ;    Handle hKey ;    Handle hExpKey ;    Integer dwBlobType ;    Integer dwFlags ;    Pointer pbData ;    Pointer pdwDataLen ;    Returns Boolean
+68509>>>>>>>
+68509>>>>>>>Class cCryptographerEx is a cObject
+68510>>>>>>>    
+68510>>>>>>>    Procedure Construct_Object
+68512>>>>>>>        Forward Send Construct_Object
+68514>>>>>>>        
+68514>>>>>>>        Property String     psProvider  MS_ENHANCED_PROV
+68515>>>>>>>        Property Integer    piProvider  PROV_RSA_FULL
+68516>>>>>>>        Property Integer    piCipher    CALG_RC4
+68517>>>>>>>        Property Integer    piHash      CALG_MD5
+68518>>>>>>>        
+68518>>>>>>>        // Private properties
+68518>>>>>>>        Property Handle     Private_phProv
+68519>>>>>>>        
+68519>>>>>>>        // Block cipher properties
+68519>>>>>>>        Property UChar[]    paKey
+68520>>>>>>>        Property UChar[]    paIV
+68521>>>>>>>        Property Integer    piKeyAlg        PLAINTEXTKEYBLOB
+68522>>>>>>>        Property Integer    piKeyType       CALG_AES_256
+68523>>>>>>>        Property Integer    piKeyPadding    PKCS5_PADDING
+68524>>>>>>>        Property Integer    piKeyMode       CRYPT_MODE_CBC
+68525>>>>>>>        Property Integer    piBlockSize     16
+68526>>>>>>>    End_Procedure
+68527>>>>>>>    
+68527>>>>>>>    
+68527>>>>>>>    // Acquire key container handle
+68527>>>>>>>    Function AcquireContext Returns Handle
+68529>>>>>>>        Integer iProvider
+68529>>>>>>>        WString wProvider
+68529>>>>>>>        Handle hProv
+68529>>>>>>>        Boolean bOk
+68529>>>>>>>        Pointer pProv
+68529>>>>>>>        
+68529>>>>>>>        Move 0 to hProv
+68530>>>>>>>        Get piProvider to iProvider
+68531>>>>>>>        Get psProvider to wProvider
+68532>>>>>>>        
+68532>>>>>>>        //  Determine address to be passed as provider
+68532>>>>>>>        If (Trim(wProvider) <> "") Begin
+68534>>>>>>>            Move (AddressOf(wProvider)) to pProv
+68535>>>>>>>        End
+68535>>>>>>>>
+68535>>>>>>>        Else Begin
+68536>>>>>>>            Move 0 to pProv
+68537>>>>>>>        End
+68537>>>>>>>>
+68537>>>>>>>        
+68537>>>>>>>        //  Acquire Crypto Context. Note: pProv is pointer to UTF16 string.
+68537>>>>>>>        Move (CryptAcquireContextW(AddressOf(hProv),0,pProv,iProvider,CRYPT_VERIFYCONTEXT)) to bOk
+68538>>>>>>>        If (not(bOk) or hProv = 0) Begin
+68540>>>>>>>            Move (CryptAcquireContextW(AddressOf(hProv),0,pProv,iProvider,CRYPT_NEWKEYSET ior CRYPT_VERIFYCONTEXT)) to bOk
+68541>>>>>>>        End
+68541>>>>>>>>
+68541>>>>>>>        
+68541>>>>>>>        If (not(bOk) or hProv = 0) Begin
+68543>>>>>>>            // Fallback to original
+68543>>>>>>>            Move (CryptAcquireContextW(AddressOf(hProv),0,pProv,iProvider,0)) to bOk
+68544>>>>>>>            
+68544>>>>>>>            If (not(bOk) or hProv = 0) Begin
+68546>>>>>>>                Move (CryptAcquireContextW(AddressOf(hProv),0,pProv,iProvider,CRYPT_NEWKEYSET)) to bOk
+68547>>>>>>>            End
+68547>>>>>>>>
+68547>>>>>>>        End
+68547>>>>>>>>
+68547>>>>>>>        Set Private_phProv to hProv
+68548>>>>>>>        
+68548>>>>>>>        Function_Return hProv
+68549>>>>>>>    End_Function
+68550>>>>>>>    
+68550>>>>>>>    // Releases key container handle
+68550>>>>>>>    Function ReleaseContext Handle hProv Returns Boolean
+68552>>>>>>>        Function_Return (CryptReleaseContext(hProv,0))
+68553>>>>>>>    End_Function
+68554>>>>>>>    
+68554>>>>>>>    // Creates hash object
+68554>>>>>>>    Function CreateHash Handle hProv Returns Handle
+68556>>>>>>>        Integer iAlgorithm
+68556>>>>>>>        Handle hHash
+68556>>>>>>>        Boolean bOk
+68556>>>>>>>        
+68556>>>>>>>        Move 0 to hHash
+68557>>>>>>>        Get piHash to iAlgorithm
+68558>>>>>>>        Move (CryptCreateHash(hProv,iAlgorithm,0,0,AddressOf(hHash))) to bOk
+68559>>>>>>>        
+68559>>>>>>>        Function_Return hHash
+68560>>>>>>>    End_Function
+68561>>>>>>>    
+68561>>>>>>>    // Destroys the hash object
+68561>>>>>>>    Function DestroyHash Handle hHash Returns Boolean
+68563>>>>>>>        Function_Return (CryptDestroyHash(hHash))
+68564>>>>>>>    End_Function
+68565>>>>>>>    
+68565>>>>>>>    // Adds data to hash object
+68565>>>>>>>    Function HashData Handle hHash UChar[] ucData Returns Boolean
+68567>>>>>>>        Function_Return (CryptHashData(hHash,AddressOf(ucData), SizeOfArray(ucData),0))
+68568>>>>>>>    End_Function
+68569>>>>>>>    
+68569>>>>>>>    // Generates session key
+68569>>>>>>>    Function DeriveKey Handle hProv Handle hHash Returns Handle
+68571>>>>>>>        Integer iAlgorithm
+68571>>>>>>>        Handle hKey
+68571>>>>>>>        Boolean bOk
+68571>>>>>>>        
+68571>>>>>>>        Move 0 to hKey
+68572>>>>>>>        Get piCipher to iAlgorithm
+68573>>>>>>>        Move (CryptDeriveKey(hProv,iAlgorithm,hHash,CRYPT_EXPORTABLE,AddressOf(hKey))) to bOk
+68574>>>>>>>        
+68574>>>>>>>        Function_Return hKey
+68575>>>>>>>    End_Function
+68576>>>>>>>    
+68576>>>>>>>    // Imports a plain text key
+68576>>>>>>>    Function ImportPlainTextKey Handle hProv UChar[] ucaKey Returns Handle
+68578>>>>>>>        tPLAINTEXTKEYBLOB blobhead
+68578>>>>>>>        tPLAINTEXTKEYBLOB blobhead
+68578>>>>>>>        Boolean   bSuccess
+68578>>>>>>>        Handle    hKey
+68578>>>>>>>        Integer   iHeadSize iKeySize
+68578>>>>>>>        UChar[]   ucaKeyblob
+68579>>>>>>>        Integer iVoid
+68579>>>>>>>        
+68579>>>>>>>        Move (SizeOfType(tPLAINTEXTKEYBLOB)) to iHeadSize
+68580>>>>>>>        Move (SizeOfArray(ucaKey)) to iKeySize
+68581>>>>>>>        
+68581>>>>>>>        Move PLAINTEXTKEYBLOB to blobhead.hdr.bType
+68582>>>>>>>        Move CUR_BLOB_VERSION   to blobhead.hdr.bVersion
+68583>>>>>>>        Get piCipher            to blobhead.hdr.aiKeyAlg
+68584>>>>>>>        Move iKeySize           to blobhead.dwKeySize
+68585>>>>>>>        
+68585>>>>>>>        Move (ResizeArray(ucaKeyblob, iHeadSize)) to ucaKeyblob
+68586>>>>>>>        Move (CopyMemory(AddressOf(ucaKeyblob), AddressOf(blobhead), iHeadSize)) to iVoid
+68587>>>>>>>        Move (AppendArray(ucaKeyblob, ucaKey)) to ucaKeyblob
+68588>>>>>>>        
+68588>>>>>>>        Move 0 to hKey
+68589>>>>>>>        Move (CryptImportKey(hProv, AddressOf(ucaKeyblob), SizeOfArray(ucaKeyblob), 0, 0, AddressOf(hKey))) to bSuccess
+68590>>>>>>>        If (not(bSuccess)) Begin
+68592>>>>>>>            Move (ShowLastError()) to iVoid
+68593>>>>>>>        End
+68593>>>>>>>>
+68593>>>>>>>        
+68593>>>>>>>        Function_Return hKey
+68594>>>>>>>    End_Function
+68595>>>>>>>    
+68595>>>>>>>    // Destroys the key
+68595>>>>>>>    Function DestroyKey Handle hKey Returns Boolean
+68597>>>>>>>        Function_Return (CryptDestroyKey(hKey))
+68598>>>>>>>    End_Function
+68599>>>>>>>    
+68599>>>>>>>    // Retrieves key data
+68599>>>>>>>    Function KeyParameter Handle hKey Integer iQuery Returns Integer
+68601>>>>>>>        Integer iBuffer iLen
+68601>>>>>>>        Boolean bOk
+68601>>>>>>>        
+68601>>>>>>>        Move (SizeOfType(Integer)) to iLen
+68602>>>>>>>        Move (CryptGetKeyParam(hKey,iQuery,AddressOf(iBuffer),AddressOf(iLen),0)) to bOk
+68603>>>>>>>        Function_Return iBuffer
+68604>>>>>>>    End_Function
+68605>>>>>>>    
+68605>>>>>>>    // Retrieves a hash value
+68605>>>>>>>    Function HashValue Handle lhHash Returns UChar[]
+68607>>>>>>>        UChar[] ucHash
+68608>>>>>>>        Integer liResult
+68608>>>>>>>        DWord   dwDataLen
+68608>>>>>>>        
+68608>>>>>>>        Move 0 to dwDataLen
+68609>>>>>>>        Move (CryptGetHashParam(lhHash,HP_HASHVAL,0,AddressOf(dwDataLen),0)) to liResult
+68610>>>>>>>        If (liResult = 0) ;            Function_Return ""
+68613>>>>>>>        
+68613>>>>>>>        Move (ResizeArray(ucHash, dwDataLen, 0)) to ucHash
+68614>>>>>>>        Move (CryptGetHashParam(lhHash,HP_HASHVAL,AddressOf(ucHash),AddressOf(dwDataLen),0)) to liResult
+68615>>>>>>>        If (liResult = 0) ;            Function_Return ""
+68618>>>>>>>        
+68618>>>>>>>        Function_Return ucHash
+68619>>>>>>>    End_Function
+68620>>>>>>>
+68620>>>>>>>    // Encrypts data
+68620>>>>>>>    Function Encrypt UChar[] ucPassword UChar[] ucData Returns UChar[]
+68622>>>>>>>        Handle hProv hHash hKey
+68622>>>>>>>        Integer iAlgorithm iDataLen iCipherLen iErr
+68622>>>>>>>        Boolean bOk
+68622>>>>>>>        
+68622>>>>>>>        Get AcquireContext to hProv
+68623>>>>>>>        If (hProv) Begin
+68625>>>>>>>            Get CreateHash hProv to hHash
+68626>>>>>>>            If (hHash) Begin
+68628>>>>>>>                Get HashData hHash ucPassword to bOk
+68629>>>>>>>                If (bOk) Begin
+68631>>>>>>>                    Get piCipher to iAlgorithm
+68632>>>>>>>                    Get DeriveKey hProv hHash to hKey
+68633>>>>>>>                End
+68633>>>>>>>>
+68633>>>>>>>                Get DestroyHash hHash to bOk
+68634>>>>>>>            End
+68634>>>>>>>>
+68634>>>>>>>            
+68634>>>>>>>            If (hKey) Begin
+68636>>>>>>>                //  First call to determine resulting data size
+68636>>>>>>>                Move (SizeOfArray(ucData)) to iDataLen
+68637>>>>>>>                Move (SizeOfArray(ucData)) to iCipherLen
+68638>>>>>>>                Move (CryptEncrypt(hKey, 0, True, 0, 0, AddressOf(iCipherLen), iDataLen)) to bOk
+68639>>>>>>>                
+68639>>>>>>>                //  Reserve space in string
+68639>>>>>>>                If (iDataLen < iCipherLen) Begin
+68641>>>>>>>                    Move (ResizeArray(ucData, iCipherLen, 0)) to ucData
+68642>>>>>>>                End
+68642>>>>>>>>
+68642>>>>>>>                
+68642>>>>>>>                //  Call to really decrypt
+68642>>>>>>>                Move (CryptEncrypt(hKey,0,True,0,AddressOf(ucData),AddressOf(iDataLen),SizeOfArray(ucData))) to bOk
+68643>>>>>>>                //If (not(bOk)) Begin
+68643>>>>>>>                //Move "" to sData
+68643>>>>>>>                //Move (GetLastError()) to iErr
+68643>>>>>>>                //End
+68643>>>>>>>                
+68643>>>>>>>                Get DestroyKey hKey to bOk
+68644>>>>>>>            End 
+68644>>>>>>>>
+68644>>>>>>>            Get ReleaseContext hProv to bOk
+68645>>>>>>>        End 
+68645>>>>>>>>
+68645>>>>>>>        Function_Return ucData
+68646>>>>>>>    End_Function
+68647>>>>>>>    
+68647>>>>>>>    // Decrypts data
+68647>>>>>>>    Function Decrypt UChar[] ucPassword UChar[] ucData Returns UChar[]
+68649>>>>>>>        Handle hProv hHash hKey
+68649>>>>>>>        Integer iAlgorithm iDataLen
+68649>>>>>>>        Boolean bOk
+68649>>>>>>>        
+68649>>>>>>>        Get AcquireContext to hProv
+68650>>>>>>>        If (hProv) Begin
+68652>>>>>>>            Get CreateHash hProv to hHash
+68653>>>>>>>            If (hHash) Begin
+68655>>>>>>>                Get HashData hHash ucPassword to bOk
+68656>>>>>>>                If (bOk) Begin
+68658>>>>>>>                    Get piCipher to iAlgorithm
+68659>>>>>>>                    Get DeriveKey hProv hHash to hKey
+68660>>>>>>>                End
+68660>>>>>>>>
+68660>>>>>>>                Get DestroyHash hHash to bOk
+68661>>>>>>>            End
+68661>>>>>>>>
+68661>>>>>>>            
+68661>>>>>>>            If (hKey) Begin
+68663>>>>>>>                Move (SizeOfArray(ucData)) to iDataLen
+68664>>>>>>>                Move (CryptDecrypt(hKey,0,True,0,AddressOf(ucData),AddressOf(iDataLen))) to bOk
+68665>>>>>>>                //  Resulting data can be shorter as the input string, in that case we shorten the result string
+68665>>>>>>>                If (SizeOfArray (ucData) > iDataLen) Begin
+68667>>>>>>>                    Move (ResizeArray(ucData, iDataLen)) to ucData
+68668>>>>>>>                End
+68668>>>>>>>>
+68668>>>>>>>                
+68668>>>>>>>                Get DestroyKey hKey to bOk
+68669>>>>>>>            End
+68669>>>>>>>>
+68669>>>>>>>            Get ReleaseContext hProv to bOk
+68670>>>>>>>        End
+68670>>>>>>>>
+68670>>>>>>>        Function_Return ucData
+68671>>>>>>>    End_Function
+68672>>>>>>>    
+68672>>>>>>>    // Creates a key
+68672>>>>>>>    Function CreateKey Handle hProv Returns Handle
+68674>>>>>>>        Integer iAlg iType iByte iLength iSize
+68674>>>>>>>        CryptoBlob keyBlob
+68674>>>>>>>        CryptoBlob keyBlob
+68674>>>>>>>        Boolean bOk
+68674>>>>>>>        Handle hKey
+68674>>>>>>>        UChar[] aKey
+68675>>>>>>>
+68675>>>>>>>        Get paKey to aKey
+68676>>>>>>>        Get piKeyAlg to iAlg
+68677>>>>>>>        Get piKeyType to iType
+68678>>>>>>>        Move iAlg                   to keyBlob.header.bType
+68679>>>>>>>        Move CUR_BLOB_VERSION       to keyBlob.header.bVersion
+68680>>>>>>>        Move iType                  to keyBlob.header.aiKeyAlg
+68681>>>>>>>        Move (SizeOfArray(aKey))    to keyBlob.cbKeySize
+68682>>>>>>>        
+68682>>>>>>>        Move (SizeOfArray(aKey)-1) to iLength
+68683>>>>>>>        For iByte from 0 to iLength
+68689>>>>>>>>
+68689>>>>>>>            Move aKey[iByte] to keyBlob.rgbKeyData[iByte]
+68690>>>>>>>        Loop
+68691>>>>>>>>
+68691>>>>>>>        
+68691>>>>>>>        Move 0 to hKey
+68692>>>>>>>        Move (CryptImportKey(hProv,AddressOf(keyBlob),SizeOfType(CryptoBlob),0,0,AddressOf(hKey))) to bOk
+68693>>>>>>>        Function_Return hKey
+68694>>>>>>>    End_Function
+68695>>>>>>>    
+68695>>>>>>>    // Sets the key parameters
+68695>>>>>>>    Function SetKeyParameters Handle hKey Returns Boolean
+68697>>>>>>>        Integer iPadding iMode
+68697>>>>>>>        Boolean bOk
+68697>>>>>>>        UChar[] aIV
+68698>>>>>>>        
+68698>>>>>>>        //Move (SizeOfArray(aIV)-1) to iLength
+68698>>>>>>>        //For iByte from 0 to iLength
+68698>>>>>>>        //    Move iByte to aIV[iByte]
+68698>>>>>>>        //Loop
+68698>>>>>>>
+68698>>>>>>>        // Set initialization vector
+68698>>>>>>>        Get paIV to aIV
+68699>>>>>>>        Move (CryptSetKeyParam(hKey,KP_IV,AddressOf(aIV),0)) to bOk
+68700>>>>>>>        If (bOk) Begin
+68702>>>>>>>            // Set padding
+68702>>>>>>>            Get piKeyPadding to iPadding
+68703>>>>>>>            Move (CryptSetKeyParam(hKey,KP_PADDING,AddressOf(iPadding),0)) to bOk
+68704>>>>>>>            If (bOk) Begin
+68706>>>>>>>                // Set move
+68706>>>>>>>                Get piKeyMode to iMode
+68707>>>>>>>                Move (CryptSetKeyParam(hKey,KP_MODE,AddressOf(iMode),0)) to bOk
+68708>>>>>>>            End
+68708>>>>>>>>
+68708>>>>>>>        End
+68708>>>>>>>>
+68708>>>>>>>        Function_Return bOk        
+68709>>>>>>>    End_Function
+68710>>>>>>>    
+68710>>>>>>>    // Encrypts using block cipher
+68710>>>>>>>    Function BlockEncrypt UChar[] ucData Returns UChar[]
+68712>>>>>>>        Handle hProv hKey
+68712>>>>>>>        Integer iLen iSize iBlocks
+68712>>>>>>>        Boolean bOk
+68712>>>>>>>        
+68712>>>>>>>        Get AcquireContext to hProv
+68713>>>>>>>        If (hProv) Begin
+68715>>>>>>>            // Create key
+68715>>>>>>>            Get CreateKey hProv to hKey
+68716>>>>>>>            If (hKey) Begin
+68718>>>>>>>                Get SetKeyParameters hKey to bOk
+68719>>>>>>>                If (bOk) Begin
+68721>>>>>>>                    // Buffer for block ciphers can be up to block length larger
+68721>>>>>>>                    Get piBlockSize to iSize
+68722>>>>>>>                    Move (SizeOfArray(ucData)) to iLen
+68723>>>>>>>                    
+68723>>>>>>>                    Move ((iLen/iSize)+1) to iBlocks
+68724>>>>>>>                    Move (ResizeArray(ucData,iBlocks*iSize)) to ucData
+68725>>>>>>>                    Move (CryptEncrypt(hKey,0,True,0,AddressOf(ucData),AddressOf(iLen),SizeOfArray(ucData))) to bOk
+68726>>>>>>>                End
+68726>>>>>>>>
+68726>>>>>>>                Get DestroyKey hKey to bOk
+68727>>>>>>>            End
+68727>>>>>>>>
+68727>>>>>>>            Get ReleaseContext hProv to bOk
+68728>>>>>>>        End
+68728>>>>>>>>
+68728>>>>>>>        Function_Return ucData
+68729>>>>>>>    End_Function
+68730>>>>>>>    
+68730>>>>>>>    // Decrypts using block cipher
+68730>>>>>>>    Function BlockDecrypt UChar[] ucData Returns UChar[]
+68732>>>>>>>        Handle hProv hKey
+68732>>>>>>>        Integer iLen
+68732>>>>>>>        Boolean bOk
+68732>>>>>>>        
+68732>>>>>>>        Get AcquireContext to hProv
+68733>>>>>>>        If (hProv) Begin
+68735>>>>>>>            // Create key
+68735>>>>>>>            Get CreateKey hProv to hKey
+68736>>>>>>>            If (hKey) Begin
+68738>>>>>>>                Get SetKeyParameters hKey to bOk
+68739>>>>>>>                If (bOk) Begin
+68741>>>>>>>                    Move (SizeOfArray(ucData)) to iLen
+68742>>>>>>>                    Move (CryptDecrypt(hKey,0,True,0,AddressOf(ucData),AddressOf(iLen))) to bOk
+68743>>>>>>>                    Move (ResizeArray(ucData,iLen)) to ucData
+68744>>>>>>>                End
+68744>>>>>>>>
+68744>>>>>>>                Get DestroyKey hKey to bOk
+68745>>>>>>>            End
+68745>>>>>>>>
+68745>>>>>>>            Get ReleaseContext hProv to bOk
+68746>>>>>>>        End
+68746>>>>>>>>
+68746>>>>>>>        Function_Return ucData
+68747>>>>>>>    End_Function
+68748>>>>>>>    
+68748>>>>>>>    
+68748>>>>>>>    //  Generates random data.
+68748>>>>>>>    Function GenerateRandom Integer iBytes Returns UChar[]
+68750>>>>>>>        Handle hProv
+68750>>>>>>>        UChar[] uaResult
+68751>>>>>>>        Boolean bRes
+68751>>>>>>>        
+68751>>>>>>>        Get AcquireContext to hProv
+68752>>>>>>>        
+68752>>>>>>>        Move (ResizeArray(uaResult, iBytes)) to uaResult
+68753>>>>>>>        Move (CryptGenRandom(hProv, iBytes, AddressOf(uaResult))) to bRes
+68754>>>>>>>        
+68754>>>>>>>        Get ReleaseContext hProv to bRes
+68755>>>>>>>        
+68755>>>>>>>        Function_Return uaResult
+68756>>>>>>>    End_Function
+68757>>>>>>>    
+68757>>>>>>>    //  Generates random data and does a base64 encoding to properly present it as a string.
+68757>>>>>>>    Function GenerateRandomString Integer iLength Returns String
+68759>>>>>>>        String sResult
+68759>>>>>>>        UChar[] ucData
+68760>>>>>>>        Pointer pBase64
+68760>>>>>>>        Integer iVoid
+68760>>>>>>>        
+68760>>>>>>>        Get GenerateRandom iLength to ucData
+68761>>>>>>>        
+68761>>>>>>>        Move (Base64Encode(AddressOf(ucData), iLength)) to pBase64
+68762>>>>>>>        Move (PointerToString(pBase64)) to sResult
+68763>>>>>>>        Move (Free(pBase64)) to iVoid
+68764>>>>>>>        
+68764>>>>>>>        Function_Return (Left(sResult, iLength))
+68765>>>>>>>    End_Function
+68766>>>>>>>    
+68766>>>>>>>End_Class
+68767>>>>>
+68767>>>>>Class cLoginEncryption is a cObject
+68768>>>>>    
+68768>>>>>    Procedure Construct_Object
+68770>>>>>        Forward Send Construct_Object
+68772>>>>>        // this must be set to a multi (40ish) character random key
+68772>>>>>        Property String psEncryptPassword ""
+68773>>>>>        
+68773>>>>>        Object oDataCrypter is a cCryptographerEx
+68775>>>>>            Set piHash to CALG_SHA_256
+68776>>>>>            Set piCipher to CALG_AES_256
+68777>>>>>            Set psProvider to "" //  Not providing a specific provider gives the default provider for the provider type
+68778>>>>>            Set piProvider to PROV_RSA_AES
+68779>>>>>        End_Object
+68780>>>>>    End_Procedure
+68781>>>>>    
+68781>>>>>    // This can be augmented to return a password encryption key using any
+68781>>>>>    // hidden mechanism desired.
+68781>>>>>    Function GetEncryptionPassword Returns String
+68783>>>>>        String sPassword
+68783>>>>>        Get psEncryptPassword to sPassword
+68784>>>>>        Function_Return sPassword
+68785>>>>>    End_Function
+68786>>>>>    
+68786>>>>>    // Encrypts a string into an unreadable hash that can later be decrypted using DecryptKey.
+68786>>>>>    //
+68786>>>>>    // Params:
+68786>>>>>    //   sPlainText     String to encrypt.
+68786>>>>>    // Returns:
+68786>>>>>    //   Base64 encoded hash.
+68786>>>>>    Function EncryptPassword String sPlainText Returns String
+68788>>>>>        String sEncryptPassword sBase64
+68788>>>>>        UChar[] ucBinary
+68789>>>>>        Pointer pBase64
+68789>>>>>        Integer iVoid
+68789>>>>>        
+68789>>>>>        //  Encrypt Key
+68789>>>>>        Get GetEncryptionPassword to sEncryptPassword
+68790>>>>>        If (sEncryptPassword = "") Begin
+68792>>>>>            Error DFERR_PROGRAM "No encryption password set"
+68793>>>>>>
+68793>>>>>        End
+68793>>>>>>
+68793>>>>>        
+68793>>>>>        Get Encrypt of oDataCrypter (StringToUCharArray(sEncryptPassword)) (StringToUCharArray(sPlainText)) to ucBinary
+68794>>>>>        
+68794>>>>>        If (SizeOfArray(ucBinary) = 0) Begin
+68796>>>>>            Error DFERR_PROGRAM "Unable to encrypt database login password"
+68797>>>>>>
+68797>>>>>            Function_Return ""
+68798>>>>>        End
+68798>>>>>>
+68798>>>>>        
+68798>>>>>        //  Encode binary hash to Base64
+68798>>>>>        Move (Base64Encode(AddressOf(ucBinary), SizeOfArray(ucBinary))) to pBase64
+68799>>>>>        Move (PointerToString(pBase64)) to sBase64
+68800>>>>>        Move (Free(pBase64)) to iVoid
+68801>>>>>        
+68801>>>>>        Function_Return sBase64
+68802>>>>>    End_Function
+68803>>>>>    
+68803>>>>>    
+68803>>>>>    // Decrypts the unreadable hash generated by EncryptKey into a readable string.
+68803>>>>>    //
+68803>>>>>    // Params:
+68803>>>>>    //   sBase64EncryptedPassword       Base64 Encrypted password
+68803>>>>>    // Returns:
+68803>>>>>    //   Readable plain text password
+68803>>>>>    Function DecryptPassword String sBase64EncryptedPassword Returns String
+68805>>>>>        String sEncryptPassword
+68805>>>>>        UChar[] ucBinary ucPlain
+68807>>>>>        Boolean bIsHex
+68807>>>>>        Integer iLen iVoid
+68807>>>>>        Pointer pBinary
+68807>>>>>        
+68807>>>>>        If (sBase64EncryptedPassword <> "") Begin
+68809>>>>>            //  Decode from Base64
+68809>>>>>            Move (Base64Decode(AddressOf(sBase64EncryptedPassword), &iLen)) to pBinary
+68810>>>>>            
+68810>>>>>            Move (ResizeArray(ucBinary, iLen, 0)) to ucBinary
+68811>>>>>            Move (MemCopy(AddressOf(ucBinary), pBinary, iLen)) to iVoid
+68812>>>>>                        
+68812>>>>>            Move (Free(pBinary)) to iVoid
+68813>>>>>            
+68813>>>>>            //  Encrypted binary hash to string
+68813>>>>>            Get GetEncryptionPassword to sEncryptPassword
+68814>>>>>            Get Decrypt of oDataCrypter (StringToUCharArray(sEncryptPassword)) ucBinary to ucPlain
+68815>>>>>        End
+68815>>>>>>
+68815>>>>>        
+68815>>>>>        Function_Return (UCharArrayToString(ucPlain))
+68816>>>>>    End_Function
+68817>>>>>End_Class
+68818>>>
+68818>>>Object oLoginEncryption is a cLoginEncryption
+68820>>>
+68820>>>    // this must be created in your appsrc directory and must contain an encryption
+68820>>>    // key that is set to psEncryptPassword. It will look something like this
+68820>>>    //
+68820>>>    // Set psEncryptPassword to "JchUAo7W@r.b{<Yk~OONi0nq=sMi[*Rn[A-`Vo)q"
+68820>>>    //  
+Including file: LoginEncryptionKey.inc    (C:\dataflex_learning\DataFlexStudio v20.0\AppSrc\LoginEncryptionKey.inc)
+68820>>>>// Studio generated login encryption key
+68820>>>>Set psEncryptPassword to "o9?|yO_W#yf-mDQXl$D#lW7\~u:(P<:PL}#7{.QU"
+68821>>>>
+68821>>>    
+68821>>>    // use this to register this object to your cConnection Object. This object
+68821>>>    // must be created after the cConnection object
+68821>>>    Move Self to ghoLoginEncryption
+68822>>>End_Object
+68823>        Use DatabaseLoginDialog.dg  // (Windows applications only)
+Including file: DatabaseLoginDialog.dg    (C:\Program Files\DataFlex 20.0\Pkg\DatabaseLoginDialog.dg)
+68823>>>
+68823>>>Use Windows.pkg
+68823>>>Use cConnection.pkg
+68823>>>Use dfLine.pkg
+68823>>>
+68823>>>Object oDatabaseLoginDialog is a ModalPanel
+68825>>>    Set Label to "Database Login"
+68826>>>    Set Location to 2 2
+68827>>>    Set Size to 110 211
+68828>>>    
+68828>>>    Property String psId
+68830>>>    Property Boolean pbOk False
+68832>>>    Property Boolean pbChanged False
+68834>>>    Property Boolean pbAllowRemember True
+68836>>>    
+68836>>>    // this registers this object with the cConnection object.
+68836>>>    Move Self to ghoLoginConnectDialog
+68837>>>    
+68837>>>    Object oUserIDForm is a Form
+68839>>>        Set Label to "User Name"
+68840>>>        Set Size to 12 85
+68841>>>        Set Location to 34 79
+68842>>>        Set Label_Col_Offset to 64
+68843>>>        Set peAnchors to anTopLeftRight
+68844>>>    End_Object
+68845>>>    
+68845>>>    Object oPwdForm is a Form
+68847>>>        Set Size to 12 85
+68848>>>        Set Location to 49 79
+68849>>>        Set Label_Col_Offset to 64
+68850>>>        Set Password_State to True
+68851>>>        Set peAnchors to anTopLeftRight
+68852>>>        Set Label to "Password"
+68853>>>    End_Object
+68854>>>    
+68854>>>    Object oTrustedConnection is a CheckBox
+68856>>>        Set Size to 10 50
+68857>>>        Set Location to 65 79
+68858>>>        Set Label to "Trusted Connection"
+68859>>>    End_Object
+68860>>>    
+68860>>>    Object oRemember is a CheckBox
+68862>>>        Set Size to 10 50
+68863>>>        Set Location to 79 14
+68864>>>        Set Label to "Remember and don't ask again"
+68865>>>        Set Checked_State to True
+68866>>>    End_Object
+68867>>>    
+68867>>>    Object oLogin_btn is a Button
+68869>>>        Set Label to "&Login"
+68870>>>        Set Location to 92 102
+68871>>>        Set peAnchors to anBottomRight
+68872>>>        Set Default_State to True
+68873>>>        
+68873>>>        Procedure OnClick
+68876>>>            Boolean bTrust
+68876>>>            String sUser sPwd sConn sErr sId
+68876>>>            Integer iError
+68876>>>            Get psId to sId
+68877>>>            Get Value of oUserIDForm to sUser
+68878>>>            Get Value of oPwdForm to sPwd
+68879>>>            Get Checked_State of oTrustedConnection to bTrust
+68880>>>            
+68880>>>            Get LoginConnectIdNewCredentials of ghoConnection sId sUser sPwd bTrust to iError
+68881>>>            If (iError=0) Begin
+68883>>>                Set pbOk to True
+68884>>>                Set pbChanged to True
+68885>>>                Send Close_Panel
+68886>>>            End
+68886>>>>
+68886>>>            Else Begin
+68887>>>                Get psErrorText of ghoConnection to sErr
+68888>>>                Send UserError sErr "Login Error"
+68889>>>            End
+68889>>>>
+68889>>>        End_Procedure
+68890>>>    End_Object
+68891>>>    
+68891>>>    Object oCancel_btn is a Button
+68893>>>        Set Label to "&Cancel"
+68894>>>        Set Location to 92 157
+68895>>>        Set peAnchors to anBottomRight
+68896>>>        
+68896>>>        Procedure OnClick
+68899>>>            Send Close_Panel
+68900>>>        End_Procedure
+68901>>>    End_Object
+68902>>>    
+68902>>>    Object oConnectionIdInfo is a TextBox
+68904>>>        Set Size to 10 50
+68905>>>        Set Location to 4 14
+68906>>>        Set Label to 'Connection Id='
+68907>>>    End_Object
+68908>>>    
+68908>>>    Object oConnectionServerInfo is a TextBox
+68910>>>        Set Size to 10 50
+68911>>>        Set Location to 16 14
+68912>>>        Set Label to 'Server'
+68913>>>    End_Object
+68914>>>    
+68914>>>    Object oLineControl1 is a LineControl
+68916>>>        Set Size to 2 202
+68917>>>        Set Location to 29 5
+68918>>>    End_Object
+68919>>>    
+68919>>>    Function LoginConnectIdDialog String sId Returns Boolean
+68922>>>        Boolean bOk bChanged bTrusted bAllowRemember bRemember
+68922>>>        String sUser sPwd sDescription
+68922>>>        tConnection Connect
+68922>>>        tConnection Connect
+68922>>>        
+68922>>>        Get pbAllowRemember to bAllowRemember
+68923>>>        
+68923>>>        
+68923>>>        If not bAllowRemember Begin
+68925>>>            Set Enabled_State of oRemember to bRemember
+68926>>>            Set Visible_State of oRemember to bRemember
+68927>>>        End
+68927>>>>
+68927>>>        
+68927>>>        Get ConnectionIdInfo of ghoConnection sId to Connect
+68928>>>        Set Value of oConnectionIdInfo to ("Connection ID="+Connect.sId)
+68929>>>        Set Value of oConnectionServerInfo to Connect.sString
+68930>>>        
+68930>>>        Set psId to sId
+68931>>>        Set pbOk to False
+68932>>>        Set pbChanged to False
+68933>>>        Set Value of oUserIDForm to Connect.sUID
+68934>>>        Set Value of oPwdForm to ""
+68935>>>        
+68935>>>        Send Popup
+68936>>>        
+68936>>>        Get pbOk to bOk
+68937>>>        Get pbChanged to bChanged
+68938>>>        If (bChanged and bOk) Begin
+68940>>>            If bAllowRemember Begin
+68942>>>                Get Checked_State of oRemember to bRemember
+68943>>>                If bRemember Begin
+68945>>>                    Get Checked_State of oTrustedConnection to bTrusted
+68946>>>                    If not (bTrusted) Begin
+68948>>>                        Get Value of oUserIDForm to sUser
+68949>>>                        Get Value of oPwdForm to sPwd
+68950>>>                    End
+68950>>>>
+68950>>>                    Get StoreConnectionIdCredentials of ghoConnection sId sUser sPwd bTrusted to bOk
+68951>>>                End
+68951>>>>
+68951>>>            End
+68951>>>>
+68951>>>        End
+68951>>>>
+68951>>>        Function_Return bOk
+68952>>>    End_Function
+68953>>>    
+68953>>>    
+68953>>>    On_Key Key_Alt+Key_O Send KeyAction of oLogin_btn
+68954>>>    On_Key Key_Alt+Key_L Send KeyAction of oCancel_btn
+68955>>>End_Object
+68956>>>
+68956>    End_Object
+68957>
+68957>End_Object
+68958>
+68958>Open cCadastroCliente
+Including file: cCadastroCliente.fd    (C:\dataflex_learning\DataFlexStudio v20.0\DDSrc\cCadastroCliente.fd)
+68960>
+68960>Clear cCadastroCliente
+68961>//Move 1 to tblCadastro_cliente.id_cliente
+68961>//Find eq tblCadastro_cliente by 1
+68961>
+68961>//If (Found) Begin
+68961>//    Move "POLICOM" to tblCadastro_cliente.razao_social
+68961>//    Move (CurrentDateTime()) to tblCadastro_cliente.Date
+68961>//    SaveRecord tblCadastro_cliente
+68961>//End
+68961>//Else Begin
+68961>//    Clear tblCadastro_cliente
+68961>Move 3 to cCadastroCliente.id
+68962>Move "Richard Quintana" to cCadastroCliente.nome
+68963>Move "50323721885" to cCadastroCliente.cpf
+68964>Move "299740420001" to cCadastroCliente.cnpj
+68965>Move (CurrentDateTime()) to cCadastroCliente.Date
+68966>SaveRecord cCadastroCliente
+68967>//End
+68967>
+68967>Send Info_Box "Dados gravados com sucesso"
+68968>
+Summary
+Memory Available: 6720557056
+Total Warnings : 0
+Total Errors   : 0
+Total Symbols  : 40655
+Total Resources: 0
+Total Commands : 68967
+Total Windows  : 0
+Total Pages    : 0
+Static Data    : 461912
+Message area   : 484477
+Total Blocks   : 25984
