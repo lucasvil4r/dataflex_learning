@@ -1,5 +1,5 @@
 [Workspace]
-CurrentProject=VariableAndTypes.src
+CurrentProject=SaveDateBase.src
 Location=C:\dataflex_learning\DataFlexStudio v20.0\IdeSrc\lucas_Studio.dsk
 CreateNew=-1
 [TabWindows]
@@ -7,24 +7,15 @@ GroupCount=1
 HorizontalGroups=1
 [TabGroup0]
 GroupSize=40
-SelectedTab=1
+SelectedTab=0
 [Window0]
-Filename=Workspace Dashboard
-ViewType=101
-Top=21
-Left=0
-Bottom=703
-Right=1410
-TabIndex=0
-TabGroup=0
-[Window1]
-Filename=C:\dataflex_learning\DataFlexStudio v20.0\AppSrc\VariableAndTypes.src
+Filename=C:\dataflex_learning\DataFlexStudio v20.0\AppSrc\SaveDateBase.src
 ViewType=1
 Top=21
 Left=0
-Bottom=703
+Bottom=658
 Right=1410
-CursorLine=65
-CursorColumn=34
-TabIndex=1
+CursorLine=35
+CursorColumn=0
+TabIndex=0
 TabGroup=0
