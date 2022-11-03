@@ -1,23 +1,26 @@
-﻿Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
+﻿Use DfAllEnt.pkg
 
+//Criando classe
 Class cPerson is a cObject
     Procedure Construcut_Object
         Forward Send Construcut_Object
        
-        Property String psFirstname ""
-        Property String psLastname ""        
+        Property String psFirstName ""
+        Property String psLastName ""
     End_Procedure
     
+    //Metódo class cPerson
     Function HelloMessage Returns String
         String sFirst sLast
         
-        Get psFirstname to sFirst
-        Get psLastname to sLast
+        Get psFirstName to sFirst
+        Get psLastName to sLast
         
-        Function_Return (SFormat("%1 %2 says hi!", sFirst, sLast))
+        Function_Return (SFormat("%1 %2 Hello!", sFirst, sLast))
     End_Function
     
-    Procedure SayHello
+    //Procedimento classe
+    Procedure Hello
         String sMsg
         
         Get HelloMessage to sMsg
@@ -26,10 +29,39 @@ Class cPerson is a cObject
     End_Procedure
 End_Class
 
+//Classe herdando classe cPerson
+Class cEmployee is a cPerson
+    Procedure Construcut_Object
+        Forward Send Construcut_Object
+        
+        Property String psFunction ""
+    End_Procedure
+    
+    Function HelloMessage Returns String
+        String sFunction sMessage
+        
+        Forward Get HelloMessage to sMessage
+        
+        Get psFunction to sFunction
+                           
+        Function_Return (sFunction + ", " + sMessage)
+    End_Function
+End_Class
+
+//Criando OBJ da classe cPerson
 Object oLucas is a cPerson
-    Set psFirstname to "Lucas"
-    Set psLastname to "Vilar"
+    Set psFirstName to "Lucas"
+    Set psLastName to "Vilar"
 End_Object
 
-Send SayHello of oLucas
+//Criando OBJ da classe cEmployee
+Object oHarm is a cEmployee
+    Set psFirstName to "Lucas"
+    Set psLastName to "Vilar"
+    Set psFunction to "Sotware Engineer"
+End_Object
+
+// Chamando procedimento da classes
+Send Hello of oLucas
+Send Hello of oHarm
 Send Info_Box "Done.."

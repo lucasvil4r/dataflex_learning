@@ -1,7 +1,7 @@
 [Workspace]
-CurrentProject=SaveDateBase.src
+CurrentProject=ClassesAndObjects.src
 Location=C:\dataflex_learning\DataFlexStudio v20.0\IdeSrc\lucas_Studio.dsk
-CreateNew=-1
+CreateNew=1
 [TabWindows]
 GroupCount=1
 HorizontalGroups=1
@@ -9,13 +9,11 @@ HorizontalGroups=1
 GroupSize=40
 SelectedTab=0
 [Window0]
-Filename=C:\dataflex_learning\DataFlexStudio v20.0\AppSrc\SaveDateBase.src
-ViewType=1
+Filename=Start Center
+ViewType=100
 Top=21
 Left=0
-Bottom=658
-Right=1410
-CursorLine=35
-CursorColumn=0
+Bottom=650
+Right=1304
 TabIndex=0
 TabGroup=0

@@ -1,6 +1,6 @@
 Compiling Program: C:\dataflex_learning\DataFlexStudio v20.0\AppSrc\ClassesAndObjects.src
-Memory Available: 10808262656
-1>Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
+Memory Available: 10120818688
+1>Use DfAllEnt.pkg
 Using pre-compiled package DFALLENT.PKG
 Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.x64.pkd)
 68480>
@@ -8,20 +8,20 @@ Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent
 68481>    Procedure Construcut_Object
 68483>        Forward Send Construcut_Object
 68485>       
-68485>        Property String psFirstname ""
-68486>        Property String psLastname ""        
+68485>        Property String psFirstName ""
+68486>        Property String psLastName ""
 68487>    End_Procedure
 68488>    
 68488>    Function HelloMessage Returns String
 68490>        String sFirst sLast
 68490>        
-68490>        Get psFirstname to sFirst
-68491>        Get psLastname to sLast
+68490>        Get psFirstName to sFirst
+68491>        Get psLastName to sLast
 68492>        
-68492>        Function_Return (SFormat("%1 %2 says hi!", sFirst, sLast))
+68492>        Function_Return (SFormat("%1 %2 Hello!", sFirst, sLast))
 68493>    End_Function
 68494>    
-68494>    Procedure SayHello
+68494>    Procedure Hello
 68496>        String sMsg
 68496>        
 68496>        Get HelloMessage to sMsg
@@ -30,23 +30,51 @@ Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent
 68499>    End_Procedure
 68500>End_Class
 68501>
-68501>Object oLucas is a cPerson
-68503>    Set psFirstname to "Lucas"
-68504>    Set psLastname to "Vilar"
-68505>End_Object
-68506>
-68506>Send SayHello of oLucas
-68507>Send Info_Box "Done.."
-68508>
+68501>Class cEmployee is a cPerson
+68502>    Procedure Construcut_Object
+68504>        Forward Send Construcut_Object
+68506>        
+68506>        Property String psFunction ""
+68507>    End_Procedure
+68508>    
+68508>    Function HelloMessage Returns String
+68510>        String sFunction sMessage
+68510>        
+68510>        Forward Get HelloMessage to sMessage
+68512>        
+68512>        Get psFunction to sFunction
+68513>                           
+68513>        Function_Return (sFunction + ", " + sMessage)
+68514>    End_Function
+68515>End_Class
+68516>
+68516>
+68516>
+68516>
+68516>Object oLucas is a cPerson
+68518>    Set psFirstName to "Lucas"
+68519>    Set psLastName to "Vilar"
+68520>End_Object
+68521>
+68521>Object oHarm is a cEmployee
+68523>    Set psFirstName to "Lucas"
+68524>    Set psLastName to "Vilar"
+68525>    Set psFunction to "Sotware Engineer"
+68526>End_Object
+68527>
+68527>Send Hello of oLucas
+68528>Send Hello of oHarm
+68529>Send Info_Box "Done.."
+68530>
 Summary
-Memory Available: 10791170048
+Memory Available: 10097332224
 Total Warnings : 0
 Total Errors   : 0
-Total Symbols  : 40194
+Total Symbols  : 40204
 Total Resources: 0
-Total Commands : 68507
+Total Commands : 68529
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 451752
-Message area   : 480553
-Total Blocks   : 25721
+Static Data    : 451900
+Message area   : 480752
+Total Blocks   : 25729
