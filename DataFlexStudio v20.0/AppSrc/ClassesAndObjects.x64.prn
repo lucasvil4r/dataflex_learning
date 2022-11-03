@@ -1,0 +1,52 @@
+Compiling Program: C:\dataflex_learning\DataFlexStudio v20.0\AppSrc\ClassesAndObjects.src
+Memory Available: 10808262656
+1>Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
+Using pre-compiled package DFALLENT.PKG
+Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.x64.pkd)
+68480>
+68480>Class cPerson is a cObject
+68481>    Procedure Construcut_Object
+68483>        Forward Send Construcut_Object
+68485>       
+68485>        Property String psFirstname ""
+68486>        Property String psLastname ""        
+68487>    End_Procedure
+68488>    
+68488>    Function HelloMessage Returns String
+68490>        String sFirst sLast
+68490>        
+68490>        Get psFirstname to sFirst
+68491>        Get psLastname to sLast
+68492>        
+68492>        Function_Return (SFormat("%1 %2 says hi!", sFirst, sLast))
+68493>    End_Function
+68494>    
+68494>    Procedure SayHello
+68496>        String sMsg
+68496>        
+68496>        Get HelloMessage to sMsg
+68497>        
+68497>        Showln sMsg
+68499>    End_Procedure
+68500>End_Class
+68501>
+68501>Object oLucas is a cPerson
+68503>    Set psFirstname to "Lucas"
+68504>    Set psLastname to "Vilar"
+68505>End_Object
+68506>
+68506>Send SayHello of oLucas
+68507>Send Info_Box "Done.."
+68508>
+Summary
+Memory Available: 10791170048
+Total Warnings : 0
+Total Errors   : 0
+Total Symbols  : 40194
+Total Resources: 0
+Total Commands : 68507
+Total Windows  : 0
+Total Pages    : 0
+Static Data    : 451752
+Message area   : 480553
+Total Blocks   : 25721

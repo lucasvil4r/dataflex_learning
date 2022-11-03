@@ -1,0 +1,35 @@
+﻿Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
+
+Class cPerson is a cObject
+    Procedure Construcut_Object
+        Forward Send Construcut_Object
+       
+        Property String psFirstname ""
+        Property String psLastname ""        
+    End_Procedure
+    
+    Function HelloMessage Returns String
+        String sFirst sLast
+        
+        Get psFirstname to sFirst
+        Get psLastname to sLast
+        
+        Function_Return (SFormat("%1 %2 says hi!", sFirst, sLast))
+    End_Function
+    
+    Procedure SayHello
+        String sMsg
+        
+        Get HelloMessage to sMsg
+        
+        Showln sMsg
+    End_Procedure
+End_Class
+
+Object oLucas is a cPerson
+    Set psFirstname to "Lucas"
+    Set psLastname to "Vilar"
+End_Object
+
+Send SayHello of oLucas
+Send Info_Box "Done.."
