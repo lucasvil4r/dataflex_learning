@@ -7,7 +7,7 @@ GroupCount=1
 HorizontalGroups=1
 [TabGroup0]
 GroupSize=40
-SelectedTab=0
+SelectedTab=1
 [Window0]
 Filename=Workspace Dashboard
 ViewType=101
@@ -16,4 +16,13 @@ Left=0
 Bottom=650
 Right=1304
 TabIndex=0
+TabGroup=0
+[Window1]
+Filename=Start Center
+ViewType=100
+Top=21
+Left=0
+Bottom=650
+Right=1304
+TabIndex=1
 TabGroup=0
