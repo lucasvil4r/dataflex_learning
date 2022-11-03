@@ -24,8 +24,8 @@ Clear cCadastroCliente
 //End
 //Else Begin
 //    Clear tblCadastro_cliente
-Move 3 to cCadastroCliente.id
-Move "Richard Quintana" to cCadastroCliente.nome
+Move 4 to cCadastroCliente.id
+Move "Guilerme" to cCadastroCliente.nome
 Move "50323721885" to cCadastroCliente.cpf
 Move "299740420001" to cCadastroCliente.cnpj
 Move (CurrentDateTime()) to cCadastroCliente.Date

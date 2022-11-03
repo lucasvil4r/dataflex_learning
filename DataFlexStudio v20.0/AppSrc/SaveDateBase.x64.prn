@@ -1,5 +1,5 @@
 Compiling Program: C:\dataflex_learning\DataFlexStudio v20.0\AppSrc\SaveDateBase.src
-Memory Available: 6714216448
+Memory Available: 10337214464
 1>Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
 Using pre-compiled package DFALLENT.PKG
 Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.x64.pkd)
@@ -1085,8 +1085,8 @@ Including file: cCadastroCliente.fd    (C:\dataflex_learning\DataFlexStudio v20.
 68961>//End
 68961>//Else Begin
 68961>//    Clear tblCadastro_cliente
-68961>Move 3 to cCadastroCliente.id
-68962>Move "Richard Quintana" to cCadastroCliente.nome
+68961>Move 4 to cCadastroCliente.id
+68962>Move "Guilerme" to cCadastroCliente.nome
 68963>Move "50323721885" to cCadastroCliente.cpf
 68964>Move "299740420001" to cCadastroCliente.cnpj
 68965>Move (CurrentDateTime()) to cCadastroCliente.Date
@@ -1096,7 +1096,7 @@ Including file: cCadastroCliente.fd    (C:\dataflex_learning\DataFlexStudio v20.
 68967>Send Info_Box "Dados gravados com sucesso"
 68968>
 Summary
-Memory Available: 6720557056
+Memory Available: 10315317248
 Total Warnings : 0
 Total Errors   : 0
 Total Symbols  : 40655
@@ -1104,6 +1104,6 @@ Total Resources: 0
 Total Commands : 68967
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 461912
+Static Data    : 461904
 Message area   : 484477
 Total Blocks   : 25984
