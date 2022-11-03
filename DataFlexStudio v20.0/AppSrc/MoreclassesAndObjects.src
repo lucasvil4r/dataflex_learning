@@ -1,0 +1,86 @@
+﻿Use DfAllEnt.pkg
+
+//Criando classe
+Class cPerson is a cObject
+    Procedure Construcut_Object
+        Forward Send Construcut_Object
+       
+        Property String psFirstName ""
+        Property String psLastName ""
+    End_Procedure
+    
+    //Metódo class cPerson
+    Function HelloMessage Returns String
+        String sFirst sLast
+        
+        Get psFirstName to sFirst
+        Get psLastName to sLast
+        
+        Function_Return (SFormat("%1 %2 Hello!", sFirst, sLast))
+    End_Function
+    
+    //Procedimento classe
+    Procedure Hello
+        String sMsg
+        
+        Get HelloMessage to sMsg
+        
+        Showln sMsg
+    End_Procedure
+End_Class
+
+//Classe herdando classe cPerson
+Class cEmployee is a cPerson
+    Procedure Construcut_Object
+        Forward Send Construcut_Object
+        
+        Property String psFunction ""
+    End_Procedure
+    
+    Function HelloMessage Returns String
+        String sFunction sMessage
+        
+        Forward Get HelloMessage to sMessage
+        
+        Get psFunction to sFunction
+                           
+        Function_Return (sFunction + ", " + sMessage)
+    End_Function
+End_Class
+
+//Classe herdando classe
+Class oCompany is a cPerson
+    Procedure Construcut_Object
+        Forward Send Construcut_Object
+        
+        Property String psFunction ""
+    End_Procedure
+    
+    Function HelloMessage Returns String
+        String sFunction sMessage
+        
+        Forward Get HelloMessage to sMessage
+        
+        Get psFunction to sFunction
+                           
+        Function_Return (sFunction + ", " + sMessage)
+    End_Function
+End_Class
+
+//Criando OBJ da classe cPerson
+Object oLucas is a cPerson
+    Set psFirstName to "Lucas"
+    Set psLastName to "Vilar"
+End_Object
+
+//Criando OBJ da classe cEmployee
+Object oHarm is a cEmployee
+    Set psFirstName to "Lucas"
+    Set psLastName to "Vilar"
+    Set psFunction to "Sotware Engineer"
+End_Object
+
+// Chamando procedimento da classes
+Send Hello of oLucas
+Send Hello of oHarm
+Send Info_Box "Done.."

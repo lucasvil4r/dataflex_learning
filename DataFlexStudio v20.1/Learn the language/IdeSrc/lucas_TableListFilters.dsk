@@ -1,0 +1,14 @@
+[Filter0]
+Type=1
+Operator=6
+[Filter1]
+Type=2
+Operator=3
+[Filter2]
+Type=3
+Operator=2
+[TableFilters]
+Active=1
+[IndexFilters]
+ClientOnly=0
+ServerOnly=1

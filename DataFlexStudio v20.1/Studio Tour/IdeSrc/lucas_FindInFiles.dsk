@@ -1,0 +1,13 @@
+[Header]
+Mask=*.src;*.vw;*.sl;*.dg;*.rv;*.bp;*.pkg;*.wo;*.dd;*.inc;*.tpl;*.dfo;*.asp;*.asa;*.html;*.css;*.js
+Active=0
+SubDirectories=1
+WholeWordOnly=0
+SearchWhere=0
+Location=C:\dataflex_learning\DataFlexStudio v20.1\Studio Tour\IdeSrc\lucas_FindInFiles.dsk
+[C:\dataflex_learning\DataFlexStudio v20.1\Studio Tour\AppSrc]
+IsEnabled=1
+[C:\dataflex_learning\DataFlexStudio v20.1\Studio Tour\DDSrc]
+IsEnabled=1
+[C:\dataflex_learning\DataFlexStudio v20.1\Studio Tour\AppHtml]
+IsEnabled=1

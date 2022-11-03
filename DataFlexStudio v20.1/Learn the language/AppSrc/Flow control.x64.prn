@@ -1,0 +1,36 @@
+Compiling Program: C:\dataflex_learning\AppSrc\Flow control.src
+Memory Available: 5742583808
+1>Use DfAllEnt.pkg
+Using pre-compiled package DFALLENT.PKG
+Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.1\Pkg\dfallent.x64.pkd)
+73081>
+73081>Procedure DemoIf
+73083>    String sMessage
+73083>    
+73083>    If (DateGetHour(CurrentDateTime()) < 12) Begin
+73085>        Move "Good Morning" to sMessage
+73086>    End
+73086>    Else If (DateGetHour(CurrentDateTime()) < 18) Begin
+73089>        Move "Good Afternoon" to sMessage
+73090>    End
+73090>    Else Begin
+73091>        Move "Good Day" to sMessage
+73092>    End
+73092>    
+73092>    Send Info_Box sMessage
+73093>End_Procedure
+73094>
+73094>Send DemoIf
+73095>
+Summary
+Memory Available: 5712494592
+Total Warnings : 0
+Total Errors   : 0
+Total Symbols  : 42312
+Total Resources: 0
+Total Commands : 73094
+Total Windows  : 0
+Total Pages    : 0
+Static Data    : 505062
+Message area   : 506367
+Total Blocks   : 27362
