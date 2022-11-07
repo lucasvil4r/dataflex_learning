@@ -1,6 +1,6 @@
 [Workspace]
 CurrentProject=
-Location=C:\dataflex_learning\DataFlexStudio v20.1\Studio Tour\IdeSrc\lucas_Studio.dsk
+Location=C:\dataflex_learning\DataFlexStudio v20.0\Studio Tour\IdeSrc\lucas_Studio.dsk
 CreateNew=-1
 [TabWindows]
 GroupCount=1
@@ -13,7 +13,7 @@ Filename=Workspace Dashboard
 ViewType=101
 Top=21
 Left=0
-Bottom=650
+Bottom=637
 Right=1304
 TabIndex=0
 TabGroup=0
@@ -22,7 +22,7 @@ Filename=Start Center
 ViewType=100
 Top=21
 Left=0
-Bottom=650
+Bottom=637
 Right=1304
 TabIndex=1
 TabGroup=0
