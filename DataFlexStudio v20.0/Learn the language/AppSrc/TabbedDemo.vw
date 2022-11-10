@@ -9,8 +9,6 @@ Object oTabbedDemo is a dbView
     Set Label to "TabbedDemo"
     Set Size to 273 470
     Set Location to 0 4
-    
-    Global_Variable String sDiretorio
 
     Object oReadDir is a Form
         Set Size to 14 326
@@ -21,12 +19,6 @@ Object oTabbedDemo is a dbView
 //            Forward Send Construct_Object  // very important! 
 //            Property String psDiretorio 
 //        End_Procedure
-        
-        //    OnChange is called on every changed character
-        Procedure OnChange
-               
-        End_Procedure
-    
     End_Object
     
     Object oButton1 is a Button
@@ -43,20 +35,22 @@ Object oTabbedDemo is a dbView
         Set Size to 14 330
         Set Location to 250 67
         Set Label to "Caminho arquivo:"
-        
         Property String psDiretorio
-
-        Set Form_Mask to "Digite caminho"
-
-        
     End_Object
-    
+        
+    Procedure OnChange
+        Forward Send OnChange
+        Set psDiretorio to oOpenExplorer
+    End_Procedure
+
     Object oButton2 is a Button
         Set Size to 14 53
         Set Location to 250 404
         Set Label to "Abrir explorer"
     
         Procedure OnClick
+            Forward Send OnClick
+            String sDiretorio
             
             Get psDiretorio to sDiretorio
             
@@ -65,5 +59,3 @@ Object oTabbedDemo is a dbView
     End_Object
 
 End_Object
-
-Start_UI
