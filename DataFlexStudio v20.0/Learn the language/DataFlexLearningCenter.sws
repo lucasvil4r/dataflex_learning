@@ -6,7 +6,7 @@ ConfigFile=.\Programs\Config.ws
 DefaultFormHeight=12
 [Conditionals]
 Is$WebApp=False
-Is$Win64=True
+Is$Win64=False
 [Projects]
 Project0=VariableAndTypes.src
 Project1=Flow control.src
@@ -20,3 +20,6 @@ Project8=ClassesAndObjects.src
 Project9=MoreclassesAndObjects.src
 Project10=Expressions.src
 Project11=StructureofDataFlexProgram.src
+Project12=ViewPolicom.src
+[TestProjects]
+TestWindowsProject=ViewPolicom.src

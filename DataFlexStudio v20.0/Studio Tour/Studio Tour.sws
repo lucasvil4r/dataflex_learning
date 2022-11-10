@@ -4,3 +4,8 @@ Version=20.0
 ConfigFile=.\Programs\Config.ws
 [Preferences]
 DefaultFormHeight=12
+[Conditionals]
+Is$WebApp=False
+Is$Win64=True
+[Projects]
+Project0=GlobalBuffers.src

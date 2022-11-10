@@ -1,5 +1,5 @@
-Compiling Program: C:\dataflex_learning\DataFlexStudio v20.0\AppSrc\VariableAndTypes.src
-Memory Available: 7691026432
+Compiling Program: C:\Users\lucas.GPCABLING\Documents\repositorios\dataflex_learning\DataFlexStudio v20.0\Learn the language\AppSrc\VariableAndTypes.src
+Memory Available: 5858127872
 1>Use dfAllEnt.pkg // Isso é suficiente para executar a maioria dos aplicativos.
 Using pre-compiled package DFALLENT.PKG
 Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.x64.pkd)
@@ -70,7 +70,7 @@ Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent
 68514>//////////////////////////////////
 68514>
 Summary
-Memory Available: 7670693888
+Memory Available: 5841784832
 Total Warnings : 0
 Total Errors   : 0
 Total Symbols  : 40188

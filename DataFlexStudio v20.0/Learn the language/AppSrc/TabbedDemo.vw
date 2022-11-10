@@ -1,57 +1,69 @@
 ﻿Use Windows.pkg
 Use DFClient.pkg
 Use DFTabDlg.pkg
+Use DfAllEnt.pkg
 
 Activate_View Activate_oTabbedDemo for oTabbedDemo
 Object oTabbedDemo is a dbView
-    Set Label to "TabbedDemo"
-    Set Size to 181 350
-    Set Location to 5 7
-
-    Object oNewTabDialog is a dbTabDialogView
-        Set Size to 129 320
-        Set Location to 44 13
-        Set Rotate_Mode to RM_Rotate
-
-        Object oNewTabPage1 is a dbTabView
-            Set Label to "Page 1"
-
-            Object oTextBox2 is a Textbox
-                Set Label to "Create a DDO structure for each tab page."
-                Set Location to 8 6
-                Set Size to 10 135
-            End_Object
-
-            Object oTextBox3 is a Textbox
-                Set Label to "Then create entry forms for each page."
-                Set Location to 22 6
-                Set Size to 10 124
-            End_Object
-
-            Object oTextBox4 is a Textbox
-                Set Label to "Each tab page will behave as if it was a separate data entry view."
-                Set Location to 36 6
-                Set Size to 10 207
-            End_Object
-
-        End_Object
-
-        Object oNewTabPage2 is a dbTabView
-            Set Label to "Page 2"
-        End_Object
-
-    End_Object
-
-    Object oButton1 is a Button
-        Set Size to 18 52
-        Set Location to 12 14
-        Set Label to "Say Hello!"
     
-        // fires when the button is clicked
-        Procedure OnClick
-            Send Info_Box "Hello World!" 
+    Set Label to "TabbedDemo"
+    Set Size to 273 470
+    Set Location to 0 4
+    
+    Global_Variable String sDiretorio
+
+    Object oReadDir is a Form
+        Set Size to 14 326
+        Set Location to 14 68
+        Set Label to "Caminho arquivo:"
+        
+//        Procedure Construct_Object  
+//            Forward Send Construct_Object  // very important! 
+//            Property String psDiretorio 
+//        End_Procedure
+        
+        //    OnChange is called on every changed character
+        Procedure OnChange
+               
         End_Procedure
     
     End_Object
+    
+    Object oButton1 is a Button
+        Set Size to 14 56
+        Set Location to 14 399
+        Set Label to "Ver diretorio"
+        
+        Procedure OnClick
+            Send Activate_oConsultaFile    
+        End_Procedure
+    End_Object
+
+    Object oOpenExplorer is a Form
+        Set Size to 14 330
+        Set Location to 250 67
+        Set Label to "Caminho arquivo:"
+        
+        Property String psDiretorio
+
+        Set Form_Mask to "Digite caminho"
+
+        
+    End_Object
+    
+    Object oButton2 is a Button
+        Set Size to 14 53
+        Set Location to 250 404
+        Set Label to "Abrir explorer"
+    
+        Procedure OnClick
+            
+            Get psDiretorio to sDiretorio
+            
+            Runprogram Background ('c:\windows\explorer.exe' *  '"' + ((sDiretorio)) + '"')
+        End_Procedure  
+    End_Object
 
 End_Object
+
+Start_UI
