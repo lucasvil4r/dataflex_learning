@@ -1,0 +1,6 @@
+#REPLACE FILE3 Ingredients
+#REPLACE Ingredients.File_Number |CI3
+#REPLACE Ingredients.Ingredientsid |FN3,1
+#REPLACE Ingredients.Recipeid |FN3,2
+#REPLACE Ingredients.Name |FS3,3
+#REPLACE Ingredients.Amount |FS3,4
