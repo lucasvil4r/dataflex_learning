@@ -3,21 +3,7 @@ Use DFClient.pkg
 Use DFTabDlg.pkg
 Use DfAllEnt.pkg
 Use cCJGrid.pkg
-Use cProgressBar.pkg
-Use dfTreeVw.pkg
-Use TrckBr.pkg
 Use cCJGridColumn.pkg
-Use cCJGridColumnRowIndicator.pkg
-Use File_dlg.pkg
-Use Font_dlg.pkg
-Use dfEnChk.pkg
-Use cRichEdit.pkg
-Use cCJGridPromptList.pkg
-Use cLinkLabel.pkg
-Use cAnimation.pkg
-Use cSplitButton.pkg
-Use dfBitmap.pkg
-Use cTextEdit.pkg
 
 Activate_View Activate_oConteudoDiretorio for oConteudoDiretorio
 Object oConteudoDiretorio is a dbView
@@ -27,12 +13,13 @@ Object oConteudoDiretorio is a dbView
     Set piMinSize to 228 525
        
     Object oPathFile is a Form
-        Set Location to 22 80
+//        Entry_Item psReadDir
+        Set Location to 22 81
         Set Size to 13 469
         Set Label to "Caminho arquivo:"
         Set Enabled_State to False
     
-         //OnChange is called on every changed character
+        //OnChange is called on every changed character
         Procedure OnChange
             Global_Variable String[] aFiles
             
@@ -40,7 +27,6 @@ Object oConteudoDiretorio is a dbView
             Move "Richard" to aFiles[1]
             Move "Ricardo" to aFiles[2]
             Move "Cris" to aFiles[3]
-            
         End_Procedure
         
         Send OnChange
@@ -66,7 +52,7 @@ Object oConteudoDiretorio is a dbView
             Integer iRows iFile
             
             Get phoDataSource to hoDataSource
-            
+
 //            Get the datasource indexes of the various columns
 //            Get piColumnId of oCustomer_Customer_Number to iNum
 
@@ -97,5 +83,4 @@ Object oConteudoDiretorio is a dbView
         End_Procedure
     
     End_Object
-
 End_Object

@@ -4,10 +4,10 @@ Active=0
 SubDirectories=1
 WholeWordOnly=0
 SearchWhere=0
-Location=C:\dataflex_learning\DataFlexStudio v20.0\Policom\IdeSrc\Lucas_FindInFiles.dsk
-[C:\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc]
+Location=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\IdeSrc\lucas_FindInFiles.dsk
+[C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc]
 IsEnabled=1
-[C:\dataflex_learning\DataFlexStudio v20.0\Policom\DDSrc]
+[C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\DDSrc]
 IsEnabled=1
-[C:\dataflex_learning\DataFlexStudio v20.0\Policom\AppHtml]
+[C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppHtml]
 IsEnabled=1
