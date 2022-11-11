@@ -1,5 +1,5 @@
-Compiling Program: C:\Users\lucas.GPCABLING\Documents\repositorios\dataflex_learning\DataFlexStudio v20.0\Learn the language\AppSrc\StructureofDataFlexProgram.src
-Memory Available: 407834624
+Compiling Program: C:\dataflex_learning\DataFlexStudio v20.0\Learn the language\AppSrc\StructureofDataFlexProgram.src
+Memory Available: 2147483647
 1>Use DFAllEnt.pkg
 Using pre-compiled package DFALLENT.PKG
 Including file: dfallent.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.pkd)
@@ -1451,7 +1451,7 @@ Including file: CryptographerConstants.pkg    (C:\Program Files\DataFlex 20.0\Pk
 69269>>>    //
 69269>>>    // Set psEncryptPassword to "JchUAo7W@r.b{<Yk~OONi0nq=sMi[*Rn[A-`Vo)q"
 69269>>>    //  
-Including file: LoginEncryptionKey.inc    (C:\Users\lucas.GPCABLING\Documents\repositorios\dataflex_learning\DataFlexStudio v20.0\Learn the language\AppSrc\LoginEncryptionKey.inc)
+Including file: LoginEncryptionKey.inc    (C:\dataflex_learning\DataFlexStudio v20.0\Learn the language\AppSrc\LoginEncryptionKey.inc)
 69269>>>>// Studio generated login encryption key
 69269>>>>Set psEncryptPassword to "o9?|yO_W#yf-mDQXl$D#lW7\~u:(P<:PL}#7{.QU"
 69270>>>>
@@ -3438,7 +3438,7 @@ Including file: MSSqldrv.pkg    (C:\Program Files\DataFlex 20.0\Pkg\MSSqldrv.pkg
 70644>>>End_Procedure
 70645>>>
 70645>        Use TabbedDemo.vw
-Including file: TabbedDemo.vw    (C:\Users\lucas.GPCABLING\Documents\repositorios\dataflex_learning\DataFlexStudio v20.0\Learn the language\AppSrc\TabbedDemo.vw)
+Including file: TabbedDemo.vw    (C:\dataflex_learning\DataFlexStudio v20.0\Learn the language\AppSrc\TabbedDemo.vw)
 70645>>>Use Windows.pkg
 70645>>>Use DFClient.pkg
 70645>>>Use DFTabDlg.pkg
@@ -3461,7 +3461,6 @@ Including file: TabbedDemo.vw    (C:\Users\lucas.GPCABLING\Documents\repositorio
 70665>>>//            Forward Send Construct_Object  // very important! 
 70665>>>//            Property String psDiretorio 
 70665>>>//        End_Procedure
-70665>>>    
 70665>>>    End_Object
 70666>>>    
 70666>>>    Object oButton1 is a Button
@@ -3503,7 +3502,7 @@ Including file: TabbedDemo.vw    (C:\Users\lucas.GPCABLING\Documents\repositorio
 70706>>>
 70706>>>End_Object
 70707>        Use ConsultaFile.vw
-Including file: ConsultaFile.vw    (C:\Users\lucas.GPCABLING\Documents\repositorios\dataflex_learning\DataFlexStudio v20.0\Learn the language\AppSrc\ConsultaFile.vw)
+Including file: ConsultaFile.vw    (C:\dataflex_learning\DataFlexStudio v20.0\Learn the language\AppSrc\ConsultaFile.vw)
 70707>>>Use Windows.pkg
 70707>>>Use DFClient.pkg
 70707>>>Use DFTabDlg.pkg
@@ -5695,7 +5694,7 @@ Including file: cSplitButton.pkg    (C:\Program Files\DataFlex 20.0\Pkg\cSplitBu
 72291>Start_UI
 72292>
 Summary
-Memory Available: 390279168
+Memory Available: 2147483647
 Total Warnings : 0
 Total Errors   : 0
 Total Symbols  : 42241

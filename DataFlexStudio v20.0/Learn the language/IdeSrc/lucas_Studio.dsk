@@ -1,39 +1,19 @@
 [Workspace]
 CurrentProject=StructureofDataFlexProgram.src
-Location=C:\Users\lucas.GPCABLING\Documents\repositorios\dataflex_learning\DataFlexStudio v20.0\Learn the language\IdeSrc\lucas_Studio.dsk
+Location=C:\dataflex_learning\DataFlexStudio v20.0\Learn the language\IdeSrc\Lucas_Studio.dsk
 CreateNew=1
 [TabWindows]
 GroupCount=1
 HorizontalGroups=1
 [TabGroup0]
 GroupSize=40
-SelectedTab=2
+SelectedTab=0
 [Window0]
-Filename=C:\Users\lucas.GPCABLING\Documents\repositorios\dataflex_learning\DataFlexStudio v20.0\Learn the language\AppSrc\TabbedDemo.vw
-ViewType=1
-Top=21
-Left=0
-Bottom=638
-Right=1304
-CursorLine=23
-CursorColumn=0
-TabIndex=1
-TabGroup=0
-[Window1]
 Filename=Workspace Dashboard
 ViewType=101
 Top=21
 Left=0
-Bottom=638
-Right=1304
+Bottom=723
+Right=1424
 TabIndex=0
-TabGroup=0
-[Window2]
-Filename=Start Center
-ViewType=100
-Top=21
-Left=0
-Bottom=638
-Right=1304
-TabIndex=2
 TabGroup=0
