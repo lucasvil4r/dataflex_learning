@@ -1,19 +1,52 @@
 [Workspace]
-CurrentProject=
+CurrentProject=ProjectTeste.src
 Location=C:\dataflex_learning\DataFlexStudio v20.0\Policom\IdeSrc\Lucas_Studio.dsk
-CreateNew=-1
+CreateNew=1
 [TabWindows]
 GroupCount=1
 HorizontalGroups=1
 [TabGroup0]
 GroupSize=40
-SelectedTab=0
+SelectedTab=3
 [Window0]
-Filename=Workspace Dashboard
-ViewType=101
+Filename=C:\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ProjectTeste.src
+ViewType=1
 Top=21
 Left=0
-Bottom=723
-Right=1424
+Bottom=701
+Right=1436
+CursorLine=120
+CursorColumn=56
 TabIndex=0
+TabGroup=0
+[Window1]
+Filename=C:\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
+ViewType=1
+Top=21
+Left=0
+Bottom=701
+Right=1436
+CursorLine=57
+CursorColumn=45
+TabIndex=2
+TabGroup=0
+[Window2]
+Filename=C:\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConsultaDiretorio.vw
+ViewType=2
+Top=21
+Left=0
+Bottom=701
+Right=1436
+TabIndex=1
+TabGroup=0
+[Window3]
+Filename=C:\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConsultaDiretorio.vw
+ViewType=1
+Top=21
+Left=0
+Bottom=701
+Right=1436
+CursorLine=38
+CursorColumn=21
+TabIndex=3
 TabGroup=0

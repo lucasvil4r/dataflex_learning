@@ -6,54 +6,45 @@ Use DfAllEnt.pkg
 Activate_View Activate_oConsultaDiretorio for oConsultaDiretorio
 Object oConsultaDiretorio is a dbView
     
-    Set Label to "TabbedDemo"
-    Set Size to 273 470
-    Set Location to 0 4
+    Set Label to "Consulta"
+    Set Size to 73 470
+    Set Location to -1 4
 
     Object oReadDir is a Form
         Set Size to 14 326
-        Set Location to 14 68
+        Set Location to 44 68
         Set Label to "Caminho arquivo:"
-        
-//        Procedure Construct_Object  
-//            Forward Send Construct_Object  // very important! 
-//            Property String psDiretorio 
-//        End_Procedure
-    End_Object
+        Property String psDiretorio
+   End_Object
     
     Object oButton1 is a Button
         Set Size to 14 56
-        Set Location to 14 399
+        Set Location to 44 401
         Set Label to "Ver diretorio"
         
         Procedure OnClick
+            Set psDiretorio to oReadDir
             Send Activate_oConteudoDiretorio 
         End_Procedure
     End_Object
 
     Object oOpenExplorer is a Form
-        Set Size to 14 330
-        Set Location to 250 67
+        Set Size to 14 326
+        Set Location to 15 68
         Set Label to "Caminho arquivo:"
-        Property String psDiretorio
-    End_Object
-        
-    Procedure OnChange
-        Forward Send OnChange
-        Set psDiretorio to oOpenExplorer
-    End_Procedure
 
+        Procedure Key
+            Global_Variable String sDiretorio
+            Move oOpenExplorer to sDiretorio
+        End_Procedure
+    End_Object
+    
     Object oButton2 is a Button
-        Set Size to 14 53
-        Set Location to 250 404
+        Set Size to 15 56
+        Set Location to 14 400
         Set Label to "Abrir explorer"
     
         Procedure OnClick
-            Forward Send OnClick
-            String sDiretorio
-            
-            Get psDiretorio to sDiretorio
-            
             Runprogram Background ('c:\windows\explorer.exe' *  '"' + ((sDiretorio)) + '"')
         End_Procedure  
     End_Object
