@@ -15,6 +15,7 @@ Object oConsultaDiretorio is a dbView
         Set Size to 14 326
         Set Location to 44 68
         Set Label to "Caminho arquivo:"
+<<<<<<< HEAD
         Set Prompt_Button_Mode to PB_PromptOn
         Property String psReadDir
         
@@ -33,6 +34,10 @@ Object oConsultaDiretorio is a dbView
             Set psOpenExplorer to oOpenExplorer
         End_Procedure
     End_Object
+=======
+        Property String psDiretorio
+   End_Object
+>>>>>>> eafe4cda8073e8d4ccd2fe8079020d0688dd0eaa
     
     Object oButton1 is a Button
         Set Size to 14 56
@@ -40,19 +45,37 @@ Object oConsultaDiretorio is a dbView
         Set Label to "Ver diretorio"
 
         Procedure OnClick
+            Set psDiretorio to oReadDir
             Send Activate_oConteudoDiretorio 
         End_Procedure
     End_Object
 
+<<<<<<< HEAD
+=======
+    Object oOpenExplorer is a Form
+        Set Size to 14 326
+        Set Location to 15 68
+        Set Label to "Caminho arquivo:"
+
+        Procedure Key
+            Global_Variable String sDiretorio
+            Move oOpenExplorer to sDiretorio
+        End_Procedure
+    End_Object
+    
+>>>>>>> eafe4cda8073e8d4ccd2fe8079020d0688dd0eaa
     Object oButton2 is a Button
         Set Size to 15 56
         Set Location to 14 400
         Set Label to "Abrir explorer"
         
         Procedure OnClick
+<<<<<<< HEAD
             String sDiretorio
             
             Get psOpenExplorer of oOpenExplorer to sDiretorio
+=======
+>>>>>>> eafe4cda8073e8d4ccd2fe8079020d0688dd0eaa
             Runprogram Background ('c:\windows\explorer.exe' *  '"' + ((sDiretorio)) + '"')
         End_Procedure  
     End_Object
