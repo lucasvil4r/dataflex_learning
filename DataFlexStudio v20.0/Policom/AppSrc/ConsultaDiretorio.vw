@@ -15,13 +15,12 @@ Object oConsultaDiretorio is a dbView
         Set Location to 14 68
         Set Label to "Caminho arquivo:"
         Property String psOpenExplorer
-
+        
         Procedure Onchange
-            Send AtribueValue
-        End_Procedure
-    
-        Procedure AtribueValue
-            Set psOpenExplorer of oOpenExplorer to oOpenExplorer
+            String sDiretorio
+            
+            Set Value of oOpenExplorer to sDiretorio
+            Set psOpenExplorer to sDiretorio
         End_Procedure
     End_Object
 
@@ -30,10 +29,13 @@ Object oConsultaDiretorio is a dbView
         Set Location to 44 68
         Set Label to "Caminho arquivo:"
         Property String psReadDir
-        
-//        Procedure Onchange
-//            Set psReadDir to oReadDir
-//        End_Procedure
+             
+        Procedure Onchange
+            String sDiretorio
+            
+            Set Value of oReadDir to sDiretorio
+            Set psReadDir to sDiretorio 
+        End_Procedure
     End_Object
   
     Object oButton1 is a Button
@@ -41,13 +43,28 @@ Object oConsultaDiretorio is a dbView
         Set Location to 14 401
         Set Label to "Abrir explorer"
         
+        Procedure DoesFileExist
+            String sDiretorio
+            Global_Variable Boolean bFileExists
+            
+            Get psOpenExplorer of oOpenExplorer to sDiretorio
+            
+            File_Exist sDiretorio bFileExists
+        End_Procedure
+        
+        Send DoesFileExist
+        
         Procedure OnClick
             String sDiretorio
             
-//            Set psOpenExplorer of oOpenExplorer to oOpenExplorer
             Get psOpenExplorer of oOpenExplorer to sDiretorio
             
-            Runprogram Background ('c:\windows\explorer.exe' *  '"' + ((sDiretorio)) + '"')
+            If bFileExists Begin
+                Runprogram Background ('c:\windows\explorer.exe' *  '"' + ((sDiretorio)) + '"')
+            End
+            Else Begin
+                Send Info_Box "Caminho não encontrado"
+            End
         End_Procedure  
     End_Object
     
