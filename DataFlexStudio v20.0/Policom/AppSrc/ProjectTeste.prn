@@ -3454,164 +3454,166 @@ Including file: ConsultaDiretorio.vw    (C:\xampp\htdocs\dataflex_learning\DataF
 70660>>>    
 70660>>>    Object oOpenExplorer is a Form
 70662>>>        Set Size to 14 326
-70663>>>        Set Location to 15 70
+70663>>>        Set Location to 14 68
 70664>>>        Set Label to "Caminho arquivo:"
 70665>>>        Property String psOpenExplorer
 70667>>>
-70667>>>        Set psOpenExplorer to "c:"
-70668>>>
-70668>>>        Procedure Onchange
-70671>>>            Set psOpenExplorer to oOpenExplorer
-70672>>>        End_Procedure
-70673>>>    End_Object
-70674>>>
-70674>>>    Object oReadDir is a Form
-70676>>>        Set Size to 14 326
-70677>>>        Set Location to 44 68
-70678>>>        Set Label to "Caminho arquivo:"
-70679>>>
-70679>>>        Set Prompt_Button_Mode to PB_PromptOn
-70680>>>        Property String psReadDir
-70682>>>        
-70682>>>        Procedure Exiting
-70685>>>            Set psReadDir to oReadDir
-70686>>>        End_Procedure
-70687>>>    End_Object
-70688>>>  
-70688>>>    Object oButton1 is a Button
-70690>>>        Set Size to 15 56
-70691>>>        Set Location to 14 400
-70692>>>        Set Label to "Abrir explorer"
-70693>>>        
-70693>>>        Procedure OnClick
-70696>>>            String sDiretorio
-70696>>>            
-70696>>>            Get psOpenExplorer of oOpenExplorer to sDiretorio
-70697>>>            Runprogram Background ('c:\windows\explorer.exe' *  '"' + ((sDiretorio)) + '"')
-70698>>>        End_Procedure  
-70699>>>    End_Object
-70700>>>    
-70700>>>    Object oButton2 is a Button
-70702>>>        Set Size to 14 56
-70703>>>        Set Location to 44 401
-70704>>>        Set Label to "Ver diretorio"
-70705>>>
-70705>>>        Procedure OnClick
-70708>>>            Send Activate_oConteudoDiretorio 
-70709>>>        End_Procedure
-70710>>>    End_Object
-70711>>>End_Object
-70712>        Use ConteudoDiretorio.vw
+70667>>>        Procedure Onchange
+70670>>>            Send AtribueValue
+70671>>>        End_Procedure
+70672>>>    
+70672>>>        Procedure AtribueValue
+70675>>>            Set psOpenExplorer of oOpenExplorer to oOpenExplorer
+70676>>>        End_Procedure
+70677>>>    End_Object
+70678>>>
+70678>>>    Object oReadDir is a Form
+70680>>>        Set Size to 14 326
+70681>>>        Set Location to 44 68
+70682>>>        Set Label to "Caminho arquivo:"
+70683>>>        Property String psReadDir
+70685>>>        
+70685>>>//        Procedure Onchange
+70685>>>//            Set psReadDir to oReadDir
+70685>>>//        End_Procedure
+70685>>>    End_Object
+70686>>>  
+70686>>>    Object oButton1 is a Button
+70688>>>        Set Size to 15 56
+70689>>>        Set Location to 14 401
+70690>>>        Set Label to "Abrir explorer"
+70691>>>        
+70691>>>        Procedure OnClick
+70694>>>            String sDiretorio
+70694>>>            
+70694>>>//            Set psOpenExplorer of oOpenExplorer to oOpenExplorer
+70694>>>            Get psOpenExplorer of oOpenExplorer to sDiretorio
+70695>>>            
+70695>>>            Runprogram Background ('c:\windows\explorer.exe' *  '"' + ((sDiretorio)) + '"')
+70696>>>        End_Procedure  
+70697>>>    End_Object
+70698>>>    
+70698>>>    Object oButton2 is a Button
+70700>>>        Set Size to 14 56
+70701>>>        Set Location to 44 401
+70702>>>        Set Label to "Ver diretorio"
+70703>>>        
+70703>>>        Procedure OnClick
+70706>>>            Send Activate_oConteudoDiretorio 
+70707>>>        End_Procedure
+70708>>>    End_Object
+70709>>>End_Object
+70710>        Use ConteudoDiretorio.vw
 Including file: ConteudoDiretorio.vw    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw)
-70712>>>Use Windows.pkg
-70712>>>Use DFClient.pkg
-70712>>>Use DFTabDlg.pkg
-70712>>>Use DfAllEnt.pkg
-70712>>>Use cCJGrid.pkg
-70712>>>Use cCJGridColumn.pkg
-70712>>>
-70712>>>Activate_View Activate_oConteudoDiretorio for oConteudoDiretorio
-70722>>>>
-70722>>>Object oConteudoDiretorio is a dbView
-70724>>>    Set Location to 2 4
-70725>>>    Set Border_Style to Border_Thick
-70726>>>    Set Size to 241 567
-70727>>>    Set piMinSize to 228 525
-70728>>>       
-70728>>>    Object oPathFile is a Form
-70730>>>        Set Location to 22 81
-70731>>>        Set Size to 13 469
-70732>>>        Set Label to "Caminho arquivo:"
-70733>>>        Set Enabled_State to False
-70734>>>    
-70734>>>        //OnChange is called on every changed character
-70734>>>        Procedure OnChange
-70737>>>            Global_Variable String[] aFiles
-70737>>>            
-70737>>>            Move "Lucas" to aFiles[0]
-70738>>>            Move "Richard" to aFiles[1]
-70739>>>            Move "Ricardo" to aFiles[2]
-70740>>>            Move "Cris" to aFiles[3]
-70741>>>        End_Procedure
-70742>>>        
-70742>>>        Send OnChange
-70743>>>    End_Object
-70744>>>    
-70744>>>    Object oCustomerGrid is a cCJGrid
-70746>>>        Set Size to 165 533
-70747>>>        Set Location to 54 17
-70748>>>        Set peAnchors to anAll
-70749>>>        Set pbReadOnly to True
-70750>>>        Set pbSelectionEnable to True      
-70751>>>
-70751>>>        Object oFileSearch is a cCJGridColumn
-70753>>>            Set piWidth to 889
-70754>>>            Set psCaption to "Arquivos encontrados:"
-70755>>>        End_Object
-70756>>>                 
-70756>>>        Procedure LoadData 
-70759>>>            Handle hoDataSource
-70759>>>            tDataSourceRow[] TheData
-70759>>>            tDataSourceRow[] TheData
-70760>>>            Boolean bFound
-70760>>>            Integer iIndex    
-70760>>>            Integer iRows iFile
-70760>>>            
-70760>>>            Get phoDataSource to hoDataSource
-70761>>>
-70761>>>//            Get the datasource indexes of the various columns
-70761>>>//            Get piColumnId of oCustomer_Customer_Number to iNum
-70761>>>
-70761>>>//            Load All data into the datasource array
-70761>>>//            Clear Customer
-70761>>>//            Find ge Customer by 1
-70761>>>
-70761>>>//            Move (Found) to bFound
-70761>>>//            While (bFound)
-70761>>>//                Move Customer.Customer_Number to TheData[iRows].sValue[iFile] 
-70761>>>//                Move (Found) to bFound
-70761>>>//                Increment iRows
-70761>>>//            Loop
-70761>>>
-70761>>>            For iIndex from 0 to (SizeOfArray(aFiles) - 1)
-70767>>>>
-70767>>>                Move aFiles[iIndex] to TheData[iRows].sValue[iFile]
-70768>>>                Increment iRows
-70769>>>            Loop
-70770>>>>
-70770>>>
-70770>>>            // Initialize Grid with new data
-70770>>>            Send InitializeData TheData
-70771>>>            Send MovetoFirstRow
-70772>>>        End_Procedure
-70773>>>    
-70773>>>        Procedure Activating
-70776>>>            Forward Send Activating
-70778>>>            Send LoadData
-70779>>>        End_Procedure
-70780>>>    
-70780>>>    End_Object
-70781>>>End_Object
-70782>
-70782>        Procedure Activate_About
-70785>            Send DoAbout "" "" "" "" ""
-70786>        End_Procedure
+70710>>>Use Windows.pkg
+70710>>>Use DFClient.pkg
+70710>>>Use DFTabDlg.pkg
+70710>>>Use DfAllEnt.pkg
+70710>>>Use cCJGrid.pkg
+70710>>>Use cCJGridColumn.pkg
+70710>>>
+70710>>>Activate_View Activate_oConteudoDiretorio for oConteudoDiretorio
+70720>>>>
+70720>>>Object oConteudoDiretorio is a dbView
+70722>>>    Set Location to 2 4
+70723>>>    Set Border_Style to Border_Thick
+70724>>>    Set Size to 241 567
+70725>>>    Set piMinSize to 228 525
+70726>>>       
+70726>>>    Object oPathFile is a Form
+70728>>>        Set Location to 22 81
+70729>>>        Set Size to 13 469
+70730>>>        Set Label to "Caminho arquivo:"
+70731>>>        Set Enabled_State to False
+70732>>>    
+70732>>>        //OnChange is called on every changed character
+70732>>>        Procedure OnChange
+70735>>>            Global_Variable String[] aFiles
+70735>>>            
+70735>>>            Move "Lucas" to aFiles[0]
+70736>>>            Move "Richard" to aFiles[1]
+70737>>>            Move "Ricardo" to aFiles[2]
+70738>>>            Move "Cris" to aFiles[3]
+70739>>>        End_Procedure
+70740>>>        
+70740>>>        Send OnChange
+70741>>>    End_Object
+70742>>>    
+70742>>>    Object oCustomerGrid is a cCJGrid
+70744>>>        Set Size to 165 533
+70745>>>        Set Location to 54 17
+70746>>>        Set peAnchors to anAll
+70747>>>        Set pbReadOnly to True
+70748>>>        Set pbSelectionEnable to True      
+70749>>>
+70749>>>        Object oFileSearch is a cCJGridColumn
+70751>>>            Set piWidth to 889
+70752>>>            Set psCaption to "Arquivos encontrados:"
+70753>>>        End_Object
+70754>>>                 
+70754>>>        Procedure LoadData 
+70757>>>            Handle hoDataSource
+70757>>>            tDataSourceRow[] TheData
+70757>>>            tDataSourceRow[] TheData
+70758>>>            Boolean bFound
+70758>>>            Integer iIndex    
+70758>>>            Integer iRows iFile
+70758>>>            
+70758>>>            Get phoDataSource to hoDataSource
+70759>>>
+70759>>>//            Get the datasource indexes of the various columns
+70759>>>//            Get piColumnId of oCustomer_Customer_Number to iNum
+70759>>>
+70759>>>//            Load All data into the datasource array
+70759>>>//            Clear Customer
+70759>>>//            Find ge Customer by 1
+70759>>>
+70759>>>//            Move (Found) to bFound
+70759>>>//            While (bFound)
+70759>>>//                Move Customer.Customer_Number to TheData[iRows].sValue[iFile] 
+70759>>>//                Move (Found) to bFound
+70759>>>//                Increment iRows
+70759>>>//            Loop
+70759>>>
+70759>>>            For iIndex from 0 to (SizeOfArray(aFiles) - 1)
+70765>>>>
+70765>>>                Move aFiles[iIndex] to TheData[iRows].sValue[iFile]
+70766>>>                Increment iRows
+70767>>>            Loop
+70768>>>>
+70768>>>
+70768>>>            // Initialize Grid with new data
+70768>>>            Send InitializeData TheData
+70769>>>            Send MovetoFirstRow
+70770>>>        End_Procedure
+70771>>>    
+70771>>>        Procedure Activating
+70774>>>            Forward Send Activating
+70776>>>            Send LoadData
+70777>>>        End_Procedure
+70778>>>    
+70778>>>    End_Object
+70779>>>End_Object
+70780>
+70780>        Procedure Activate_About
+70783>            Send DoAbout "" "" "" "" ""
+70784>        End_Procedure
+70785>
+70785>    End_Object
+70786>
+70786>End_Object
 70787>
-70787>    End_Object
+70787>Start_UI
 70788>
-70788>End_Object
-70789>
-70789>Start_UI
-70790>
 Summary
 Memory Available: 2147483647
 Total Warnings : 0
 Total Errors   : 0
-Total Symbols  : 41421
+Total Symbols  : 41422
 Total Resources: 0
-Total Commands : 70789
+Total Commands : 70787
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 419617
-Message area   : 498901
+Static Data    : 419605
+Message area   : 498869
 Total Blocks   : 25672
