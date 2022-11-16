@@ -4,10 +4,6 @@ Use DFTabDlg.pkg
 Use DfAllEnt.pkg
 Use cCJGrid.pkg
 Use cCJGridColumn.pkg
-<<<<<<< HEAD
-=======
-Use ConsultaDiretorio.vw
->>>>>>> eafe4cda8073e8d4ccd2fe8079020d0688dd0eaa
 
 Activate_View Activate_oConteudoDiretorio for oConteudoDiretorio
 Object oConteudoDiretorio is a dbView
@@ -17,13 +13,6 @@ Object oConteudoDiretorio is a dbView
     Set piMinSize to 228 525
        
     Object oPathFile is a Form
-<<<<<<< HEAD
-//        Entry_Item psReadDir
-=======
-        Get psDiretorio of oReadDir to sDiretorio
-        
-        Entry_Item sDiretorio
->>>>>>> eafe4cda8073e8d4ccd2fe8079020d0688dd0eaa
         Set Location to 22 81
         Set Size to 13 469
         Set Label to "Caminho arquivo:"
