@@ -4,6 +4,7 @@ Use DFTabDlg.pkg
 Use DfAllEnt.pkg
 Use cCJGrid.pkg
 Use cCJGridColumn.pkg
+Use cFilesystem.pkg
 
 Activate_View Activate_oConteudoDiretorio for oConteudoDiretorio
 Object oConteudoDiretorio is a dbView
@@ -11,24 +12,16 @@ Object oConteudoDiretorio is a dbView
     Set Border_Style to Border_Thick
     Set Size to 241 567
     Set piMinSize to 228 525
+    
+    Global_Variable String sDiretorio           
+    Get psReadDir to sDiretorio                                         
        
     Object oPathFile is a Form
         Set Location to 22 81
         Set Size to 13 469
         Set Label to "Caminho arquivo:"
-        Set Enabled_State to False
-    
-        //OnChange is called on every changed character
-        Procedure OnChange
-            Global_Variable String[] aFiles
-            
-            Move "Lucas" to aFiles[0]
-            Move "Richard" to aFiles[1]
-            Move "Ricardo" to aFiles[2]
-            Move "Cris" to aFiles[3]
-        End_Procedure
-        
-        Send OnChange
+        Set Entry_State to False
+        Set Value to sDiretorio
     End_Object
     
     Object oCustomerGrid is a cCJGrid
@@ -42,6 +35,14 @@ Object oConteudoDiretorio is a dbView
             Set piWidth to 889
             Set psCaption to "Arquivos encontrados:"
         End_Object
+        
+        Procedure FileExplorer
+            Global_Variable String [] aListaFile                        
+                                                        
+            Get ListOfFiles sDiretorio to aListaFile
+            
+            Showln aListaFile
+        End_Procedure
                  
         Procedure LoadData 
             Handle hoDataSource
@@ -49,8 +50,12 @@ Object oConteudoDiretorio is a dbView
             Boolean bFound
             Integer iIndex    
             Integer iRows iFile
+//            Handle hoClient_ID
+//            String sDiretorio
             
-            Get phoDataSource to hoDataSource
+//            Get Client_Id to hoClient_ID
+//            Get psTeste of hoClient_ID to sCaminho  
+//            Get phoDataSource to hoDataSource
 
 //            Get the datasource indexes of the various columns
 //            Get piColumnId of oCustomer_Customer_Number to iNum
@@ -65,11 +70,11 @@ Object oConteudoDiretorio is a dbView
 //                Move (Found) to bFound
 //                Increment iRows
 //            Loop
-
-            For iIndex from 0 to (SizeOfArray(aFiles) - 1)
-                Move aFiles[iIndex] to TheData[iRows].sValue[iFile]
-                Increment iRows
-            Loop
+//
+//            For iIndex from 0 to (SizeOfArray(aFiles) - 1)
+//                Move aFiles[iIndex] to TheData[iRows].sValue[iFile]
+//                Increment iRows
+//            Loop
 
             // Initialize Grid with new data
             Send InitializeData TheData
@@ -78,6 +83,7 @@ Object oConteudoDiretorio is a dbView
     
         Procedure Activating
             Forward Send Activating
+            Send FileExplorer
             Send LoadData
         End_Procedure
     

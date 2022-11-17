@@ -1,28 +1,23 @@
 [Workspace]
 CurrentProject=ProjectTeste.src
-<<<<<<< HEAD
 Location=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\IdeSrc\lucas_Studio.dsk
-=======
-Location=C:\dataflex_learning\DataFlexStudio v20.0\Policom\IdeSrc\Lucas_Studio.dsk
->>>>>>> eafe4cda8073e8d4ccd2fe8079020d0688dd0eaa
 CreateNew=1
 [TabWindows]
 GroupCount=1
 HorizontalGroups=1
 [TabGroup0]
 GroupSize=40
-SelectedTab=3
+SelectedTab=0
 [Window0]
-<<<<<<< HEAD
 Filename=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ProjectTeste.src
 ViewType=1
 Top=21
 Left=0
 Bottom=638
 Right=1304
-CursorLine=346
+CursorLine=343
 CursorColumn=0
-TabIndex=3
+TabIndex=2
 TabGroup=0
 [Window1]
 Filename=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
@@ -31,9 +26,9 @@ Top=21
 Left=0
 Bottom=638
 Right=1304
-CursorLine=85
-CursorColumn=0
-TabIndex=2
+CursorLine=20
+CursorColumn=28
+TabIndex=1
 TabGroup=0
 [Window2]
 Filename=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConsultaDiretorio.vw
@@ -42,57 +37,7 @@ Top=21
 Left=0
 Bottom=638
 Right=1304
-CursorLine=21
-CursorColumn=37
-TabIndex=1
-TabGroup=0
-[Window3]
-Filename=Workspace Dashboard
-ViewType=101
-Top=21
-Left=0
-Bottom=638
-Right=1304
-=======
-Filename=C:\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ProjectTeste.src
-ViewType=1
-Top=21
-Left=0
-Bottom=701
-Right=1436
-CursorLine=120
-CursorColumn=56
->>>>>>> eafe4cda8073e8d4ccd2fe8079020d0688dd0eaa
+CursorLine=86
+CursorColumn=8
 TabIndex=0
-TabGroup=0
-[Window1]
-Filename=C:\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
-ViewType=1
-Top=21
-Left=0
-Bottom=701
-Right=1436
-CursorLine=57
-CursorColumn=45
-TabIndex=2
-TabGroup=0
-[Window2]
-Filename=C:\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConsultaDiretorio.vw
-ViewType=2
-Top=21
-Left=0
-Bottom=701
-Right=1436
-TabIndex=1
-TabGroup=0
-[Window3]
-Filename=C:\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConsultaDiretorio.vw
-ViewType=1
-Top=21
-Left=0
-Bottom=701
-Right=1436
-CursorLine=38
-CursorColumn=21
-TabIndex=3
 TabGroup=0

@@ -1,6 +1,10 @@
 ﻿Use DFAllEnt.pkg
 Use cCJStandardCommandBarSystem.pkg
 
+String jjkjkk
+
+
+
 Object oHtmlHelp is a cHtmlHelp
 End_Object
 
@@ -331,6 +335,10 @@ Object oMain is a Panel
     End_Object
 
     Object oClientArea is a ClientArea
+        Property String psReadDir ""
+        
+//        Get psReadDir of oClientArea to 
+        
         Use StdAbout.pkg
         Use ConsultaDiretorio.vw
         Use ConteudoDiretorio.vw
