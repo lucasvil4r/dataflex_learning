@@ -335,7 +335,9 @@ Object oMain is a Panel
     End_Object
 
     Object oClientArea is a ClientArea
-        Property String psReadDir ""
+        String sDirOpenExlorer
+        String sReadDir
+        String [] aFiles
         
 //        Get psReadDir of oClientArea to 
         

@@ -14,13 +14,9 @@ Object oConsultaDiretorio is a dbView
         Set Size to 14 326
         Set Location to 14 68
         Set Label to "Caminho arquivo:"
-        Property String psOpenExplorer
 
         Procedure OnChange
-            String sDiretorio
-            
-            Get Value of oOpenExplorer to sDiretorio
-            Set psOpenExplorer to sDiretorio
+            Get Value of oOpenExplorer to sDirOpenExlorer
             
             Forward Send OnChange
         End_Procedure
@@ -31,11 +27,8 @@ Object oConsultaDiretorio is a dbView
         Set Location to 44 68
         Set Label to "Caminho arquivo:"
     
-        Procedure OnChange
-            String sDiretorio
-            
-            Get Value of oReadDir to sDiretorio
-            Set psReadDir to sDiretorio
+        Procedure OnChange           
+            Get Value of oReadDir to sReadDir
             
             Forward Send OnChange
         End_Procedure
@@ -47,14 +40,12 @@ Object oConsultaDiretorio is a dbView
         Set Label to "Abrir explorer"
         
         Procedure OnClick
-            String sDiretorio
             Boolean bFileExists
             
-            Get psOpenExplorer of oOpenExplorer to sDiretorio
-            File_Exist sDiretorio bFileExists
+            File_Exist sDirOpenExlorer bFileExists
                                                
             If bFileExists Begin
-                Runprogram Background ('c:\windows\explorer.exe' *  '"' + ((sDiretorio)) + '"')
+                Runprogram Background ('c:\windows\explorer.exe' *  '"' + ((sDirOpenExlorer)) + '"')
             End
             Else Begin
                 Send Info_Box "Caminho não encontrado"
@@ -68,11 +59,9 @@ Object oConsultaDiretorio is a dbView
         Set Label to "Ver diretorio"
         
         Procedure OnClick
-            String sDiretorio
             Boolean bFileExists
             
-            Get psReadDir of oReadDir to sDiretorio
-            File_Exist sDiretorio bFileExists
+            File_Exist sReadDir bFileExists
                                                  
             If bFileExists Begin
                 Send Activate_oConteudoDiretorio 
