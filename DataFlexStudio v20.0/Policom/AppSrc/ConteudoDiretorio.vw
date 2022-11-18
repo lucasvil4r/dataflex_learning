@@ -5,6 +5,7 @@ Use DfAllEnt.pkg
 Use cCJGrid.pkg
 Use cCJGridColumn.pkg
 Use cFilesystem.pkg
+Use cCJGridColumnRowIndicator.pkg
 
 Activate_View Activate_oConteudoDiretorio for oConteudoDiretorio
 Object oConteudoDiretorio is a dbView
@@ -19,15 +20,19 @@ Object oConteudoDiretorio is a dbView
         Set Label to "Caminho arquivo:"
         Set Enabled_State to False
     End_Object
-    
-    Object oCustomerGrid is a cCJGrid
+       
+    Object oCJGrid1 is a cCJGrid
         Set Size to 165 533
         Set Location to 54 17
         Set peAnchors to anAll
         Set pbReadOnly to True
-        Set pbSelectionEnable to True      
+        Set pbSelectionEnable to True 
 
-        Object oFileSearch is a cCJGridColumn
+        Object oCJGridColumnRowIndicator1 is a cCJGridColumnRowIndicator
+            Set piWidth to 18
+        End_Object
+
+        Object oCustomer_Name is a cCJGridColumn
             Set piWidth to 889
             Set psCaption to "Arquivos encontrados:"
         End_Object
@@ -44,15 +49,9 @@ Object oConteudoDiretorio is a dbView
             End 
         End_Procedure
         
-//        Procedure FileExplorer           
-//            Object oFilesystem is a cFilesystem
-//                Get ListOfFiles sReadDir to aFiles
-//            End_Object
-//        End_Procedure
-
         Procedure FileExplorer   
             String sBuffer sDiretorio iIndex
-
+    
             Move ("dir: " + sReadDir) to sDiretorio
             Direct_Input sDiretorio
             Move 0 to iIndex                          
@@ -62,35 +61,22 @@ Object oConteudoDiretorio is a dbView
                 Increment iIndex
             Loop
             Close_Input            
-//            String sBuffer sDiretorio
-//            Integer iIndex
-//            
-//            Move ("dir: " + sReadDir) to sDiretorio
-//            Direct_Input sDiretorio
-//            Move 0 to iIndex
-//            While (not (SeqEof))
-//                Move sBuffer to aFiles[iIndex]
-//                Increment iIndex
-//            Loop
-//            Close_Input
-//            Move "Lucas" to aFiles[0]
-//            Move "Richard" to aFiles[1]
-//            Move "Ricardo" to aFiles[2]
-//            Move "Cris" to aFiles[3]
         End_Procedure
         
         Procedure LoadData 
-            Handle hoDataSource
             tDataSourceRow[] TheData
-            Boolean bFound   
-            Integer iRows iFile iIndex
-
-            Get phoDataSource to hoDataSource
+            Boolean bFound
+            Integer iRows iName iIndex
+        
+// Get the datasource indexes of the various columns
+//            Get piColumnId of oCJGridColumnRowIndicator1 to iIndic
+            Get piColumnId of oCustomer_Name to iName
     
-            //Load All data into the datasource array
-            For iIndex from 0 to (SizeOfArray(aFiles) - 1)
-                Move aFiles[iIndex] to TheData[iRows].sValue[iFile]
-                Increment iRows
+            For iIndex from 0 to (SizeOfArray(aFiles) - 1)   
+                If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]") Begin
+                    Move aFiles[iIndex] to TheData[iRows].sValue[iName] 
+                    Increment iRows
+                End
             Loop
             
             // Initialize Grid with new data
@@ -103,6 +89,6 @@ Object oConteudoDiretorio is a dbView
           Send FileExplorer
           Forward Send Activating
       End_Procedure  
-        
-  End_Object
+      
+    End_Object
 End_Object

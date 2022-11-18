@@ -1,5 +1,5 @@
 Compiling Program: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ProjectTeste.src
-Memory Available: 1524903935
+Memory Available: 1480241151
 1>Use DFAllEnt.pkg
 Using pre-compiled package DFALLENT.PKG
 Including file: dfallent.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.pkd)
@@ -5840,134 +5840,161 @@ Including file: cFilesystem.pkg    (C:\xampp\htdocs\dataflex_learning\DataFlexSt
 72131>>>>>    End_Function
 72132>>>>>
 72132>>>>>End_Class
-72133>>>
-72133>>>Activate_View Activate_oConteudoDiretorio for oConteudoDiretorio
-72143>>>>
-72143>>>Object oConteudoDiretorio is a dbView
-72145>>>    Set Location to 2 4
-72146>>>    Set Border_Style to Border_Thick
-72147>>>    Set Size to 241 567
-72148>>>    Set piMinSize to 228 525                                     
-72149>>>       
-72149>>>    Object oPathFile is a Form
-72151>>>        Set Location to 22 81
-72152>>>        Set Size to 13 469
-72153>>>        Set Label to "Caminho arquivo:"
-72154>>>        Set Enabled_State to False
-72155>>>    End_Object
-72156>>>    
-72156>>>    Object oCustomerGrid is a cCJGrid
-72158>>>        Set Size to 165 533
-72159>>>        Set Location to 54 17
-72160>>>        Set peAnchors to anAll
-72161>>>        Set pbReadOnly to True
-72162>>>        Set pbSelectionEnable to True      
-72163>>>
-72163>>>        Object oFileSearch is a cCJGridColumn
-72165>>>            Set piWidth to 889
-72166>>>            Set psCaption to "Arquivos encontrados:"
-72167>>>        End_Object
-72168>>>        
-72168>>>        Procedure CheckPath
-72171>>>            If (sReadDir <> "") Begin
-72173>>>                Set Value of oPathFile to sReadDir
-72174>>>                Send FileExplorer
-72175>>>                Send LoadData
-72176>>>            End
-72176>>>>
-72176>>>            Else Begin
-72177>>>                Send Info_Box "Caminho não encontrado, grid não foi contruida"
-72178>>>                Break
-72179>>>            End 
-72179>>>>
-72179>>>        End_Procedure
-72180>>>        
-72180>>>//        Procedure FileExplorer           
-72180>>>//            Object oFilesystem is a cFilesystem
-72180>>>//                Get ListOfFiles sReadDir to aFiles
-72180>>>//            End_Object
-72180>>>//        End_Procedure
-72180>>>
-72180>>>        Procedure FileExplorer   
-72183>>>            String sBuffer sDiretorio iIndex
-72183>>>
-72183>>>            Move ("dir: " + sReadDir) to sDiretorio
-72184>>>            Direct_Input sDiretorio
-72185>>>            Move 0 to iIndex                          
-72186>>>            While (not (SeqEof))
-72190>>>                Readln sBuffer
-72191>>>                Move sBuffer to aFiles[iIndex]
-72192>>>                Increment iIndex
-72193>>>            Loop
-72194>>>>
-72194>>>            Close_Input            
-72195>>>//            String sBuffer sDiretorio
-72195>>>//            Integer iIndex
-72195>>>//            
-72195>>>//            Move ("dir: " + sReadDir) to sDiretorio
-72195>>>//            Direct_Input sDiretorio
-72195>>>//            Move 0 to iIndex
-72195>>>//            While (not (SeqEof))
-72195>>>//                Move sBuffer to aFiles[iIndex]
-72195>>>//                Increment iIndex
-72195>>>//            Loop
-72195>>>//            Close_Input
-72195>>>//            Move "Lucas" to aFiles[0]
-72195>>>//            Move "Richard" to aFiles[1]
-72195>>>//            Move "Ricardo" to aFiles[2]
-72195>>>//            Move "Cris" to aFiles[3]
-72195>>>        End_Procedure
-72196>>>        
-72196>>>        Procedure LoadData 
-72199>>>            Handle hoDataSource
-72199>>>            tDataSourceRow[] TheData
-72199>>>            tDataSourceRow[] TheData
-72200>>>            Boolean bFound   
-72200>>>            Integer iRows iFile iIndex
-72200>>>
-72200>>>            Get phoDataSource to hoDataSource
-72201>>>    
-72201>>>            //Load All data into the datasource array
-72201>>>            For iIndex from 0 to (SizeOfArray(aFiles) - 1)
-72207>>>>
-72207>>>                Move aFiles[iIndex] to TheData[iRows].sValue[iFile]
-72208>>>                Increment iRows
-72209>>>            Loop
-72210>>>>
-72210>>>            
-72210>>>            // Initialize Grid with new data
-72210>>>            Send InitializeData TheData
-72211>>>            Send MovetoFirstRow
-72212>>>      End_Procedure
-72213>>>        
-72213>>>      Procedure Activating    
-72216>>>          Send CheckPath
-72217>>>          Send FileExplorer
-72218>>>          Forward Send Activating
-72220>>>      End_Procedure  
-72221>>>        
-72221>>>  End_Object
-72222>>>End_Object
-72223>
-72223>        Procedure Activate_About
-72226>            Send DoAbout "" "" "" "" ""
-72227>        End_Procedure
-72228>
-72228>    End_Object
-72229>
-72229>End_Object
-72230>
-72230>Start_UI
-72231>
+72133>>>Use cCJGridColumnRowIndicator.pkg
+Including file: cCJGridColumnRowIndicator.pkg    (C:\Program Files\DataFlex 20.0\Pkg\cCJGridColumnRowIndicator.pkg)
+72133>>>>>Use cCJGridColumn.pkg
+72133>>>>>
+72133>>>>>Class cCJGridColumnRowIndicator is a cCJGridColumn
+72134>>>>>    
+72134>>>>>    Procedure Construct_Object
+72136>>>>>        Forward Send Construct_Object
+72138>>>>>        
+72138>>>>>        Property Integer piImage 0
+72139>>>>>        
+72139>>>>>        Set psCaption to ""
+72140>>>>>        Set piWidth to 20
+72141>>>>>        Set pbResizable to False
+72142>>>>>        Set pbEditable to False
+72143>>>>>        Set pbFocusable to False
+72144>>>>>        Set pbAllowDrag to False
+72145>>>>>        Set psToolTip to "Row Indicator"
+72146>>>>>    End_Procedure
+72147>>>>>    
+72147>>>>>    Procedure OnCreateColumn
+72149>>>>>        Integer iImage
+72149>>>>>        Delegate Get AddImage "GridColumnRowIndicator.bmp" 0 to iImage
+72151>>>>>        Set piImage to iImage
+72152>>>>>    End_Procedure
+72153>>>>>    
+72153>>>>>    Procedure OnSetDisplayMetrics Handle hoGridItemMetrics Integer iRow String ByRef sValue
+72155>>>>>        Integer iImage iFocusedRow
+72155>>>>>        Handle hoDataSource
+72155>>>>>        
+72155>>>>>        Get phoDataSource to hoDataSource
+72156>>>>>        Get SelectedRow of hoDataSource to iFocusedRow
+72157>>>>>        Move -1 to iImage
+72158>>>>>        If (iRow = iFocusedRow) Begin
+72160>>>>>            Get piImage to iImage
+72161>>>>>            Set ComItemIcon of hoGridItemMetrics to iImage
+72162>>>>>        End
+72162>>>>>>
+72162>>>>>    End_Procedure
+72163>>>>>    
+72163>>>>>End_Class
+72164>>>
+72164>>>Activate_View Activate_oConteudoDiretorio for oConteudoDiretorio
+72174>>>>
+72174>>>Object oConteudoDiretorio is a dbView
+72176>>>    Set Location to 2 4
+72177>>>    Set Border_Style to Border_Thick
+72178>>>    Set Size to 241 567
+72179>>>    Set piMinSize to 228 525                                     
+72180>>>       
+72180>>>    Object oPathFile is a Form
+72182>>>        Set Location to 22 81
+72183>>>        Set Size to 13 469
+72184>>>        Set Label to "Caminho arquivo:"
+72185>>>        Set Enabled_State to False
+72186>>>    End_Object
+72187>>>       
+72187>>>    Object oCJGrid1 is a cCJGrid
+72189>>>        Set Size to 165 533
+72190>>>        Set Location to 54 17
+72191>>>        Set peAnchors to anAll
+72192>>>        Set pbReadOnly to True
+72193>>>        Set pbSelectionEnable to True 
+72194>>>
+72194>>>        Object oCJGridColumnRowIndicator1 is a cCJGridColumnRowIndicator
+72196>>>            Set piWidth to 18
+72197>>>        End_Object
+72198>>>
+72198>>>        Object oCustomer_Name is a cCJGridColumn
+72200>>>            Set piWidth to 889
+72201>>>            Set psCaption to "Arquivos encontrados:"
+72202>>>        End_Object
+72203>>>        
+72203>>>        Procedure CheckPath
+72206>>>            If (sReadDir <> "") Begin
+72208>>>                Set Value of oPathFile to sReadDir
+72209>>>                Send FileExplorer
+72210>>>                Send LoadData
+72211>>>            End
+72211>>>>
+72211>>>            Else Begin
+72212>>>                Send Info_Box "Caminho não encontrado, grid não foi contruida"
+72213>>>                Break
+72214>>>            End 
+72214>>>>
+72214>>>        End_Procedure
+72215>>>        
+72215>>>        Procedure FileExplorer   
+72218>>>            String sBuffer sDiretorio iIndex
+72218>>>    
+72218>>>            Move ("dir: " + sReadDir) to sDiretorio
+72219>>>            Direct_Input sDiretorio
+72220>>>            Move 0 to iIndex                          
+72221>>>            While (not (SeqEof))
+72225>>>                Readln sBuffer
+72226>>>                Move sBuffer to aFiles[iIndex]
+72227>>>                Increment iIndex
+72228>>>            Loop
+72229>>>>
+72229>>>            Close_Input            
+72230>>>        End_Procedure
+72231>>>        
+72231>>>        Procedure LoadData 
+72234>>>            tDataSourceRow[] TheData
+72234>>>            tDataSourceRow[] TheData
+72235>>>            Boolean bFound
+72235>>>            Integer iRows iName iIndex
+72235>>>        
+72235>>>// Get the datasource indexes of the various columns
+72235>>>//            Get piColumnId of oCJGridColumnRowIndicator1 to iIndic
+72235>>>            Get piColumnId of oCustomer_Name to iName
+72236>>>    
+72236>>>            For iIndex from 0 to (SizeOfArray(aFiles) - 1)   
+72242>>>>
+72242>>>                If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]") Begin
+72244>>>                    Move aFiles[iIndex] to TheData[iRows].sValue[iName] 
+72245>>>                    Increment iRows
+72246>>>                End
+72246>>>>
+72246>>>            Loop
+72247>>>>
+72247>>>            
+72247>>>            // Initialize Grid with new data
+72247>>>            Send InitializeData TheData
+72248>>>            Send MovetoFirstRow
+72249>>>      End_Procedure
+72250>>>        
+72250>>>      Procedure Activating    
+72253>>>          Send CheckPath
+72254>>>          Send FileExplorer
+72255>>>          Forward Send Activating
+72257>>>      End_Procedure  
+72258>>>      
+72258>>>    End_Object
+72259>>>End_Object
+72260>
+72260>        Procedure Activate_About
+72263>            Send DoAbout "" "" "" "" ""
+72264>        End_Procedure
+72265>
+72265>    End_Object
+72266>
+72266>End_Object
+72267>
+72267>Start_UI
+72268>
 Summary
-Memory Available: 1498804223
+Memory Available: 1459609599
 Total Warnings : 0
 Total Errors   : 0
-Total Symbols  : 42301
+Total Symbols  : 42318
 Total Resources: 0
-Total Commands : 72230
+Total Commands : 72267
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 445485
-Message area   : 504948
-Total Blocks   : 26274
+Static Data    : 445721
+Message area   : 505282
+Total Blocks   : 26288
