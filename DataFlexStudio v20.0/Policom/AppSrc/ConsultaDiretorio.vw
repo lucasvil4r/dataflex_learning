@@ -16,9 +16,9 @@ Object oConsultaDiretorio is a dbView
         Set Label to "Caminho arquivo:"
 
         Procedure OnChange
-            Get Value of oOpenExplorer to sDirOpenExlorer
-            
             Forward Send OnChange
+            
+            Get Value of oOpenExplorer to sDirOpenExlorer
         End_Procedure
     End_Object
         
@@ -28,9 +28,9 @@ Object oConsultaDiretorio is a dbView
         Set Label to "Caminho arquivo:"
     
         Procedure OnChange           
-            Get Value of oReadDir to sReadDir
-            
             Forward Send OnChange
+            
+            Get Value of oReadDir to sReadDir 
         End_Procedure
     End_Object
               

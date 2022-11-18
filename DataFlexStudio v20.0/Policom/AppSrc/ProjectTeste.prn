@@ -1,5 +1,5 @@
 Compiling Program: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ProjectTeste.src
-Memory Available: 1480241151
+Memory Available: 1744166911
 1>Use DFAllEnt.pkg
 Using pre-compiled package DFALLENT.PKG
 Including file: dfallent.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.pkd)
@@ -3468,9 +3468,9 @@ Including file: ConsultaDiretorio.vw    (C:\xampp\htdocs\dataflex_learning\DataF
 70664>>>        Set Label to "Caminho arquivo:"
 70665>>>
 70665>>>        Procedure OnChange
-70668>>>            Get Value of oOpenExplorer to sDirOpenExlorer
-70669>>>            
-70669>>>            Forward Send OnChange
+70668>>>            Forward Send OnChange
+70670>>>            
+70670>>>            Get Value of oOpenExplorer to sDirOpenExlorer
 70671>>>        End_Procedure
 70672>>>    End_Object
 70673>>>        
@@ -3480,9 +3480,9 @@ Including file: ConsultaDiretorio.vw    (C:\xampp\htdocs\dataflex_learning\DataF
 70677>>>        Set Label to "Caminho arquivo:"
 70678>>>    
 70678>>>        Procedure OnChange           
-70681>>>            Get Value of oReadDir to sReadDir
-70682>>>            
-70682>>>            Forward Send OnChange
+70681>>>            Forward Send OnChange
+70683>>>            
+70683>>>            Get Value of oReadDir to sReadDir 
 70684>>>        End_Procedure
 70685>>>    End_Object
 70686>>>              
@@ -5947,54 +5947,96 @@ Including file: cCJGridColumnRowIndicator.pkg    (C:\Program Files\DataFlex 20.0
 72234>>>            tDataSourceRow[] TheData
 72235>>>            Boolean bFound
 72235>>>            Integer iRows iName iIndex
-72235>>>        
-72235>>>// Get the datasource indexes of the various columns
-72235>>>//            Get piColumnId of oCJGridColumnRowIndicator1 to iIndic
-72235>>>            Get piColumnId of oCustomer_Name to iName
-72236>>>    
-72236>>>            For iIndex from 0 to (SizeOfArray(aFiles) - 1)   
-72242>>>>
-72242>>>                If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]") Begin
-72244>>>                    Move aFiles[iIndex] to TheData[iRows].sValue[iName] 
-72245>>>                    Increment iRows
-72246>>>                End
-72246>>>>
-72246>>>            Loop
+72235>>>            
+72235>>>            Get piColumnId of oCJGridColumnRowIndicator1 to iInd
+72236>>>            Get piColumnId of oCustomer_Name to iName
+72237>>>    
+72237>>>            For iIndex from 0 to (SizeOfArray(aFiles) - 1)   
+72243>>>>
+72243>>>                If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]") Begin
+72245>>>                    Move aFiles[iIndex] to TheData[iRows].sValue[iName] 
+72246>>>                    Increment iRows
+72247>>>                End
 72247>>>>
-72247>>>            
-72247>>>            // Initialize Grid with new data
-72247>>>            Send InitializeData TheData
-72248>>>            Send MovetoFirstRow
-72249>>>      End_Procedure
-72250>>>        
-72250>>>      Procedure Activating    
-72253>>>          Send CheckPath
-72254>>>          Send FileExplorer
-72255>>>          Forward Send Activating
-72257>>>      End_Procedure  
-72258>>>      
-72258>>>    End_Object
-72259>>>End_Object
-72260>
-72260>        Procedure Activate_About
-72263>            Send DoAbout "" "" "" "" ""
-72264>        End_Procedure
-72265>
-72265>    End_Object
-72266>
-72266>End_Object
-72267>
-72267>Start_UI
-72268>
+72247>>>            Loop
+72248>>>>
+72248>>>            
+72248>>>            // Initialize Grid with new data
+72248>>>            Send InitializeData TheData
+72249>>>            Send MovetoFirstRow
+72250>>>      End_Procedure
+72251>>>        
+72251>>>      Procedure Activating    
+72254>>>          Forward Send Activating
+72256>>>          Send CheckPath
+72257>>>          Send FileExplorer
+72258>>>      End_Procedure  
+72259>>>
+72259>>>        Procedure OnRowDoubleClick Integer iRow Integer iCol
+72262>>>            String sPathFile
+72262>>>            
+72262>>>            Forward Send OnRowDoubleClick iRow iCol
+72264>>>            
+72264>>>            //  Setinha
+72264>>>            If (iCol = (piColumnId(oCJGridColumnRowIndicator1))) Begin
+72266>>>                If (YesNo_Box("Deseja mesmo excluir o arquivo?","Informação",MBR_Yes) = MBR_Yes) Begin
+72268>>>                    // erasefile 
+72268>>>                    String sFileDelete
+72268>>>                    Boolean bSuccess
+72268>>>                    
+72268>>>                    Move "C:\My Notes\Hello.txt" to sFileDelete
+72269>>>                    Get DeleteFile sFile to bSuccess 
+72270>>>                    
+72270>>>                    If (bSuccess) Begin
+72272>>>                        Send Info_Box ("The file ' + sFile + "' was deleted successfully" "Success!")
+ERROR: 52 Bad format of expression (operator) ' ON LINE: 108 (72272) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
+72273>>>                    End
+ERROR: 4320 Missing argument 34 ON LINE: 109 (72273) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
+72273>>>>
+72273>>>                    Else Begin
+72274>>>                        Send Stop_Box ("The file ' + sFile + "' was NOT deleted successfully" "Error!")
+ERROR: 52 Bad format of expression (operator) ' ON LINE: 111 (72274) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
+72275>>>                    End
+ERROR: 4320 Missing argument 34 ON LINE: 112 (72275) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
+72275>>>>
+72275>>>                End
+72275>>>>
+72275>>>            End
+72275>>>>
+72275>>>            
+72275>>>            //  Nome do arquivo
+72275>>>            If (iCol = (piColumnId(oCustomer_Name))) Begin
+72277>>>                Get RowValue of oCustomer_Name iRow to sPathFile
+72278>>>                Send Info_Box sPathFile
+72279>>>                // Dowload
+72279>>>            End         
+72279>>>>
+72279>>>        End_Procedure
+72280>>>    End_Object
+72281>>>End_Object
+ERROR: 4328 Undefined symbol in argument WAS ON LINE: 108 (72272) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
+ERROR: 4328 Undefined symbol in argument WAS ON LINE: 111 (72274) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
+72282>
+72282>        Procedure Activate_About
+72285>            Send DoAbout "" "" "" "" ""
+72286>        End_Procedure
+72287>
+72287>    End_Object
+72288>
+72288>End_Object
+72289>
+72289>Start_UI
+72290>
 Summary
-Memory Available: 1459609599
+Memory Available: 1726914559
 Total Warnings : 0
-Total Errors   : 0
-Total Symbols  : 42318
+Total Errors   : 6
+Total Symbols  : 42330
 Total Resources: 0
-Total Commands : 72267
+Total Commands : 72289
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 445721
-Message area   : 505282
-Total Blocks   : 26288
+Static Data    : 445995
+Message area   : 505416
+Total Blocks   : 26296
+6 ERRORS HAVE BEEN FOUND.

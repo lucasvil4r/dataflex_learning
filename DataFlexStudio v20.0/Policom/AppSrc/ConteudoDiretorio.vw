@@ -69,7 +69,7 @@ Object oConteudoDiretorio is a dbView
             Integer iRows iName iIndex
         
 // Get the datasource indexes of the various columns
-//            Get piColumnId of oCJGridColumnRowIndicator1 to iIndic
+            Get piColumnId of oCJGridColumnRowIndicator1 to iInd
             Get piColumnId of oCustomer_Name to iName
     
             For iIndex from 0 to (SizeOfArray(aFiles) - 1)   
@@ -85,10 +85,44 @@ Object oConteudoDiretorio is a dbView
       End_Procedure
         
       Procedure Activating    
+          Forward Send Activating
           Send CheckPath
           Send FileExplorer
-          Forward Send Activating
       End_Procedure  
-      
+
+        Procedure OnRowDoubleClick Integer iRow Integer iCol
+            String sPathFile
+            
+            Forward Send OnRowDoubleClick iRow iCol
+            
+            //  Setinha
+            If (iCol = (piColumnId(oCJGridColumnRowIndicator1))) Begin
+                If (YesNo_Box("Deseja mesmo excluir o arquivo?","Informação",MBR_Yes) = MBR_Yes) Begin
+                    // erasefile 
+                    Procedure DeleteMyNotes
+                        String sFileDelete
+                        Boolean bSuccess
+                        
+                        Move "C:\My Notes\Hello.txt" to sFileDelete
+                        Get DeleteFile sFile to bSuccess 
+                        If (bSuccess) Begin
+                            Send Info_Box ("The file ' + sFile + "' was deleted successfully" "Success!")
+                        End
+                        Else Begin
+                            Send Stop_Box ("The file ' + sFile + "' was NOT deleted successfully" "Error!")
+                        End
+                    End_Procedure
+                       
+                    //Send DeleteMyNotes   
+                End
+            End
+            
+            //  Nome do arquivo
+            If (iCol = (piColumnId(oCustomer_Name))) Begin
+                Get RowValue of oCustomer_Name iRow to sPathFile
+                Send Info_Box sPathFile
+                // Dowload
+            End         
+        End_Procedure
     End_Object
 End_Object

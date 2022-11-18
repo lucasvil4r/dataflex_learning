@@ -1,0 +1,6 @@
+ERROR: 52 Bad format of expression (operator) ' ON LINE: 108 (72272) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
+ERROR: 4320 Missing argument 34 ON LINE: 109 (72273) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
+ERROR: 52 Bad format of expression (operator) ' ON LINE: 111 (72274) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
+ERROR: 4320 Missing argument 34 ON LINE: 112 (72275) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
+ERROR: 4328 Undefined symbol in argument WAS ON LINE: 108 (72272) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
+ERROR: 4328 Undefined symbol in argument WAS ON LINE: 111 (72274) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
