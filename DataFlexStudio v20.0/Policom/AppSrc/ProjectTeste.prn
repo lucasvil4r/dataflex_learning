@@ -1,5 +1,5 @@
 Compiling Program: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ProjectTeste.src
-Memory Available: 1419403263
+Memory Available: 1334874111
 1>Use DFAllEnt.pkg
 Using pre-compiled package DFALLENT.PKG
 Including file: dfallent.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.pkd)
@@ -2045,7 +2045,7 @@ Including file: oDEOEditContextMenu17.pkg    (C:\Program Files\DataFlex 20.0\Pkg
 69791>    Object oClientArea is a ClientArea
 69793>        String sDirOpenExlorer
 69793>        String sReadDir
-69793>        String [] aFiles        
+69793>//        String [] aFiles        
 69793>//        Get psReadDir of oClientArea to 
 69793>        
 69793>        Use StdAbout.pkg
@@ -5918,135 +5918,128 @@ Including file: cCJGridColumnRowIndicator.pkg    (C:\Program Files\DataFlex 20.0
 72206>>>            File_Exist sReadDir bExist
 72207>>>            If (bExist) Begin
 72209>>>                Set Value of oPathFile to sReadDir
-72210>>>                Send FileExplorer
-72211>>>                Send LoadData
-72212>>>            End
-72212>>>>
-72212>>>            Else Begin
-72213>>>                Send Info_Box "Caminho não encontrado, grid não foi contruida"
-72214>>>                Break
-72215>>>            End 
-72215>>>>
-72215>>>        End_Procedure
-72216>>>        
-72216>>>        Send CheckPath
-72217>>>        
-72217>>>        Procedure FileExplorer   
-72220>>>            String sBuffer sDiretorio iIndex
-72220>>>    
-72220>>>            Move ("dir: " + sReadDir) to sDiretorio
-72221>>>            Direct_Input sDiretorio
-72222>>>            Move 0 to iIndex                          
-72223>>>            While (not (SeqEof))
-72227>>>                Readln sBuffer
-72228>>>                Move sBuffer to aFiles[iIndex]
-72229>>>                Increment iIndex
-72230>>>            Loop
+72210>>>                Send LoadData
+72211>>>            End
+72211>>>>
+72211>>>            Else Begin
+72212>>>                Send Info_Box "Caminho não encontrado, grid não foi criada"
+72213>>>                Break
+72214>>>            End 
+72214>>>>
+72214>>>        End_Procedure
+72215>>>               
+72215>>>        Procedure OnRowDoubleClick Integer iRow Integer iCol                      
+72218>>>            Forward Send OnRowDoubleClick iRow iCol 
+72220>>>            String sFile
+72220>>>            Boolean bExist
+72220>>>                        
+72220>>>            //  Setinha
+72220>>>            If (iCol = (piColumnId(oCJGridColumnRowIndicator1))) Begin
+72222>>>                If (YesNo_Box("Deseja mesmo excluir o arquivo?","Informação",MBR_Yes) = MBR_Yes) Begin                   
+72224>>>                      
+72224>>>                    Get RowValue of oCustomer_Name iRow to sFile
+72225>>>                    Move (sReadDir + "\" + sFile) to sFile
+72226>>>                   
+72226>>>                    EraseFile sFile        
+72227>>>>
+72227>>>                    File_Exist sFile bExist
+72228>>>                        
+72228>>>                    If (not(bExist)) Begin
+72230>>>                        Send Info_Box (sFile + "was deleted successfully")
+72231>>>                    End
 72231>>>>
-72231>>>            Close_Input            
-72232>>>        End_Procedure
-72233>>>        
-72233>>>        Send FileExplorer
-72234>>>        
-72234>>>        Procedure OnRowDoubleClick Integer iRow Integer iCol                      
-72237>>>            Forward Send OnRowDoubleClick iRow iCol 
-72239>>>            String sFile
-72239>>>            Boolean bExist
-72239>>>                        
-72239>>>            //  Setinha
-72239>>>            If (iCol = (piColumnId(oCJGridColumnRowIndicator1))) Begin
-72241>>>                If (YesNo_Box("Deseja mesmo excluir o arquivo?","Informação",MBR_Yes) = MBR_Yes) Begin                   
-72243>>>                      
-72243>>>                    Get RowValue of oCustomer_Name iRow to sFile
-72244>>>                    Move (sReadDir + "\" + sFile) to sFile
-72245>>>                   
-72245>>>                    EraseFile sFile        
-72246>>>>
-72246>>>                    File_Exist sFile bExist
-72247>>>                        
-72247>>>                    If (not(bExist)) Begin
-72249>>>                        Send Info_Box (sFile + "was deleted successfully")
-72250>>>                    End
-72250>>>>
-72250>>>                    Else Begin
-72251>>>                        Send Stop_Box (sFile + "was NOT deleted successfully")
-72252>>>                    End    
-72252>>>>
-72252>>>                End
-72252>>>>
-72252>>>            End
-72252>>>>
-72252>>>            //  Nome do arquivo
-72252>>>            If (iCol = (piColumnId(oCustomer_Name))) Begin     
-72254>>>                Get RowValue of oCustomer_Name iRow to sFile
-72255>>>                Move (sReadDir + "\" + sFile) to sFile
-72256>>>                
-72256>>>                Send Info_Box ("Function download " + sFile)
-72257>>>                // Dowload
-72257>>>            End
-72257>>>>
-72257>>>
-72257>>>          Send CheckPath
-72258>>>          Send FileExplorer
-72259>>>        End_Procedure
-72260>>>        
-72260>>>        Procedure LoadData 
-72263>>>            tDataSourceRow[] TheData
-72263>>>            tDataSourceRow[] TheData
-72264>>>            Boolean bFound
-72264>>>            Integer iRows iName iIndex iIndicador
-72264>>>        
-72264>>>            // Get the datasource indexes of the various columns
-72264>>>            Get piColumnId of oCJGridColumnRowIndicator1 to iIndicador
-72265>>>            Get piColumnId of oCustomer_Name to iName
-72266>>>    
-72266>>>            For iIndex from 0 to (SizeOfArray(aFiles) - 1)   
-72272>>>>
-72272>>>                If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]") Begin
-72274>>>                    Move aFiles[iIndex] to TheData[iRows].sValue[iName] 
-72275>>>                    Increment iRows
-72276>>>                End
-72276>>>>
-72276>>>            Loop
-72277>>>>
-72277>>>            
-72277>>>            // Initialize Grid with new data
-72277>>>            Send InitializeData TheData
-72278>>>            Send MovetoFirstRow
-72279>>>        End_Procedure
-72280>>>        
-72280>>>//        Procedure Activating    
-72280>>>//          Forward Send Activating
-72280>>>//          Send CheckPath
-72280>>>//          Send FileExplorer
-72280>>>//        End_Procedure  
-72280>>>//
-72280>>>//        Procedure Deactivating
-72280>>>//            Forward Send Deactivating
-72280>>>//        End_Procedure
-72280>>>
-72280>>>    End_Object  
-72281>>>End_Object
-72282>
-72282>        Procedure Activate_About
-72285>            Send DoAbout "" "" "" "" ""
-72286>        End_Procedure
-72287>
-72287>    End_Object
-72288>
-72288>End_Object
-72289>
-72289>Start_UI
+72231>>>                    Else Begin
+72232>>>                        Send Stop_Box (sFile + "was NOT deleted successfully")
+72233>>>                    End    
+72233>>>>
+72233>>>                End
+72233>>>>
+72233>>>            End
+72233>>>>
+72233>>>            //  Nome do arquivo
+72233>>>            If (iCol = (piColumnId(oCustomer_Name))) Begin     
+72235>>>                Get RowValue of oCustomer_Name iRow to sFile
+72236>>>                Move (sReadDir + "\" + sFile) to sFile
+72237>>>                
+72237>>>                Send Info_Box ("Function download " + sFile)
+72238>>>                // Dowload
+72238>>>            End
+72238>>>>
+72238>>>
+72238>>>          Send LoadData
+72239>>>        End_Procedure
+72240>>>        
+72240>>>        Procedure LoadData 
+72243>>>            tDataSourceRow[] TheData
+72243>>>            tDataSourceRow[] TheData
+72244>>>            String [] aFiles
+72245>>>            Boolean bFound
+72245>>>            Integer iRows iName iIndex iIndicador   
+72245>>>            String sBuffer sDiretorio
+72245>>>    
+72245>>>            Move ("dir: " + sReadDir) to sDiretorio
+72246>>>            Direct_Input sDiretorio
+72247>>>            Move 0 to iIndex                          
+72248>>>            While (not (SeqEof))
+72252>>>                Readln sBuffer
+72253>>>                Move sBuffer to aFiles[iIndex]
+72254>>>                Increment iIndex
+72255>>>            Loop
+72256>>>>
+72256>>>            Close_Input 
+72257>>>        
+72257>>>            // Get the datasource indexes of the various columns
+72257>>>            Get piColumnId of oCJGridColumnRowIndicator1 to iIndicador
+72258>>>            Get piColumnId of oCustomer_Name to iName
+72259>>>    
+72259>>>            Move 0 to iIndex 
+72260>>>            For iIndex from 0 to (SizeOfArray(aFiles) - 1)   
+72266>>>>
+72266>>>                If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]" or "") Begin
+72268>>>                    Move aFiles[iIndex] to TheData[iRows].sValue[iName] 
+72269>>>                    Increment iRows
+72270>>>                End
+72270>>>>
+72270>>>            Loop
+72271>>>>
+72271>>>            
+72271>>>            // Initialize Grid with new data
+72271>>>            Send InitializeData TheData
+72272>>>            Send MovetoFirstRow
+72273>>>        End_Procedure
+72274>>>        
+72274>>>        Procedure Activating    
+72277>>>          Forward Send Activating
+72279>>>          Send CheckPath
+72280>>>        End_Procedure  
+72281>>>
+72281>>>        Procedure Deactivating                  
+72284>>>            Forward Send Deactivating
+72286>>>            
+72286>>>            Send LoadData 
+72287>>>        End_Procedure
+72288>>>    End_Object  
+72289>>>End_Object
 72290>
+72290>        Procedure Activate_About
+72293>            Send DoAbout "" "" "" "" ""
+72294>        End_Procedure
+72295>
+72295>    End_Object
+72296>
+72296>End_Object
+72297>
+72297>Start_UI
+72298>
 Summary
-Memory Available: 1404850175
+Memory Available: 1317564415
 Total Warnings : 0
 Total Errors   : 0
 Total Symbols  : 42328
 Total Resources: 0
-Total Commands : 72289
+Total Commands : 72297
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 446195
-Message area   : 505398
-Total Blocks   : 26296
+Static Data    : 446155
+Message area   : 505430
+Total Blocks   : 26297

@@ -43,29 +43,14 @@ Object oConteudoDiretorio is a dbView
             File_Exist sReadDir bExist
             If (bExist) Begin
                 Set Value of oPathFile to sReadDir
-                Send FileExplorer
                 Send LoadData
             End
             Else Begin
-                Send Info_Box "Caminho não encontrado, grid não foi contruida"
+                Send Info_Box "Caminho não encontrado, grid não foi criada"
                 Break
             End 
         End_Procedure
-        
-        Procedure FileExplorer   
-            String sBuffer sDiretorio iIndex
-    
-            Move ("dir: " + sReadDir) to sDiretorio
-            Direct_Input sDiretorio
-            Move 0 to iIndex                          
-            While (not (SeqEof))
-                Readln sBuffer
-                Move sBuffer to aFiles[iIndex]
-                Increment iIndex
-            Loop
-            Close_Input            
-        End_Procedure
-        
+               
         Procedure OnRowDoubleClick Integer iRow Integer iCol                      
             Forward Send OnRowDoubleClick iRow iCol 
             String sFile
@@ -98,21 +83,33 @@ Object oConteudoDiretorio is a dbView
                 // Dowload
             End
 
-          Send CheckPath
-          Send FileExplorer
+          Send LoadData
         End_Procedure
         
         Procedure LoadData 
             tDataSourceRow[] TheData
+            String [] aFiles
             Boolean bFound
-            Integer iRows iName iIndex iIndicador
+            Integer iRows iName iIndex iIndicador   
+            String sBuffer sDiretorio
+    
+            Move ("dir: " + sReadDir) to sDiretorio
+            Direct_Input sDiretorio
+            Move 0 to iIndex                          
+            While (not (SeqEof))
+                Readln sBuffer
+                Move sBuffer to aFiles[iIndex]
+                Increment iIndex
+            Loop
+            Close_Input 
         
             // Get the datasource indexes of the various columns
             Get piColumnId of oCJGridColumnRowIndicator1 to iIndicador
             Get piColumnId of oCustomer_Name to iName
     
+            Move 0 to iIndex 
             For iIndex from 0 to (SizeOfArray(aFiles) - 1)   
-                If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]") Begin
+                If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]" or "") Begin
                     Move aFiles[iIndex] to TheData[iRows].sValue[iName] 
                     Increment iRows
                 End
@@ -126,12 +123,12 @@ Object oConteudoDiretorio is a dbView
         Procedure Activating    
           Forward Send Activating
           Send CheckPath
-          Send FileExplorer
         End_Procedure  
 
-        Procedure Deactivating
+        Procedure Deactivating                  
             Forward Send Deactivating
+            
+            Send LoadData 
         End_Procedure
-
     End_Object  
 End_Object
