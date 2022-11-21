@@ -1,5 +1,5 @@
 Compiling Program: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ProjectTeste.src
-Memory Available: 1744166911
+Memory Available: 1419403263
 1>Use DFAllEnt.pkg
 Using pre-compiled package DFALLENT.PKG
 Including file: dfallent.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.pkd)
@@ -2045,8 +2045,7 @@ Including file: oDEOEditContextMenu17.pkg    (C:\Program Files\DataFlex 20.0\Pkg
 69791>    Object oClientArea is a ClientArea
 69793>        String sDirOpenExlorer
 69793>        String sReadDir
-69793>        String [] aFiles
-69793>        
+69793>        String [] aFiles        
 69793>//        Get psReadDir of oClientArea to 
 69793>        
 69793>        Use StdAbout.pkg
@@ -3482,7 +3481,7 @@ Including file: ConsultaDiretorio.vw    (C:\xampp\htdocs\dataflex_learning\DataF
 70678>>>        Procedure OnChange           
 70681>>>            Forward Send OnChange
 70683>>>            
-70683>>>            Get Value of oReadDir to sReadDir 
+70683>>>            Get Value of oReadDir to sReadDir
 70684>>>        End_Procedure
 70685>>>    End_Object
 70686>>>              
@@ -5914,108 +5913,120 @@ Including file: cCJGridColumnRowIndicator.pkg    (C:\Program Files\DataFlex 20.0
 72202>>>        End_Object
 72203>>>        
 72203>>>        Procedure CheckPath
-72206>>>            If (sReadDir <> "") Begin
-72208>>>                Set Value of oPathFile to sReadDir
-72209>>>                Send FileExplorer
-72210>>>                Send LoadData
-72211>>>            End
-72211>>>>
-72211>>>            Else Begin
-72212>>>                Send Info_Box "Caminho não encontrado, grid não foi contruida"
-72213>>>                Break
-72214>>>            End 
-72214>>>>
-72214>>>        End_Procedure
-72215>>>        
-72215>>>        Procedure FileExplorer   
-72218>>>            String sBuffer sDiretorio iIndex
-72218>>>    
-72218>>>            Move ("dir: " + sReadDir) to sDiretorio
-72219>>>            Direct_Input sDiretorio
-72220>>>            Move 0 to iIndex                          
-72221>>>            While (not (SeqEof))
-72225>>>                Readln sBuffer
-72226>>>                Move sBuffer to aFiles[iIndex]
-72227>>>                Increment iIndex
-72228>>>            Loop
-72229>>>>
-72229>>>            Close_Input            
-72230>>>        End_Procedure
-72231>>>        
-72231>>>        Procedure LoadData 
-72234>>>            tDataSourceRow[] TheData
-72234>>>            tDataSourceRow[] TheData
-72235>>>            Boolean bFound
-72235>>>            Integer iRows iName iIndex
-72235>>>            
-72235>>>            Get piColumnId of oCJGridColumnRowIndicator1 to iInd
-72236>>>            Get piColumnId of oCustomer_Name to iName
-72237>>>    
-72237>>>            For iIndex from 0 to (SizeOfArray(aFiles) - 1)   
-72243>>>>
-72243>>>                If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]") Begin
-72245>>>                    Move aFiles[iIndex] to TheData[iRows].sValue[iName] 
-72246>>>                    Increment iRows
-72247>>>                End
-72247>>>>
-72247>>>            Loop
-72248>>>>
-72248>>>            
-72248>>>            // Initialize Grid with new data
-72248>>>            Send InitializeData TheData
-72249>>>            Send MovetoFirstRow
-72250>>>      End_Procedure
-72251>>>        
-72251>>>      Procedure Activating    
-72254>>>          Forward Send Activating
-72256>>>          Send CheckPath
-72257>>>          Send FileExplorer
-72258>>>      End_Procedure  
-72259>>>
-72259>>>        Procedure OnRowDoubleClick Integer iRow Integer iCol
-72262>>>            String sPathFile
-72262>>>            
-72262>>>            Forward Send OnRowDoubleClick iRow iCol
-72264>>>            
-72264>>>            //  Setinha
-72264>>>            If (iCol = (piColumnId(oCJGridColumnRowIndicator1))) Begin
-72266>>>                If (YesNo_Box("Deseja mesmo excluir o arquivo?","Informação",MBR_Yes) = MBR_Yes) Begin
-72268>>>                    // erasefile 
-72268>>>                    String sFileDelete
-72268>>>                    Boolean bSuccess
-72268>>>                    
-72268>>>                    Move "C:\My Notes\Hello.txt" to sFileDelete
-72269>>>                    Get DeleteFile sFile to bSuccess 
-72270>>>                    
-72270>>>                    If (bSuccess) Begin
-72272>>>                        Send Info_Box ("The file ' + sFile + "' was deleted successfully" "Success!")
-ERROR: 52 Bad format of expression (operator) ' ON LINE: 108 (72272) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
-72273>>>                    End
-ERROR: 4320 Missing argument 34 ON LINE: 109 (72273) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
-72273>>>>
-72273>>>                    Else Begin
-72274>>>                        Send Stop_Box ("The file ' + sFile + "' was NOT deleted successfully" "Error!")
-ERROR: 52 Bad format of expression (operator) ' ON LINE: 111 (72274) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
-72275>>>                    End
-ERROR: 4320 Missing argument 34 ON LINE: 112 (72275) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
-72275>>>>
-72275>>>                End
-72275>>>>
-72275>>>            End
-72275>>>>
-72275>>>            
-72275>>>            //  Nome do arquivo
-72275>>>            If (iCol = (piColumnId(oCustomer_Name))) Begin
-72277>>>                Get RowValue of oCustomer_Name iRow to sPathFile
-72278>>>                Send Info_Box sPathFile
-72279>>>                // Dowload
-72279>>>            End         
-72279>>>>
+72206>>>            Boolean bExist
+72206>>>            
+72206>>>            File_Exist sReadDir bExist
+72207>>>            If (bExist) Begin
+72209>>>                Set Value of oPathFile to sReadDir
+72210>>>                Send FileExplorer
+72211>>>                Send LoadData
+72212>>>            End
+72212>>>>
+72212>>>            Else Begin
+72213>>>                Send Info_Box "Caminho não encontrado, grid não foi contruida"
+72214>>>                Break
+72215>>>            End 
+72215>>>>
+72215>>>        End_Procedure
+72216>>>        
+72216>>>        Send CheckPath
+72217>>>        
+72217>>>        Procedure FileExplorer   
+72220>>>            String sBuffer sDiretorio iIndex
+72220>>>    
+72220>>>            Move ("dir: " + sReadDir) to sDiretorio
+72221>>>            Direct_Input sDiretorio
+72222>>>            Move 0 to iIndex                          
+72223>>>            While (not (SeqEof))
+72227>>>                Readln sBuffer
+72228>>>                Move sBuffer to aFiles[iIndex]
+72229>>>                Increment iIndex
+72230>>>            Loop
+72231>>>>
+72231>>>            Close_Input            
+72232>>>        End_Procedure
+72233>>>        
+72233>>>        Send FileExplorer
+72234>>>        
+72234>>>        Procedure OnRowDoubleClick Integer iRow Integer iCol                      
+72237>>>            Forward Send OnRowDoubleClick iRow iCol 
+72239>>>            String sFile
+72239>>>            Boolean bExist
+72239>>>                        
+72239>>>            //  Setinha
+72239>>>            If (iCol = (piColumnId(oCJGridColumnRowIndicator1))) Begin
+72241>>>                If (YesNo_Box("Deseja mesmo excluir o arquivo?","Informação",MBR_Yes) = MBR_Yes) Begin                   
+72243>>>                      
+72243>>>                    Get RowValue of oCustomer_Name iRow to sFile
+72244>>>                    Move (sReadDir + "\" + sFile) to sFile
+72245>>>                   
+72245>>>                    EraseFile sFile        
+72246>>>>
+72246>>>                    File_Exist sFile bExist
+72247>>>                        
+72247>>>                    If (not(bExist)) Begin
+72249>>>                        Send Info_Box (sFile + "was deleted successfully")
+72250>>>                    End
+72250>>>>
+72250>>>                    Else Begin
+72251>>>                        Send Stop_Box (sFile + "was NOT deleted successfully")
+72252>>>                    End    
+72252>>>>
+72252>>>                End
+72252>>>>
+72252>>>            End
+72252>>>>
+72252>>>            //  Nome do arquivo
+72252>>>            If (iCol = (piColumnId(oCustomer_Name))) Begin     
+72254>>>                Get RowValue of oCustomer_Name iRow to sFile
+72255>>>                Move (sReadDir + "\" + sFile) to sFile
+72256>>>                
+72256>>>                Send Info_Box ("Function download " + sFile)
+72257>>>                // Dowload
+72257>>>            End
+72257>>>>
+72257>>>
+72257>>>          Send CheckPath
+72258>>>          Send FileExplorer
+72259>>>        End_Procedure
+72260>>>        
+72260>>>        Procedure LoadData 
+72263>>>            tDataSourceRow[] TheData
+72263>>>            tDataSourceRow[] TheData
+72264>>>            Boolean bFound
+72264>>>            Integer iRows iName iIndex iIndicador
+72264>>>        
+72264>>>            // Get the datasource indexes of the various columns
+72264>>>            Get piColumnId of oCJGridColumnRowIndicator1 to iIndicador
+72265>>>            Get piColumnId of oCustomer_Name to iName
+72266>>>    
+72266>>>            For iIndex from 0 to (SizeOfArray(aFiles) - 1)   
+72272>>>>
+72272>>>                If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]") Begin
+72274>>>                    Move aFiles[iIndex] to TheData[iRows].sValue[iName] 
+72275>>>                    Increment iRows
+72276>>>                End
+72276>>>>
+72276>>>            Loop
+72277>>>>
+72277>>>            
+72277>>>            // Initialize Grid with new data
+72277>>>            Send InitializeData TheData
+72278>>>            Send MovetoFirstRow
 72279>>>        End_Procedure
-72280>>>    End_Object
+72280>>>        
+72280>>>//        Procedure Activating    
+72280>>>//          Forward Send Activating
+72280>>>//          Send CheckPath
+72280>>>//          Send FileExplorer
+72280>>>//        End_Procedure  
+72280>>>//
+72280>>>//        Procedure Deactivating
+72280>>>//            Forward Send Deactivating
+72280>>>//        End_Procedure
+72280>>>
+72280>>>    End_Object  
 72281>>>End_Object
-ERROR: 4328 Undefined symbol in argument WAS ON LINE: 108 (72272) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
-ERROR: 4328 Undefined symbol in argument WAS ON LINE: 111 (72274) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
 72282>
 72282>        Procedure Activate_About
 72285>            Send DoAbout "" "" "" "" ""
@@ -6028,15 +6039,14 @@ ERROR: 4328 Undefined symbol in argument WAS ON LINE: 111 (72274) OF FILE: C:\xa
 72289>Start_UI
 72290>
 Summary
-Memory Available: 1726914559
+Memory Available: 1404850175
 Total Warnings : 0
-Total Errors   : 6
-Total Symbols  : 42330
+Total Errors   : 0
+Total Symbols  : 42328
 Total Resources: 0
 Total Commands : 72289
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 445995
-Message area   : 505416
+Static Data    : 446195
+Message area   : 505398
 Total Blocks   : 26296
-6 ERRORS HAVE BEEN FOUND.

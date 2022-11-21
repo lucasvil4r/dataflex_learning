@@ -337,8 +337,7 @@ Object oMain is a Panel
     Object oClientArea is a ClientArea
         String sDirOpenExlorer
         String sReadDir
-        String [] aFiles
-        
+        String [] aFiles        
 //        Get psReadDir of oClientArea to 
         
         Use StdAbout.pkg

@@ -38,7 +38,10 @@ Object oConteudoDiretorio is a dbView
         End_Object
         
         Procedure CheckPath
-            If (sReadDir <> "") Begin
+            Boolean bExist
+            
+            File_Exist sReadDir bExist
+            If (bExist) Begin
                 Set Value of oPathFile to sReadDir
                 Send FileExplorer
                 Send LoadData
@@ -63,13 +66,49 @@ Object oConteudoDiretorio is a dbView
             Close_Input            
         End_Procedure
         
+        Procedure OnRowDoubleClick Integer iRow Integer iCol                      
+            Forward Send OnRowDoubleClick iRow iCol 
+            String sFile
+            Boolean bExist
+                        
+            //  Setinha
+            If (iCol = (piColumnId(oCJGridColumnRowIndicator1))) Begin
+                If (YesNo_Box("Deseja mesmo excluir o arquivo?","Informação",MBR_Yes) = MBR_Yes) Begin                   
+                      
+                    Get RowValue of oCustomer_Name iRow to sFile
+                    Move (sReadDir + "\" + sFile) to sFile
+                   
+                    EraseFile sFile        
+                    File_Exist sFile bExist
+                        
+                    If (not(bExist)) Begin
+                        Send Info_Box (sFile + "was deleted successfully")
+                    End
+                    Else Begin
+                        Send Stop_Box (sFile + "was NOT deleted successfully")
+                    End    
+                End
+            End
+            //  Nome do arquivo
+            If (iCol = (piColumnId(oCustomer_Name))) Begin     
+                Get RowValue of oCustomer_Name iRow to sFile
+                Move (sReadDir + "\" + sFile) to sFile
+                
+                Send Info_Box ("Function download " + sFile)
+                // Dowload
+            End
+
+          Send CheckPath
+          Send FileExplorer
+        End_Procedure
+        
         Procedure LoadData 
             tDataSourceRow[] TheData
             Boolean bFound
-            Integer iRows iName iIndex
+            Integer iRows iName iIndex iIndicador
         
-// Get the datasource indexes of the various columns
-            Get piColumnId of oCJGridColumnRowIndicator1 to iInd
+            // Get the datasource indexes of the various columns
+            Get piColumnId of oCJGridColumnRowIndicator1 to iIndicador
             Get piColumnId of oCustomer_Name to iName
     
             For iIndex from 0 to (SizeOfArray(aFiles) - 1)   
@@ -82,47 +121,17 @@ Object oConteudoDiretorio is a dbView
             // Initialize Grid with new data
             Send InitializeData TheData
             Send MovetoFirstRow
-      End_Procedure
+        End_Procedure
         
-      Procedure Activating    
+        Procedure Activating    
           Forward Send Activating
           Send CheckPath
           Send FileExplorer
-      End_Procedure  
+        End_Procedure  
 
-        Procedure OnRowDoubleClick Integer iRow Integer iCol
-            String sPathFile
-            
-            Forward Send OnRowDoubleClick iRow iCol
-            
-            //  Setinha
-            If (iCol = (piColumnId(oCJGridColumnRowIndicator1))) Begin
-                If (YesNo_Box("Deseja mesmo excluir o arquivo?","Informação",MBR_Yes) = MBR_Yes) Begin
-                    // erasefile 
-                    Procedure DeleteMyNotes
-                        String sFileDelete
-                        Boolean bSuccess
-                        
-                        Move "C:\My Notes\Hello.txt" to sFileDelete
-                        Get DeleteFile sFile to bSuccess 
-                        If (bSuccess) Begin
-                            Send Info_Box ("The file ' + sFile + "' was deleted successfully" "Success!")
-                        End
-                        Else Begin
-                            Send Stop_Box ("The file ' + sFile + "' was NOT deleted successfully" "Error!")
-                        End
-                    End_Procedure
-                       
-                    //Send DeleteMyNotes   
-                End
-            End
-            
-            //  Nome do arquivo
-            If (iCol = (piColumnId(oCustomer_Name))) Begin
-                Get RowValue of oCustomer_Name iRow to sPathFile
-                Send Info_Box sPathFile
-                // Dowload
-            End         
+        Procedure Deactivating
+            Forward Send Deactivating
         End_Procedure
-    End_Object
+
+    End_Object  
 End_Object

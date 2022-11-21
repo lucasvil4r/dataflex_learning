@@ -30,7 +30,7 @@ Object oConsultaDiretorio is a dbView
         Procedure OnChange           
             Forward Send OnChange
             
-            Get Value of oReadDir to sReadDir 
+            Get Value of oReadDir to sReadDir
         End_Procedure
     End_Object
               
