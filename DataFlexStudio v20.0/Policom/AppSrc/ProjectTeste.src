@@ -1,10 +1,6 @@
 ﻿Use DFAllEnt.pkg
 Use cCJStandardCommandBarSystem.pkg
 
-String jjkjkk
-
-
-
 Object oHtmlHelp is a cHtmlHelp
 End_Object
 
