@@ -98,7 +98,7 @@ Object oConteudoDiretorio is a dbView
             Move 0 to iIndex                          
             While (not (SeqEof))
                 Readln sBuffer
-                Move sBuffer to aFiles[iIndex]
+                Move (Trim(sBuffer)) to aFiles[iIndex]
                 Increment iIndex
             Loop
             Close_Input 
@@ -109,7 +109,7 @@ Object oConteudoDiretorio is a dbView
     
             Move 0 to iIndex 
             For iIndex from 0 to (SizeOfArray(aFiles) - 1)   
-                If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]" or "") Begin
+                If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]" or aFiles[iIndex] = "") Begin
                     Move aFiles[iIndex] to TheData[iRows].sValue[iName] 
                     Increment iRows
                 End

@@ -1,5 +1,5 @@
 Compiling Program: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ProjectTeste.src
-Memory Available: 1334874111
+Memory Available: 1248985087
 1>Use DFAllEnt.pkg
 Using pre-compiled package DFALLENT.PKG
 Including file: dfallent.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.pkd)
@@ -555,10 +555,6 @@ Including file: cCJMDIWindowsMenuItem.pkg    (C:\Program Files\DataFlex 20.0\Pkg
 68924>>>>>    End_Procedure
 68925>>>>>    
 68925>>>>>End_Class
-68926>
-68926>String jjkjkk
-68926>
-68926>
 68926>
 68926>Object oHtmlHelp is a cHtmlHelp
 68928>End_Object
@@ -2045,8 +2041,6 @@ Including file: oDEOEditContextMenu17.pkg    (C:\Program Files\DataFlex 20.0\Pkg
 69791>    Object oClientArea is a ClientArea
 69793>        String sDirOpenExlorer
 69793>        String sReadDir
-69793>//        String [] aFiles        
-69793>//        Get psReadDir of oClientArea to 
 69793>        
 69793>        Use StdAbout.pkg
 Including file: StdAbout.pkg    (C:\Program Files\DataFlex 20.0\Pkg\StdAbout.pkg)
@@ -5982,7 +5976,7 @@ Including file: cCJGridColumnRowIndicator.pkg    (C:\Program Files\DataFlex 20.0
 72247>>>            Move 0 to iIndex                          
 72248>>>            While (not (SeqEof))
 72252>>>                Readln sBuffer
-72253>>>                Move sBuffer to aFiles[iIndex]
+72253>>>                Move (Trim(sBuffer)) to aFiles[iIndex]
 72254>>>                Increment iIndex
 72255>>>            Loop
 72256>>>>
@@ -5995,7 +5989,7 @@ Including file: cCJGridColumnRowIndicator.pkg    (C:\Program Files\DataFlex 20.0
 72259>>>            Move 0 to iIndex 
 72260>>>            For iIndex from 0 to (SizeOfArray(aFiles) - 1)   
 72266>>>>
-72266>>>                If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]" or "") Begin
+72266>>>                If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]" or aFiles[iIndex] = "") Begin
 72268>>>                    Move aFiles[iIndex] to TheData[iRows].sValue[iName] 
 72269>>>                    Increment iRows
 72270>>>                End
@@ -6032,14 +6026,14 @@ Including file: cCJGridColumnRowIndicator.pkg    (C:\Program Files\DataFlex 20.0
 72297>Start_UI
 72298>
 Summary
-Memory Available: 1317564415
+Memory Available: 1234812927
 Total Warnings : 0
 Total Errors   : 0
-Total Symbols  : 42328
+Total Symbols  : 42327
 Total Resources: 0
 Total Commands : 72297
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 446155
+Static Data    : 446099
 Message area   : 505430
 Total Blocks   : 26297
