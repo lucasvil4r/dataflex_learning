@@ -48,7 +48,7 @@ Object oConsultaDiretorio is a dbView
                 Runprogram Background ('c:\windows\explorer.exe' *  '"' + ((sDirOpenExlorer)) + '"')
             End
             Else Begin
-                Send Info_Box "Caminho não encontrado"
+                
             End
         End_Procedure  
     End_Object
