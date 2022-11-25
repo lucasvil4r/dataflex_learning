@@ -121,6 +121,17 @@ Object oMain is a Panel
                         Send Activate_oConteudoDiretorio of hoClient
                     End_Procedure
                 End_Object
+
+                Object oTestFunctionMenuItem is a cCJMenuItem
+                    Set psCaption to "TestFunction"
+                    Set psTooltip to "TestFunction"
+                
+                    Procedure OnExecute Variant vCommandBarControl
+                        Handle hoClient
+                        Get Client_Id to hoClient
+                        Send Activate_oTestFunction of hoClient
+                    End_Procedure
+                End_Object
             End_Object
             
             Object oReportMenu is a cCJMenuItem
@@ -330,13 +341,20 @@ Object oMain is a Panel
 
     End_Object
 
-    Object oClientArea is a ClientArea
+    Object oClientArea is a ClientArea     
+        //VAR GLOBAL ConsultaDiretorio/ConteudoDiretorio 
         String sDirOpenExlorer
         String sReadDir
+        
+        //VAR GLOBAL TestFuction
+        String sGPathFind
+        String sGPathDestination
+        String sGNameDb
         
         Use StdAbout.pkg
         Use ConsultaDiretorio.vw
         Use ConteudoDiretorio.vw
+        Use TestFunction.vw
 
         Procedure Activate_About
             Send DoAbout "" "" "" "" ""
