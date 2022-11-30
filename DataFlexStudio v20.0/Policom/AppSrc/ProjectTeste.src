@@ -132,6 +132,17 @@ Object oMain is a Panel
                         Send Activate_oTestFunction of hoClient
                     End_Procedure
                 End_Object
+
+                Object oFunctionDeleteFilesMenuItem is a cCJMenuItem
+                    Set psCaption to "FunctionDeleteFiles"
+                    Set psTooltip to "FunctionDeleteFiles"
+                
+                    Procedure OnExecute Variant vCommandBarControl
+                        Handle hoClient
+                        Get Client_Id to hoClient
+                        Send Activate_oFunctionDeleteFiles of hoClient
+                    End_Procedure
+                End_Object
             End_Object
             
             Object oReportMenu is a cCJMenuItem
@@ -342,11 +353,10 @@ Object oMain is a Panel
     End_Object
 
     Object oClientArea is a ClientArea     
-        //VAR GLOBAL ConsultaDiretorio/ConteudoDiretorio 
+        //VAR GLOBAL 
         String sDirOpenExlorer
         String sReadDir
         
-        //VAR GLOBAL TestFuction
         String sGPathFind
         String sGPathDestination
         String sGNameDb
@@ -355,6 +365,7 @@ Object oMain is a Panel
         Use ConsultaDiretorio.vw
         Use ConteudoDiretorio.vw
         Use TestFunction.vw
+        Use FunctionDeleteFiles.vw
 
         Procedure Activate_About
             Send DoAbout "" "" "" "" ""
