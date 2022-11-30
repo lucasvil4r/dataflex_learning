@@ -1,4 +1,4 @@
-Use Windows.pkg
+﻿Use Windows.pkg
 Use DFClient.pkg
 
 Deferred_View Activate_oFunctionDeleteFiles for ;
@@ -44,7 +44,7 @@ Object oFunctionDeleteFiles is a dbView
             Send Destroy of hoFileSystem   
         End
         Else Begin
-            Send Info_Box "Caminho n�o encontrado"
+            Send Info_Box "Caminho não encontrado"
         End 
     End_Procedure
     
@@ -103,5 +103,4 @@ Object oFunctionDeleteFiles is a dbView
             Get DeleteDbFiles sGPathFind sGNameDb to bRetornoFunction
         End_Procedure
     End_Object
-
 Cd_End_Object
