@@ -1,5 +1,15 @@
 [ProjectTeste.src]
+<<<<<<< HEAD
 0="sArquivos"
 1="sNameDb"
 2="sFile"
 3="sBuffer"
+=======
+0="sArquivosOrigem"
+1="sArquivosDestino"
+2="sNameDb"
+3="sFileMoreExtension"
+4="iIndexExtension"
+5="sExtension"
+6="sFile"
+>>>>>>> 88694d6a7110e6c1a01b2fe408c0c8e3ddb01f9b
