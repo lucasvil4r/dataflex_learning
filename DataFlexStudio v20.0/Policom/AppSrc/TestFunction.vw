@@ -99,22 +99,7 @@ Object oTestFunction is a dbView
             Get Value of oPathFind to sGPathFind
         End_Procedure
     End_Object
-<<<<<<< HEAD
-                                                                               
-=======
-                                                                        
-//    Object oPathSender is a Form
-//        Set Size to 17 381
-//        Set Location to 25 64
-//        Set Label to "oPathSender:"
-//
-//        Procedure OnChange
-//            Forward Send OnChange
-//            
-//        End_Procedure
-//    End_Object
-        
->>>>>>> 88694d6a7110e6c1a01b2fe408c0c8e3ddb01f9b
+
     Object oPathDestinatio is a Form
         Set Size to 17 381
         Set Location to 45 64
@@ -139,19 +124,6 @@ Object oTestFunction is a dbView
         End_Procedure
     End_Object  
                                    
-<<<<<<< HEAD
-=======
-//    Object oFunctionFindDbFiles is a Button
-//        Set Size to 19 96
-//        Set Location to 29 366
-//        Set Label to 'Testar fun‡Æo FindDbFiles'
-//    
-//        // fires when the button is clicked
-//        Procedure OnClick
-//        End_Procedure
-//    End_Object
-
->>>>>>> 88694d6a7110e6c1a01b2fe408c0c8e3ddb01f9b
     Object oFunctionCopyDbFiles is a Button
         Set Size to 38 212
         Set Location to 78 132

@@ -32,13 +32,7 @@ Object oFunctionDeleteFiles is a dbView
                     
                     Move (Replace(sExtention, sBuffer, "")) to sFile
                     Move (Uppercase(sFile)) to sFile
-                    
-//                    Move (RightPos(".", sBuffer)) to iPos
-//                    
-//                    If (iPos <> 0) Begin
-//                        Move (Remove(sBuffer, iPos, iExtention)) to sFile
-//                    End
-                    
+                                       
                     If (sFile = sNameDb) Begin
                         Move (sPathFind + "\" + sBuffer) to sArquivos[iIndexFiles]
                         Increment iIndexFiles
@@ -59,21 +53,17 @@ Object oFunctionDeleteFiles is a dbView
         String[] sArquivos
         Boolean bReturn
               
-//        Handle hoFileSystem
-//        Get Create (RefClass(cFilesystem)) to hoFileSystem
-//   
+        Handle hoFileSystem
+        Get Create (RefClass(cFilesystem)) to hoFileSystem
+   
         Send FindDbFiles sGPathFind sGNameDb (&sArquivos)
         
-//        For iIndex from 0 to (SizeOfArray(sArquivosOrigem) - 1) 
-//            Get FileCopy of hoFileSystem sArquivosOrigem[iIndex] sArquivosDestino[iIndex] 0 0 to bReturn
-//        Loop
+        For iIndex from 0 to (SizeOfArray(&sArquivos) - 1) 
+            Get FileDelete of hoFileSystem (&sArquivos[iIndex]) to bReturn
+        Loop
       
-//        Send Destroy of hoFileSystem
-
-        For iIndex from 0 to (SizeOfArray(&sArquivos) - 1)                                         
-            Showln (&sArquivos[iIndex])
-        Loop          
-        
+        Send Destroy of hoFileSystem
+             
         Function_Return bReturn
     End_Function
     
