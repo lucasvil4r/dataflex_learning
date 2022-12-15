@@ -4,10 +4,10 @@ Active=0
 SubDirectories=1
 WholeWordOnly=0
 SearchWhere=0
-Location=C:\dataflex_learning\DataFlexStudio v20.0\Learn the language\IdeSrc\Lucas_FindInFiles.dsk
-[C:\dataflex_learning\DataFlexStudio v20.0\Learn the language\AppSrc]
+Location=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Learn the language\IdeSrc\lucas_FindInFiles.dsk
+[C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Learn the language\AppSrc]
 IsEnabled=1
-[C:\dataflex_learning\DataFlexStudio v20.0\Learn the language\DDSrc]
+[C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Learn the language\DDSrc]
 IsEnabled=1
-[C:\dataflex_learning\DataFlexStudio v20.0\Learn the language\AppHtml]
+[C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Learn the language\AppHtml]
 IsEnabled=1

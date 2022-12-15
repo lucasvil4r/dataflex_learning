@@ -68,8 +68,8 @@ Object oFunctionDeleteFiles is a dbView
     End_Function
     
     Object oPathFind is a Form
-        Set Size to 15 330
-        Set Location to 13 62
+        Set Size to 15 324
+        Set Location to 13 66
         Set Label to "oPathFind:"
 
         Procedure OnChange
@@ -80,8 +80,8 @@ Object oFunctionDeleteFiles is a dbView
     End_Object
     
     Object oNameDb is a Form
-        Set Size to 17 157
-        Set Location to 46 116
+        Set Size to 17 191
+        Set Location to 45 103
         Set Label to "oNameDb:"
     
         Procedure OnChange           

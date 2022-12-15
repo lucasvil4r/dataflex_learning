@@ -1,5 +1,5 @@
 Compiling Program: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ProjectTeste.src
-Memory Available: 2147483647
+Memory Available: 659226624
 1>Use DFAllEnt.pkg
 Using pre-compiled package DFALLENT.PKG
 Including file: dfallent.pkd    (C:\Program Files\DataFlex 20.0\Pkg\dfallent.pkd)
@@ -6271,8 +6271,8 @@ Including file: FunctionDeleteFiles.vw    (C:\xampp\htdocs\dataflex_learning\Dat
 72541>>>    End_Function
 72542>>>    
 72542>>>    Object oPathFind is a Form
-72544>>>        Set Size to 15 330
-72545>>>        Set Location to 13 62
+72544>>>        Set Size to 15 324
+72545>>>        Set Location to 13 66
 72546>>>        Set Label to "oPathFind:"
 72547>>>
 72547>>>        Procedure OnChange
@@ -6283,8 +6283,8 @@ Including file: FunctionDeleteFiles.vw    (C:\xampp\htdocs\dataflex_learning\Dat
 72554>>>    End_Object
 72555>>>    
 72555>>>    Object oNameDb is a Form
-72557>>>        Set Size to 17 157
-72558>>>        Set Location to 46 116
+72557>>>        Set Size to 17 191
+72558>>>        Set Location to 45 103
 72559>>>        Set Label to "oNameDb:"
 72560>>>    
 72560>>>        Procedure OnChange           
@@ -6306,7 +6306,6 @@ Including file: FunctionDeleteFiles.vw    (C:\xampp\htdocs\dataflex_learning\Dat
 72576>>>            Get DeleteDbFiles sGPathFind sGNameDb to bRetornoFunction
 72577>>>        End_Procedure
 72578>>>    End_Object
-72579>>>
 72579>>>Cd_End_Object
 72581>>>>
 72581>        
@@ -6321,7 +6320,7 @@ Including file: FunctionDeleteFiles.vw    (C:\xampp\htdocs\dataflex_learning\Dat
 72588>Start_UI
 72589>
 Summary
-Memory Available: 2147483647
+Memory Available: 643891200
 Total Warnings : 0
 Total Errors   : 0
 Total Symbols  : 42429
