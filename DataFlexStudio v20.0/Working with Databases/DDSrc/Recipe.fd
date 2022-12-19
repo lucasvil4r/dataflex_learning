@@ -1,0 +1,9 @@
+#REPLACE FILE3 Recipe
+#REPLACE Recipe.File_Number |CI3
+#REPLACE Recipe.Recipeld |FN3,1
+#REPLACE Recipe.Kitchenid |FN3,2
+#REPLACE Recipe.Name |FS3,3
+#REPLACE Recipe.Rating |FN3,4
+#REPLACE Recipe.HowToMake |FS3,5
+#REPLACE Recipe.PreparationTime |FN3,6
+#REPLACE Recipe.Created |FD3,7

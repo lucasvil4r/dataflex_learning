@@ -1,0 +1,29 @@
+﻿Use Windows.pkg
+Use cHtmlHelp.pkg
+Use cApplication.pkg
+Use cConnection.pkg
+
+Object oApplication is a cApplication
+    
+    Object oConnection is a cConnection
+        Use LoginEncryption.pkg
+        Use DatabaseLoginDialog.dg
+    End_Object
+    
+End_Object
+
+Open Ingredients
+Open Recipe
+Open Kitchen
+
+Clear Ingredients
+Find GT Ingredients by 1
+While (Found)
+    Relate Ingredients
+    
+    Showln (SFormat ("Name: %1, Amount: %2, Recipe: %3, Kitchen: %4", Trim(Ingredients.Name), Trim(Ingredients.Amount), Trim(Recipe.Name), Trim(Kitchen.Name)))
+    
+    Find GT Ingredients by 1
+Loop
+
+Send Info_Box "Hello World" "DataFlex Basic Project"
