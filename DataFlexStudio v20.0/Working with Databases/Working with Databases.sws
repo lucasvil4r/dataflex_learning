@@ -11,3 +11,4 @@ Is$Win64=True
 Project0=GlobalBuffers.src
 Project1=LocalBuffer =.src
 Project2=Cookbook.src
+Project3=EmbeddedDemo.src

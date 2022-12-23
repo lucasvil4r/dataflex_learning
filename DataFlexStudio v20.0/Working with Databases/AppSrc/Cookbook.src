@@ -1,5 +1,6 @@
 Use DFAllEnt.pkg
 Use cCJStandardCommandBarSystem.pkg
+Use cCJCommandBarSystem.pkg
 
 Object oHtmlHelp is a cHtmlHelp
 End_Object
@@ -208,6 +209,19 @@ Object oMain is a Panel
 
             End_Object
 
+            Object oReduceRatingMenuItem is a cCJMenuItem
+                Set psCaption to "Reduce Rating"
+                Set psTooltip to "Reduce Rating"
+
+                Procedure OnExecute Variant vCommandBarControl
+                    Forward Send OnExecute vCommandBarControl
+                    
+                    Send DoProcess of oReduceRating
+                End_Procedure
+                
+                
+            End_Object
+
         End_Object
 
         Object oFindToolBar is a cCJToolbar
@@ -328,6 +342,8 @@ Object oMain is a Panel
         End_Procedure
 
     End_Object
+    
+    Use ReduceRating.bp
 
 End_Object
 
