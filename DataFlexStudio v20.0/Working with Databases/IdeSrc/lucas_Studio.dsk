@@ -1,7 +1,7 @@
 [Workspace]
-CurrentProject=Cookbook.src
+CurrentProject=EmbeddedDemo.src
 Location=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Working with Databases\IdeSrc\lucas_Studio.dsk
-CreateNew=2
+CreateNew=5
 [TabWindows]
 GroupCount=1
 HorizontalGroups=1
@@ -14,6 +14,6 @@ ViewType=100
 Top=21
 Left=0
 Bottom=892
-Right=1418
+Right=1396
 TabIndex=0
 TabGroup=0
