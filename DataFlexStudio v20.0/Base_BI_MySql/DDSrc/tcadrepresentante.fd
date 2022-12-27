@@ -1,0 +1,6 @@
+#REPLACE FILE7 tcadrepresentante
+#REPLACE tcadrepresentante.File_Number |CI7
+#REPLACE tcadrepresentante.iCdCodigo |FN7,1
+#REPLACE tcadrepresentante.sDcDesc |FS7,2
+#REPLACE tcadrepresentante.sIDSY |FS7,3
+#REPLACE tcadrepresentante.sCdCliPrincipal |FS7,4

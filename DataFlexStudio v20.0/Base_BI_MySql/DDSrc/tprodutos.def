@@ -1,0 +1,43 @@
+-----------------------------------------------------------------------------
+  DATE: 03/02/2022      TIME: 15:34                                  PAGE:  1
+  FILE DEFINITION FOR FILE: tprodutos (# 10)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : ODBC_DRV
+  FILE ROOT NAME            : ODBC_DRV:tprodutos
+  USER DISPLAY NAME         : tprodutos
+  DATAFLEX FILE NAME        : tprodutos
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 563       ( USED: 563 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 1 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=gpcablingBI
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  sCodProduto      ASC      5     1  1   
+  2  sDescricao       ASC    100     6      
+  3  sCodFabr         ASC      2   106      
+  4  sRef             ASC     45   108      
+  5  sFamilia1        ASC     50   153      
+  6  sFamilia2        ASC     45   203      
+  7  sFamilia3        ASC     45   248      
+  8  sFamilia4        ASC     45   293      
+  9  sFamilia5        ASC     45   338      
+ 10  sFamilia6        ASC     45   383      
+ 11  sFamilia7        ASC     45   428      
+ 12  sFamilia8        ASC     45   473      
+ 13  sFamilia9        ASC     45   518      
+ 14  sStatus          ASC      1   563      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    sCodProduto     NO  NO       0      0       1     ON-LINE
+

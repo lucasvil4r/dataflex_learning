@@ -1,0 +1,118 @@
+-----------------------------------------------------------------------------
+  DATE: 03/02/2022      TIME: 15:25                                  PAGE:  1
+  FILE DEFINITION FOR FILE: tPro (# 1010)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : tPro
+  USER DISPLAY NAME         : tPro
+  DATAFLEX FILE NAME        : tPro
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 1024      ( USED: 907 )
+  MAX NUMBER OF RECORDS     : 20000     ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  COD              ASC      5     1  1   
+  2  DESCR            ASC     35     6  2   
+  3  CODFABR          ASC      2    41  3   
+  4  FABRDESCR        ASC     14    43      
+  5  REF              ASC    100    57  5   
+  6  CODI1            ASC      2   157  4   
+  7  CODI2            ASC      2   159  4   
+  8  CODI3            ASC      2   161  4   
+  9  CODI4            ASC      2   163  4   
+ 10  CODI5            ASC      2   165  4   
+ 11  CODI6            ASC      2   167  4   
+ 12  PESO             NUM    6.6   169      
+ 13  PARAM            NUM    6.6   175      
+ 14  OBS              TEX    304   181      
+ 15  SITFISC          ASC      2   485      
+ 16  NCM              ASC     18   487  6   
+ 17  ALIQIPI          NUM    2.2   505      
+ 18  ALIQII           NUM    2.2   507      
+ 19  ALIQICMS         NUM    2.2   509      
+ 20  FIGURA           ASC     12   511      
+ 21  CONTR1           ASC      2   523      
+ 22  CONTR2           ASC      2   525      
+ 23  DESCRCPL         ASC     35   527      
+ 24  DATACAD          DAT      6   562      
+ 25  DATAALT          DAT      6   565      
+ 26  INICIAIS         ASC      3   568      
+ 27  UNIVEN           ASC      2   571      
+ 28  EMBALAGEM        ASC     10   573      
+ 29  REF2             ASC     25   583  7   
+ 30  EMPRESA          ASC      2   608      
+ 31  ICDKIT           NUM    4.0   610      
+ 32  iAtuCusto        NUM    2.0   612      
+ 33  iCritico         NUM    2.0   613      
+ 34  IORIGST          NUM    2.0   614      
+ 35  COD1             NUM    4.0   615      
+ 36  COD12            NUM    4.0   617      
+ 37  COD13            NUM    4.0   619      
+ 38  COD14            NUM    4.0   621      
+ 39  COD15            NUM    4.0   623      
+ 40  COD16            NUM    4.0   625      
+ 41  COD17            NUM    4.0   627      
+ 42  COD18            NUM    4.0   629      
+ 43  UNICOM           ASC      2   631      
+ 44  COD19            NUM    4.0   633      
+ 45  iCdProUni        NUM    4.0   635      
+ 46  iPromo           NUM    2.0   637      
+ 47  iPrecEsp         NUM    2.0   638      
+ 48  iAtuSite         NUM    2.0   639      
+ 49  sDescrCompleta   ASC    100   640      
+ 50  sEmpVenda        ASC      2   740      
+ 51  sCodGtinForn     ASC     20   742      
+ 52  sCodGtinPo       ASC     20   762      
+ 53  iPromoCota       NUM    2.0   782      
+ 54  iFlMultiFabr     NUM    2.0   783      
+ 55  nQtPesoLiq       NUM    8.4   784      
+ 56  nQtPesoBruto     NUM    8.4   790      
+ 57  nAltura          NUM    4.2   796      
+ 58  nLargura         NUM    4.2   799      
+ 59  nComprimento     NUM    4.2   802      
+ 60  iFlConsolida     NUM    2.0   805      
+ 61  iCdISS           NUM    4.0   806      
+ 62  sRefNFFabr       ASC    100   808  8   
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    COD             NO  YES      5      3       1     ON-LINE
+
+  2    DESCR           NO  YES      38     4       2     ON-LINE
+       Recnum          NO  NO 
+
+  3    CODFABR         NO  YES      10     3       3     ON-LINE
+       COD             NO  YES
+       Recnum          NO  NO 
+
+  4    CODI1           NO  YES      15     3       7     ON-LINE
+       CODI2           NO  YES
+       CODI3           NO  YES
+       CODI4           NO  YES
+       CODI5           NO  YES
+       CODI6           NO  YES
+       Recnum          NO  NO 
+
+  5    REF             NO  NO       103    8       2     ON-LINE
+       Recnum          NO  NO 
+
+  6    NCM             NO  NO       21     4       2     ON-LINE
+       Recnum          NO  NO 
+
+  7    REF2            NO  YES      28     4       2     ON-LINE
+       Recnum          NO  NO 
+
+  8    sRefNFFabr      NO  NO       105    8       2     ON-LINE
+       COD             NO  NO 
+

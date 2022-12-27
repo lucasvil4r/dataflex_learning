@@ -1,0 +1,14 @@
+iCdCodigo
+sNmNome
+sDcEmail
+sDcRamal
+sCdEmpresa
+sCdAntigo
+sDcFoto
+nAlComiss
+iComiss
+iStatus
+sEmpVend
+nTipoVend
+sDcCPF
+iCdID_CotaOnline

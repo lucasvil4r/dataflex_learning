@@ -1,0 +1,14 @@
+#REPLACE FILE7 tvlorfatu
+#REPLACE tvlorfatu.File_Number |CI7
+#REPLACE tvlorfatu.sNumLanc |FS7,1
+#REPLACE tvlorfatu.sTpLancamento |FS7,2
+#REPLACE tvlorfatu.sEmp |FS7,3
+#REPLACE tvlorfatu.dData |FD7,4
+#REPLACE tvlorfatu.sDescrLanca |FS7,5
+#REPLACE tvlorfatu.sRazao |FS7,6
+#REPLACE tvlorfatu.sCdClienteForn |FS7,7
+#REPLACE tvlorfatu.nVlLancamento |FN7,8
+#REPLACE tvlorfatu.sEstCli |FS7,9
+#REPLACE tvlorfatu.sTipoCli |FS7,10
+#REPLACE tvlorfatu.sEmpOrgVenda |FS7,11
+#REPLACE tvlorfatu.iCdRepresentante |FN7,12

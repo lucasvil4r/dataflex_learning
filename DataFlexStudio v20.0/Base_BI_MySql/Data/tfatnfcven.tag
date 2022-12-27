@@ -1,0 +1,7 @@
+iCdNota
+iCdVendedor
+sCdEmpresa
+iCdItem
+sCdSerie
+nPercComiss
+sCdVendAnt

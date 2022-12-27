@@ -1,0 +1,5 @@
+#REPLACE FILE11 titensnfedupli
+#REPLACE titensnfedupli.File_Number |CI11
+#REPLACE titensnfedupli.sEmp |FS11,1
+#REPLACE titensnfedupli.sCdnota |FS11,2
+#REPLACE titensnfedupli.nvpago |FN11,3

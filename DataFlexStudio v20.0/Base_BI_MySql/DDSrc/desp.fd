@@ -1,0 +1,13 @@
+#REPLACE FILE4 desp
+#REPLACE desp.File_Number |CI4
+#REPLACE desp.iddesp |FS4,1
+#REPLACE desp.sDescr |FS4,2
+#REPLACE desp.nValor |FN4,3
+#REPLACE desp.sEmp |FS4,4
+#REPLACE desp.sClas |FS4,5
+#REPLACE desp.sCont |FS4,6
+#REPLACE desp.dData |FD4,7
+#REPLACE desp.dDataAtu |FD4,8
+#REPLACE desp.sDoc |FS4,9
+#REPLACE desp.sClasDes |FS4,10
+#REPLACE desp.sClasCont |FS4,11

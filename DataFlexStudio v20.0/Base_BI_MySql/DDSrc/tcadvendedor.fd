@@ -1,0 +1,4 @@
+#REPLACE FILE8 tcadvendedor
+#REPLACE tcadvendedor.File_Number |CI8
+#REPLACE tcadvendedor.iCdCodigo |FS8,1
+#REPLACE tcadvendedor.sNmNome |FS8,2

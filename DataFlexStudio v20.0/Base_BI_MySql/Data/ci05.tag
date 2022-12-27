@@ -1,0 +1,7 @@
+COD
+DESCR
+COD1
+COD2
+COD3
+COD4
+iOrdem

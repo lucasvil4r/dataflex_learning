@@ -1,0 +1,28 @@
+[Workspace]
+CurrentProject=
+Location=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\IdeSrc\lucas_Studio.dsk
+CreateNew=-1
+[TabWindows]
+GroupCount=1
+HorizontalGroups=1
+[TabGroup0]
+GroupSize=40
+SelectedTab=1
+[Window0]
+Filename=Workspace Dashboard
+ViewType=101
+Top=21
+Left=0
+Bottom=892
+Right=1396
+TabIndex=0
+TabGroup=0
+[Window1]
+Filename=Start Center
+ViewType=100
+Top=21
+Left=0
+Bottom=892
+Right=1396
+TabIndex=1
+TabGroup=0

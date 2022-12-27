@@ -1,0 +1,47 @@
+-----------------------------------------------------------------------------
+  DATE: 07/01/2022      TIME: 10:32                                  PAGE:  1
+  FILE DEFINITION FOR FILE: tvlorfatu (# 7)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : ODBC_DRV
+  FILE ROOT NAME            : ODBC_DRV:tvlorfatu
+  USER DISPLAY NAME         : tvlorfatu
+  DATAFLEX FILE NAME        : tvlorfatu
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 301       ( USED: 301 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 1 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=gpcablingBI
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  sNumLanc         ASC     45     1  1   
+  2  sTpLancamento    ASC     45    46  1   
+  3  sEmp             ASC      2    91  1   
+  4  dData            DTM     23    93  2   
+  5  sDescrLanca      ASC     45   112      
+  6  sRazao           ASC    100   157      
+  7  sCdClienteForn   ASC      5   257      
+  8  nVlLancamento    NUM   12.2   262      
+  9  sEstCli          ASC      2   278      
+ 10  sTipoCli         ASC     20   280      
+ 11  sEmpOrgVenda     ASC      2   300      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    sNumLanc        NO  NO       0      0       3     ON-LINE
+       sTpLancamento   NO  NO 
+       sEmp            NO  NO 
+
+  2    dData           NO  NO       0      0       4     ON-LINE
+       sNumLanc        NO  NO 
+       sTpLancamento   NO  NO 
+       sEmp            NO  NO 
+

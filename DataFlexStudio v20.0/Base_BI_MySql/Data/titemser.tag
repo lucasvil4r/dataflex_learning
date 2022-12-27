@@ -1,0 +1,9 @@
+sNumDoc
+sSerieDoc
+iItem
+sCodServ
+sDescrServ
+nValorUnit
+nQuant
+nValorTot
+sFabr

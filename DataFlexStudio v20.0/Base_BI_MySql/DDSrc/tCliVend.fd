@@ -1,0 +1,16 @@
+#REPLACE FILE29 tclivend
+#REPLACE tclivend.Recnum |FN29,0
+#REPLACE tclivend.iCdCodigo |FS29,1
+#REPLACE tclivend.sNmNome |FS29,2
+#REPLACE tclivend.sDcEmail |FS29,3
+#REPLACE tclivend.sDcRamal |FN29,4
+#REPLACE tclivend.sCdEmpresa |FS29,5
+#REPLACE tclivend.sCdAntigo |FS29,6
+#REPLACE tclivend.sDcFoto |FS29,7
+#REPLACE tclivend.nAlComiss |FN29,8
+#REPLACE tclivend.iComiss |FN29,9
+#REPLACE tclivend.iStatus |FN29,10
+#REPLACE tclivend.sEmpVend |FS29,11
+#REPLACE tclivend.nTipoVend |FN29,12
+#REPLACE tclivend.sDcCPF |FS29,13
+#REPLACE tclivend.iCdID_CotaOnline |FN29,14

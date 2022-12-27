@@ -1,0 +1,6 @@
+#REPLACE FILE9 tvendlanc
+#REPLACE tvendlanc.File_Number |CI9
+#REPLACE tvendlanc.sNumLanc |FS9,1
+#REPLACE tvendlanc.sTpLancamento |FS9,2
+#REPLACE tvendlanc.sEmp |FS9,3
+#REPLACE tvendlanc.iCdVendedor |FS9,4

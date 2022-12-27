@@ -1,0 +1,6 @@
+#REPLACE FILE16 tvlorfatu_vendedores
+#REPLACE tvlorfatu_vendedores.File_Number |CI16
+#REPLACE tvlorfatu_vendedores.sNumLanc |FS16,1
+#REPLACE tvlorfatu_vendedores.sTpLancamento |FS16,2
+#REPLACE tvlorfatu_vendedores.sEmp |FS16,3
+#REPLACE tvlorfatu_vendedores.sCdVendedor |FS16,4

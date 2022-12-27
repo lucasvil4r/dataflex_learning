@@ -1,0 +1,4 @@
+#REPLACE FILE22 clasdes
+#REPLACE clasdes.Recnum |FN22,0
+#REPLACE clasdes.COD |FS22,1
+#REPLACE clasdes.DESCR |FS22,2

@@ -1,0 +1,5 @@
+#REPLACE FILE9 tinfatu
+#REPLACE tinfatu.File_Number |CI9
+#REPLACE tinfatu.dDataTime |FD9,1
+#REPLACE tinfatu.iPeriodo |FN9,2
+#REPLACE tinfatu.sObs |FS9,3

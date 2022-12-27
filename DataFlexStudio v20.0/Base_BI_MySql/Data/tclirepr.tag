@@ -1,0 +1,4 @@
+iCdCodigo
+sDcDesc
+sIDSY
+sCdCliPrincipal

@@ -1,0 +1,11 @@
+#REPLACE FILE37 tfatnfve
+#REPLACE tfatnfve.Recnum |FN37,0
+#REPLACE tfatnfve.sCdNota |FS37,1
+#REPLACE tfatnfve.sCdSerie |FS37,2
+#REPLACE tfatnfve.iCdVendedor |FS37,3
+#REPLACE tfatnfve.sCdEmpresa |FS37,4
+#REPLACE tfatnfve.iCdItem |FN37,5
+#REPLACE tfatnfve.nPercComiss |FN37,6
+#REPLACE tfatnfve.sCdVendAnt |FS37,7
+#REPLACE tfatnfve.sNumNfServ |FS37,8
+#REPLACE tfatnfve.sSerieServ |FS37,9

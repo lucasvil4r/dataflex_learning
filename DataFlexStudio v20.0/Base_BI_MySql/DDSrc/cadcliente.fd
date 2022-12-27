@@ -1,0 +1,10 @@
+#REPLACE FILE2 cadcliente
+#REPLACE cadcliente.File_Number |CI2
+#REPLACE cadcliente.idCadCliente |FS2,1
+#REPLACE cadcliente.sNmNome |FS2,2
+#REPLACE cadcliente.sCnpjCPf |FS2,3
+#REPLACE cadcliente.sEstado |FS2,4
+#REPLACE cadcliente.sCidade |FS2,5
+#REPLACE cadcliente.sTipo |FS2,6
+#REPLACE cadcliente.dDataAlt |FD2,7
+#REPLACE cadcliente.dDataAtualizacao |FD2,8

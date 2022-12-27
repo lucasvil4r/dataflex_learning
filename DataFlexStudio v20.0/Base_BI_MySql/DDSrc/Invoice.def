@@ -1,0 +1,87 @@
+-----------------------------------------------------------------------------
+  DATE: 16/02/2022      TIME: 15:44                                  PAGE:  1
+  FILE DEFINITION FOR FILE: Invoice (# 1020)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : Invoice
+  USER DISPLAY NAME         : Invoice
+  DATAFLEX FILE NAME        : Invoice
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 170       ( USED: 166 )
+  MAX NUMBER OF RECORDS     : 10000     ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  INVOICE          ASC     12     1  1   
+  2  DATA             DAT      6    13  2   
+  3  VALOR            NUM    8.2    16  5   
+  4  DATAV            DAT      6    21  3   
+  5  EMPRESA          ASC     30    24  4   
+  6  VALOREM          NUM    8.2    54      
+  7  COMIS            NUM    8.2    59      
+  8  SALDO            NUM    8.2    64      
+  9  NOTA             ASC     20    69      
+ 10  SALCOMIS         NUM    8.2    89      
+ 11  SALTOT           NUM    8.2    94      
+ 12  PAGAM            DAT      6    99  5   
+ 13  EMBARQUE         ASC     10   102 11   
+ 14  PERCOMIS         NUM    4.6   112      
+ 15  VIA              ASC      2   117      
+ 16  CONTROLE         ASC      2   119      
+ 17  sCdFornec        ASC      4   121 10   
+ 18  iFlPagto         NUM    2.0   125  7   
+ 19  dDtCadastro      DAT      6   126      
+ 20  dDtAlteracao     DAT      6   129      
+ 21  sNmLoginCria     ASC     15   132      
+ 22  sNmLoginAlt      ASC     15   147      
+ 23  nVlPrevImpost    NUM    8.2   162      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    INVOICE         NO  NO       12     3       1     ON-LINE
+
+  2    DATA            NO  NO       18     3       3     ON-LINE
+       INVOICE         NO  NO 
+       Recnum          NO  NO 
+
+  3    DATAV           NO  NO       6      3       2     ON-LINE
+       Recnum          NO  NO 
+
+  4    EMPRESA         NO  NO       45     4       3     ON-LINE
+       INVOICE         NO  NO 
+       Recnum          NO  NO 
+
+  5    PAGAM           NO  NO       14     3       4     ON-LINE
+       DATAV           NO  NO 
+       VALOR           NO  NO 
+       Recnum          NO  NO 
+
+  6    VALOR           NO  NO       8      3       2     ON-LINE
+       Recnum          NO  NO 
+
+  7    iFlPagto        NO  NO       16     3       3     ON-LINE
+       DATAV           NO  NO 
+       INVOICE         NO  NO 
+
+  8    DATAV           NO  NO       15     3       2     ON-LINE
+       INVOICE         NO  NO 
+
+  9    PAGAM           NO  NO       15     3       2     ON-LINE
+       INVOICE         NO  NO 
+
+  10   sCdFornec       NO  NO       16     3       2     ON-LINE
+       INVOICE         NO  NO 
+
+  11   EMBARQUE        NO  NO       22     3       2     ON-LINE
+       INVOICE         NO  NO 
+

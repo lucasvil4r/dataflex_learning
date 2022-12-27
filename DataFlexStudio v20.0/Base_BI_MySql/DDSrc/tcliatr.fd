@@ -1,0 +1,8 @@
+#REPLACE FILE1344 tCliAtr
+#REPLACE tCliAtr.Recnum |FN1344,0
+#REPLACE tCliAtr.sCdCodigo |FS1344,1
+#REPLACE tCliAtr.sCdEmpresa |FS1344,2
+#REPLACE tCliAtr.iCdID |FN1344,3
+#REPLACE tCliAtr.sDcObs |FS1344,4
+#REPLACE tCliAtr.dDtData |FD1344,5
+#REPLACE tCliAtr.iFlStatus |FN1344,6

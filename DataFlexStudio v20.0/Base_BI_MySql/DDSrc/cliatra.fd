@@ -1,0 +1,7 @@
+#REPLACE FILE3 cliatra
+#REPLACE cliatra.File_Number |CI3
+#REPLACE cliatra.sCdCodigo |FS3,1
+#REPLACE cliatra.sCdEmpresa |FS3,2
+#REPLACE cliatra.iCdID |FN3,3
+#REPLACE cliatra.sDcOBS |FS3,4
+#REPLACE cliatra.iFlStatus |FN3,5

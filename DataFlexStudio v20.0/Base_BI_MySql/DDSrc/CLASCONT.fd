@@ -1,0 +1,6 @@
+#REPLACE FILE21 clascont
+#REPLACE clascont.Recnum |FN21,0
+#REPLACE clascont.COD |FS21,1
+#REPLACE clascont.DESCR |FS21,2
+#REPLACE clascont.COD1 |FS21,3
+#REPLACE clascont.COD12 |FS21,4

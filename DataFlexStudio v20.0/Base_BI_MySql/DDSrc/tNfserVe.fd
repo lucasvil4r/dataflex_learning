@@ -1,0 +1,9 @@
+#REPLACE FILE41 tnfserve
+#REPLACE tnfserve.Recnum |FN41,0
+#REPLACE tnfserve.sCdNota |FS41,1
+#REPLACE tnfserve.sCdSerie |FS41,2
+#REPLACE tnfserve.iCdVendedor |FS41,3
+#REPLACE tnfserve.sCdEmpresa |FS41,4
+#REPLACE tnfserve.iCdItem |FN41,5
+#REPLACE tnfserve.nPercComiss |FN41,6
+#REPLACE tnfserve.sCdVendAnt |FS41,7

@@ -1,0 +1,12 @@
+[Workspace]
+Home=..\
+AppSrcPath=.\AppSrc
+AppHTMLPath=.\AppHtml
+BitmapPath=.\Bitmaps
+IdeSrcPath=.\IdeSrc
+DataPath=.\Data
+DDSrcPath=.\DDSrc
+HelpPath=.\Help
+ProgramPath=.\Programs
+FileList=.\Filelist.cfg
+Description=Base_BI_MySql_v2
