@@ -1,0 +1,7 @@
+Use cWsTCamEmp.pkg
+
+Handle ghoTCamEmp
+
+// Variavel global para armazenar o objeto
+// de facil acesso a tabela TCamEmp
+Get Create u_cWsTCamEmp to ghoTCamEmp

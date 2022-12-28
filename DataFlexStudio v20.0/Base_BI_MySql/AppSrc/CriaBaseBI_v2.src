@@ -1,0 +1,41 @@
+Use Windows.pkg
+Use cHtmlHelp.pkg
+Use cApplication.pkg
+Use cConnection.pkg
+
+Object oHtmlHelp is a cHtmlHelp
+End_Object
+
+Object oApplication is a cApplication
+
+    Object oConnection is a cConnection
+        Use LoginEncryption.pkg
+        Use DatabaseLoginDialog.dg
+    End_Object
+
+End_Object
+
+Use ObjetosGlobais.pkg
+Use CriaBaseBI_v2.bp
+
+//USUARIO DA ROTINA Do DATAFLEX
+//
+//CRIAR no ODBC com o Nome de :gpcablingbi 
+//
+//servidor:gpcablingbi.mysql.database.azure.com
+//
+//database:powerbi
+//
+//Login:gpcablingbi@gpcablingbi
+//
+//Senha:pJK1jUxEJ9Oigu6dfuOjj*
+//
+//gpcablingbi.mysql.database.azure.com
+//
+//DataBase:powerbi
+//
+//Login:gpcablingbi@gpcablingbi
+//
+//senha:pJK1jUxEJ9Oigu6dfuOjj*
+
+Send DoProcess of oCriaBaseBI_v2

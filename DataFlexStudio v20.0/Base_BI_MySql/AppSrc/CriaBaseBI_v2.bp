@@ -1,0 +1,340 @@
+Use Batchdd.pkg
+
+Declare_Datafile CLASDES
+Declare_Datafile tcamemp
+Declare_Datafile tFatNfVe
+Declare_Datafile tfatnfcven
+Declare_Datafile tNfserVe
+Declare_Datafile Tcomvend
+Declare_Datafile TCliRepr
+
+Struct tTvlorFatu_Vendedores
+    String sNumLanc
+    String sTpLancamento
+    String sEmp
+    String sCdVendedor
+End_Struct
+
+Struct tBiinvoice
+    String Invoice
+    String sCodForn
+    Date dDataVenc
+    Date dDataPagamento
+    Number nValorUS
+End_Struct
+
+Struct tCodeMast
+    String sCode
+    String sType
+    String sDescription
+End_Struct
+
+Struct tClasDes
+    String sCode
+    String sDescricao
+End_Struct
+
+Struct tClasCont
+    String sCode
+    String sCode2
+    String sDescricao
+End_Struct
+
+Struct tDupAtu
+    String sDup
+    String sSerie
+    String sTipo
+End_Struct
+
+Struct tCadProdutos
+    String sCodProduto 
+    String sDescricao  
+    String sCodFabr    
+    String sRef        
+    String sFamilia1   
+    String sFamilia2   
+    String sFamilia3   
+    String sFamilia4   
+    String sFamilia5   
+    String sFamilia6   
+    String sFamilia7   
+    String sFamilia8   
+    String sFamilia9   
+    String sStatus     
+End_Struct
+
+Struct tCadastroCli
+    String sCodCli
+    String sNmNome
+    String sCnpjCpf
+    String sEstado 
+    String sCidade 
+    String sTipo  
+    Date dData
+End_Struct
+
+Struct tFaturamento
+    String sNumLanc           
+    String sTpLancamento      
+    String sEmp               
+    String sEmpOrgVenda       
+    Date   dData              
+    String sDescrLanca        
+    Number nVlLancamento      
+    String sTipoCli           
+    String sEstCli            
+    String sRazao             
+    String sCdClienteForn     
+    String sCPFCNPJ     
+    Integer iCdRepresentante
+End_Struct
+
+Function ToUTF8 Global String sOemString Returns String
+    Pointer aString
+    String sUtf8String
+    Boolean bVoid
+    
+    Move (AddressOf(sOemString)) to aString
+    Move (OemToUtf8Buffer(aString, CStringLength(aString))) to aString
+    Move (PointerToString(aString)) to sUtf8String
+    Move (Free(aString)) to bVoid
+    
+    Function_Return sUtf8String
+End_Function
+
+Function fTiraAcento String sString Returns String
+    Move (Trim(sString)) to sString
+    
+    Move (Replaces("µ",sString,"A")) to sString
+    Move (Replaces(" ",sString,"a")) to sString
+    Move (Replaces("·",sString,"A")) to sString
+    Move (Replaces("…",sString,"a")) to sString
+    Move (Replaces("Ç",sString,"A")) to sString
+    Move (Replaces("Æ",sString,"a")) to sString
+    Move (Replaces("¶",sString,"A")) to sString
+    Move (Replaces("ƒ",sString,"a")) to sString
+    
+    Move (Replaces("Ô",sString,"E")) to sString
+    Move (Replaces("‚",sString,"e")) to sString
+    Move (Replaces("ˆ",sString,"e")) to sString
+    Move (Replaces("Ò",sString,"E")) to sString
+    
+    Move (Replaces("å",sString,"O")) to sString
+    Move (Replaces("ä",sString,"o")) to sString
+    Move (Replaces("â",sString,"O")) to sString
+    Move (Replaces("“",sString,"o")) to sString
+    
+    Move (Replaces("ï",sString,"")) to sString
+    Move (Replaces("^",sString,"")) to sString
+    Move (Replaces("~",sString,"")) to sString
+    Move (Replaces("`",sString,"")) to sString
+    
+    Function_Return sString
+End_Function
+
+Object oCriaBaseBI_v2 is a BusinessProcess
+
+    // Send DoProcess to this BPO to start the business process
+    // DoProcess is a predefined method in the BusinessProcess class
+    // Send DoProcess of oNewBusinessProcess
+
+    // OnProcess
+    // ---------
+    // Place your processing code into Procedure OnProcess
+    // OnProcess is a predefined method in the BusinessProcess class
+
+    Set Allow_Cancel_State to True
+    Set Process_Title to "Atualizando Tabelas BI"
+    Set Process_Caption to "CriaBaseBi"
+    
+    Function Cod_Tipo_Dupli String sTipo String sDescr Date dDataPro Returns String
+        Boolean bChecked
+        
+        Move (Trim(sTipo)) to sTipo
+        Move (Trim(sDescr)) to sDescr
+        
+        Move (Uppercase(sDescr)) to sDescr
+        
+        If (dDataPro <> "") Function_Return "P"
+        If (sTipo = "E") Function_Return "A"
+        If (sTipo = "M") Function_Return "M"
+        If (sTipo = "X") Begin
+            If (sDescr contains "FGTS") Function_Return "I"
+            If (sDescr contains "INSS") Function_Return "I"
+            If (sDescr contains "PIS ") Function_Return "I"
+            If (sDescr contains "ICMS") Function_Return "I"
+            If (sDescr contains "IPI ") Function_Return "I"
+            If (sDescr contains "COFINS") Function_Return "I"
+            If (sDescr contains "IRRF") Function_Return "I"
+            If (sDescr contains "IRPJ") Function_Return "I"
+            If (sDescr contains "CSLL") Function_Return "I"
+            If (sDescr contains "SALARIO") Function_Return "L"
+            If (sDescr contains "SALµRIO") Function_Return "L"
+            Function_Return "O"
+        End
+        If (sDescr contains "POLICOM") Function_Return "T"
+        If (sDescr contains "PARIS CABOS") Function_Return "T"
+        If (sDescr contains "GP CABLING") Function_Return "T"
+        If ((sTipo = "1") or (sTipo = "2") or (sTipo = "S") or (sTipo = "0") or (sTipo = "a")or (sTipo = "b")or (sTipo = "c")or (sTipo = "d")or (sTipo = "e")or (sTipo = "f")or (sTipo = "g")) Function_Return "N"
+        If (sTipo = "W") Function_Return "W"
+        Function_Return "O"
+    End_Function
+
+    Function Descr_Tipo_Dupli String sCod Returns String
+        Boolean bChecked
+        
+        Move (Trim(sCod)) to sCod
+        
+        If (sCod = "N") Function_Return "Notas"
+        If (sCod = "A") Function_Return "Acordos"
+        If (sCod = "M") Function_Return "Comissoes"
+        If (sCod = "I") Function_Return "Impostos"
+        If (sCod = "L") Function_Return "Salarios"
+        If (sCod = "O") Function_Return "Outros"
+        If (sCod = "T") Function_Return "Filiais"
+        If (sCod = "P") Function_Return "Prorrogado"
+        If (scod = "C") Function_Return "Prev. Ped. Compra Nac"
+        If (scod = "D") Function_Return "Prev. Ped. Compra Imp"
+        If (sCod = "F") Function_Return "Invoice"
+        If (sCod = "B") Function_Return "Prev. Impost. Invoice"
+        If (sCod = "E") Function_Return "Prev. Impost. Ped Imp"
+        If (sCod = "W") Function_Return "Prop. Valid/Abert/90% Prob."
+        Function_Return ""
+    End_Function
+
+    Function TiraPonto String sVar Returns String
+        Move (Replaces("/",sVar,"")) to sVar
+        Move (Replaces(".",sVar,"")) to sVar
+        Move (Replaces("-",sVar,"")) to sVar
+        Move (Replaces(" ",sVar,"")) to sVar
+        Function_Return sVar
+    End_Function
+    
+    tCodeMast[] aCodeMast 
+    
+    Function fCodeMast tCodeMast tCode1 tCodeMast tCode2 Returns Integer
+        If ((tCode1.sType = tCode2.sType) and (tCode1.sCode = tCode2.sCode)) Function_Return (EQ)
+    End_Function
+    
+    Function fProcuraCodeMast String sCode String sType Returns String
+         Integer iSearchIndex
+         tCodeMast searchCodeMast
+         
+         Move sCode to searchCodeMast.sCode
+         Move sType to searchCodeMast.sType
+         
+         Move (SearchArray(searchCodeMast,aCodeMast,Self,(RefFunc(fCodeMast)))) to iSearchIndex
+        
+        If (iSearchIndex = -1) Function_Return ""
+        Else                   Function_Return aCodeMast[iSearchIndex].sDescription
+    End_Function
+    
+    tClasDes[] aClasDes
+    
+    Function fClasDes tClasDes tCode1 tClasDes tCode2 Returns Integer
+        If (tCode1.sCode = tCode2.sCode) Function_Return (EQ)
+    End_Function
+    
+    Function fProcuraClasDes String sCode  Returns String
+        Integer iSearchIndex
+        tClasDes searchClasDes
+        
+        Move sCode to searchClasDes.sCode
+        
+        Move (SearchArray(searchClasDes,aClasDes,Self,(RefFunc(fClasDes)))) to iSearchIndex
+        
+        If (iSearchIndex = -1) Function_Return ""
+        Else                   Function_Return (aClasDes[iSearchIndex].sDescricao)
+//        Else                   Function_Return (aClasDes[iSearchIndex].sCode+aClasDes[iSearchIndex].sDescricao)
+    End_Function
+    
+    tClasCont[] aClasCont
+    
+    Function fClasCont tClasCont tCode1 tClasCont tCode2 Returns Integer
+        If (tCode1.sCode2 = tCode2.sCode2) Function_Return (EQ)
+    End_Function
+    
+    Function fProcuraClasCont String sCode2 Returns String
+        Integer iSearchIndex
+        tClasCont searchClasCont
+      
+        Move sCode2 to searchClasCont.sCode2
+         
+        Move (SearchArray(searchClasCont,aClasCont,Self,(RefFunc(fClasCont)))) to iSearchIndex
+        
+        If (iSearchIndex = -1) Function_Return ""
+        Else Function_Return (aClasCont[iSearchIndex].sDescricao)
+//        Else Function_Return (aClasCont[iSearchIndex].sCode2+aClasCont[iSearchIndex].sDescricao)
+    End_Function
+
+    tDupAtu[] aDupAtu
+    
+    Function fDupAtu tDupAtu sDup1 tDupAtu sDup2 Returns Integer
+        If ((sDup1.sDup = sDup2.sDup) and (sDup1.sSerie = sDup2.sSerie) and (sDup1.sTipo = sDup2.sTipo)) Function_Return (EQ)
+    End_Function
+    
+    Function fFazDupAtu String sNup String sSerie String sTipo Returns Boolean
+        Integer iTamArray iSearchIndex
+        tDupAtu searchDupAtu
+        
+        Move (tcamemp.EMP+sNup) to sNup
+        
+        Move sNup   to searchDupAtu.sDup
+        Move sSerie to searchDupAtu.sSerie
+        Move sTipo  to searchDupAtu.sTipo
+        
+        Move (SearchArray(searchDupAtu,aDupAtu,Self,(RefFunc(fDupAtu)))) to iSearchIndex
+        
+        If (iSearchIndex = -1) Begin
+            Move (SizeOfArray(aDupAtu)) to iTamArray
+            Move (sNup)   to aDupAtu[iTamArray].sDup
+            Move (sSerie) to aDupAtu[iTamArray].sSerie
+            Move (sTipo)  to aDupAtu[iTamArray].sTipo
+            Function_Return True
+        End
+        Else Begin
+            Function_Return False
+        End
+    End_Function
+    
+    Procedure pCarregaCodeMast
+        Integer iContArray
+        
+        Close CODEMAST
+        String sCaminho
+        Move (fCaminho(ghoTCamEmp,"PO") + "CODEMAST") to sCaminho
+        Open sCaminho as CodeMast
+        
+        Move (ResizeArray(aCodeMast,0)) to aCodeMast
+        
+        Clear CodeMast
+        Find gt CodeMast by 1
+        
+        While (Found)
+            Move CodeMast.Type        to aCodeMast[iContArray].sType
+            Move CodeMast.Code        to aCodeMast[icontarray].sCode
+            Move CodeMast.Description to aCodeMast[iContArray].sDescription
+            Increment iContArray
+            Find gt CodeMast by Index.1
+        Loop
+        
+        Close CodeMast
+        Open CodeMast
+    End_Procedure
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    
+End_Object
+
+
