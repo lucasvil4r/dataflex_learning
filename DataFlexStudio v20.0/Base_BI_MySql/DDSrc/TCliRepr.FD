@@ -1,6 +1,0 @@
-#REPLACE FILE28 tclirepr
-#REPLACE tclirepr.Recnum |FN28,0
-#REPLACE tclirepr.iCdCodigo |FN28,1
-#REPLACE tclirepr.sDcDesc |FS28,2
-#REPLACE tclirepr.sIDSY |FS28,3
-#REPLACE tclirepr.sCdCliPrincipal |FS28,4
