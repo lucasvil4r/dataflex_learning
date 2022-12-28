@@ -1,0 +1,11 @@
+#REPLACE FILE1021 tItemSer
+#REPLACE tItemSer.Recnum |FN1021,0
+#REPLACE tItemSer.sNumDoc |FS1021,1
+#REPLACE tItemSer.sSerieDoc |FS1021,2
+#REPLACE tItemSer.iItem |FN1021,3
+#REPLACE tItemSer.sCodServ |FS1021,4
+#REPLACE tItemSer.sDescrServ |FS1021,5
+#REPLACE tItemSer.nValorUnit |FN1021,6
+#REPLACE tItemSer.nQuant |FN1021,7
+#REPLACE tItemSer.nValorTot |FN1021,8
+#REPLACE tItemSer.sFabr |FS1021,9

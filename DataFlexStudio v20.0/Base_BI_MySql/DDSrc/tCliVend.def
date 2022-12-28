@@ -1,0 +1,52 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: tCliVend (# 1022)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : tCliVend
+  USER DISPLAY NAME         : tCliVend
+  DATAFLEX FILE NAME        : tCliVend
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 256       ( USED: 171 )
+  MAX NUMBER OF RECORDS     : 100       ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  iCdCodigo        ASC      3     1  1   
+  2  sNmNome          ASC     50     4  2   
+  3  sDcEmail         ASC     60    54      
+  4  sDcRamal         NUM    4.0   114      
+  5  sCdEmpresa       ASC      2   116  1   FILE_211.FIELD_1 (211,1)
+  6  sCdAntigo        ASC      2   118      
+  7  sDcFoto          ASC     30   120      
+  8  nAlComiss        NUM    2.4   150      
+  9  iComiss          NUM    2.0   153      
+ 10  iStatus          NUM    2.0   154      
+ 11  sEmpVend         ASC      2   155      
+ 12  nTipoVend        NUM    2.0   157      
+ 13  sDcCPF           ASC     11   158      
+ 14  iCdID_CotaOnline  NUM    6.0   169      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    iCdCodigo       NO  NO       5      1       2     ON-LINE
+       sCdEmpresa      NO  NO 
+
+  2    iCdCodigo       NO  NO       55     3       3     ON-LINE
+       sNmNome         NO  YES
+       sCdEmpresa      NO  NO 
+
+  3    sNmNome         NO  YES      55     3       3     ON-LINE
+       iCdCodigo       NO  NO 
+       sCdEmpresa      NO  NO 
+

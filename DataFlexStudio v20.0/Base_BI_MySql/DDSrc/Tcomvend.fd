@@ -1,0 +1,10 @@
+#REPLACE FILE312 Tcomvend
+#REPLACE Tcomvend.Recnum |FN312,0
+#REPLACE Tcomvend.iCdComissao |FN312,1
+#REPLACE Tcomvend.iCdItem |FN312,2
+#REPLACE Tcomvend.sCdEmpresa |FS312,3
+#REPLACE Tcomvend.sCdVendedor |FS312,4
+#REPLACE Tcomvend.nPercComiss |FN312,5
+#REPLACE Tcomvend.sCdVendAnt |FS312,6
+#REPLACE Tcomvend.nValorTotalNf |FN312,7
+#REPLACE Tcomvend.nValorComiss |FN312,8

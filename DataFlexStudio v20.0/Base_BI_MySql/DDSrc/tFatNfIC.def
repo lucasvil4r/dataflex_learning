@@ -1,0 +1,154 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: tFatNfIC (# 1002)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : tFatNfIC
+  USER DISPLAY NAME         : tFatNfIC
+  DATAFLEX FILE NAME        : tFatNfIC
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 640       ( USED: 588 )
+  MAX NUMBER OF RECORDS     : 200000    ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  sCdNota          ASC      8     1  1   FILE_303.FIELD_1 (303,1)
+  2  sCdSerie         ASC      1     9  1   FILE_303.FIELD_2 (303,2)
+  3  iCdItem          NUM    4.0    10  1   
+  4  sCdFabricante    ASC      2    12      duppag.FIELD_1 (2,1)
+  5  sCdProduto       ASC      5    14  4   
+  6  sCdSitFisc       ASC      3    19      
+  7  sCdNCM           ASC     10    22      
+  8  sDcDescricao     ASC     35    32      
+  9  sDcObs           ASC     30    67      
+ 10  sCdUnidMed       ASC      2    97      
+ 11  iQtQuantidade    NUM    8.2    99      
+ 12  nVlValUnit       NUM   10.8   104      
+ 13  nVlTotal         NUM   14.2   113      
+ 14  nAlICMS          NUM    2.2   121      
+ 15  nVlICMS          NUM   14.2   123      
+ 16  nAlIPI           NUM    2.2   131      
+ 17  nVlIPI           NUM   14.2   133      
+ 18  nVlIVA           NUM   10.2   141      
+ 19  nDcBaseICMS      NUM   10.2   147      
+ 20  nDcBaseICMSS     NUM   10.2   153      
+ 21  nVlICMSSubst     NUM   10.2   159      
+ 22  iTpControle      ASC      2   165      
+ 23  iQtQtdeEntregue  NUM    8.2   167      
+ 24  sCdNotaRef       ASC      8   172      
+ 25  iCdItemNFRef     NUM    4.0   180      
+ 26  sCdSerieRef      ASC      1   182      
+ 27  dDtEmissaoRef    DAT      6   183      
+ 28  iCdItemPedRef    NUM    4.0   186      
+ 29  iCdPedidoRef     NUM   10.0   188      
+ 30  iQtFaturar       NUM    8.2   193      
+ 31  iQtFaturada      NUM    8.2   198      
+ 32  iStComissaoRep   NUM    2.0   203      
+ 33  iTpNotaRef       NUM    2.0   204      
+ 34  sEstFat          ASC      2   205      
+ 35  sCodCli          ASC      5   207  5   
+ 36  dDataNf          DAT      6   212      
+ 37  nAliIva          NUM    4.4   215      
+ 38  sDcFatCnpj       ASC     14   219      
+ 39  sDcFatInscEst    ASC     25   233      
+ 40  nVlorPis         NUM   10.2   258      
+ 41  nVlorCofins      NUM   10.2   264      
+ 42  sCdCondCli       ASC      1   270      
+ 43  sCdOrigem        ASC      1   271      
+ 44  sCdTributacao    ASC      2   272      
+ 45  nDcBaseIpi       NUM   10.2   274      
+ 46  nDcBasePisCof    NUM   10.2   280      
+ 47  nPrecoOrig       NUM   10.8   286      
+ 48  nVlContabil      NUM   10.2   295      
+ 49  nAliqIcms60      NUM    2.2   301      
+ 50  nVibasest60      NUM   10.2   303      
+ 51  nViIcmsRet60     NUM   10.2   309      
+ 52  nDesconto        NUM   10.2   315      
+ 53  nDespesa         NUM   10.2   321      
+ 54  nFrete           NUM   10.2   327      
+ 55  nSeguro          NUM   10.2   333      
+ 56  sDcGravar        ASC      8   339      
+ 57  sDcClassif       ASC      4   347      
+ 58  sCFOPItem        ASC      4   351  6   
+ 59  nVtot5011        NUM   10.2   355      
+ 60  nVbase5012       NUM   10.2   361      
+ 61  nVicms5013       NUM   10.2   367      
+ 62  nVisen5014       NUM   10.2   373      
+ 63  nVoutr5015       NUM   10.2   379      
+ 64  nAliqicm5016     NUM    2.2   385      
+ 65  nVtot5109        NUM   12.2   387      
+ 66  nVipi5110        NUM   12.2   394      
+ 67  nVisen5111       NUM   12.2   401      
+ 68  nVoutr5112       NUM   12.2   408      
+ 69  nVbase5311       NUM   12.2   415      
+ 70  nViret5312       NUM   12.2   422      
+ 71  vDes5313         NUM   12.2   429      
+ 72  sItem5408        NUM    4.0   436      
+ 73  nQuant5410       NUM   12.4   438      
+ 74  nVcont5411       NUM   12.2   446      
+ 75  nVdesc5412       NUM   12.2   453      
+ 76  nVbase5413       NUM   12.2   460      
+ 77  nVbaseret5414    NUM   12.2   467      
+ 78  nVbaseipiLivr    NUM   12.2   474      
+ 79  nVipi5415        NUM   12.2   481      
+ 80  nAliqicm5416     NUM    2.2   488      
+ 81  sCfopNF          ASC      4   490      
+ 82  nVtot7011        NUM   10.2   494      
+ 83  nVbase7012       NUM   10.2   500      
+ 84  nVicm7013        NUM   10.2   506      
+ 85  nVisen7014       NUM   10.2   512      
+ 86  nVoutr7015       NUM   10.2   518      
+ 87  nAlicmDest       NUM    2.2   524      
+ 88  dDtEntrada       DAT      6   526  3   
+ 89  nBaseOperProp    NUM   12.2   529      
+ 90  nVlorOperProp    NUM   12.2   536      
+ 91  nVlorDiferido    NUM   12.2   543      
+ 92  nDifIcmsLivro    NUM   12.2   550      
+ 93  nVlorII          NUM   12.2   557      
+ 94  nVlorAFRM        NUM   12.2   564      
+ 95  nAliqIcmsFCP     NUM    2.2   571      
+ 96  nValorIcmsFCP    NUM   12.2   573      
+ 97  nAliqIcmsFCPSt   NUM    2.2   580      
+ 98  nValorIcmsFCPSt  NUM   12.2   582      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    sCdNota         NO  YES      11     4       3     ON-LINE
+       sCdSerie        NO  NO 
+       iCdItem         NO  NO 
+
+  2    sCdNota         NO  YES      11     4       3     ON-LINE
+       sCdSerie        NO  NO 
+       iCdItem         NO  NO 
+
+  3    dDtEntrada      NO  NO       14     4       4     ON-LINE
+       sCdNota         NO  YES
+       sCdSerie        NO  NO 
+       iCdItem         NO  NO 
+
+  4    sCdProduto      NO  NO       20     4       5     ON-LINE
+       dDtEntrada      NO  NO 
+       sCdNota         NO  YES
+       sCdSerie        NO  NO 
+       Recnum          NO  NO 
+
+  5    sCodCli         NO  NO       16     4       4     ON-LINE
+       sCdProduto      NO  NO 
+       dDtEntrada      NO  NO 
+       Recnum          NO  NO 
+
+  6    sCFOPItem       NO  NO       15     4       4     ON-LINE
+       sCdProduto      NO  NO 
+       dDtEntrada      NO  NO 
+       Recnum          NO  NO 
+

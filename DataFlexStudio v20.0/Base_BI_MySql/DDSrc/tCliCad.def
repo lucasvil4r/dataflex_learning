@@ -1,0 +1,144 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: tCliCad (# 1019)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : tCliCad
+  USER DISPLAY NAME         : tCliCad
+  DATAFLEX FILE NAME        : tCliCad
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 1280      ( USED: 1156 )
+  MAX NUMBER OF RECORDS     : 100000    ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  iCdCodigo        ASC      5     1  1   
+  2  sNmNome          ASC     60     6  2   
+  3  sNmApelido       ASC     30    66  3   
+  4  sDcTelefone      ASC     13    96      
+  5  sDcEndereco      ASC     60   109      
+  6  sDcBairro        ASC     60   169      
+  7  sDcCidade        ASC     60   229 10   
+  8  sDcEstado        ASC      2   289      
+  9  sDcCep           ASC      8   291  4   
+ 10  sDcPais          ASC      2   299      
+ 11  sDcCnpjCpf       ASC     18   301 11   
+ 12  sDcInscEst       ASC     25   319      
+ 13  sDcOrigem        ASC      1   344      
+ 14  iCdCodRepr       NUM    6.0   345  5   
+ 15  sCdPrefixo       ASC      1   348  7   
+ 16  iCdSufixo        ASC      5   349  8   FILE_213.FIELD_1 (213,1)
+ 17  sCdEmpresa       ASC      2   354  1   FILE_210.FIELD_1 (210,1)
+ 18  iCdVendedor      NUM   10.0   356  6   
+ 19  sDcComentarios   TEX    304   361      
+ 20  dDtCadastro      DAT      6   665  9   
+ 21  dDtAlteracao     DAT      6   668      
+ 22  sCdPreco         ASC      2   671      
+ 23  iTpTipo          NUM    2.0   673 13   
+ 24  iCdTransp        NUM   10.0   674      
+ 25  iCliAgenda       NUM   10.0   679      
+ 26  iCliContato      NUM    2.0   684      
+ 27  sDcRG            ASC     14   685      
+ 28  iCdNatureza      NUM    2.0   699      
+ 29  sDcSiteEmail     ASC     60   700      
+ 30  sDcLogo          ASC     60   760      
+ 31  iFlStatus        NUM    2.0   820 12   
+ 32  iCdFabr          NUM    2.0   821      
+ 33  nVlTotCompra     NUM   10.2   822      
+ 34  dDtUltCompra     DAT      6   828      
+ 35  sFlTipo          ASC      1   831 14   
+ 36  sUsuAlt          ASC     15   832      
+ 37  sUsuCad          ASC     15   847      
+ 38  iCdVendedor2     ASC     10   862      
+ 39  iCdVendedor3     ASC     10   872      
+ 40  sDcZip           ASC     10   882      
+ 41  sDcCustNumber    ASC     30   892      
+ 42  nVlLimiteCred    NUM   10.2   922      
+ 43  nVlMinPedComp    NUM   10.2   928      
+ 44  tCodTemp         NUM    4.0   934      
+ 45  iFlSite          NUM    2.0   936      
+ 46  iConfTipo        NUM    2.0   937      
+ 47  dDataConf        DAT      6   938      
+ 48  sEmailCobranca   ASC    100   941      
+ 49  iTpPagtoNf       NUM    2.0  1041      
+ 50  iBloqTpPagto     NUM    2.0  1042      
+ 51  iProtCliente     NUM    2.0  1043      
+ 52  sEmpPrefCompra   ASC      2  1044      
+ 53  sTpCustoForn     NUM    2.0  1046      
+ 54  bHabilitado      NUM    2.0  1047      
+ 55  sDcNroEnd        ASC     30  1048      
+ 56  sComplEnd        ASC     60  1078      
+ 57  sInscMun         ASC     15  1138      
+ 58  dDtUltProposta   DAT      6  1153      
+ 59  iFlEstrategico   NUM    2.0  1156      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    iCdCodigo       NO  NO       7      3       2     ON-LINE
+       sCdEmpresa      NO  NO 
+
+  2    sNmNome         NO  NO       67     6       3     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdCodigo       NO  NO 
+
+  3    sNmApelido      NO  NO       37     5       3     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdCodigo       NO  NO 
+
+  4    sDcCep          NO  NO       15     4       3     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdCodigo       NO  NO 
+
+  5    iCdCodRepr      NO  NO       10     3       3     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdCodigo       NO  NO 
+
+  6    iCdVendedor     NO  NO       12     4       3     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdCodigo       NO  NO 
+
+  7    sCdPrefixo      NO  NO       8      3       3     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdCodigo       NO  NO 
+
+  8    iCdSufixo       NO  NO       12     4       3     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdCodigo       NO  NO 
+
+  9    dDtCadastro     NO  NO       10     3       3     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdCodigo       NO  NO 
+
+  10   sDcCidade       NO  NO       67     6       3     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdCodigo       NO  NO 
+
+  11   sDcCnpjCpf      NO  NO       25     4       3     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdCodigo       NO  NO 
+
+  12   iFlStatus       NO  NO       8      3       3     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdCodigo       NO  NO 
+
+  13   iTpTipo         NO  NO       8      3       3     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdCodigo       NO  NO 
+
+  14   sFlTipo         NO  NO       8      3       3     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdCodigo       NO  NO 
+
+  15   iCdCodigo       NO  NO       6      3       2     ON-LINE
+       sFlTipo         NO  NO 
+

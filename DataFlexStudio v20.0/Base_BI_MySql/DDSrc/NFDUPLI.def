@@ -1,0 +1,118 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: NFDUPLI (# 47)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : NFDUPLI
+  USER DISPLAY NAME         : NFDUPLI
+  DATAFLEX FILE NAME        : NFDUPLI
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 896       ( USED: 824 )
+  MAX NUMBER OF RECORDS     : 2000000   ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : NO 
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  TNF              ASC      1     1  1   
+  2  NFV              ASC      8     2  1   
+  3  NDUP             ASC      9    10  2   
+  4  DATAE            DAT      6    19  4   
+  5  VTNF             NUM   14.2    22      
+  6  CLIENTE          ASC      5    30  5   duprec.FIELD_1 (1,1)
+  7  VDUP             NUM   14.2    35      
+  8  DATAV            DAT      6    43  3   
+  9  VPAGO            NUM   14.2    46      
+ 10  DATAP            DAT      6    54  6   
+ 11  SALDOP           NUM   14.2    57      
+ 12  ACRESC           NUM   14.2    65      
+ 13  DIASATR          NUM    6.0    73      
+ 14  CLAS             ASC      2    76      
+ 15  DESCR            ASC     25    78      
+ 16  CONTROLE         ASC      1   103      
+ 17  REMESSA          ASC      1   104      
+ 18  NFEND            ASC     45   105      
+ 19  NFBAI            ASC     15   150      
+ 20  NFCID            ASC     24   165      
+ 21  NFEST            ASC      2   189      
+ 22  NFCEP1           ASC      5   191      
+ 23  NFCEP2           ASC      3   196      
+ 24  NFCGC            ASC     18   199      
+ 25  NFIE             ASC     25   217      
+ 26  COBDESCR         ASC     50   242      
+ 27  COBEND           ASC     45   292      
+ 28  COBBAI           ASC     15   337      
+ 29  COBCID           ASC     24   352      
+ 30  COBEST           ASC      2   376      
+ 31  COBCEP1          ASC      5   378      
+ 32  COBCEP2          ASC      3   383      
+ 33  COBCGC           ASC     18   386  7   
+ 34  COBIE            ASC     25   404      
+ 35  FATCOD           ASC      1   429      
+ 36  NUMBANC          ASC     25   430      
+ 37  BANCO            ASC      5   455      
+ 38  DESBAN           ASC     30   460      
+ 39  CODDES           ASC      2   490      
+ 40  CODCON           ASC      2   492      
+ 41  DESCDEV          NUM    8.2   494      
+ 42  DESCFIN          NUM    8.2   499      
+ 43  DESCOUT          NUM    8.2   504      
+ 44  DESCPIS          NUM    8.2   509      
+ 45  DESCCOF          NUM    8.2   514      
+ 46  DESCIRPJ         NUM    8.2   519      
+ 47  DESCCSSL         NUM    8.2   524      
+ 48  TIPODES          ASC      2   529      
+ 49  DESCBAN          NUM    8.2   531      
+ 50  DESCTOT          NUM    8.2   536      
+ 51  OPERADOR         ASC     15   541      
+ 52  DESCCAR          NUM    8.2   556      
+ 53  DATAPRO          DAT      6   561  9   
+ 54  sDcObs           TEX    256   564      
+ 55  dDtAlt           DAT      6   820      
+ 56  iTpPagtoNf       NUM    2.0   823      
+ 57  iStCob           NUM    2.0   824      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    TNF             NO  YES      18     5       3     ON-LINE
+       NFV             NO  YES
+       NDUP            NO  YES
+
+  2    NDUP            NO  YES      12     4       2     ON-LINE
+       Recnum          NO  NO 
+
+  3    DATAV           NO  NO       15     5       3     ON-LINE
+       NDUP            NO  YES
+       Recnum          NO  NO 
+
+  4    DATAE           NO  NO       15     5       3     ON-LINE
+       NDUP            NO  YES
+       Recnum          NO  NO 
+
+  5    CLIENTE         NO  NO       11     4       3     ON-LINE
+       DATAE           NO  NO 
+       Recnum          NO  NO 
+
+  6    DATAP           NO  NO       6      4       2     ON-LINE
+       Recnum          NO  NO 
+
+  7    COBCGC          NO  NO       21     5       2     ON-LINE
+       Recnum          NO  NO 
+
+  8    CLIENTE         NO  NO       20     5       4     ON-LINE
+       DATAV           YES NO 
+       NDUP            NO  NO 
+       Recnum          NO  NO 
+
+  9    DATAPRO         NO  NO       15     5       3     ON-LINE
+       NDUP            NO  YES
+       Recnum          NO  NO 
+

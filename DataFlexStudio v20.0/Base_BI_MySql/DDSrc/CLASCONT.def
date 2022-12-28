@@ -1,0 +1,39 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: CLASCONT (# 1008)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : CLASCONT
+  USER DISPLAY NAME         : CLASCONT
+  DATAFLEX FILE NAME        : CLASCONT
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 39        ( USED: 38 )
+  MAX NUMBER OF RECORDS     : 1000      ( USED: 0 )
+  FILE COMPRESSION          : FAST
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  COD              ASC      2     1  1   
+  2  DESCR            ASC     30     3      
+  3  COD1             ASC      2    33  2   FILE_41.FIELD_1 (41,1)
+  4  COD12            ASC      4    35  3   
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    COD             NO  YES      5      2       2     ON-LINE
+       Recnum          NO  NO 
+
+  2    COD1            NO  YES      5      2       2     ON-LINE
+       Recnum          NO  NO 
+
+  3    COD12           NO  YES      4      2       1     ON-LINE
+

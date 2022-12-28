@@ -1,0 +1,31 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: tcadvendedor (# 8)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : ODBC_DRV
+  FILE ROOT NAME            : ODBC_DRV:tcadvendedor
+  USER DISPLAY NAME         : tcadvendedor
+  DATAFLEX FILE NAME        : tcadvendedor
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 53        ( USED: 53 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 97 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 1 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=gpcablingBI
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  iCdCodigo        ASC      3     1  1   
+  2  sNmNome          ASC     50     4      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    iCdCodigo       NO  NO       0      0       1     ON-LINE
+

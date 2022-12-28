@@ -1,0 +1,6 @@
+#REPLACE FILE212 TCliRepr
+#REPLACE TCliRepr.Recnum |FN212,0
+#REPLACE TCliRepr.iCdCodigo |FN212,1
+#REPLACE TCliRepr.sDcDesc |FS212,2
+#REPLACE TCliRepr.sIDSY |FS212,3
+#REPLACE TCliRepr.sCdCliPrincipal |FS212,4

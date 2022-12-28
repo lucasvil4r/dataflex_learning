@@ -1,0 +1,86 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:55                                  PAGE:  1
+  FILE DEFINITION FOR FILE: duppag (# 2)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : ODBC_DRV
+  FILE ROOT NAME            : ODBC_DRV:duppag
+  USER DISPLAY NAME         : duppag
+  DATAFLEX FILE NAME        : duppag
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 396       ( USED: 396 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 76940 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 1 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=gpcablingBI
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  sNumDup          ASC     10     1  1   
+  2  sCdCliente       ASC      5    11      
+  3  sRazaoSocial     ASC     60    16      
+  4  nVDup            NUM    8.2    76      
+  5  nVPago           NUM    8.2    88      
+  6  nSaldoDup        NUM    8.2   100      
+  7  dDataVencimento  DAT     10   112      
+  8  dDataPago        DAT     10   128      
+  9  dDataProrrogado  DAT     10   144      
+ 10  sCnpjCPF         ASC     14   160      
+ 11  sEmp             ASC      2   174  1   
+ 12  dDataEmis        DAT     10   176      
+ 13  sTnf             ASC      1   192  1   
+ 14  sNumNF           ASC     10   193      
+ 15  dDataAtu         DAT     10   203  2   
+ 16  iBaxadoPerda     NUM    1.0   219      
+ 17  sOcorrencia      ASC     50   225      
+ 18  nDesc_Financeiro  NUM    8.2   275      
+ 19  nDesc_Devolucao  NUM    8.2   287      
+ 20  nDesc_Marketing  NUM    8.2   299      
+ 21  nDesc_Bancario   NUM    8.2   311      
+ 22  nDesc_Outros     NUM    8.2   323      
+ 23  nDesc_Total      NUM    8.2   335      
+ 24  sBanco           ASC      5   347      
+ 25  sCategoria       ASC     45   352      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    sNumDup         NO  NO       0      0       3     ON-LINE
+       sTnf            NO  NO 
+       sEmp            NO  NO 
+
+  2    sEmp            NO  NO       0      0       4     ON-LINE
+       dDataAtu        NO  NO 
+       sNumDup         NO  NO 
+       sTnf            NO  NO 
+
+  3    dDataAtu        NO  NO       0      0       4     ON-LINE
+       sNumDup         NO  NO 
+       sTnf            NO  NO 
+       sEmp            NO  NO 
+
+  4    sCdCliente      NO  NO       0      0       4     ON-LINE
+       sNumDup         NO  NO 
+       sTnf            NO  NO 
+       sEmp            NO  NO 
+
+  5    dDataPago       NO  NO       0      0       4     ON-LINE
+       sNumDup         NO  NO 
+       sTnf            NO  NO 
+       sEmp            NO  NO 
+
+  6    dDataVencimento NO  NO       0      0       4     ON-LINE
+       sNumDup         NO  NO 
+       sTnf            NO  NO 
+       sEmp            NO  NO 
+
+  7    dDataEmis       NO  NO       0      0       4     ON-LINE
+       sNumDup         NO  NO 
+       sTnf            NO  NO 
+       sEmp            NO  NO 
+

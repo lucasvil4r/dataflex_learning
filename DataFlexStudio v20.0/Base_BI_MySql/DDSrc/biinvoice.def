@@ -1,0 +1,35 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: biinvoice (# 12)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : ODBC_DRV
+  FILE ROOT NAME            : ODBC_DRV:biinvoice
+  USER DISPLAY NAME         : biinvoice
+  DATAFLEX FILE NAME        : biinvoice
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 95        ( USED: 95 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 21 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 1 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=gpcablingBI
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  Invoice          ASC     30     1  1   
+  2  sCodForn         ASC      5    31      
+  3  dDataVenc        DAT     10    36      
+  4  dDataPagamento   DAT     10    52      
+  5  nValorUS         NUM    8.2    68      
+  6  dDataAtu         DAT     10    80      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    Invoice         NO  NO       0      0       1     ON-LINE
+

@@ -1,0 +1,47 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: tfatnfcven (# 1024)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : tfatnfcven
+  USER DISPLAY NAME         : tfatnfcven
+  DATAFLEX FILE NAME        : tfatnfcven
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 21        ( USED: 21 )
+  MAX NUMBER OF RECORDS     : 10000     ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  iCdNota          ASC      8     1  1   FILE_303.FIELD_1 (303,1)
+  2  iCdVendedor      ASC      3     9  2   FILE_215.FIELD_1 (215,1)
+  3  sCdEmpresa       ASC      2    12  2   FILE_215.FIELD_5 (215,5)
+  4  iCdItem          NUM    2.0    14  1   
+  5  sCdSerie         ASC      1    15  1   FILE_303.FIELD_2 (303,2)
+  6  nPercComiss      NUM    2.4    16      
+  7  sCdVendAnt       ASC      3    19      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    iCdNota         NO  NO       10     3       3     ON-LINE
+       iCdItem         NO  NO 
+       sCdSerie        NO  NO 
+
+  2    iCdVendedor     NO  NO       14     3       4     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdNota         NO  NO 
+       sCdSerie        NO  NO 
+
+  3    iCdNota         NO  NO       10     3       3     ON-LINE
+       sCdSerie        NO  NO 
+       iCdItem         NO  NO 
+

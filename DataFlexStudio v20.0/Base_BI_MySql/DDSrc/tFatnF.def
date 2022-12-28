@@ -1,0 +1,183 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: tFatnF (# 1003)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : tFatnF
+  USER DISPLAY NAME         : tFatnF
+  DATAFLEX FILE NAME        : tFatnF
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 2048      ( USED: 2031 )
+  MAX NUMBER OF RECORDS     : 1000000   ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  sCdNota          ASC      8     1  1   
+  2  sCdSerie         ASC      1     9  1   
+  3  dDtEmissao       DAT      6    10  4   
+  4  iCdPedido        NUM   10.0    13  3   
+  5  dDtPedido        DAT      6    18      
+  6  iCdCodCFOP       NUM    4.0    21      
+  7  iCdCFOP          NUM    4.0    23      
+  8  sDcClassif       ASC      4    25      
+  9  sDcGravar        ASC      8    29      
+ 10  sCdPrefixo       ASC      1    37      
+ 11  sCdEmpresa       ASC      2    38  2   FILE_207.FIELD_17 (207,17)
+ 12  sCdCliente       ASC      5    40  2   FILE_207.FIELD_1 (207,1)
+ 13  sDcTransporte    ASC      1    45      
+ 14  sCdRepr          NUM    6.0    46      
+ 15  iStFaturamento   NUM    2.0    49      
+ 16  iStSeparacao     NUM    2.0    50      
+ 17  iCdItemVend      NUM    2.0    51      
+ 18  iCdItem          NUM    4.0    52      
+ 19  iCdDig1          NUM    2.0    54      
+ 20  iCdDig2          NUM    2.0    55      
+ 21  iCdDig3          NUM    2.0    56      
+ 22  iCdDig4          NUM    2.0    57      
+ 23  iCdDig5          NUM    2.0    58      
+ 24  iCdDig6          NUM    2.0    59      
+ 25  iCdDig7          NUM    2.0    60      
+ 26  iCdDig8          NUM    2.0    61      
+ 27  iDcPgto          NUM    6.0    62      
+ 28  iDcPgto2         NUM    6.0    65      
+ 29  iDcPgto3         NUM    6.0    68      
+ 30  iDcPgto4         NUM    6.0    71      
+ 31  iDcPgtoParc      NUM    2.0    74      
+ 32  iCdClass1        NUM    2.0    75      
+ 33  iCdClass2        NUM    2.0    76      
+ 34  iCdClass3        NUM    2.0    77      
+ 35  iCdClass4        NUM    2.0    78      
+ 36  iCdTransp        NUM   10.0    79      
+ 37  sDcTranspNome    ASC     40    84      
+ 38  sDcTranspEnd     ASC     45   124      
+ 39  sDcTranspCid     ASC     24   169      
+ 40  sDcTranspEst     ASC      2   193      
+ 41  sDcTranspBai     ASC     15   195      
+ 42  sDcTranspCnpj    ASC     18   210      
+ 43  sDcTranspTel     ASC     13   228      
+ 44  iDcPesoLiq       NUM   10.0   241      
+ 45  iDcPesoBrut      NUM   10.0   246      
+ 46  sDcObs           TEX    352   251      
+ 47  iQtQuantidade    NUM   10.0   603      
+ 48  iTpEspecie       NUM    2.0   608      
+ 49  sDcMarca         ASC     20   609      
+ 50  iDcNumero        NUM   10.0   629      
+ 51  iTpFrete         NUM    2.0   634      
+ 52  nVlBaseICMS      NUM   14.2   635      
+ 53  nVlBaseICMSSub   NUM   14.2   643      
+ 54  nVlTotalICMS     NUM   14.2   651      
+ 55  nVlTotalICMSSub  NUM   14.2   659      
+ 56  nVlTotalIPI      NUM   14.2   667      
+ 57  nVlTotalProd     NUM   14.2   675      
+ 58  nVlTotalNota     NUM   14.2   683      
+ 59  sCdNotaRef       ASC      8   691  6   
+ 60  sCdSerieRef      ASC      1   699  6   
+ 61  iTpTipo2         NUM    2.0   700      
+ 62  dDtInicioParc    DAT      6   701      
+ 63  iStStatus        NUM    2.0   704      
+ 64  iTpControle      NUM    2.0   705      
+ 65  iTpEntrega       NUM    2.0   706      
+ 66  sNmLogin         ASC     15   707      
+ 67  iTpNotaRef       NUM    2.0   722      
+ 68  sDcEntEnd        ASC     60   723      
+ 69  sDcEntBai        ASC     60   783      
+ 70  sDcEntCid        ASC     60   843      
+ 71  sDcEntEst        ASC      2   903      
+ 72  sDcEntCep        ASC      8   905      
+ 73  sDcCobEnd        ASC     60   913      
+ 74  sDcCobBai        ASC     60   973      
+ 75  sDcCobCid        ASC     60  1033      
+ 76  sDcCobEst        ASC      2  1093      
+ 77  sDcCobCep        ASC      8  1095      
+ 78  sDcCobCnpj       ASC     14  1103      
+ 79  sDcCobRg         ASC     15  1117      
+ 80  sDcCobInsctEst   ASC     25  1132      
+ 81  sDcCobPais       ASC      2  1157      
+ 82  sDcCobNatureza   ASC      1  1159      
+ 83  sDcFatEnd        ASC     60  1160      
+ 84  sDcFatBai        ASC     60  1220      
+ 85  sDcFatCid        ASC     60  1280      
+ 86  sDcFatEst        ASC      2  1340      
+ 87  sDcFatPais       ASC      2  1342      
+ 88  sDcFatCep        ASC      8  1344      
+ 89  sDcFatCnpj       ASC     14  1352      
+ 90  sDcFatRg         ASC     15  1366      
+ 91  sDcFatInscEst    ASC     25  1381      
+ 92  nVlorContabil    NUM   10.2  1406      
+ 93  nBsIcmsNorSint   NUM   10.2  1412      
+ 94  nAliqIcmsSint    NUM    2.0  1418      
+ 95  nVlorIcmsSint    NUM   10.2  1419      
+ 96  nVlorIsentSint   NUM   10.2  1425      
+ 97  nVlorOutrSint    NUM   10.2  1431      
+ 98  nBsIcmsStSint    NUM   10.2  1437      
+ 99  nVlorIcmsStSint  NUM   10.2  1443      
+100  nVlorPis         NUM   10.2  1449      
+101  nVlorCofins      NUM   10.2  1455      
+102  dDataCadastro    DAT      6  1461      
+103  dDataAlteracao   DAT      6  1464      
+104  sHMSAlteracao    ASC     15  1467      
+105  sUsuIdAlter      ASC      2  1482      
+106  sUsuNomeAlt      ASC     30  1484      
+107  sDcEmailNfe      ASC     50  1514      
+108  nValorDesc       NUM   10.2  1564      
+109  nValorDespAc     NUM   10.2  1570      
+110  nValorDifIcms    NUM   10.2  1576      
+111  nValorFrete      NUM   10.2  1582      
+112  nValorSeguro     NUM   10.2  1588      
+113  sOperacao        ASC     60  1594      
+114  sRazao           ASC     60  1654      
+115  nVlTotDupli      NUM   12.2  1714      
+116  sOrigVenda       ASC      1  1721      
+117  iNumOrdemNoSe    NUM    8.0  1722  5   
+118  iForcaSemPisCo   NUM    2.0  1726      
+119  nVlorIcmsIntDest  NUM   10.2  1727      
+120  nVlorIcmsIntRem  NUM   10.2  1733      
+121  nVlorFCPDest     NUM   10.2  1739      
+122  sEmpOrigVe       ASC      2  1745      
+123  iTpPagto         NUM    2.0  1747      
+124  nValorDevIpi     NUM   12.2  1748      
+125  nVlorFcpST       NUM   12.2  1755      
+126  sFatNroEnd       ASC     30  1762      
+127  sFatComplEnd     ASC     60  1792      
+128  sEntNroEnd       ASC     30  1852      
+129  sEntComplEnd     ASC     60  1882      
+130  sCobNroEnd       ASC     30  1942      
+131  sCobComplEnd     ASC     60  1972      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    sCdNota         NO  YES      9      4       2     ON-LINE
+       sCdSerie        NO  NO 
+
+  2    sCdCliente      NO  NO       16     5       4     ON-LINE
+       sCdEmpresa      NO  NO 
+       sCdNota         NO  YES
+       sCdSerie        NO  NO 
+
+  3    iCdPedido       NO  NO       14     4       3     ON-LINE
+       sCdNota         NO  YES
+       sCdSerie        NO  NO 
+
+  4    dDtEmissao      NO  NO       12     4       3     ON-LINE
+       sCdNota         NO  YES
+       sCdSerie        NO  NO 
+
+  5    iNumOrdemNoSe   NO  NO       13     4       3     ON-LINE
+       sCdNota         NO  NO 
+       sCdSerie        NO  NO 
+
+  6    sCdNotaRef      NO  NO       18     5       4     ON-LINE
+       sCdSerieRef     NO  NO 
+       sCdNota         NO  NO 
+       sCdSerie        NO  NO 
+

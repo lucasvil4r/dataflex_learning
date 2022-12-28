@@ -1,0 +1,37 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: cadcliente (# 11)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : ODBC_DRV
+  FILE ROOT NAME            : ODBC_DRV:cadcliente
+  USER DISPLAY NAME         : cadcliente
+  DATAFLEX FILE NAME        : cadcliente
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 178       ( USED: 178 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 46893 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 1 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=gpcablingBI
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  idCadCliente     ASC      5     1  1   
+  2  sNmNome          ASC     60     6      
+  3  sCnpjCPf         ASC     18    66      
+  4  sEstado          ASC      2    84      
+  5  sCidade          ASC     60    86      
+  6  sTipo            ASC      1   146      
+  7  dDataAlt         DAT     10   147      
+  8  dDataAtualizacao  DAT     10   163      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    idCadCliente    NO  NO       0      0       1     ON-LINE
+

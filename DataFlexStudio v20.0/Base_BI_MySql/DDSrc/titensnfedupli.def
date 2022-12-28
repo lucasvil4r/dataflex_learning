@@ -1,0 +1,33 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: titensnfedupli (# 14)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : ODBC_DRV
+  FILE ROOT NAME            : ODBC_DRV:titensnfedupli
+  USER DISPLAY NAME         : titensnfedupli
+  DATAFLEX FILE NAME        : titensnfedupli
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 22        ( USED: 22 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 1 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=gpcablingBI
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  sEmp             ASC      2     1  1   
+  2  sCdnota          ASC      8     3  1   
+  3  nvpago           NUM    8.2    11      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    sEmp            NO  NO       0      0       2     ON-LINE
+       sCdnota         NO  NO 
+

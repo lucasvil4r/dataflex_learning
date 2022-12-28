@@ -1,0 +1,9 @@
+#REPLACE FILE1025 tNfserVe
+#REPLACE tNfserVe.Recnum |FN1025,0
+#REPLACE tNfserVe.sCdNota |FS1025,1
+#REPLACE tNfserVe.sCdSerie |FS1025,2
+#REPLACE tNfserVe.iCdVendedor |FS1025,3
+#REPLACE tNfserVe.sCdEmpresa |FS1025,4
+#REPLACE tNfserVe.iCdItem |FN1025,5
+#REPLACE tNfserVe.nPercComiss |FN1025,6
+#REPLACE tNfserVe.sCdVendAnt |FS1025,7

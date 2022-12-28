@@ -1,0 +1,32 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: tinfatu (# 13)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : ODBC_DRV
+  FILE ROOT NAME            : ODBC_DRV:tinfatu
+  USER DISPLAY NAME         : tinfatu
+  DATAFLEX FILE NAME        : tinfatu
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 72        ( USED: 72 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 5099 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 1 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=gpcablingBI
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  dDataTime        DAT     10     1  1   
+  2  iPeriodo         NUM   10.0    17      
+  3  sObs             ASC     45    28      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    dDataTime       NO  NO       0      0       1     ON-LINE
+

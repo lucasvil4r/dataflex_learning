@@ -1,0 +1,50 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: CI07 (# 1017)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : CI07
+  USER DISPLAY NAME         : CI07
+  DATAFLEX FILE NAME        : CI07
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 46        ( USED: 45 )
+  MAX NUMBER OF RECORDS     : 10000     ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  COD              NUM    4.0     1  2   
+  2  DESCR            ASC     30     3  4   
+  3  COD1             NUM    4.0    33  2   
+  4  COD2             NUM    4.0    35      
+  5  COD3             NUM    4.0    37      
+  6  COD4             NUM    4.0    39      
+  7  COD5             NUM    4.0    41      
+  8  COD6             NUM    4.0    43      
+  9  iOrdem           NUM    2.0    45  5   
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    COD1            NO  NO       2      2       1     ON-LINE
+
+  2    COD             NO  NO       4      2       2     ON-LINE
+       COD1            NO  NO 
+
+  3    COD1            NO  NO       4      2       2     ON-LINE
+       COD             NO  NO 
+
+  4    DESCR           NO  NO       32     4       2     ON-LINE
+       COD             NO  NO 
+
+  5    iOrdem          NO  NO       3      2       2     ON-LINE
+       COD1            NO  NO 
+

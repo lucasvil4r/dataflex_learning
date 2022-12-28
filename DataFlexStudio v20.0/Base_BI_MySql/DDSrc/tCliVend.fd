@@ -1,0 +1,16 @@
+#REPLACE FILE1022 tCliVend
+#REPLACE tCliVend.Recnum |FN1022,0
+#REPLACE tCliVend.iCdCodigo |FS1022,1
+#REPLACE tCliVend.sNmNome |FS1022,2
+#REPLACE tCliVend.sDcEmail |FS1022,3
+#REPLACE tCliVend.sDcRamal |FN1022,4
+#REPLACE tCliVend.sCdEmpresa |FS1022,5
+#REPLACE tCliVend.sCdAntigo |FS1022,6
+#REPLACE tCliVend.sDcFoto |FS1022,7
+#REPLACE tCliVend.nAlComiss |FN1022,8
+#REPLACE tCliVend.iComiss |FN1022,9
+#REPLACE tCliVend.iStatus |FN1022,10
+#REPLACE tCliVend.sEmpVend |FS1022,11
+#REPLACE tCliVend.nTipoVend |FN1022,12
+#REPLACE tCliVend.sDcCPF |FS1022,13
+#REPLACE tCliVend.iCdID_CotaOnline |FN1022,14

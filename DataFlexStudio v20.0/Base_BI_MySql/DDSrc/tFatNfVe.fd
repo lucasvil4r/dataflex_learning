@@ -1,0 +1,11 @@
+#REPLACE FILE1023 tFatNfVe
+#REPLACE tFatNfVe.Recnum |FN1023,0
+#REPLACE tFatNfVe.sCdNota |FS1023,1
+#REPLACE tFatNfVe.sCdSerie |FS1023,2
+#REPLACE tFatNfVe.iCdVendedor |FS1023,3
+#REPLACE tFatNfVe.sCdEmpresa |FS1023,4
+#REPLACE tFatNfVe.iCdItem |FN1023,5
+#REPLACE tFatNfVe.nPercComiss |FN1023,6
+#REPLACE tFatNfVe.sCdVendAnt |FS1023,7
+#REPLACE tFatNfVe.sNumNfServ |FS1023,8
+#REPLACE tFatNfVe.sSerieServ |FS1023,9

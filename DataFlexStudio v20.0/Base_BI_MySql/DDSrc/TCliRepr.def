@@ -1,0 +1,38 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: TCliRepr (# 212)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : TCliRepr
+  USER DISPLAY NAME         : TCliRepr
+  DATAFLEX FILE NAME        : TCliRepr
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 46        ( USED: 43 )
+  MAX NUMBER OF RECORDS     : 1000      ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  iCdCodigo        NUM    6.0     1  1   
+  2  sDcDesc          ASC     25     4  2   
+  3  sIDSY            ASC     10    29  3   
+  4  sCdCliPrincipal  ASC      5    39      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    iCdCodigo       NO  NO       3      2       1     ON-LINE
+
+  2    sDcDesc         NO  NO       25     3       1     ON-LINE
+
+  3    sIDSY           NO  NO       13     2       2     ON-LINE
+       iCdCodigo       NO  NO 
+

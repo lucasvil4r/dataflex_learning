@@ -1,0 +1,47 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: Tcomvend (# 312)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : Tcomvend
+  USER DISPLAY NAME         : Tcomvend
+  DATAFLEX FILE NAME        : Tcomvend
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 32        ( USED: 30 )
+  MAX NUMBER OF RECORDS     : 10000     ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  iCdComissao      NUM    8.0     1  1   FILE_310.FIELD_1 (310,1)
+  2  iCdItem          NUM    2.0     5  1   
+  3  sCdEmpresa       ASC      2     6  2   FILE_215.FIELD_5 (215,5)
+  4  sCdVendedor      ASC      3     8  2   FILE_215.FIELD_1 (215,1)
+  5  nPercComiss      NUM    2.4    11      
+  6  sCdVendAnt       ASC      3    14      
+  7  nValorTotalNf    NUM   12.2    17      
+  8  nValorComiss     NUM   12.2    24      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    iCdItem         NO  NO       5      2       2     ON-LINE
+       iCdComissao     NO  NO 
+
+  2    sCdVendedor     NO  NO       10     3       4     ON-LINE
+       sCdEmpresa      NO  NO 
+       iCdItem         NO  NO 
+       iCdComissao     NO  NO 
+
+  3    iCdComissao     NO  NO       9      3       3     ON-LINE
+       sCdEmpresa      NO  NO 
+       sCdVendedor     NO  NO 
+

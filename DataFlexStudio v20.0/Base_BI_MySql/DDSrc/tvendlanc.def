@@ -1,0 +1,37 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: tvendlanc (# 9)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : ODBC_DRV
+  FILE ROOT NAME            : ODBC_DRV:tvendlanc
+  USER DISPLAY NAME         : tvendlanc
+  DATAFLEX FILE NAME        : tvendlanc
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 140       ( USED: 140 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 1 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=gpcablingBI
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  sNumLanc         ASC     45     1  1   
+  2  sTpLancamento    ASC     45    46  1   
+  3  sEmp             ASC      2    91  1   
+  4  iCdVendedor      ASC      3    93  1   
+  5  sOperacao        ASC     45    96      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    sNumLanc        NO  NO       0      0       4     ON-LINE
+       sTpLancamento   NO  NO 
+       sEmp            NO  NO 
+       iCdVendedor     NO  NO 
+

@@ -1,0 +1,64 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: DESPESA (# 1006)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : DESPESA
+  USER DISPLAY NAME         : DESPESA
+  DATAFLEX FILE NAME        : DESPESA
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 1408      ( USED: 1317 )
+  MAX NUMBER OF RECORDS     : 500000    ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : NO 
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  DATA             DAT      6     1  1   
+  2  DESCR            ASC     30     4      
+  3  CLAS             ASC      2    34  2   
+  4  DOC              ASC     10    36      
+  5  VALOR            NUM   14.2    46      
+  6  CONT             ASC      2    54  5   
+  7  LOCAL            ASC      2    56  5   
+  8  BANCO            ASC      5    58      
+  9  TBAIXA           ASC      2    63      
+ 10  OFIC             ASC      1    65      
+ 11  FORNEC           ASC      5    66      
+ 12  INICIAIS         ASC     15    71      
+ 13  NUMDES           ASC      8    86  6   
+ 14  OBS              TEX   1024    94      
+ 15  sArqCompr        ASC    200  1118      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    DATA            NO  NO       6      3       2     ON-LINE
+       Recnum          NO  NO 
+
+  2    CLAS            NO  YES      8      4       3     ON-LINE
+       DATA            NO  NO 
+       Recnum          NO  NO 
+
+  3    DATA            NO  NO       8      4       3     ON-LINE
+       CLAS            NO  YES
+       Recnum          NO  NO 
+
+  4    CLAS            NO  YES      5      3       2     ON-LINE
+       Recnum          NO  NO 
+
+  5    CLAS            NO  YES      12     4       5     ON-LINE
+       CONT            NO  YES
+       LOCAL           NO  YES
+       DATA            NO  NO 
+       Recnum          NO  NO 
+
+  6    NUMDES          NO  YES      8      4       1     ON-LINE
+

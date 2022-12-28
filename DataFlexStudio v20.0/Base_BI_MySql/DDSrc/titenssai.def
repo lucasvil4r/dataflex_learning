@@ -1,0 +1,53 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:55                                  PAGE:  1
+  FILE DEFINITION FOR FILE: titenssai (# 5)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : ODBC_DRV
+  FILE ROOT NAME            : ODBC_DRV:titenssai
+  USER DISPLAY NAME         : titenssai
+  DATAFLEX FILE NAME        : titenssai
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 189       ( USED: 189 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 102734 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 1 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=gpcablingBI
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  sCdNota          ASC      8     1  1   
+  2  iCdItem          ASC     10     9  1   
+  3  sEmp             ASC      2    19  1   
+  4  nQuant           NUM    8.2    21      
+  5  nVlCont          NUM    8.2    33      
+  6  sCFOP            ASC      4    45      
+  7  nIcmsST          NUM    8.2    49      
+  8  sEst             ASC      2    61      
+  9  sCidade          ASC     50    63      
+ 10  sCep             ASC      8   113      
+ 11  sCodCli          ASC      5   121      
+ 12  sCodProd         ASC      5   126      
+ 13  dDataEmis        DAT     10   131  2   
+ 14  bMovEst          NUM    1.0   147      
+ 15  sOperacao        ASC     15   153      
+ 16  dDataAtu         DAT     10   168      
+ 17  bSomaVendaMesal  NUM    1.0   184      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    sCdNota         NO  NO       0      0       3     ON-LINE
+       iCdItem         NO  NO 
+       sEmp            NO  NO 
+
+  2    sEmp            NO  NO       0      0       4     ON-LINE
+       dDataEmis       NO  NO 
+       sCdNota         NO  NO 
+       iCdItem         NO  NO 
+

@@ -1,0 +1,49 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:55                                  PAGE:  1
+  FILE DEFINITION FOR FILE: desp (# 6)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : ODBC_DRV
+  FILE ROOT NAME            : ODBC_DRV:desp
+  USER DISPLAY NAME         : desp
+  DATAFLEX FILE NAME        : desp
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 296       ( USED: 296 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 58060 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 1 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=gpcablingBI
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  iddesp           ASC      8     1  1   
+  2  sDescr           ASC     30     9      
+  3  nValor           NUM    8.2    39      
+  4  sEmp             ASC      2    51  1   
+  5  sClas            ASC     50    53      
+  6  sCont            ASC     50   103      
+  7  dData            DAT     10   153  2   
+  8  dDataAtu         DAT     10   203  3   
+  9  sDoc             ASC     40   253      
+ 10  sClasDes         ASC      2   293      
+ 11  sClasCont        ASC      2   295      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    iddesp          NO  NO       0      0       2     ON-LINE
+       sEmp            NO  NO 
+
+  2    dData           NO  NO       0      0       3     ON-LINE
+       iddesp          NO  NO 
+       sEmp            NO  NO 
+
+  3    dDataAtu        NO  NO       0      0       3     ON-LINE
+       iddesp          NO  NO 
+       sEmp            NO  NO 
+

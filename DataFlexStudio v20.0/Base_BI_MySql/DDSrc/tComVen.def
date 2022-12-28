@@ -1,0 +1,89 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: tComVen (# 1009)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : tComVen
+  USER DISPLAY NAME         : tComVen
+  DATAFLEX FILE NAME        : tComVen
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 512       ( USED: 426 )
+  MAX NUMBER OF RECORDS     : 10000     ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  iCdComissao      NUM    8.0     1  1   
+  2  dDtLancamento    DAT      6     5  2   
+  3  sCdCliente       ASC      5     8  6   
+  4  sCdEmpCliente    ASC      2    13      
+  5  sDcDestCheque    ASC     40    15      
+  6  dDtVencimento    DAT      6    55  3   
+  7  dDtPagto         DAT      6    58  4   
+  8  sDcObs           TEX    128    61      
+  9  nVlBruto         NUM    8.2   189      
+ 10  nVlLiquido       NUM    8.2   194      
+ 11  nVlSaldo         NUM    8.2   199      
+ 12  nAlImpostos      NUM    4.4   204      
+ 13  nVlImpostos      NUM    8.2   208      
+ 14  nVlPago          NUM    8.2   213      
+ 15  dDtRegistro      DAT      6   218      
+ 16  iCdItem          NUM    4.0   221      
+ 17  iStStatus        NUM    2.0   223      
+ 18  iCdVend          NUM    2.0   224      
+ 19  sCodRep          NUM    6.0   225  5   TCliRepr.FIELD_1 (212,1)
+ 20  iQtdItens        NUM    4.0   228      
+ 21  iQtdVend         NUM    4.0   230      
+ 22  sNmSolicitante   ASC     15   232      
+ 23  sNmAprovacao     ASC     15   247      
+ 24  nVlDesconto      NUM    8.2   262      
+ 25  sNumNF           ASC     10   267  7   
+ 26  nPagto1          NUM    4.0   277      
+ 27  nPagto2          NUM    4.0   279      
+ 28  nPagto3          NUM    4.0   281      
+ 29  nPagto4          NUM    4.0   283      
+ 30  nParcelas        NUM    4.0   285      
+ 31  dInicParc        DAT      6   287      
+ 32  sSerie           ASC      1   290  7   
+ 33  sEmailContato    ASC    100   291      
+ 34  sCodContato      ASC      3   391      
+ 35  iEnvNf           NUM    2.0   394      
+ 36  sNumNFServ       ASC     10   395      
+ 37  iCdID_TPropCom   NUM    8.0   405      
+ 38  nVlPagar         NUM    8.2   409      
+ 39  nPcComissao      NUM    4.4   414      
+ 40  nVlTotImpostos   NUM    8.2   418      
+ 41  nPcComissaoLiq   NUM    4.4   423      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    iCdComissao     NO  NO       4      2       1     ON-LINE
+
+  2    dDtLancamento   NO  NO       7      3       2     ON-LINE
+       iCdComissao     NO  NO 
+
+  3    dDtVencimento   NO  NO       7      3       2     ON-LINE
+       iCdComissao     NO  NO 
+
+  4    dDtPagto        NO  NO       7      3       2     ON-LINE
+       iCdComissao     NO  NO 
+
+  5    sCodRep         NO  NO       7      3       2     ON-LINE
+       iCdComissao     NO  NO 
+
+  6    sCdCliente      NO  NO       9      3       2     ON-LINE
+       iCdComissao     NO  NO 
+
+  7    sNumNF          NO  NO       15     3       3     ON-LINE
+       sSerie          NO  NO 
+       iCdComissao     NO  NO 
+

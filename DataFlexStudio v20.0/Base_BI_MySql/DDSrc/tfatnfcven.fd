@@ -1,0 +1,9 @@
+#REPLACE FILE1024 tfatnfcven
+#REPLACE tfatnfcven.Recnum |FN1024,0
+#REPLACE tfatnfcven.iCdNota |FS1024,1
+#REPLACE tfatnfcven.iCdVendedor |FS1024,2
+#REPLACE tfatnfcven.sCdEmpresa |FS1024,3
+#REPLACE tfatnfcven.iCdItem |FN1024,4
+#REPLACE tfatnfcven.sCdSerie |FS1024,5
+#REPLACE tfatnfcven.nPercComiss |FN1024,6
+#REPLACE tfatnfcven.sCdVendAnt |FS1024,7

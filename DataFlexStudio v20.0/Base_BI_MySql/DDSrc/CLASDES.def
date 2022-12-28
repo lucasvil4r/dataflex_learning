@@ -1,0 +1,31 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:56                                  PAGE:  1
+  FILE DEFINITION FOR FILE: CLASDES (# 1007)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : CLASDES
+  USER DISPLAY NAME         : CLASDES
+  DATAFLEX FILE NAME        : CLASDES
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 32        ( USED: 32 )
+  MAX NUMBER OF RECORDS     : 100       ( USED: 0 )
+  FILE COMPRESSION          : FAST
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  COD              ASC      2     1  1   
+  2  DESCR            ASC     30     3      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    COD             NO  YES      2      1       1     ON-LINE
+

@@ -1,0 +1,16 @@
+#REPLACE FILE10 tprodutos
+#REPLACE tprodutos.File_Number |CI10
+#REPLACE tprodutos.sCodProduto |FS10,1
+#REPLACE tprodutos.sDescricao |FS10,2
+#REPLACE tprodutos.sCodFabr |FS10,3
+#REPLACE tprodutos.sRef |FS10,4
+#REPLACE tprodutos.sFamilia1 |FS10,5
+#REPLACE tprodutos.sFamilia2 |FS10,6
+#REPLACE tprodutos.sFamilia3 |FS10,7
+#REPLACE tprodutos.sFamilia4 |FS10,8
+#REPLACE tprodutos.sFamilia5 |FS10,9
+#REPLACE tprodutos.sFamilia6 |FS10,10
+#REPLACE tprodutos.sFamilia7 |FS10,11
+#REPLACE tprodutos.sFamilia8 |FS10,12
+#REPLACE tprodutos.sFamilia9 |FS10,13
+#REPLACE tprodutos.sStatus |FS10,14

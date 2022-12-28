@@ -1,0 +1,34 @@
+-----------------------------------------------------------------------------
+  DATE: 28/12/2022      TIME: 14:55                                  PAGE:  1
+  FILE DEFINITION FOR FILE: cliatra (# 4)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : ODBC_DRV
+  FILE ROOT NAME            : ODBC_DRV:cliatra
+  USER DISPLAY NAME         : cliatra
+  DATAFLEX FILE NAME        : cliatra
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 16412     ( USED: 16412 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 0 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 3 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=gpcablingBI
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  sCdCodigo        ASC      5     1      
+  2  sCdEmpresa       ASC      2     6      
+  3  iCdID            NUM   10.0     8  1   
+  4  sDcOBS           TEX  16383    19      
+  5  iFlStatus        NUM   10.0 16402      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    iCdID           NO  NO       0      0       1     ON-LINE
+
