@@ -8,5 +8,5 @@ DataPath=.\Data
 DDSrcPath=.\DDSrc
 HelpPath=.\Help
 ProgramPath=.\Programs
-FileList=.\Filelist.cfg
+FileList=.\Data\FileList.cfg
 Description=Base_BI_MySql_v2

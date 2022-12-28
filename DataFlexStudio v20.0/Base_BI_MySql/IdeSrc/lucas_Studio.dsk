@@ -1,28 +1,50 @@
 [Workspace]
-CurrentProject=
+CurrentProject=CriaBaseBI_v2.src
 Location=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\IdeSrc\lucas_Studio.dsk
-CreateNew=-1
+CreateNew=5
 [TabWindows]
 GroupCount=1
 HorizontalGroups=1
 [TabGroup0]
 GroupSize=40
-SelectedTab=1
+SelectedTab=3
 [Window0]
+Filename=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\AppSrc\CriaBaseBI_v2.bp
+ViewType=1
+Top=21
+Left=0
+Bottom=892
+Right=1393
+CursorLine=134
+CursorColumn=21
+TabIndex=2
+TabGroup=0
+[Window1]
+Filename=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\AppSrc\CriaBaseBI_v2.src
+ViewType=1
+Top=21
+Left=0
+Bottom=892
+Right=1393
+CursorLine=41
+CursorColumn=0
+TabIndex=1
+TabGroup=0
+[Window2]
 Filename=Workspace Dashboard
 ViewType=101
 Top=21
 Left=0
 Bottom=892
-Right=1396
+Right=1393
 TabIndex=0
 TabGroup=0
-[Window1]
+[Window3]
 Filename=Start Center
 ViewType=100
 Top=21
 Left=0
 Bottom=892
-Right=1396
-TabIndex=1
+Right=1393
+TabIndex=3
 TabGroup=0

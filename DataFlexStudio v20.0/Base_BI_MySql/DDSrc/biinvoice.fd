@@ -1,8 +1,8 @@
-#REPLACE FILE1 biinvoice
-#REPLACE biinvoice.File_Number |CI1
-#REPLACE biinvoice.Invoice |FS1,1
-#REPLACE biinvoice.sCodForn |FS1,2
-#REPLACE biinvoice.dDataVenc |FD1,3
-#REPLACE biinvoice.dDataPagamento |FD1,4
-#REPLACE biinvoice.nValorUS |FN1,5
-#REPLACE biinvoice.dDataAtu |FD1,6
+#REPLACE FILE12 biinvoice
+#REPLACE biinvoice.File_Number |CI12
+#REPLACE biinvoice.Invoice |FS12,1
+#REPLACE biinvoice.sCodForn |FS12,2
+#REPLACE biinvoice.dDataVenc |FD12,3
+#REPLACE biinvoice.dDataPagamento |FD12,4
+#REPLACE biinvoice.nValorUS |FN12,5
+#REPLACE biinvoice.dDataAtu |FD12,6
