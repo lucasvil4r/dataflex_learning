@@ -7,17 +7,15 @@ GroupCount=1
 HorizontalGroups=1
 [TabGroup0]
 GroupSize=40
-SelectedTab=3
+SelectedTab=2
 [Window0]
-Filename=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\AppSrc\CriaBaseBI_v2.bp
-ViewType=1
+Filename=Workspace Dashboard
+ViewType=101
 Top=21
 Left=0
 Bottom=892
-Right=1393
-CursorLine=134
-CursorColumn=21
-TabIndex=2
+Right=1351
+TabIndex=0
 TabGroup=0
 [Window1]
 Filename=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\AppSrc\CriaBaseBI_v2.src
@@ -25,26 +23,19 @@ ViewType=1
 Top=21
 Left=0
 Bottom=892
-Right=1393
-CursorLine=41
+Right=1351
+CursorLine=40
 CursorColumn=0
 TabIndex=1
 TabGroup=0
 [Window2]
-Filename=Workspace Dashboard
-ViewType=101
+Filename=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\AppSrc\CriaBaseBI_v2.bp
+ViewType=1
 Top=21
 Left=0
 Bottom=892
-Right=1393
-TabIndex=0
-TabGroup=0
-[Window3]
-Filename=Start Center
-ViewType=100
-Top=21
-Left=0
-Bottom=892
-Right=1393
-TabIndex=3
+Right=1351
+CursorLine=1534
+CursorColumn=79
+TabIndex=2
 TabGroup=0

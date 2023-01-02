@@ -258,7 +258,6 @@ Object oCriaBaseBI_v2 is a BusinessProcess
         Integer iSearchIndex
         tClasCont searchClasCont
       
-        Move sCode2 to searchClasCont.sCode2
          
         Move (SearchArray(searchClasCont,aClasCont,Self,(RefFunc(fClasCont)))) to iSearchIndex
         
@@ -321,20 +320,1599 @@ Object oCriaBaseBI_v2 is a BusinessProcess
         Close CodeMast
         Open CodeMast
     End_Procedure
+    
+    Procedure pCarregaClasDes
+        Integer iContArray
+        
+        Close CLASDES
+        
+        String sCaminho
+        Move (fCaminhoAnt(ghoTCamEmp,"PO") + "clasdes") to sCaminho
+        Open sCaminho as CLASDES
+        
+        Move (ResizeArray(aClasDes,0)) to aClasDes
+        
+        Clear clasdes
+        Find gt clasdes by 1
+        
+        While (Found)
+            Move CLASDES.COD to aClasDes[iContArray].sCode
+            Move CLASdes.DESCR to aClasDes[iContArray].sDescricao
+        
+            Increment iContArray
+
+            Find gt clasdes by 1
+        Loop
+        
+        Close clasdes
+        Open clasdes
+    End_Procedure
+    
+    Procedure pCarregaClasCont
+        Integer iContArray
+        
+        Close clascont
+        
+        String sCaminho
+        Move (fCaminhoAnt(ghoTCamEmp,"PO") + "clascont") to sCaminho
+        Open sCaminho as clascont
+        
+        Move (ResizeArray(aclascont,0)) to aClascont
+        
+        Clear CLASCONT
+        Find gt CLASCONT by 1
+        
+        While (Found)
+            Move CLASCONT.COD to aClasCont[iContArray].sCode
+            Move CLASCONT.COD12 to aClasCont[iContArray].sCode2
+            Move CLASCONT.DESCR to aClasCont[iContArray].sDescricao
+            
+            Increment iContArray
+            
+            Find gt CLASCONT by 1
+        Loop
+        
+        Close CLASCONT
+        Open CLASCONT
+    End_Procedure
+    
+    tCadProdutos[] aCadProdutos
+    
+    Procedure pCadastro_Produtos Date dDataInicio
+        Integer iContArray
+        
+        Close tpro
+        Close CI01
+        Close CI02
+        Close CI03
+        Close CI04
+        Close CI05
+        Close CI06
+        Close CI07
+        Close CI08
+        
+        String sCaminho
+        Move (fCaminhoAnt(ghoTCamEmp,"PO") + "prod") to sCaminho
+        Open sCaminho as tPro        
+        Move (fCaminho(ghoTCamEmp,"PO") + "CI01") to sCaminho
+        Open sCaminho as CI01
+        Move (fCaminho(ghoTCamEmp,"PO") + "CI02") to sCaminho
+        Open sCaminho as CI02
+        Move (fCaminho(ghoTCamEmp,"PO") + "CI03") to sCaminho
+        Open sCaminho as CI03
+        Move (fCaminho(ghoTCamEmp,"PO") + "CI04") to sCaminho
+        Open sCaminho as CI04
+        Move (fCaminho(ghoTCamEmp,"PO") + "CI05") to sCaminho
+        Open sCaminho as CI05
+        Move (fCaminho(ghoTCamEmp,"PO") + "CI06") to sCaminho
+        Open sCaminho as CI06
+        Move (fCaminho(ghoTCamEmp,"PO") + "CI07") to sCaminho
+        Open sCaminho as CI07
+        Move (fCaminho(ghoTCamEmp,"PO") + "CI08") to sCaminho
+        Open sCaminho as CI08
+        
+        Clear tpro
+        Find gt tPro by 1
+        
+        While (Found)
+            Send Update_Status ("Processando Produtos - " + tpro.COD)
+
+            If (tPro.DATAALT >= dDataInicio) Begin
+                Move tPro.COD              to aCadProdutos[iContArray].sCodProduto
+                Move tpro.sDescrCompleta   to aCadProdutos[iContArray].sDescricao  
+                Move tpro.CODFABR          to aCadProdutos[iContArray].sCodFabr    
+                Move tpro.REF              to aCadProdutos[iContArray].sRef 
+                
+                Clear CI01
+                Move TPro.COD1 to CI01.COD
+                Find eq CI01 by 1
+                Move (TRIM(CI01.DESCR))    to aCadProdutos[iContArray].sFamilia1   
+                
+                Clear CI02
+                Move TPro.COD12 to CI02.COD1
+                Find eq CI02 by 1
+                Move (Trim(CI02.DESCR))   to aCadProdutos[iContArray].sFamilia2   
+                
+                Clear CI03
+                Move TPro.COD13 to CI03.COD1
+                Find eq CI03 by 1
+                Move (Trim(CI03.DESCR))    to aCadProdutos[iContArray].sFamilia3   
+            
+                Clear CI04
+                Move TPro.COD14 to CI04.COD1
+                Find eq CI04 by 1
+                Move (Trim(CI04.DESCR))    to aCadProdutos[iContArray].sFamilia4   
+          
+                Clear CI05
+                Move TPro.COD15 to CI05.COD1
+                Find eq CI05 by 1
+                Move (Trim(CI05.DESCR))    to aCadProdutos[iContArray].sFamilia5   
+            
+                Clear CI06
+                Move TPro.COD16 to CI06.COD1
+                Find eq CI06 by 1
+                Move (Trim(CI06.DESCR))    to aCadProdutos[iContArray].sFamilia6   
+                
+                Clear CI07
+                Move TPro.COD17 to CI07.COD1
+                Find eq CI07 by 1
+                Move (Trim(CI07.DESCR))    to aCadProdutos[iContArray].sFamilia7   
+                
+                Clear CI08
+                Move TPro.COD18 to CI08.COD1
+                Find eq CI08 by 1
+                Move (Trim(CI08.DESCR))    to aCadProdutos[iContArray].sFamilia8   
+                         
+                Increment iContArray    
+            End    
+                
+            Find gt tPro by 1    
+        Loop
+        
+        Close tpro
+        Close CI01
+        Close CI02
+        Close CI03
+        Close CI04
+        Close CI05
+        Close CI06
+        Close CI07
+        Close CI08
+        
+        Open tprodutos
+        
+        Move (iContArray-1) to iContArray
+        
+        While (iContArray >=0)
+            Send Update_Status ("Cadastro de Produtos - " + aCadProdutos[iContArray].sCodProduto * (String(iContArray)))
+            
+            Clear tprodutos
+            Move aCadProdutos[iContArray].sCodProduto to tprodutos.sCodProduto
+            Find eq tprodutos by 1
+            
+            If (not(Found)) Clear tprodutos
+            
+            Move aCadProdutos[iContArray].sCodProduto to tprodutos.sCodProduto
+            Move aCadProdutos[iContArray].sDescricao  to tprodutos.sDescricao 
+            Move aCadProdutos[iContArray].sCodFabr    to tprodutos.sCodFabr   
+            Move aCadProdutos[iContArray].sRef        to tprodutos.sRef       
+            Move aCadProdutos[iContArray].sFamilia1   to tprodutos.sFamilia1  
+            Move aCadProdutos[iContArray].sFamilia2   to tprodutos.sFamilia2  
+            Move aCadProdutos[iContArray].sFamilia3   to tprodutos.sFamilia3  
+            Move aCadProdutos[iContArray].sFamilia4   to tprodutos.sFamilia4  
+            Move aCadProdutos[iContArray].sFamilia5   to tprodutos.sFamilia5  
+            Move aCadProdutos[iContArray].sFamilia6   to tprodutos.sFamilia6  
+            Move aCadProdutos[iContArray].sFamilia7   to tprodutos.sFamilia7  
+            Move aCadProdutos[iContArray].sFamilia8   to tprodutos.sFamilia8  
+            Move aCadProdutos[iContArray].sFamilia9   to tprodutos.sFamilia9  
+            Move aCadProdutos[iContArray].sStatus     to tprodutos.sStatus    
+            
+            SaveRecord tprodutos
+            Unlock
+            
+            Decrement iContArray            
+        Loop
+    End_Procedure
+    
+    
+        Procedure pDuplicatas_Recebimentos Date dDataInicio Integer iPeriodo 
+        String sCaminho
+        Boolean bCancel
+        
+        Open tcamemp
+        Clear tcamemp
+        Open duprec
+        
+        Find gt tcamemp by 1
+        
+        While (Found)
+            If ((tcamemp.EMP = "PO") or (tcamemp.EMP = "PE") or (tcamemp.EMP = "PP") or (tcamemp.EMP = "AF")) Begin
+                Set Process_Message to ("Atualizando Duplicatas Recebimento - " + tcamemp.EMP)
+                
+                Close nfdupli
+                Move (Trim(tcamemp.CAMINHOANT)) to sCaminho
+                Move (sCaminho + "nfdupli") to sCaminho
+                Open sCaminho as NFDUPLI
+                
+                Close tfatnf
+                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+                Open (sCaminho + "tFatNf") as tFatNf
+                
+                Close tnfserv
+                Move (Trim(tcamemp.CAMINHOANT)) to sCaminho
+                Open (sCaminho + "\tnfserv") as tnfserv
+            
+                Clear duprec
+                If (iPeriodo = 1) Move (ddatainicio-30) to duprec.dDataAtu
+                Else              Move (ddatainicio) to duprec.dDataAtu
+                Move tcamemp.EMP to duprec.sEmp
+                Find gt duprec by 3
+                
+                While (Found and (tcamemp.EMP = duprec.sEmp))
+                    Send Update_Status ( tcamemp.EMP + " duprec Analisando - " +  (String(duprec.sNumDup)) + " - "+ (String(duprec.dDataAtu)))
+                    
+                    Clear NFDUPLI
+                    Move duprec.sTnf to NFDUPLI.TNF
+                    Move duprec.sNumDup to NFDUPLI.NDUP
+                    Move duprec.sNumNF to NFDUPLI.NFV
+                    Find eq NFDUPLI by 1
+                    
+                    If (not(Found)) Begin
+                        Send Update_Status ( tcamemp.EMP + " duprec Delete - " +  (String(duprec.sNumDup)) + " - "+ (String(duprec.dDataAtu)))
+                        Delete duprec
+                    End
+                    Find gt duprec by 3
+                Loop
+                
+                Clear NFDUPLI
+                Move dDataInicio to NFDUPLI.DATAE
+                Find gt NFDUPLI by 4
+                
+                While (Found)
+                    If (fFazDupAtu(Self,NFDUPLI.NDUP,nfdupli.TNF,"NFDUPLI")) Send Grava_Recebimento 1                    
+                    Find gt NFDUPLI by 4
+                Loop  
+                
+                If (iPeriodo = 1) Begin
+                    Clear NFDUPLI
+                    Move dDataInicio to NFDUPLI.DATAV
+                    Find gt NFDUPLI by 3
+                    
+                    While (Found)                    
+                        If (fFazDupAtu(Self,NFDUPLI.NDUP,nfdupli.TNF,"NFDUPLI")) Send Grava_Recebimento 2                    
+                        Find gt NFDUPLI by Index.3
+                    Loop
+                    
+                    Clear NFDUPLI
+                    Move dDataInicio to NFDUPLI.DATAP
+                    Find gt NFDUPLI by 6
+                    
+                    While (Found)
+                        If (fFazDupAtu(Self,NFDUPLI.NDUP,nfdupli.TNF,"NFDUPLI"))  Send Grava_Recebimento 3                    
+                        Find gt NFDUPLI by Index.6
+                    Loop
+                                        
+                    Clear NFDUPLI
+                    Move dDataInicio to NFDUPLI.DATAPRO
+                    Find gt NFDUPLI by 9
+                    
+                    While (Found)
+                        If (fFazDupAtu(Self,NFDUPLI.NDUP,nfdupli.TNF,"NFDUPLI"))  Send Grava_Recebimento 4                   
+                        Find gt NFDUPLI by Index.9
+                    Loop
+                End
+            End
+            Find gt tcamemp by Index.1            
+        Loop
+                
+        Close tcamemp
+    End_Procedure
+    
+    Function fRetorna_remessas_nfdupli String sCod Returns String
+        Move (Trim(sCod)) to sCod
+        If (sCod = "1") Function_Return "Santander Cob. Bancaria"
+        If (sCod = "2") Function_Return "Bradesco Cob. Bancaria"
+        If (sCod = "3") Function_Return "Banco do Brasil Cob. Bancaria"
+        If (sCod = "4") Function_Return "Itau Cob. Bancaria" 
+        If (sCod = "8") Function_Return "Itau Boleto"
+        If (sCod = "9") Function_Return "Dupli. Antecipada"  
+        Function_Return "NÆo Selecionado" 
+    End_Function
+        
+    Procedure Grava_Recebimento Integer iTipo
+        Boolean bPessoaFisica
+        String sDoc sTipo
+        
+        If (iTipo = 1) Send Update_Status ( tcamemp.EMP + " duprec Update Emissao - " + (String(NFDUPLI.DATAE)))
+        If (iTipo = 2) Send Update_Status ( tcamemp.EMP + " duprec Update Vencimento- " + (String(NFDUPLI.DATAV)))
+        If (iTipo = 3) Send Update_Status ( tcamemp.EMP + " duprec Update Pagamento - " + (String(NFDUPLI.DATAP)))
+        If (iTipo = 4) Send Update_Status ( tcamemp.EMP + " duprec Update Prorrogado - " + (String(NFDUPLI.DATAPRO)))
+         
+        Clear duprec 
+        Move NFDUPLI.NDUP to duprec.sNumDup
+        Move NFDUPLI.TNF  to duprec.sTnf  
+        Move tcamemp.EMP  to duprec.sEmp
+        Find eq duprec by 1
+        
+        If (not(Found)) Clear duprec
+        
+         Move (TiraPonto(Self,NFDUPLI.COBCGC)) to sDoc
+         If ((Length(sDoc)) <= 11) Move True to bPessoaFisica
+         Else                      Move False to bPessoaFisica
+        
+         Move NFDUPLI.NDUP    to duprec.sNumDup         
+         Move tcamemp.EMP     to duprec.sEmp
+         Move NFDUPLI.DATAE   to duprec.dDataEmis
+         Move NFDUPLI.DATAP   to duprec.dDataPago
+         Move NFDUPLI.DATAV   to duprec.dDataVencimento
+         Move NFDUPLI.DATAPRO to duprec.dDataProrrogado
+         Move NFDUPLI.VDUP    to duprec.nVDup
+         Move NFDUPLI.SALDOP  to duprec.nSaldoDup
+         Move NFDUPLI.VPAGO   to duprec.nVPago
+         Move NFDUPLI.CLIENTE to duprec.sCdCliente
+         
+         If (not(bPessoaFisica)) Move (TiraPonto(Self,NFDUPLI.COBCGC)) to duprec.sCnpjCpf  // 000.000.000-00  -  00.000.000/0000-00
+         Else                    Move NFDUPLI.CLIENTE to duprec.sCnpjCpf
+         
+         If (not(bPessoaFisica)) Move NFDUPLI.COBDESCR to duprec.sRazaoSocial
+         Else                    Move NFDUPLI.CLIENTE to duprec.sRazaoSocial
+         
+         Move NFDUPLI.TNF         to duprec.sTnf  
+         Move NFDUPLI.NFV         to duprec.sNumNF
+         Move (CurrentDateTime()) to duprec.dDataAtu
+         Move NFDUPLI.DESCR       to duprec.sOcorrencia
+         Move NFDUPLI.BANCO       to duprec.sBanco
+         Move NFDUPLI.DESCFIN     to duprec.nDesc_Financeiro
+         Move NFDUPLI.DESCDEV     to duprec.nDesc_Devolucao
+         Move NFDUPLI.DESCBAN     to duprec.nDesc_Bancario
+         Move NFDUPLI.DESCOUT     to duprec.nDesc_Outros
+         Move NFDUPLI.DESCTOT     to duprec.nDesc_Total
+         Move NFDUPLI.DESCPIS     to duprec.nDesc_Pis
+         Move NFDUPLI.DESCCOF     to duprec.nDesc_Cof
+         Move NFDUPLI.DESCIRPJ    to duprec.nDesc_IRPJ
+         Move NFDUPLI.DESCCSSL    to duprec.nDesc_CSSL
+        
+        If (NFDUPLI.TNF = "S") Begin 
+            Clear tNfServ
+            Move NFDUPLI.NFV to tNfServ.sNumDoc
+            Move "S"         to tNfServ.sSerieDoc
+            Find eq tNfServ by 1
+            
+            If (Found) Move (fProcuraCodeMast(Self,tNfServ.iTpPagto,"PAGTO")) to duprec.sFormaPagtVenda 
+        End
+        Else If (NFDUPLI.TNF = "A") Move "Contrato" to duprec.sFormaPagtVenda 
+        Else Begin
+            Clear tFatnF
+            Move NFDUPli.NFV to tFatnF.sCdNota
+            Move "1" to tFatnF.sCdSerie
+            Find eq tFatnF by 1
+            
+            If (Found) Move (fProcuraCodeMast(Self,TFATNF.iTpPagto,"PAGTO")) to duprec.sFormaPagtVenda 
+        End
+         
+        If (NFDUPLI.BANCO = "NAOLQ") Begin
+            Move True to duprec.iBaixadoPerda
+            Move 0    to duprec.nVPago
+            Move ""   to duprec.dDataPago
+        End
+        
+        Move (Cod_Tipo_Dupli(Self,NFDUPLI.TNF,NFDUPLI.COBDESCR,NFDUPLI.DATAPRO)) to sTipo
+        Move (Descr_Tipo_Dupli(Self,sTipo)) to duprec.sCategoria
+        Move (fRetorna_remessas_nfdupli(Self,NFDUPLI.REMESSA)) to duprec.sTipoRemessa
+        SaveRecord duprec
+        Unlock
+    End_Procedure
+
+    Procedure pDuplicatas_Pagamento Date dDataInicio Integer iPeriodo
+        String sCaminho
+        Boolean bCancel
+        
+        Open tcamemp
+        Clear tcamemp
+        
+        Open duppag
+        Find gt tcamemp by 1
+        
+        While (Found)
+            If ((tcamemp.EMP = "PO") or (tcamemp.EMP = "PE") or (tcamemp.EMP = "PP") or (tcamemp.EMP = "AF")) Begin
+                Set Process_Message to ("Atualizando Duplicatas Recebimento - " + tcamemp.EMP)
+               
+                Close nfdupcom
+                Move (Trim(tcamemp.CAMINHOANT)) to sCaminho
+                Move (sCaminho + "NFDUPCOM") to sCaminho
+                Open sCaminho as NFDUPCOM
+                
+                Clear duppag
+                If (iPeriodo = 1) Move (ddatainicio-30) to duppag.dDataAtu
+                Else Move ddatainicio to duppag.dDataAtu
+                Move tcamemp.EMP to duppag.sEmp
+                Find gt duppag by 2
+                
+                While (Found and ( tcamemp.EMP = duppag.sEmp))
+                    Send Update_Status ( tcamemp.EMP + " duppag Analisando - " +  (String(duppag.sNumDup)) + " - "+ (String(duppag.dDataAtu)))
+                    Clear NFDUPCOM
+                    Move duppag.sTnf to    NFDUPCOM.TNF
+                    Move duppag.sNumDup to NFDUPCOM.NDUP
+                    Move duppag.sNumNF to  NFDUPCOM.NFV
+                    Find eq NFDUPCOM by 1
+                    
+                    If (not(Found)) Begin
+                        Send Update_Status ( tcamemp.EMP + " duppag Delete - " +  (String(duppag.sNumDup)) + " - "+ (String(duppag.dDataAtu)))
+                        Delete duppag
+                    End
+                    
+                    Find gt duppag by 2
+                Loop
+                
+                Open sCaminho as NFDUPCOM
+                Clear nfdupcom
+                Move dDataInicio to NFDUPCOM.DATAE
+                Find gt NFDUPCOM by 4
+                
+                While (Found)
+                    If (fFazDupAtu(Self,NFDUPCOM.NDUP,NFDUPCOM.TNF,"NFDUPCOM")) Send Grava_Pagamento 1       
+                    Find gt NFDUPCOM by 4
+                Loop
+                
+                If (iPeriodo = 1) Begin
+                    Clear nfdupcom
+                    Move dDataInicio to NFDUPCOM.DATAV
+                    Find gt NFDUPCOM by 3
+                    
+                    While (Found)
+                        If (fFazDupAtu(Self,NFDUPCOM.NDUP,NFDUPCOM.TNF,"NFDUPCOM")) Send Grava_Pagamento 2       
+                        Find gt NFDUPCOM by 3
+                    Loop  
+                    
+                    Clear nfdupcom
+                    Move dDataInicio to NFDUPCOM.DATAP
+                    Find gt NFDUPCOM by 6
+                    
+                    While (Found)
+                        If (fFazDupAtu(Self,NFDUPCOM.NDUP,NFDUPCOM.TNF,"NFDUPCOM")) Send Grava_Pagamento 3       
+                        Find gt NFDUPCOM by 6
+                    Loop  
+                    
+                    Clear nfdupcom
+                    Move dDataInicio to NFDUPCOM.DATAPRO
+                    Find gt NFDUPCOM by 7
+                    
+                    While (Found)
+                        If (fFazDupAtu(Self,NFDUPCOM.NDUP,NFDUPCOM.TNF,"NFDUPCOM")) Send Grava_Pagamento 4      
+                        Find gt NFDUPCOM by 7
+                    Loop  
+                End
+            End
+            Find gt tcamemp by 1            
+        Loop
+        
+        Close tcamemp
+    End_Procedure
    
+    Procedure Grava_Pagamento Integer iTipo
+        String sTipo
+        
+        If (iTipo = 1) Send Update_Status (tcamemp.EMP + " dupPAG Update Emissao - " + (String(NFDUPCOM.DATAE)))
+        If (iTipo = 2) Send Update_Status (tcamemp.EMP + " dupPAG Update Vencimento- " + (String(NFDUPCOM.DATAV)))
+        If (iTipo = 3) Send Update_Status (tcamemp.EMP + " dupPAG Update Pagamento - " + (String(NFDUPCOM.DATAP)))
+        If (iTipo = 4) Send Update_Status (tcamemp.EMP + " dupPAG Update Prorrogado - " + (String(NFDUPCOM.DATAPRO)))
+
+        Clear duppag
+        Move NFDUPCOM.NDUP to duppag.sNumDup
+        Move NFDUPCOM.TNF  to duppag.sTnf  
+        Move tcamemp.EMP  to duppag.sEmp
+        Find eq duppag by 1
+        
+        If (not(Found)) Clear duppag
+        
+        Move NFDUPCOM.NDUP                     to duppag.sNumDup
+        Move tcamemp.EMP                       to duppag.sEmp
+        Move NFDUPCOM.DATAE                    to duppag.dDataEmis
+        Move NFDUPCOM.DATAP                    to duppag.dDataPago
+        Move NFDUPCOM.DATAV                    to duppag.dDataVencimento
+        Move NFDUPCOM.DATAPRO                  to duppag.dDataProrrogado
+        Move NFDUPCOM.VDUP                     to duppag.nVDup
+        Move NFDUPCOM.SALDOP                   to duppag.nSaldoDup
+        Move NFDUPCOM.VPAGO                    to duppag.nVPago
+        Move NFDUPCOM.for                      to duppag.sCdCliente
+        Move (TiraPonto(Self,NFDUPCOM.COBCGC)) to duppag.sCnpjCpf
+        Move NFDUPCOM.COBDESCR                 to duppag.sRazaoSocial
+        Move NFDUPCOM.TNF                      to duppag.sTnf  
+        Move NFDUPCOM.NFV                      to duppag.sNumNF
+        Move (CurrentDateTime())               to duppag.dDataAtu
+        Move NFDUPCOM.DESCR                    to duppag.sOcorrencia
+        Move NFDUPCOM.BANCO                    to duppag.sBanco
+        Move NFDUPCOM.DESCFIN                  to duppag.nDesc_Financeiro
+        Move NFDUPCOM.DESCDEV                  to duppag.nDesc_Devolucao
+        Move NFDUPCOM.DESCMAK                  to duppag.nDesc_Marketing
+        Move NFDUPCOM.DESCBAN                  to duppag.nDesc_Bancario
+        Move NFDUPCOM.DESCOUT                  to duppag.nDesc_Outros
+        Move NFDUPCOM.DESCTOT                  to duppag.nDesc_Total
+        
+        Move (Cod_Tipo_Dupli(Self,NFDUPCOM.TNF,NFDUPCOM.COBDESCR,NFDUPCOM.DATAPRO)) to sTipo
+        Move (Descr_Tipo_Dupli(Self,sTipo)) to duppag.sCategoria 
+        
+        SaveRecord duppag
+        Unlock
+    End_Procedure
    
+    Procedure pItens_Entrada Date dDataInicio Integer iPeriodo
+        String sCaminho
+        Boolean bCancel
+        
+        Open tcamemp
+        Clear tcamemp
+        Find gt tcamemp by 1
+        
+        While (Found)
+            If ((tcamemp.EMP = "PO") or (tcamemp.EMP = "PE") or (tcamemp.EMP = "PP") or (tcamemp.EMP = "AF")) Begin
+                Close titensent
+                Sleep 1
+                Open titensent
+                    
+                Set Process_Message to ("Atualizando Duplicatas Recebimento - " + tcamemp.EMP)
+               
+                Close tFatNfIC
+                Close tfatnfc
+                
+                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+               
+                Open (sCaminho + "tFatNfIc") as tFatNfIC
+                Open (sCaminho + "tFatNfc") as tFatNfC
+                
+                Clear titensent
+                If (iPeriodo = 1) Move (ddatainicio-7) to titensent.dDataEntrada
+                Else              Move ddatainicio to titensent.dDataEntrada
+                Move tcamemp.EMP to titensent.sEmp
+                Find gt titensent by 2
+                
+                While (Found and (tcamemp.EMP = titensent.sEmp))  
+                    Send Update_Status ( tcamemp.EMP + " titensent Delete - " +  (String(titensent.sCodNota)) + " - "+ (String(titensent.dDataEntrada)))
+                    Clear tFatNfIC
+                    Move titensent.sCodNota to tFatNfIC.sCdNota
+                    Move titensent.iCdItem  to tFatNfIC.iCdItem
+                    Move titensent.sSerie   to tFatNfIC.sCdSerie
+                    Find eq tFatNfIC by 1
+                    
+                    If (not(Found)) Begin
+                        Delete titensent
+                    End
+                
+                    Find gt titensent by 2
+                Loop
+                
+                Clear tFatNfC
+                If (iPeriodo = 1) Move (ddatainicio-7) to tFatNfC.dDtEntrada
+                Else              Move ddatainicio     to tFatNfC.dDtEntrada
+                Find gt tFatNfC by 4
+                
+                While (Found)
+                    If (tFatNfC.iStStatus = "2") Begin
+                        Clear tFatNfIC
+                        Move tFatNfC.sCdNota to tFatNfiC.sCdNota
+                        Move tFatNfC.sCdSerie to tFatNfIC.sCdSerie
+                        Find gt tFatNfIC by 1
+                        
+                        While (Found and (tFatNfC.sCdNota = tFatNfiC.sCdNota))
+                            Send pGrava_Entrada_Item
+                            Find gt tFatNfIC by 1    
+                        Loop
+                    End
+                    Find gt tFatNfC by 4
+                Loop
+            End
+            Find gt tcamemp by 1
+        Loop
+            
+        Close tFatNfIC
+        Close tfatnfc
+        Close titensent    
+    End_Procedure
    
+    Procedure pGrava_Entrada_Item
+        Send Update_Status ( tcamemp.EMP + " tItensEntrada Update - " + (String(tFatNfIC.dDtEntrada)) * (String(tFatNfIC.sCdNota)))
+        
+        Clear titensent
+        
+        Move tFatNfIC.sCdNota to titensent.sCodNota
+        Move tFatNfIC.iCdItem to titensent.iCdItem
+        Move tcamemp.EMP to titensent.sEmp
+       
+        Find eq titensent by Index.1
+        If (not(Found)) Clear titensent
+        
+        Move tfatnfic.sCdNota       to titensent.sCodNota 
+        Move tfatnfic.iCdItem       to titensent.iCdItem 
+        Move tcamemp.EMP            to titensent.sEmp 
+        Move tfatnfc.nNumNf         to titensent.sNumNF 
+        Move tfatnfc.sCdSerie       to titensent.sSerie 
+        Move tfatnfic.iQtQuantidade to titensent.nQuant 
+        Move tfatnfic.nVlContabil   to titensent.nVlCont 
+        Move tfatnfic.sCFOPItem     to titensent.sCFOP 
+        Move tfatnfic.nVlICMSSubst  to titensent.nIcmsSt 
+        Move tfatnfic.sEstFat       to titensent.sEst 
+        Move tfatnfc.sDcFatCid      to titensent.sCidade 
+        Move tfatnfc.sDcFatCep      to titensent.sCEP 
+        Move tfatnfic.sCodCli to titensent.sCodCli 
+        Move tfatnfic.sCdProduto to titensent.sCodProd 
+        Move tfatnfic.dDtEntrada to titensent.dDataEntrada 
+        Move (CurrentDateTime()) to titensent.dDataAtu
+        If ((Mid(tFatNfIC.sDcGravar,1,3)) = "E") Move "1" to titensent.bMovEst
+        Else Move 0 to titensent.bMovEst
+        If ((Mid(tFatNfIC.sDcClassif,1,4)) = "P") Move "Compra" to titensent.sOperacao
+          Else If ((Mid(tFatNfIC.sDcClassif,1,4)) = "D") Move "Devolucao" to titensent.sOperacao
+            Else If ((Mid(tFatNfIC.sDcClassif,1,4)) = "R") Move "Remessa" to titensent.sOperacao
+                Else Move "Outros" to titensent.sOperacao
+         
+         SaveRecord titensent
+         Unlock
+    End_Procedure
+    
+    Procedure pItens_Saida Date dDataInicio Integer iPeriodo
+        String sCaminho sCaminhoAnt
+        Boolean bCancel
+        
+        Open tcamemp
+        Clear tcamemp
+        Find gt tcamemp by 1
+        
+        While (Found)
+            If ((tcamemp.EMP = "PO") or (tcamemp.EMP = "PE") or (tcamemp.EMP = "PP") or (tcamemp.EMP = "AF")) Begin
+                Set Process_Message to ("Atualizando Duplicatas Recebimento - " + tcamemp.EMP)
+                
+                Close titenssai
+                Sleep 1
+                Open titenssai
+                
+                Close tFatNfIt
+                Close tfatnf
+                
+                Close tNfServ
+                Close titemSer
+                
+                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+                Move (Trim(tcamemp.CAMINHOANT)) to sCaminhoAnt
+                
+                Open (sCaminho + "tFatNfIt") as tFatNfIt
+                Open (sCaminho + "tFatNf") as tFatNf
+                
+                Open (sCaminhoAnt + "tNfServ") as tNfServ
+                Open (sCaminho + "titemSer") as titemSer
+        
+                Clear titenssai
+                If (iPeriodo = 1) Move (ddatainicio-7) to titenssai.dDataEmis
+                Else              Move ddatainicio     to titenssai.dDataEmis
+                Move tcamemp.EMP to titenssai.sEmp
+                Find gt titenssai by 2
+                
+                While (Found and (tcamemp.EMP = titenssai.sEmp))  
+                    Send Update_Status ( tcamemp.EMP + " titenssai Delete - " +  (String(titenssai.sCdNota)) + " - "+ (String(titenssai.dDataEmis)))
+                    
+                    If ((left(titenssai.sCdNota,1)) <> "S") Begin
+                        Clear tFatNfIT
+                        Move titenssai.sCdNota to tFatNfIT.sCdNota
+                        Move titenssai.iCdItem to tFatNfIT.iCdItem
+                        Move "1"               to tFatNfIT.sCdSerie
+                        Find eq tFatNfIT by 1
+                        If (not(Found)) Begin
+                            Delete titenssai
+                        End
+                    End
+                    Else Begin
+                        Clear tItemSer
+                        Move (Replace("S",titenssai.sCdNota,"")) to tItemSer.sNumDoc
+                        Move titenssai.iCdItem to tItemSer.iItem
+                        Move "S"               to tItemSer.sSerieDoc
+                        Find eq tItemSer by 1
+                        If (not(Found)) Begin
+                            Delete titenssai
+                        End
+                    End
+                    Find gt titenssai by 2
+                Loop
+                
+                Clear tFatNf
+                If (iPeriodo = 1) Move (ddatainicio-7) to tFatNf.dDtEmissao
+                Else Move ddatainicio to tFatNf.dDtEmissao
+                Find gt tFatNf by 4
+                
+                While (Found)
+                    If (tFatNf.iStStatus = "2") Begin
+                        Clear tFatNfIt
+                        Move tFatNf.sCdNota to tFatNfit.sCdNota
+                        Move tFatNf.sCdSerie to tFatNfIt.sCdSerie
+                        Find gt tFatNfIt by 1
+                        
+                        While (Found and (tFatNf.sCdNota = tFatNfit.sCdNota))
+                            Send pGrava_Saida_Item
+                        Find gt tFatNfIt by 1    
+                        Loop
+                    End
+                    Find gt tFatNf by 4
+                Loop
+                  
+                Clear tNfServ
+                If (iPeriodo = 1) Move (ddatainicio-7) to tNfServ.dDataEntrada
+                Else Move ddatainicio to tNfServ.dDataEntrada
+                Find gt tNfServ by 2
+                
+                While (Found)
+                    If ((tNfServ.nSituacao = "2") and (tNfServ.sSerieDoc = "S")) Begin
+                        Clear titemSer
+                        Move tNfServ.sNumDoc to titemSer.sNumDoc
+                        Move tNfServ.sSerieDoc to titemSer.sSerieDoc
+                        Find gt titemSer by Index.1
+                        While (Found and (titemSer.sNumDoc = tNfServ.sNumDoc))
+                            Send pGrava_Saida_Item_Servico
+                        Find gt titemSer by 1    
+                        Loop
+                    End
+                    Find gt tNfServ by 2
+                Loop
+            End
+            Find gt tcamemp by 1
+        Loop
+           
+        Close tFatNfIt
+        Close tfatnf
+        Close titenssai
+    End_Procedure
    
+    Procedure pGrava_Saida_Item
+        Send Update_Status ( tcamemp.EMP + " tItensSaida Update - " + (String(tFatNfIt.dDataNf)) * (String(tFatNfIt.sCdNota)))
+        
+        Clear titenssai
+        Move tFatNfIt.sCdNota to titenssai.sCdNota
+        Move tFatNfIt.iCdItem to titenssai.iCdItem
+        Move tcamemp.EMP      to titenssai.sEmp
+        Find eq titenssai by 1
+        
+        If (not(Found)) Clear titenssai
+                
+        Move tfatnfit.sCdNota       to titenssai.sCdNota 
+        Move tfatnfit.iCdItem       to titenssai.iCdItem 
+        Move tcamemp.EMP            to titenssai.sEmp 
+        Move tfatnfit.iQtQuantidade to titenssai.nQuant 
+        Move tfatnfit.nVlContabil   to titenssai.nVlCont 
+        Move tfatnfit.sCFOPItem     to titenssai.sCFOP 
+        Move tfatnfit.nVlICMSSubst  to titenssai.nIcmsSt 
+        Move tfatnfit.sEstFat       to titenssai.sEst 
+        Move tfatnf.sDcFatCid       to titenssai.sCidade 
+        Move tfatnf.sDcFatCep       to titenssai.sCEP 
+        Move tfatnfiT.sCodCli       to titenssai.sCodCli 
+        Move tfatnfiT.sCdProduto    to titenssai.sCodProd 
+        Move tfatnfiT.dDataNf       to titenssai.dDataEmis 
+        Move (CurrentDateTime()) to titenssai.dDataAtu
+        If ((Mid(tFatNfIC.sDcGravar,1,3)) = "B") Move "1" to titenssai.bMovEst
+        Else                                     Move 0 to titenssai.bMovEst
+        
+        If ((Mid(tFatNfIT.sDcClassif,1,4)) = "P") Move "Venda" to titenssai.sOperacao
+        Else If ((Mid(tFatNfIT.sDcClassif,1,4)) = "D") Move "Devolucao" to titenssai.sOperacao
+        Else If ((Mid(tFatNfIT.sDcClassif,1,4)) = "R") Move "Remessa" to titenssai.sOperacao
+        Else If (((Mid(tFatNfIT.sDcClassif,1,4)) = "X") and ( tFatNfIt.sCFOPItem = "7102")) Move "Venda" to titenssai.sOperacao
+        Else If (((Mid(tFatNfIT.sDcClassif,1,4)) = "X") and ( tFatNfIt.sCFOPItem = "7501")) Move "Venda" to titenssai.sOperacao
+        Else Move "Outros" to titenssai.sOperacao
+        
+        SaveRecord titenssai
+        Unlock
+    End_Procedure
+    
+    Procedure pGrava_Saida_Item_Servico
+        Send Update_Status (tcamemp.EMP + " tItensSaida Update - " + (String(tNfServ.dDataEntrada)) * (String(tItemSer.sNumDoc)))
+        
+        Clear titenssai
+        Move ("S"+(trim(tItemSer.sNumDoc))) to titenssai.sCdNota
+        Move tItemSer.iItem to titenssai.iCdItem
+        Move tcamemp.EMP to titenssai.sEmp
+        Find eq titenssai by 1
+        
+        If (not(Found)) Clear titenssai
+        
+        Move ("S"+(trim(tItemSer.sNumDoc))) to titenssai.sCdNota 
+        Move tItemSer.iItem                 to titenssai.iCdItem 
+        Move tcamemp.EMP                    to titenssai.sEmp 
+        Move tItemSer.nQuant                to titenssai.nQuant 
+        Move tItemSer.nValorTot             to titenssai.nVlCont 
+        Move ""                             to titenssai.sCFOP 
+        Move 0                              to titenssai.nIcmsSt 
+        Move tNfServ.sEstado                to titenssai.sEst 
+        Move tNfServ.sCidade                to titenssai.sCidade 
+        Move tNfServ.sCep                   to titenssai.sCEP 
+        Move tNfServ.sCodForn               to titenssai.sCodCli 
+        Move tItemSer.sCodServ              to titenssai.sCodProd 
+        Move tNfServ.dDataEntrada           to titenssai.dDataEmis 
+        Move (CurrentDateTime())            to titenssai.dDataAtu
+        Move 0                              to titenssai.bMovEst
+        
+        If (tNfServ.sTipoServ = "A1")      Move "Serv Instalacao" to titenssai.sOperacao
+        Else If (tNfServ.sTipoServ = "A3") Move "Serv Ass Tec"    to titenssai.sOperacao
+        Move "Serv Software" to titenssai.sOperacao
+        
+        SaveRecord titenssai
+        Unlock
+    End_Procedure
+    
+    Procedure pDespesas Date dDataInicio 
+        String sCaminho 
+        
+        Open desp
+        Open tcamemp
+        Clear tcamemp
+        
+        Open duprec
+        Find gt tcamemp by 1
+        
+        While (Found)
+            If ((tcamemp.EMP = "PE") or (tcamemp.EMP = "PP") or (tcamemp.EMP = "PO") or (tcamemp.EMP = "AF")) Begin
+                Close despesa
+                Move (Trim(tcamemp.CAMINHOANT)) to sCaminho
+                Open (sCaminho + "\DESPESA") as DESPESA
+                
+                Clear DESPESA
+                Move dDataInicio to DESPESA.DATA
+                Find gt DESPESA by 1
+                
+                While (Found)
+                    Send Grava_Despesa
+                    Find gt DESPESA by 1                
+                Loop      
+            End
+            
+            Close despesa
+            
+            Find gt tcamemp by 1    
+        Loop 
+        
+        Close desp
+        Close DESPESA
+    End_Procedure
    
+    Procedure Grava_Despesa
+        String sCartao
+        
+        Clear desp
+        Move DESPESA.NUMDES to desp.iddesp
+        Move tcamemp.EMP    to desp.sEmp
+        Find eq desp by 1
+        
+        If (not(Found)) Clear desp
+         
+        Send Update_Status ( tcamemp.EMP + " DESPESA Update - " + (String(DESPESA.DATA)) * (String(DESPESA.NUMDES)))
+            
+        Move DESPESA.NUMDES        to desp.iddesp
+        Move tcamemp.EMP           to desp.sEmp
+        Move DESPESA.VALOR         to desp.nValor
+        Move DESPESA.DATA          to desp.dData
+        Move DESPESA.CLAS          to desp.sClasDes
+        Move DESPESA.CONT          to desp.sClasCont
+        Move ""                    to desp.sDescr
+        Move (Trim(DESPESA.DESCR)) to desp.sDescr
+        Move (CurrentDateTime())   to desp.dDataAtu
+        Move despesa.DOC           to desp.sDoc
+        
+        Move (fProcuraClasDes(Self,DESPESA.CLAS))                 to desp.sClas
+        Move (fProcuraClasCont(Self,(DESPESA.CLAS+DESPESA.CONT))) to desp.sCont
+        
+        If ((LEFT(DESPESA.DOC,4)) = "VISA") Begin
+             Move (fProcuraCodeMast(Self,DESPESA.DOC,"CARTOES")) to sCartao
+             Move (Trim(sCartao)) to sCartao
+             If (sCartao <> "") Move ("VISA-"+sCartao) to desp.sDoc 
+             Else               Move ("VISA-"+ (trim(despesa.DOC))) to desp.sDoc 
+        End
+    
+        SaveRecord desp
+        Unlock
+    End_Procedure
+
+    Function fFaturamento tFaturamento tLanc1 tFaturamento tLanc2 Returns Integer
+        If ((tLanc1.sNumLanc = tLanc2.sNumLanc) and (tLanc1.sTpLancamento = tLanc2.sTpLancamento) and (tLanc1.sEmp = tLanc2.sEmp)) Function_Return (EQ)
+    End_Function
+
+    Function fEmpGrupo String sCliente Returns Boolean
+        If (sCliente = "42000") Function_Return False
+        If (sCliente = "21000") Function_Return False
+        If (sCliente = "36000") Function_Return False
+        If (sCliente = "20000") Function_Return False   
+        If (sCliente = "33000") Function_Return False
+        If (sCliente = "41000") Function_Return False
+        If (sCliente = "50001") Function_Return False
+        Function_Return True
+    End_Function
+    
+    // Envio do Tfatnf - Tfatnfc - Tnfserv - TComVen
+    Procedure pFaturamento Date dDataInicio Integer iPeriodo
+        String sCaminho iCont sDoc
+        Date dDataHoje dData
+        Integer iMes iAno iSearchIndex iCount_vtTvlorFatu_Vendedores
+        Boolean bPessoaFisica
+        tFaturamento[] sFaturamento 
+        tFaturamento sAuxFaturamento
+        tTvlorFatu_Vendedores[] vtTvlorFatu_Vendedores
+        
+        Move 0 to iCont
+        Move (CurrentDateTime()) to dDataHoje
+        
+        If (iPeriodo = 2) Begin
+             Move (DateSetDay(dDataHoje,1)) to dData  
+             Move (DateGetMonth(dData)) to iMes
+             Move (DateGetYear(dData)) to iAno
+             
+             If ((iMes = 1) or (iMes = 2) or (iMes = 3)) Begin
+                If (iMes = 1) Move 10 to iMes
+                If (iMes = 2) Move 11 to iMes
+                If (iMes = 3) Move 12 to iMes
+                Move (iAno - 1) to iAno
+             End
+             Else Move (iMes - 3) to iMes
+             
+             Move (DateSetMonth(dData,iMes)) to dData 
+             Move (DateSetYear(dData,iAno)) to dData 
+             
+             Move dData to dDataInicio  
+        End
+        If (iPeriodo = 1) Begin
+             Move (DateSetDay(dDataHoje,1)) to dData  
+             Move (DateGetMonth(dData)) to iMes
+             Move (DateGetYear(dData)) to iAno
+             
+             If (iMes = 1) Begin
+                Move 12 to iMes
+                Move (iAno - 1) to iAno
+             End
+             Else Move (iMes - 1) to iMes
+             
+             Move (DateSetMonth(dData,iMes)) to dData 
+             Move (DateSetYear(dData,iAno)) to dData 
+             
+             Move dData to dDataInicio  
+        End
+        
+        If (dDataInicio < "01/01/2018") Move "01/01/2018" to dDataInicio
+          
+        Open tcamemp
+        Clear tcamemp
+        Find gt tcamemp by Index.1
+        
+        While (Found)
+            If ((tcamemp.EMP = "PO") or (tcamemp.EMP = "PP") or (tcamemp.EMP = "PE")or (tcamemp.EMP = "PA")or (tcamemp.EMP = "PR")or (tcamemp.EMP = "PC") or (tcamemp.EMP = "AF")) Begin
+                // Notas de Saida
+                Close tfatnf
+                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+                Open (sCaminho + "tFatNf") as tFatNf
+                
+                Close tFatNfVe
+                Open (sCaminho + "tFatNfVe") as tFatNfVe
+                
+                Clear tFatnF
+                Move dDataInicio to tfatnf.dDtEmissao
+                Find gt tfatnf by 4
+                
+                While (Found)
+                    Send Update_Status ((tCamEmp.EMP) + (" - ") + (String(tfatnf.dDtEmissao)) + " - Saida")
+                    
+                    If ((TFatNF.iCdDig1 = True) and (tfatnf.iStStatus = "2")) Begin
+                        Move tFatnF.sCdNota         to sFaturamento[iCont].sNumLanc
+                        Move "tfatnf"               to sFaturamento[iCont].sTpLancamento
+                        Move tcamemp.EMP            to sFaturamento[iCont].sEmp
+                        Move tfatnf.sEmpOrigVe      to sFaturamento[iCont].sEmpOrgVenda
+                        Move tfatnf.dDtEmissao      to sFaturamento[iCont].dData
+                        Move "Venda de Mercadorias" to sFaturamento[iCont].sDescrLanca
+                        Move tfatnf.nVlTotalNota    to sFaturamento[iCont].nVlLancamento
+                        Move tFatnF.sCdPrefixo      to sFaturamento[iCont].sTipoCli
+                        Move tFatnF.sDcFatEst       to sFaturamento[iCont].sEstCli
+                        Move tFatnF.sRazao          to sFaturamento[iCont].sRazao
+                        Move tFatnF.sCdCliente      to sFaturamento[iCont].sCdClienteForn
+                        Move tFatnF.sDcFatCnpj      to sFaturamento[iCont].sCPFCNPJ
+                        Move tFatnF.sCdRepr         to sFaturamento[iCont].iCdRepresentante
+                        Increment iCont
+                        
+                        // Vendedores
+                        Clear tFatNfVe
+                        Move tFatnF.sCdNota  to tFatNfVe.sCdNota
+                        Move tFatnF.sCdSerie to tFatNfVe.sCdSerie
+                        Find ge tFatNfVe by 3
+                        
+                        While (Found and (tFatnF.sCdNota = tFatNfVe.sCdNota and tFatnF.sCdSerie = tFatNfVe.sCdSerie))
+                            Move tFatNfVe.sCdNota     to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sNumLanc
+                            Move "tfatnf"             to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sTpLancamento
+                            Move tcamemp.EMP          to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sEmp
+                            Move tFatNfVe.iCdVendedor to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sCdVendedor
+                            Increment iCount_vtTvlorFatu_Vendedores
+                            Find gt tFatNfVe by 3
+                        Loop  
+                    End
+                    Find gt tfatnf by 4    
+                Loop
+                Close tfatnf
+                Close tFatNfVe 
+        
+                // Notas de Entrada
+                Close tfatnfc
+                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+                Open (sCaminho + "tFatNfc") as tFatNfc
+                
+                Close tfatnfcven
+                Open (sCaminho + "tfatnfcven") as tfatnfcven
+                
+                Clear tfatnfC
+                Move dDataInicio to tfatnfC.dDtEntrada
+                Find gt tfatnfC by 4
+                
+                While (Found)
+                    Send Update_Status ((tCamEmp.EMP) + (" - ") + (String(TFATNFC.dDtEntrada)) + " - Entrada")
+                    
+                    If ((((Right(TFATNFC.sDcClassif,1))  = "D") or (((Right(TFATNFC.iCdCFOP,3))  = "353") and (TFATNFC.iTpNotaRef = 0))) and (tfatnfC.iStStatus = "2")) Begin
+                        Move tFatnFc.sCdNota              to sFaturamento[iCont].sNumLanc
+                        Move "tfatnfc"                    to sFaturamento[iCont].sTpLancamento
+                        Move tcamemp.EMP                  to sFaturamento[iCont].sEmp
+                        Move tfatnfc.sEmpOrigVe           to sFaturamento[iCont].sEmpOrgVenda
+                        Move tfatnfc.dDtEntrada           to sFaturamento[iCont].dData
+                        If ((Right(TFATNFC.iCdCFOP,3))  = "353") Move "Nota de Transporte" to sFaturamento[iCont].sDescrLanca
+                        Else                                     Move "Nota de Devolucao"  to sFaturamento[iCont].sDescrLanca
+                        Move (-(tfatnfc.nVlTotalNota))    to sFaturamento[iCont].nVlLancamento
+                        Move tFatnFc.sCdPrefixo           to sFaturamento[iCont].sTipoCli
+                        Move tFatnFc.sDcFatEst            to sFaturamento[iCont].sEstCli
+                        Move tFatnFc.sRazao               to sFaturamento[iCont].sRazao
+                        Move tFatnFc.sCdCliente           to sFaturamento[iCont].sCdClienteForn
+                        Move tFatnFc.sDcFatCnpj           to sFaturamento[iCont].sCPFCNPJ
+                        Move tFatnFc.sCdRepr              to sFaturamento[iCont].iCdRepresentante
+                        
+                        // Vendedores
+                        Clear tfatnfcven
+                        Move tFatNfC.sCdNota  to tfatnfcven.iCdNota
+                        Move tFatNfC.sCdSerie to tfatnfcven.sCdSerie
+                        Find ge tfatnfcven by 3
+                        
+                        While (Found and (tFatnFc.sCdNota = tfatnfcven.iCdNota and tFatNfC.sCdSerie = tfatnfcven.sCdSerie))
+                            Move tfatnfcven.iCdNota     to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sNumLanc
+                            Move "tfatnfc"              to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sTpLancamento
+                            Move tcamemp.EMP            to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sEmp
+                            Move tfatnfcven.iCdVendedor to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sCdVendedor
+                            Increment iCount_vtTvlorFatu_Vendedores
+                            Find gt tfatnfcven by 3
+                        Loop  
+                        
+                        Increment iCont
+                    End
+                    Find gt tfatnfC by 4    
+                Loop
+                Close tfatnfC
+                Close tfatnfcven
+                    
+                // Notas de Servi‡o
+                Close tnfserv
+                Move (Trim(tcamemp.CAMINHOANT)) to sCaminho
+                Open (sCaminho + "\tnfserv") as tnfserv
+                
+                Close tNfserVe
+                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+                Open (sCaminho + "\tNfserVe") as tNfserVe
+                
+                Clear tNfServ
+                Move dDataInicio to tNfServ.dDataEntrada
+                Find gt tNfServ by 2
+                        
+                While (Found)
+                    Send Update_Status  ((tCamEmp.EMP) + (" - ") + (String(tNfServ.dDataEntrada)) + " - Servico")
+                    If ((tNfServ.sSerieDoc = "S") and ((Left(tNfServ.sTipoServ,1)) = "A") and (fEmpGrupo(Self,tNfServ.sCodForn))) Begin
+                        Move tNfServ.sNumDoc              to sFaturamento[iCont].sNumLanc
+                        Move "tNfServ"                    to sFaturamento[iCont].sTpLancamento
+                        Move tcamemp.EMP                  to sFaturamento[iCont].sEmp
+                        Move ""                           to sFaturamento[iCont].sEmpOrgVenda
+                        Move tNfServ.dDataEntrada         to sFaturamento[iCont].dData
+                        Move "Venda de Servi‡o"           to sFaturamento[iCont].sDescrLanca
+                        Move (tNfServ.nVlorTot)           to sFaturamento[iCont].nVlLancamento
+                        Move ""                           to sFaturamento[iCont].sTipoCli
+                        Move tNfServ.sEstado              to sFaturamento[iCont].sEstCli
+                        Move tNfServ.sRazaoSocial         to sFaturamento[iCont].sRazao
+                        Move tNfServ.sCodForn             to sFaturamento[iCont].sCdClienteForn
+                        Move tNfServ.sCnpjCPF             to sFaturamento[iCont].sCPFCNPJ
+//                        Move tNfServ.iCdRepr              to sFaturamento[iCont].iCdRepresentante // NÆo existe campo de representante em nota de servi‡o
+                        Increment iCont
+                        
+                        // Vendedores
+                        Clear tNfserVe
+                        Move tNfServ.sNumDoc   to tNfserVe.sCdNota
+                        Move tNfServ.sSerieDoc to tNfserVe.sCdSerie
+                        Find ge tNfserVe by 3
+                        
+                        While (Found and (tNfServ.sNumDoc = tNfserVe.sCdNota and tNfServ.sSerieDoc = tNfserVe.sCdSerie))
+                            Move tNfserVe.sCdNota     to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sNumLanc
+                            Move "tNfServ"           to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sTpLancamento
+                            Move tcamemp.EMP          to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sEmp
+                            Move tNfserVe.iCdVendedor to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sCdVendedor
+                            Increment iCount_vtTvlorFatu_Vendedores
+                            Find gt tNfserVe by 3
+                        Loop  
+                    End
+                    
+                    Find gt tNfServ by Index.2   
+                Loop
+                Close tNfServ
+                Close tNfserVe
+                
+                // Comissäes
+                Close TComVen
+                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+                Open (sCaminho + "TComVen") as tComVen
+                
+                Close TComVend
+                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+                Open (sCaminho + "TComVend") as TComVend
+                
+                Clear TCOMVEN
+                Move dDataInicio to TCOMVEN.dDtLancamento
+                Find GT TCOMVEN by Index.2
+                
+                While (Found)
+                    Send Update_Status  ((tCamEmp.EMP) + (" - ") + (String(TCOMVEN.dDtLancamento)) + " - Comissao")
+                    If (TCOMVEN.iStStatus = "1") Begin             
+                        Move TCOMVEN.iCdComissao          to sFaturamento[iCont].sNumLanc
+                        Move "TCOMVEN"                    to sFaturamento[iCont].sTpLancamento
+                        Move tcamemp.EMP                  to sFaturamento[iCont].sEmp
+                        Move ""                           to sFaturamento[iCont].sEmpOrgVenda
+                        Move TCOMVEN.dDtLancamento        to sFaturamento[iCont].dData
+                        Move "ComissÆo de Venda"          to sFaturamento[iCont].sDescrLanca
+                        Move (-(TCOMVEN.nVlSaldo))        to sFaturamento[iCont].nVlLancamento
+                        Move ""                           to sFaturamento[iCont].sTipoCli
+                        Move ""                           to sFaturamento[iCont].sEstCli
+                        Move ""                           to sFaturamento[iCont].sRazao
+                        Move tComVen.sCdCliente           to sFaturamento[iCont].sCdClienteForn
+                        Move ""                           to sFaturamento[iCont].sCPFCNPJ
+                        Move tComVen.sCodRep              to sFaturamento[iCont].iCdRepresentante
+                        Increment iCont 
+                        
+                        // Vendedores
+                        Clear TComVend
+                        Move TCOMVEN.iCdComissao to TComVend.iCdComissao
+                        Find ge TComVend by 3
+                        
+                        While (Found and (TCOMVEN.iCdComissao = TComVend.iCdComissao))
+                            Move TComVend.iCdComissao to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sNumLanc
+                            Move "TCOMVEN"            to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sTpLancamento
+                            Move tcamemp.EMP          to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sEmp
+                            Move TComVend.sCdVendedor to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sCdVendedor
+                            Increment iCount_vtTvlorFatu_Vendedores
+                            Find gt TComVend by 3
+                        Loop  
+                    End
+                    Find GT TCOMVEN by Index.2   
+                Loop
+                Close tComVen
+            End
+            Find gt tcamemp by Index.1
+        Loop
+
+        // Grava‡Æo do array sFaturamento
+        Close tcamemp
+        Open tvlorfatu
+        Clear tvlorfatu
+
+        Clear tvlorfatu
+        Move dDataInicio to tvlorfatu.dData
+        Find gt tvlorfatu by 2
+        
+        While (Found)
+            Send Update_Status  (("Deletando Notas") + (" - ") + (String(tvlorfatu.dData)) * (String(tvlorfatu.sNumLanc)))
+            
+            If ((tvlorfatu.sEmp = "PP") or (tvlorfatu.sEmp = "PO")  or (tvlorfatu.sEmp = "PE") or (tvlorfatu.sEmp = "PA") or (tvlorfatu.sEmp = "PR") or (tvlorfatu.sEmp = "PC") or (tvlorfatu.sEmp = "AF")) Begin
+                Move tvlorfatu.sNumLanc      to sAuxFaturamento.sNumLanc
+                Move tvlorfatu.sTpLancamento to sAuxFaturamento.sTpLancamento
+                Move tvlorfatu.sEmp          to sAuxFaturamento.sEmp
+                
+                Move (SearchArray(sAuxFaturamento,sFaturamento,Self,(RefFunc(fFaturamento)))) to iSearchIndex
+                If (iSearchIndex = -1) Delete tvlorfatu
+            End
+            Find gt tvlorfatu by Index.2    
+        Loop
+
+        While (iCont >= 0)
+            Send Update_Status  ("Gravando Notas" * (sFaturamento[iCont].sEmp) + (" - ") + (String(sFaturamento[iCont].sTpLancamento)) * (String(sFaturamento[iCont].dData)))
+           Clear tvlorfatu    
+            Move sFaturamento[iCont].sNumLanc        to tvlorfatu.sNumLanc            
+            Move sFaturamento[iCont].sTpLancamento   to tvlorfatu.sTpLancamento       
+            Move sFaturamento[iCont].sEmp            to tvlorfatu.sEmp
+            Find eq tvlorfatu by 1
+            
+            If (not(Found)) Begin
+                Clear tvlorfatu
+                Move sFaturamento[iCont].sNumLanc      to tvlorfatu.sNumLanc            
+                Move sFaturamento[iCont].sTpLancamento to tvlorfatu.sTpLancamento       
+                Move sFaturamento[iCont].sEmp          to tvlorfatu.sEmp
+            End
+        
+            Move (TiraPonto(Self,sFaturamento[iCont].sCPFCNPJ)) to sDoc
+            If ((Length(sDoc)) <= 11) Move True to bPessoaFisica
+            Else                      Move False to bPessoaFisica
+            
+            If (not(bPessoaFisica)) Move sFaturamento[iCont].sRazao         to tvlorfatu.sRazao 
+            Else                    Move sFaturamento[iCont].sCdClienteForn to tvlorfatu.sRazao 
+                            
+            Move sFaturamento[iCont].sEmpOrgVenda     to tvlorfatu.sEmpOrgVenda        
+            Move sFaturamento[iCont].dData            to tvlorfatu.dData               
+            Move sFaturamento[iCont].sDescrLanca      to tvlorfatu.sDescrLanca         
+            Move sFaturamento[iCont].nVlLancamento    to tvlorfatu.nVlLancamento       
+            Move sFaturamento[iCont].sTipoCli         to tvlorfatu.sTipoCli            
+            Move sFaturamento[iCont].sEstCli          to tvlorfatu.sEstCli             
+            Move sFaturamento[iCont].sRazao           to tvlorfatu.sRazao              
+            Move sFaturamento[iCont].sCdClienteForn   to tvlorfatu.sCdClienteForn
+            Move sFaturamento[iCont].iCdRepresentante to tvlorfatu.iCdRepresentante            
+            SaveRecord tvlorfatu   
+            
+            Decrement iCont  
+        Loop
+        
+        Close tvlorfatu
+        
+        // Grava‡Æo do array vtTvlorFatu_Vendedores
+        Open tvlorfatu_vendedores
+        
+        For iCount_vtTvlorFatu_Vendedores from 0 to (SizeOfArray(vtTvlorFatu_Vendedores)-1)
+            Send Update_Status  ("Vendedores das Notas -" * vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sEmp * "-" * vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sNumLanc)
+            
+            Clear tvlorfatu_vendedores
+            Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sNumLanc       to tvlorfatu_vendedores.sNumLanc       
+            Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sTpLancamento  to tvlorfatu_vendedores.sTpLancamento
+            Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sEmp           to tvlorfatu_vendedores.sEmp         
+            Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sCdVendedor    to tvlorfatu_vendedores.sCdVendedor  
+            Find eq tvlorfatu_vendedores by 1
+            
+            If (not(Found)) Begin                
+                Clear tvlorfatu_vendedores
+                Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sNumLanc       to tvlorfatu_vendedores.sNumLanc       
+                Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sTpLancamento  to tvlorfatu_vendedores.sTpLancamento
+                Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sEmp           to tvlorfatu_vendedores.sEmp         
+                Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sCdVendedor    to tvlorfatu_vendedores.sCdVendedor  
+                SaveRecord tvlorfatu_vendedores    
+            End
+        Loop
+        
+        Close tvlorfatu_vendedores
+    End_Procedure
+
+    Procedure pCadastro_Clientes
+        Integer iContArray
+        String sDoc
+        Boolean bPessoaFisica
+        Date dData
+        
+        Sysdate dData
+        
+        Move (dData - 30) to dData
+        
+        Close tclicad
+        String sCaminho
+        Move (fCaminho(ghoTCamEmp,"PO") + "tclicad") to sCaminho
+        Open sCaminho as tclicad
+        
+        tCadastroCli[] aCadastroCli 
+        
+        Move (ResizeArray(aCadastroCli,0)) to aCadastroCli
+        
+        Clear tCliCad
+        Find gt tCliCad by 1
+        
+        While (Found)
+            Send Update_Status  ("Lendo TCliCad" * tCliCad.iCdCodigo  + (" - ") + tCliCad.sNmNome)
+            
+            If (tCliCad.dDtAlteracao >= dData) Begin
+                Move tCliCad.iCdCodigo   to aCadastroCli[iContArray].sCodCli
+                Move tCliCad.sNmNome     to aCadastroCli[iContArray].sNmNome
+                Move tCliCad.sDcEstado   to aCadastroCli[iContArray].sEstado
+                Move tCliCad.sDcCidade   to aCadastroCli[iContArray].sCidade
+                Move tCliCad.sFlTipo     to aCadastroCli[iContArray].sTipo  
+                Move tCliCad.dDtAlteracao to aCadastroCli[iContArray].dData
+                
+                Move (TiraPonto(Self,tCliCad.sDcCnpjCpf)) to sDoc
+                
+                If ((Length(sDoc)) <= 11) Move True to bPessoaFisica
+                Else                      Move False to bPessoaFisica
+                
+                If (not(bPessoaFisica)) Begin
+                     Move (TiraPonto(Self,tCliCad.sDcCnpjCpf)) to aCadastroCli[iContArray].sCnpjCpf     // 000.000.000-00  -  00.000.000/0000-00
+                     Move tCliCad.sNmNome     to aCadastroCli[iContArray].sNmNome
+                End
+                Else Begin
+                     Move tCliCad.iCdCodigo to aCadastroCli[iContArray].sCnpjCpf
+                     Move tCliCad.iCdCodigo to aCadastroCli[iContArray].sNmNome
+                End
+                
+                Increment iContArray
+            End
+
+            Find gt tCliCad by 1
+        Loop
+        
+        Close tCliCad
+        Open cadcliente
+        
+        While (iContArray >= 0)
+            Send Update_Status  ("Gravando TClicad" * cadcliente.idCadCliente  + (" - ") + cadcliente.sNmNome)
+            
+            Clear cadcliente
+            Move aCadastroCli[iContArray].sCodCli to cadcliente.idCadCliente 
+            Find eq cadcliente by 1
+            
+            If (not(Found)) Clear cadcliente
+            
+            Move aCadastroCli[iContArray].sTipo    to cadcliente.sTipo
+            Move aCadastroCli[iContArray].sCodCli  to cadcliente.idCadCliente
+            Move aCadastroCli[iContArray].sNmNome  to cadcliente.sNmNome
+            Move aCadastroCli[iContArray].sEstado  to cadcliente.sEstado
+            Move aCadastroCli[iContArray].sCidade  to cadcliente.sCidade
+            Move aCadastroCli[iContArray].sTipo    to cadcliente.sTipo
+            Move aCadastroCli[iContArray].sCnpjCpf to cadcliente.sCnpjCPf
+            Move aCadastroCli[iContArray].dData    to cadcliente.dDataAlt
+            Move (CurrentDateTime())               to cadcliente.dDataAtualizacao
+            
+            SaveRecord cadcliente  
+            Unlock  
+            Decrement iContArray  
+        Loop
+        
+        Close cadcliente
+    End_Procedure
    
-   
-   
-   
-   
-   
-   
-   
+    Procedure pInvoice
+        Integer iContArray
+        tBiinvoice[] aInvoice
+        
+        Close invoice
+        String sCaminho
+        Move (fCaminhoAnt(ghoTCamEmp,"PO") + "invoice") to sCaminho
+        Open sCaminho as invoice
+        Move "01/01/2021" to Invoice.DATA
+        Find gt invoice by 2
+        
+        While (Found)
+            Send Update_Status  ("Lendo Invoice " + (String(invoice.Invoice))  + (" - ") + (String(Invoice.DATA)))
+            
+            Move invoice.Invoice   to aInvoice[iContArray].Invoice
+            Move Invoice.sCdFornec to aInvoice[iContArray].sCodForn
+            Move Invoice.DATAV     to aInvoice[iContArray].dDataVenc
+            Move Invoice.PAGAM     to aInvoice[iContArray].dDataPagamento
+            Move Invoice.VALOR     to aInvoice[iContArray].nValorUS
+            Increment iContArray
+            
+            Find gt invoice by 2    
+        Loop
+        
+        Close invoice
+        
+        Open biinvoice
+        Decrement iContArray
+        
+        While (iContArray >=0) 
+            Send Update_Status  ("Gravando Invoice" * (String(aInvoice[iContArray].Invoice))  + (" - ") + (String(aInvoice[iContArray].dDataVenc)))
+            
+            Clear biinvoice
+            Move aInvoice[iContArray].Invoice to biinvoice.Invoice
+            Find eq biinvoice by 1
+            
+            If (not(Found)) Clear biinvoice
+            
+            Move aInvoice[iContArray].Invoice        to biinvoice.Invoice
+            Move aInvoice[iContArray].sCodForn       to biinvoice.sCodForn
+            Move aInvoice[iContArray].dDataVenc      to biinvoice.dDataVenc
+            Move aInvoice[iContArray].dDataPagamento to biinvoice.dDataPagamento
+            Move aInvoice[iContArray].nValorUS       to biinvoice.nValorUS
+            Move (CurrentDateTime())                 to biinvoice.dDataAtu
+            
+            SaveRecord biinvoice
+            Unlock
+            
+            Decrement iContArray
+        Loop
+        
+        Close biinvoice        
+    End_Procedure
+    
+    Procedure pCadastro_Vendedores
+        Integer iContArray
+        String sCaminho
+        
+        Move (fCaminho(ghoTCamEmp,"PO")) to sCaminho
+        Move (sCaminho + "tclivende.dat") to sCaminho
+        
+        Close tclivend
+        Open sCaminho as tCliVend
+        
+        Open tcadvendedor
+        Find gt tclivend by Index.1
+        
+        While (Found)
+            Send Update_Status  ("Cadastro Vendedor" * (String(tCliVend.iCdCodigo)))
+            
+            Move tCliVend.iCdCodigo to tcadvendedor.iCdCodigo
+            Find eq tcadvendedor by Index.1
+            
+            If (not(Found)) Clear tcadvendedor
+            
+            Move tCliVend.iCdCodigo to tcadvendedor.iCdCodigo
+            Move tCliVend.sNmNome   to tcadvendedor.sNmNome
+            SaveRecord tcadvendedor
+            
+            Find gt tclivend by 1    
+        Loop
+        
+        Close tcadvendedor
+        Close tCliVend
+    End_Procedure
+    
+    Procedure pCadastro_Representantes
+        Integer iContArray
+        String sCaminho
+        
+        Move (fCaminho(ghoTCamEmp,"PO")) to sCaminho
+        Move (sCaminho + "tclirepres.dat") to sCaminho
+        
+        Close TCliRepr
+        Open sCaminho as TCliRepr
+        
+        Open tcadrepresentante
+        
+        Clear TCliRepr
+        Find gt TCliRepr by Index.1
+        
+        While (Found)
+            Send Update_Status  ("Cadastro Representante " + (String(TCliRepr.iCdCodigo)))
+            
+            Clear tcadrepresentante
+            Move TCliRepr.iCdCodigo to tcadrepresentante.iCdCodigo
+            Find eq tcadrepresentante by 1
+            
+            If (Found) Begin
+                Reread tcadrepresentante
+                    Move TCliRepr.iCdCodigo       to tcadrepresentante.iCdCodigo
+                    Move TCliRepr.sDcDesc         to tcadrepresentante.sDcDesc
+                    Move TCliRepr.sIDSY           to tcadrepresentante.sIDSY
+                    Move TCliRepr.sCdCliPrincipal to tcadrepresentante.sCdCliPrincipal
+                    SaveRecord tcadrepresentante
+                Unlock
+            End
+            Else Begin
+                Clear tcadrepresentante
+                Move TCliRepr.iCdCodigo       to tcadrepresentante.iCdCodigo
+                Move TCliRepr.sDcDesc         to tcadrepresentante.sDcDesc
+                Move TCliRepr.sIDSY           to tcadrepresentante.sIDSY
+                Move TCliRepr.sCdCliPrincipal to tcadrepresentante.sCdCliPrincipal
+                SaveRecord tcadrepresentante
+            End
+            
+            Find gt TCliRepr by 1    
+        Loop
+        
+        Close tcadrepresentante
+        Close TCliRepr
+    End_Procedure
+    
+    Procedure pGrava_TinfoAtu String sObs Integer iPeriodo
+        Open tinfatu
+        Clear tinfatu
+        Move (CurrentDateTime()) to tinfatu.dDataTime
+        Move (Trim(sObs))        to tinfatu.sObs
+        Move iPeriodo            to tinfatu.iPeriodo
+        SaveRecord tinfatu
+    End_Procedure
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    Procedure OnProcess
+       Date dDataInicio
+       DateTime dDataTime
+       Integer iHora iPeriodo
+       
+       Open tcamemp
+       Clear tcamemp
+       Find gt tcamemp by 1
+       
+       If (not(Found)) Procedure_Return    
+
+       Move (CurrentDateTime()) to dDataTime 
+       Move dDataTime to dDataInicio
+       Move (DateGetHour(dDataTime)) to iHora
+       
+        If ((iHora > 8) and (iHora < 18)) Begin
+            Move (dDataInicio - 3) to dDataInicio
+            Move 1 to iPeriodo  // Periodo da das 8 as 18 horas
+        End
+        Else Begin
+            Move (dDataInicio - 180) to dDataInicio  // 2190=6 anos   | 1825=5 anos  
+            Move 2 to iPeriodo                     // Periodo das 18 at‚ as 8 da manhÆ
+        End
+        
+//        // fds
+//        If (DateGetDayOfWeek(dDataInicio) = 1 or DateGetDayOfWeek(dDataInicio) = 7) Begin
+//            Move (dDataInicio - 365) to dDataInicio  // 2190=6 anos   | 1825=5 anos  
+//            Move 2 to iPeriodo                       // Periodo das 18 at‚ as 8 da manhÆ 
+//        End
+        
+//        Move (Date("01/08/2022")) to dDataInicio
+//        Move 0 to iPeriodo
+
+//        Move (Date("01/01/2020")) to dDataInicio        
+//        Send pDespesas dDataInicio // Respeita a data de inicio
+//        Abort
+
+        Move (Date("01/01/2022")) to dDataInicio   
+        Send pFaturamento dDataInicio 0
+        Abort
+ 
+        Send pGrava_TinfoAtu "Inicio" iPeriodo   
+     
+        Send pCarregaCodeMast // Completo
+        Send pCarregaClasCont // Completo
+        Send pCarregaClasDes  // Completo
+        
+        Send pGrava_TinfoAtu "Inicio Faturamento" iPeriodo
+        Send pFaturamento dDataInicio iPeriodo
+        // iPeriodo = 1 -> Um mˆs
+        // iPeriodo = 2 -> Trˆs meses
+        // Quando utilizado, ele ignora a variavel dDataInicio
+        
+//        Send pGrava_TinfoAtu "Inicio Recebimentos" iPeriodo
+//        Send pDuplicatas_Recebimentos dDataInicio iPeriodo // Periodo 1 = Um mˆs ou dDataInicio
+        
+//        Move (ResizeArray(aDupAtu,0)) to aDupAtu
+        
+//        Send pGrava_TinfoAtu "Inicio Pagamento" iPeriodo
+//        Send pDuplicatas_Pagamento dDataInicio iPeriodo
+       
+        If (iPeriodo = 2) Begin
+//           Send pGrava_TinfoAtu "Inicio Vendedores" iPeriodo
+//           Send pCadastro_Vendedores // Tudo
+//           
+//           Send pGrava_TinfoAtu "Inicio Representantes" iPeriodo 
+//           Send pCadastro_Representantes // Tudo
+//           
+//           Send pGrava_TinfoAtu "Inicio Produtos" iPeriodo
+//           Send pCadastro_Produtos dDataInicio // Respeita a data de inicio (somente alterados no periodo)
+//        
+//           Send pGrava_TinfoAtu "Inicio Clientes" iPeriodo
+//           Send pCadastro_Clientes // Fixo 30 dias
+//        
+//           Send pGrava_TinfoAtu "Inicio Invoice" iPeriodo
+//           Send pInvoice // Fixo a partir de 01/01/2021
+//             
+//           Send pGrava_TinfoAtu "Inicio Despesas" iPeriodo
+//           Send pDespesas dDataInicio // Respeita a data de inicio
+//           
+//           Send pGrava_TinfoAtu "Inicio Itens Entrada" iPeriodo
+//           Send pItens_Entrada dDataInicio iPeriodo // periodo 2 = respeita | Periodo 1 = 7 dias
+//           
+//           Send pGrava_TinfoAtu "Inicio Itens Saida" iPeriodo
+//           Send pItens_Saida dDataInicio iPeriodo // periodo 2 = respeita | Periodo 1 = 7 dias
+        End
+
+        //Send tCliAtr dDataInicio iPeriodo // Clientes em Atrasos 
+        
+        Send pGrava_TinfoAtu "Fim Atualizacao" iPeriodo 
+    End_Procedure
     
 End_Object
-
 

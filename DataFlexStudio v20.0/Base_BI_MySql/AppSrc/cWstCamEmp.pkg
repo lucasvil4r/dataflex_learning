@@ -4,87 +4,89 @@ Class cWsTCamEmp is a cObject
     
     Procedure Construct_Object
         Forward Send Construct_Object
+
     End_Procedure
 
-//    Procedure End_Construct_Object
-//        Forward Send End_Construct_Object
-//    End_Procedure
-//    
-//    Function fCaminhoAnt String sEmpresa Returns String
-//        Open tCamEmp
-//        Clear tCamEmp
-//        Move (Trim(sEmpresa)) to tCamEmp.EMP
-//        Find eq tCamEmp by 1
-//        
-//        If (Found) Function_Return (Trim(tCamEmp.CAMINHOANT))
-//    End_Function
-//    
-//    // M‚todo para retornar o caminho do sistema antigo (DF)
-//    Function fCaminhoAnt String sEmpresa Returns String
-//        Open tCamEmp
-//        Clear tCamEmp
-//        Move (Trim(sEmpresa)) to tCamEmp.EMP
-//        Find eq tCamEmp by 1
-//        
-//        If (Found) Function_Return (Trim(tCamEmp.CAMINHOANT))
-//    End_Function
-//    
-//    // M‚todo para retornar o caminho de dados do sistema (SisVisual)
-//    Function fCaminho String sEmpresa Returns String
-//        Open tCamEmp
-//        Clear tCamEmp
-//        Move (Trim(sEmpresa)) to tCamEmp.EMP
-//        Find eq tCamEmp by 1
-//        
-//        If (Found) Function_Return (Trim(tCamEmp.CAMINHO))
-//    End_Function
-//
-//    // M‚todo para retornar o caminho do sistema (Sisvisual)
-//    // onde se encontram os cadastros do sistema (PP only)
-//    Function fCaminhoDadosCad String sEmpresa Returns String
-//        Open tCamEmp
-//        Clear tCamEmp
-//        Move (Trim(sEmpresa)) to tCamEmp.EMP
-//        Find eq tCamEmp by 1
-//        
-//        If (Found) Function_Return (Trim(tCamEmp.CAMINHODADOSCAD))
-//    End_Function
-//
-//    Function fNomeUnidade String sEmpresa Returns String
-//        Open tCamEmp
-//        Clear tCamEmp
-//        Move (Trim(sEmpresa)) to tCamEmp.EMP
-//        Find eq tCamEmp by 1
-//        
-//        If (Found) Function_Return (Trim(tCamEmp.NOMEUNIDADE))
-//    End_Function
-//    
-//    Function fCaminhoNFSeEntrada String sCodEmp String sAno Returns String 
-//        If (sCodEmp = "PR") Function_Return ("\\poliserv\dataflex\SISVISUALPR\DF\NFSe\Entrada"  + "\" + sAno)
-//        Else                Function_Return (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NFSe\Entrada"  + "\" + sAno)
-//    End_Function
-//    
-//    Function fCaminhoNFSeSaida String sCodEmp  String sAno Returns String 
-//        If (sCodEmp = "PR") Function_Return ("\\poliserv\dataflex\SISVISUALPR\DF\NFSe\Saida"  + "\" + sAno)
-//        Else                Function_Return (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NFSe\Saida"  + "\" + sAno)
-//    End_Function
-//    
-//    Function fCaminhoNFeCompra String sCodEmp String sAno String sMes Returns String 
-//        String sFolder
-//        Boolean bExist
-//        
-//        If (sCodEmp = "PR") Move ("\\poliserv\dataflex\SISVISUALPR\DF\NfeRecebidas\" + sAno) to sFolder
-//        Else                Move (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NfeRecebidas\" + sAno) to sFolder
-//        
-//        File_Exist sFolder bExist 
-//        If (not(bExist)) Make_Directory sFolder
-//        
-//        If (sCodEmp = "PR") Move ("\\poliserv\dataflex\SISVISUALPR\DF\NfeRecebidas\" + sAno + "\" + sMes) to sFolder
-//        Else                Move (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NfeRecebidas\" + sAno + "\" + sMes) to sFolder
-//        
-//        File_Exist sFolder bExist 
-//        If (not(bExist)) Make_Directory sFolder
-//        
-//        Function_Return sFolder
-//    End_Function
+    Procedure End_Construct_Object
+        Forward Send End_Construct_Object
+
+    End_Procedure
+    
+    Function fCaminhoAnt String sEmpresa Returns String
+        Open tCamEmp
+        Clear tCamEmp
+        Move (Trim(sEmpresa)) to tCamEmp.EMP
+        Find eq tCamEmp by 1
+        
+        If (Found) Function_Return (Trim(tCamEmp.CAMINHOANT))
+    End_Function
+    
+    // M‚todo para retornar o caminho do sistema antigo (DF)
+    Function fCaminhoAnt String sEmpresa Returns String
+        Open tCamEmp
+        Clear tCamEmp
+        Move (Trim(sEmpresa)) to tCamEmp.EMP
+        Find eq tCamEmp by 1
+        
+        If (Found) Function_Return (Trim(tCamEmp.CAMINHOANT))
+    End_Function
+    
+    // M‚todo para retornar o caminho de dados do sistema (SisVisual)
+    Function fCaminho String sEmpresa Returns String
+        Open tCamEmp
+        Clear tCamEmp
+        Move (Trim(sEmpresa)) to tCamEmp.EMP
+        Find eq tCamEmp by 1
+        
+        If (Found) Function_Return (Trim(tCamEmp.CAMINHO))
+    End_Function
+
+    // M‚todo para retornar o caminho do sistema (Sisvisual)
+    // onde se encontram os cadastros do sistema (PP only)
+    Function fCaminhoDadosCad String sEmpresa Returns String
+        Open tCamEmp
+        Clear tCamEmp
+        Move (Trim(sEmpresa)) to tCamEmp.EMP
+        Find eq tCamEmp by 1
+        
+        If (Found) Function_Return (Trim(tCamEmp.CAMINHODADOSCAD))
+    End_Function
+
+    Function fNomeUnidade String sEmpresa Returns String
+        Open tCamEmp
+        Clear tCamEmp
+        Move (Trim(sEmpresa)) to tCamEmp.EMP
+        Find eq tCamEmp by 1
+        
+        If (Found) Function_Return (Trim(tCamEmp.NOMEUNIDADE))
+    End_Function
+    
+    Function fCaminhoNFSeEntrada String sCodEmp String sAno Returns String 
+        If (sCodEmp = "PR") Function_Return ("\\poliserv\dataflex\SISVISUALPR\DF\NFSe\Entrada"  + "\" + sAno)
+        Else                Function_Return (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NFSe\Entrada"  + "\" + sAno)
+    End_Function
+    
+    Function fCaminhoNFSeSaida String sCodEmp  String sAno Returns String 
+        If (sCodEmp = "PR") Function_Return ("\\poliserv\dataflex\SISVISUALPR\DF\NFSe\Saida"  + "\" + sAno)
+        Else                Function_Return (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NFSe\Saida"  + "\" + sAno)
+    End_Function
+    
+    Function fCaminhoNFeCompra String sCodEmp String sAno String sMes Returns String 
+        String sFolder
+        Boolean bExist
+        
+        If (sCodEmp = "PR") Move ("\\poliserv\dataflex\SISVISUALPR\DF\NfeRecebidas\" + sAno) to sFolder
+        Else                Move (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NfeRecebidas\" + sAno) to sFolder
+        
+        File_Exist sFolder bExist 
+        If (not(bExist)) Make_Directory sFolder
+        
+        If (sCodEmp = "PR") Move ("\\poliserv\dataflex\SISVISUALPR\DF\NfeRecebidas\" + sAno + "\" + sMes) to sFolder
+        Else                Move (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NfeRecebidas\" + sAno + "\" + sMes) to sFolder
+        
+        File_Exist sFolder bExist 
+        If (not(bExist)) Make_Directory sFolder
+        
+        Function_Return sFolder
+    End_Function
 End_Class

@@ -1,5 +1,5 @@
 Compiling Program: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\AppSrc\CriaBaseBI_v2.src
-Memory Available: 4286541824
+Memory Available: 5592465408
 1>Use Windows.pkg
 Using pre-compiled package WINDOWS.PKG
 Including file: windows.x64.pkd    (C:\Program Files\DataFlex 20.0\Pkg\windows.x64.pkd)
@@ -9832,1078 +9832,2913 @@ Including file: cWstCamEmp.pkg    (C:\xampp\htdocs\dataflex_learning\DataFlexStu
 13928>>>>>    
 13928>>>>>    Procedure Construct_Object
 13930>>>>>        Forward Send Construct_Object
+13932>>>>>
 13932>>>>>    End_Procedure
 13933>>>>>
-13933>>>>>//    Procedure End_Construct_Object
-13933>>>>>//        Forward Send End_Construct_Object
-13933>>>>>//    End_Procedure
-13933>>>>>//    
-13933>>>>>//    Function fCaminhoAnt String sEmpresa Returns String
-13933>>>>>//        Open tCamEmp
-13933>>>>>//        Clear tCamEmp
-13933>>>>>//        Move (Trim(sEmpresa)) to tCamEmp.EMP
-13933>>>>>//        Find eq tCamEmp by 1
-13933>>>>>//        
-13933>>>>>//        If (Found) Function_Return (Trim(tCamEmp.CAMINHOANT))
-13933>>>>>//    End_Function
-13933>>>>>//    
-13933>>>>>//    // Método para retornar o caminho do sistema antigo (DF)
-13933>>>>>//    Function fCaminhoAnt String sEmpresa Returns String
-13933>>>>>//        Open tCamEmp
-13933>>>>>//        Clear tCamEmp
-13933>>>>>//        Move (Trim(sEmpresa)) to tCamEmp.EMP
-13933>>>>>//        Find eq tCamEmp by 1
-13933>>>>>//        
-13933>>>>>//        If (Found) Function_Return (Trim(tCamEmp.CAMINHOANT))
-13933>>>>>//    End_Function
-13933>>>>>//    
-13933>>>>>//    // Método para retornar o caminho de dados do sistema (SisVisual)
-13933>>>>>//    Function fCaminho String sEmpresa Returns String
-13933>>>>>//        Open tCamEmp
-13933>>>>>//        Clear tCamEmp
-13933>>>>>//        Move (Trim(sEmpresa)) to tCamEmp.EMP
-13933>>>>>//        Find eq tCamEmp by 1
-13933>>>>>//        
-13933>>>>>//        If (Found) Function_Return (Trim(tCamEmp.CAMINHO))
-13933>>>>>//    End_Function
-13933>>>>>//
-13933>>>>>//    // Método para retornar o caminho do sistema (Sisvisual)
-13933>>>>>//    // onde se encontram os cadastros do sistema (PP only)
-13933>>>>>//    Function fCaminhoDadosCad String sEmpresa Returns String
-13933>>>>>//        Open tCamEmp
-13933>>>>>//        Clear tCamEmp
-13933>>>>>//        Move (Trim(sEmpresa)) to tCamEmp.EMP
-13933>>>>>//        Find eq tCamEmp by 1
-13933>>>>>//        
-13933>>>>>//        If (Found) Function_Return (Trim(tCamEmp.CAMINHODADOSCAD))
-13933>>>>>//    End_Function
-13933>>>>>//
-13933>>>>>//    Function fNomeUnidade String sEmpresa Returns String
-13933>>>>>//        Open tCamEmp
-13933>>>>>//        Clear tCamEmp
-13933>>>>>//        Move (Trim(sEmpresa)) to tCamEmp.EMP
-13933>>>>>//        Find eq tCamEmp by 1
-13933>>>>>//        
-13933>>>>>//        If (Found) Function_Return (Trim(tCamEmp.NOMEUNIDADE))
-13933>>>>>//    End_Function
-13933>>>>>//    
-13933>>>>>//    Function fCaminhoNFSeEntrada String sCodEmp String sAno Returns String 
-13933>>>>>//        If (sCodEmp = "PR") Function_Return ("\\poliserv\dataflex\SISVISUALPR\DF\NFSe\Entrada"  + "\" + sAno)
-13933>>>>>//        Else                Function_Return (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NFSe\Entrada"  + "\" + sAno)
-13933>>>>>//    End_Function
-13933>>>>>//    
-13933>>>>>//    Function fCaminhoNFSeSaida String sCodEmp  String sAno Returns String 
-13933>>>>>//        If (sCodEmp = "PR") Function_Return ("\\poliserv\dataflex\SISVISUALPR\DF\NFSe\Saida"  + "\" + sAno)
-13933>>>>>//        Else                Function_Return (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NFSe\Saida"  + "\" + sAno)
-13933>>>>>//    End_Function
-13933>>>>>//    
-13933>>>>>//    Function fCaminhoNFeCompra String sCodEmp String sAno String sMes Returns String 
-13933>>>>>//        String sFolder
-13933>>>>>//        Boolean bExist
-13933>>>>>//        
-13933>>>>>//        If (sCodEmp = "PR") Move ("\\poliserv\dataflex\SISVISUALPR\DF\NfeRecebidas\" + sAno) to sFolder
-13933>>>>>//        Else                Move (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NfeRecebidas\" + sAno) to sFolder
-13933>>>>>//        
-13933>>>>>//        File_Exist sFolder bExist 
-13933>>>>>//        If (not(bExist)) Make_Directory sFolder
-13933>>>>>//        
-13933>>>>>//        If (sCodEmp = "PR") Move ("\\poliserv\dataflex\SISVISUALPR\DF\NfeRecebidas\" + sAno + "\" + sMes) to sFolder
-13933>>>>>//        Else                Move (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NfeRecebidas\" + sAno + "\" + sMes) to sFolder
-13933>>>>>//        
-13933>>>>>//        File_Exist sFolder bExist 
-13933>>>>>//        If (not(bExist)) Make_Directory sFolder
-13933>>>>>//        
-13933>>>>>//        Function_Return sFolder
-13933>>>>>//    End_Function
-13933>>>>>End_Class
-13934>>>
-13934>>>Handle ghoTCamEmp
-13934>>>
-13934>>>// Variavel global para armazenar o objeto
-13934>>>// de facil acesso a tabela TCamEmp
-13934>>>Get Create u_cWsTCamEmp to ghoTCamEmp
-13935>Use CriaBaseBI_v2.bp
+13933>>>>>    Procedure End_Construct_Object
+13935>>>>>        Forward Send End_Construct_Object
+13937>>>>>
+13937>>>>>    End_Procedure
+13938>>>>>    
+13938>>>>>    Function fCaminhoAnt String sEmpresa Returns String
+13940>>>>>        Open tCamEmp
+Including file: tcamemp.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tcamemp.fd)
+13942>>>>>        Clear tCamEmp
+13943>>>>>        Move (Trim(sEmpresa)) to tCamEmp.EMP
+13944>>>>>        Find eq tCamEmp by 1
+13945>>>>>>
+13945>>>>>        
+13945>>>>>        If (Found) Function_Return (Trim(tCamEmp.CAMINHOANT))
+13948>>>>>    End_Function
+13949>>>>>    
+13949>>>>>    // Método para retornar o caminho do sistema antigo (DF)
+13949>>>>>    Function fCaminhoAnt String sEmpresa Returns String
+13951>>>>>        Open tCamEmp
+13953>>>>>        Clear tCamEmp
+13954>>>>>        Move (Trim(sEmpresa)) to tCamEmp.EMP
+13955>>>>>        Find eq tCamEmp by 1
+13956>>>>>>
+13956>>>>>        
+13956>>>>>        If (Found) Function_Return (Trim(tCamEmp.CAMINHOANT))
+13959>>>>>    End_Function
+13960>>>>>    
+13960>>>>>    // Método para retornar o caminho de dados do sistema (SisVisual)
+13960>>>>>    Function fCaminho String sEmpresa Returns String
+13962>>>>>        Open tCamEmp
+13964>>>>>        Clear tCamEmp
+13965>>>>>        Move (Trim(sEmpresa)) to tCamEmp.EMP
+13966>>>>>        Find eq tCamEmp by 1
+13967>>>>>>
+13967>>>>>        
+13967>>>>>        If (Found) Function_Return (Trim(tCamEmp.CAMINHO))
+13970>>>>>    End_Function
+13971>>>>>
+13971>>>>>    // Método para retornar o caminho do sistema (Sisvisual)
+13971>>>>>    // onde se encontram os cadastros do sistema (PP only)
+13971>>>>>    Function fCaminhoDadosCad String sEmpresa Returns String
+13973>>>>>        Open tCamEmp
+13975>>>>>        Clear tCamEmp
+13976>>>>>        Move (Trim(sEmpresa)) to tCamEmp.EMP
+13977>>>>>        Find eq tCamEmp by 1
+13978>>>>>>
+13978>>>>>        
+13978>>>>>        If (Found) Function_Return (Trim(tCamEmp.CAMINHODADOSCAD))
+13981>>>>>    End_Function
+13982>>>>>
+13982>>>>>    Function fNomeUnidade String sEmpresa Returns String
+13984>>>>>        Open tCamEmp
+13986>>>>>        Clear tCamEmp
+13987>>>>>        Move (Trim(sEmpresa)) to tCamEmp.EMP
+13988>>>>>        Find eq tCamEmp by 1
+13989>>>>>>
+13989>>>>>        
+13989>>>>>        If (Found) Function_Return (Trim(tCamEmp.NOMEUNIDADE))
+13992>>>>>    End_Function
+13993>>>>>    
+13993>>>>>    Function fCaminhoNFSeEntrada String sCodEmp String sAno Returns String 
+13995>>>>>        If (sCodEmp = "PR") Function_Return ("\\poliserv\dataflex\SISVISUALPR\DF\NFSe\Entrada"  + "\" + sAno)
+13998>>>>>        Else                Function_Return (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NFSe\Entrada"  + "\" + sAno)
+14000>>>>>    End_Function
+14001>>>>>    
+14001>>>>>    Function fCaminhoNFSeSaida String sCodEmp  String sAno Returns String 
+14003>>>>>        If (sCodEmp = "PR") Function_Return ("\\poliserv\dataflex\SISVISUALPR\DF\NFSe\Saida"  + "\" + sAno)
+14006>>>>>        Else                Function_Return (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NFSe\Saida"  + "\" + sAno)
+14008>>>>>    End_Function
+14009>>>>>    
+14009>>>>>    Function fCaminhoNFeCompra String sCodEmp String sAno String sMes Returns String 
+14011>>>>>        String sFolder
+14011>>>>>        Boolean bExist
+14011>>>>>        
+14011>>>>>        If (sCodEmp = "PR") Move ("\\poliserv\dataflex\SISVISUALPR\DF\NfeRecebidas\" + sAno) to sFolder
+14014>>>>>        Else                Move (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NfeRecebidas\" + sAno) to sFolder
+14016>>>>>        
+14016>>>>>        File_Exist sFolder bExist 
+14017>>>>>        If (not(bExist)) Make_Directory sFolder
+14020>>>>>        
+14020>>>>>        If (sCodEmp = "PR") Move ("\\poliserv\dataflex\SISVISUALPR\DF\NfeRecebidas\" + sAno + "\" + sMes) to sFolder
+14023>>>>>        Else                Move (Uppercase(Trim(fCaminhoAnt(Self,sCodEmp))) + "NfeRecebidas\" + sAno + "\" + sMes) to sFolder
+14025>>>>>        
+14025>>>>>        File_Exist sFolder bExist 
+14026>>>>>        If (not(bExist)) Make_Directory sFolder
+14029>>>>>        
+14029>>>>>        Function_Return sFolder
+14030>>>>>    End_Function
+14031>>>>>End_Class
+14032>>>
+14032>>>Handle ghoTCamEmp
+14032>>>
+14032>>>// Variavel global para armazenar o objeto
+14032>>>// de facil acesso a tabela TCamEmp
+14032>>>Get Create u_cWsTCamEmp to ghoTCamEmp
+14033>Use CriaBaseBI_v2.bp
 Including file: CriaBaseBI_v2.bp    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\AppSrc\CriaBaseBI_v2.bp)
-13935>>>Use Batchdd.pkg
+14033>>>Use Batchdd.pkg
 Including file: Batchdd.pkg    (C:\Program Files\DataFlex 20.0\Pkg\Batchdd.pkg)
-13935>>>>>Use LanguageText.pkg
-13935>>>>>
-13935>>>>>Use Windows.pkg
-13935>>>>>Use StatPnl.pkg    // creates object Status_Panel... only if non webapp
+14033>>>>>Use LanguageText.pkg
+14033>>>>>
+14033>>>>>Use Windows.pkg
+14033>>>>>Use StatPnl.pkg    // creates object Status_Panel... only if non webapp
 Including file: Statpnl.pkg    (C:\Program Files\DataFlex 20.0\Pkg\Statpnl.pkg)
-13935>>>>>>>// creates the standard status_panel object.
-13935>>>>>>>//
-13935>>>>>>>// This is the default Status Panel object used by any of the DataFlex classes that
-13935>>>>>>>// invoke the standard status panel. The standard has always been that the package name
-13935>>>>>>>// is StatPnl.pkg and the name of the object is Status_Panel. As of 12.0, there are major
-13935>>>>>>>// changes in the way the status panel operates The Sentinel based external status panel used in
-13935>>>>>>>// prior revisions has been replace with status panel that is part of the application.
-13935>>>>>>>// This should work much better and faster than the old sentinel based solution.
-13935>>>>>>>// While the way this operates has changed, the interface has not and therefore this should work
-13935>>>>>>>// with most applications.
-13935>>>>>>>//
-13935>>>>>>>// As of 12.0, we have added a global handle that contains the object ID of this status panel.
-13935>>>>>>>// This variable ghoStatusPanel can be used in place of the object name Status_Panel. This provides
-13935>>>>>>>// a cleaner more robust interface.
-13935>>>>>>>//
-13935>>>>>>>//
-13935>>>>>>>// Compatibility Note:
-13935>>>>>>>//
-13935>>>>>>>// When used in the standard way, this change will require no changes. A developer will only need to
-13935>>>>>>>// change their code if they've modified the sentinel program, which was a difficult thing to do.
-13935>>>>>>>//
-13935>>>>>>>// If for some reason you application will not work using this as a replacement for the old status
-13935>>>>>>>// panel, you've probably done something special with the old status-panel. If you don't want to
-13935>>>>>>>// figure out how to use the new one and you want to continue using the old one you are going to need
-13935>>>>>>>// to add some code to include the old status panel in your application. Add the following to your project (your src).
-13935>>>>>>>//
-13935>>>>>>>// Use StatPnl.pkg    // Make sure you load the new status panel object first. this is not optional!
-13935>>>>>>>// Use OldStatPnl.pkg // load the old status panel. Status_Panel is now this old object
-13935>>>>>>>//
-13935>>>>>>>// If you do this, you will lose access to the new status-panel via Status_Panel. However, you
-13935>>>>>>>// can still access the new object via the ghoStatusPanel handle.
-13935>>>>>>>//
-13935>>>>>>>//
-13935>>>>>>>// Creating your own Status Panel objects
-13935>>>>>>>//
-13935>>>>>>>// If a developer wishes to create a custom panel, they should use this package as their template.
-13935>>>>>>>// This panel can be visually modeled and changed any way you wish. Just save your new custom panel
-13935>>>>>>>// with a different file and object name and direct your status panel request to the new object.
-13935>>>>>>>//
-13935>>>>>>>// If the new panel changes the interface and updates objects that are not currently defined, you
-13935>>>>>>>// want to make sure you send the message ProcessEvents after you've updated the object. This allows
-13935>>>>>>>// the object to paint when inside of a tight loop. For example, if you wanted to add a progress
-13935>>>>>>>// bar (cProgressBar) you would want to Send ProcessEvents after you update the progress bar.
-13935>>>>>>>// e.g.
-13935>>>>>>>//       Procedure UpdateStatusBar
-13935>>>>>>>//           Send DoAdvance of oProgressBar
-13935>>>>>>>//           Send ProcessEvents
-13935>>>>>>>//       End_Procedure
-13935>>>>>>>//
-13935>>>>>>>// Of course, if you use the standard interfaces in status bar and your forward send these
-13935>>>>>>>// messages this will be done for you.
-13935>>>>>>>//
-13935>>>>>>>// the standard Interface for status panels are:
-13935>>>>>>>//
-13935>>>>>>>// Send Initialize_StatusPanel - initializes values for caption, title & message
-13935>>>>>>>// Send Start_StatusPanel      - start the status panel
-13935>>>>>>>// Send Stop_StatusPanel       - stop the status panel
-13935>>>>>>>// Send Update_StatusPanel     - update the status panel's action area
-13935>>>>>>>// Get  Check_StatusPanel      - check for cancel (if cancel or pbCancel is set, close the panel)
-13935>>>>>>>//
-13935>>>>>>>// Get/Set Caption_Text - updates the caption bar
-13935>>>>>>>// Get/Set Title_Text   - updates the title area
-13935>>>>>>>// Get/Set Message_Text - updates the Message area
-13935>>>>>>>// Get/Set Action_Text  - updates the action area
-13935>>>>>>>// Get/Set Button_Text  - updates the button area
-13935>>>>>>>//
-13935>>>>>>>// Get/Set Allow_cancel_state - determines if panel can be canceled
-13935>>>>>>>// Send EnableCancelButton - code you should provide to enable/disable cancel button
-13935>>>>>>>//
-13935>>>>>>>// ghoStatusPanel - global handle that points to the standard status panel.
-13935>>>>>>>
-13935>>>>>>>Use cProcessStatusPanel.pkg
+14033>>>>>>>// creates the standard status_panel object.
+14033>>>>>>>//
+14033>>>>>>>// This is the default Status Panel object used by any of the DataFlex classes that
+14033>>>>>>>// invoke the standard status panel. The standard has always been that the package name
+14033>>>>>>>// is StatPnl.pkg and the name of the object is Status_Panel. As of 12.0, there are major
+14033>>>>>>>// changes in the way the status panel operates The Sentinel based external status panel used in
+14033>>>>>>>// prior revisions has been replace with status panel that is part of the application.
+14033>>>>>>>// This should work much better and faster than the old sentinel based solution.
+14033>>>>>>>// While the way this operates has changed, the interface has not and therefore this should work
+14033>>>>>>>// with most applications.
+14033>>>>>>>//
+14033>>>>>>>// As of 12.0, we have added a global handle that contains the object ID of this status panel.
+14033>>>>>>>// This variable ghoStatusPanel can be used in place of the object name Status_Panel. This provides
+14033>>>>>>>// a cleaner more robust interface.
+14033>>>>>>>//
+14033>>>>>>>//
+14033>>>>>>>// Compatibility Note:
+14033>>>>>>>//
+14033>>>>>>>// When used in the standard way, this change will require no changes. A developer will only need to
+14033>>>>>>>// change their code if they've modified the sentinel program, which was a difficult thing to do.
+14033>>>>>>>//
+14033>>>>>>>// If for some reason you application will not work using this as a replacement for the old status
+14033>>>>>>>// panel, you've probably done something special with the old status-panel. If you don't want to
+14033>>>>>>>// figure out how to use the new one and you want to continue using the old one you are going to need
+14033>>>>>>>// to add some code to include the old status panel in your application. Add the following to your project (your src).
+14033>>>>>>>//
+14033>>>>>>>// Use StatPnl.pkg    // Make sure you load the new status panel object first. this is not optional!
+14033>>>>>>>// Use OldStatPnl.pkg // load the old status panel. Status_Panel is now this old object
+14033>>>>>>>//
+14033>>>>>>>// If you do this, you will lose access to the new status-panel via Status_Panel. However, you
+14033>>>>>>>// can still access the new object via the ghoStatusPanel handle.
+14033>>>>>>>//
+14033>>>>>>>//
+14033>>>>>>>// Creating your own Status Panel objects
+14033>>>>>>>//
+14033>>>>>>>// If a developer wishes to create a custom panel, they should use this package as their template.
+14033>>>>>>>// This panel can be visually modeled and changed any way you wish. Just save your new custom panel
+14033>>>>>>>// with a different file and object name and direct your status panel request to the new object.
+14033>>>>>>>//
+14033>>>>>>>// If the new panel changes the interface and updates objects that are not currently defined, you
+14033>>>>>>>// want to make sure you send the message ProcessEvents after you've updated the object. This allows
+14033>>>>>>>// the object to paint when inside of a tight loop. For example, if you wanted to add a progress
+14033>>>>>>>// bar (cProgressBar) you would want to Send ProcessEvents after you update the progress bar.
+14033>>>>>>>// e.g.
+14033>>>>>>>//       Procedure UpdateStatusBar
+14033>>>>>>>//           Send DoAdvance of oProgressBar
+14033>>>>>>>//           Send ProcessEvents
+14033>>>>>>>//       End_Procedure
+14033>>>>>>>//
+14033>>>>>>>// Of course, if you use the standard interfaces in status bar and your forward send these
+14033>>>>>>>// messages this will be done for you.
+14033>>>>>>>//
+14033>>>>>>>// the standard Interface for status panels are:
+14033>>>>>>>//
+14033>>>>>>>// Send Initialize_StatusPanel - initializes values for caption, title & message
+14033>>>>>>>// Send Start_StatusPanel      - start the status panel
+14033>>>>>>>// Send Stop_StatusPanel       - stop the status panel
+14033>>>>>>>// Send Update_StatusPanel     - update the status panel's action area
+14033>>>>>>>// Get  Check_StatusPanel      - check for cancel (if cancel or pbCancel is set, close the panel)
+14033>>>>>>>//
+14033>>>>>>>// Get/Set Caption_Text - updates the caption bar
+14033>>>>>>>// Get/Set Title_Text   - updates the title area
+14033>>>>>>>// Get/Set Message_Text - updates the Message area
+14033>>>>>>>// Get/Set Action_Text  - updates the action area
+14033>>>>>>>// Get/Set Button_Text  - updates the button area
+14033>>>>>>>//
+14033>>>>>>>// Get/Set Allow_cancel_state - determines if panel can be canceled
+14033>>>>>>>// Send EnableCancelButton - code you should provide to enable/disable cancel button
+14033>>>>>>>//
+14033>>>>>>>// ghoStatusPanel - global handle that points to the standard status panel.
+14033>>>>>>>
+14033>>>>>>>Use cProcessStatusPanel.pkg
 Including file: cProcessStatusPanel.pkg    (C:\Program Files\DataFlex 20.0\Pkg\cProcessStatusPanel.pkg)
-13935>>>>>>>>>// cProcessStatusPanel.pkg
-13935>>>>>>>>>//
-13935>>>>>>>>>// Class used to create StatusPanels.
-13935>>>>>>>>>//
-13935>>>>>>>>>// This class does not provide any of the inner objects that make up a status panel. Instead an
-13935>>>>>>>>>// interface is provided that is used to update the various areas of status panel. At this level,
-13935>>>>>>>>>// those areas (title area, message area, action area, button area) are logical. You create the
-13935>>>>>>>>>// physical objects at the object level and then bind these objects to the interface.
-13935>>>>>>>>>// Take a look at StatPnl.pkg to see how this is used.
-13935>>>>>>>>>//
-13935>>>>>>>>>// the standard Interface for status panels are:
-13935>>>>>>>>>//
-13935>>>>>>>>>// Send Initialize_StatusPanel - initializes values for caption, title & message
-13935>>>>>>>>>// Send Start_StatusPanel      - start the status panel
-13935>>>>>>>>>// Send Stop_StatusPanel       - stop the status panel
-13935>>>>>>>>>// Send Update_StatusPanel     - update the status panel's action area
-13935>>>>>>>>>// Get  Check_StatusPanel      - check for cancel (if cancel or pbCancel is set, close the panel)
-13935>>>>>>>>>//
-13935>>>>>>>>>// Get/Set Caption_Text - updates the caption bar
-13935>>>>>>>>>// Get/Set Title_Text   - updates the title area
-13935>>>>>>>>>// Get/Set Message_Text - updates the Message area
-13935>>>>>>>>>// Get/Set Action_Text  - updates the action area
-13935>>>>>>>>>// Get/Set Button_Text  - updates the button area
-13935>>>>>>>>>//
-13935>>>>>>>>>// Get/Set Allow_cancel_state - determines if panel can be canceled
-13935>>>>>>>>>// Send EnableCancelButton - code must be provided in the cancel button object to enable/disable cancel button
-13935>>>>>>>>>//
-13935>>>>>>>>>
-13935>>>>>>>>>Use cStatusPanel.pkg
+14033>>>>>>>>>// cProcessStatusPanel.pkg
+14033>>>>>>>>>//
+14033>>>>>>>>>// Class used to create StatusPanels.
+14033>>>>>>>>>//
+14033>>>>>>>>>// This class does not provide any of the inner objects that make up a status panel. Instead an
+14033>>>>>>>>>// interface is provided that is used to update the various areas of status panel. At this level,
+14033>>>>>>>>>// those areas (title area, message area, action area, button area) are logical. You create the
+14033>>>>>>>>>// physical objects at the object level and then bind these objects to the interface.
+14033>>>>>>>>>// Take a look at StatPnl.pkg to see how this is used.
+14033>>>>>>>>>//
+14033>>>>>>>>>// the standard Interface for status panels are:
+14033>>>>>>>>>//
+14033>>>>>>>>>// Send Initialize_StatusPanel - initializes values for caption, title & message
+14033>>>>>>>>>// Send Start_StatusPanel      - start the status panel
+14033>>>>>>>>>// Send Stop_StatusPanel       - stop the status panel
+14033>>>>>>>>>// Send Update_StatusPanel     - update the status panel's action area
+14033>>>>>>>>>// Get  Check_StatusPanel      - check for cancel (if cancel or pbCancel is set, close the panel)
+14033>>>>>>>>>//
+14033>>>>>>>>>// Get/Set Caption_Text - updates the caption bar
+14033>>>>>>>>>// Get/Set Title_Text   - updates the title area
+14033>>>>>>>>>// Get/Set Message_Text - updates the Message area
+14033>>>>>>>>>// Get/Set Action_Text  - updates the action area
+14033>>>>>>>>>// Get/Set Button_Text  - updates the button area
+14033>>>>>>>>>//
+14033>>>>>>>>>// Get/Set Allow_cancel_state - determines if panel can be canceled
+14033>>>>>>>>>// Send EnableCancelButton - code must be provided in the cancel button object to enable/disable cancel button
+14033>>>>>>>>>//
+14033>>>>>>>>>
+14033>>>>>>>>>Use cStatusPanel.pkg
 Including file: cStatusPanel.pkg    (C:\Program Files\DataFlex 20.0\Pkg\cStatusPanel.pkg)
-13935>>>>>>>>>>>// This is an abstract class that can be used to create status panels. The interface at this level
-13935>>>>>>>>>>>// is very simple. You can start, stop, request a cancel and allow the object to paint.
-13935>>>>>>>>>>>//
-13935>>>>>>>>>>>// Look at cProcessStatusPanel.pkg to see how this is used.
-13935>>>>>>>>>>>
-13935>>>>>>>>>>>Use Windows.pkg
-13935>>>>>>>>>>>
-13935>>>>>>>>>>>
-13935>>>>>>>>>>>
-13935>>>>>>>>>>>
-13935>>>>>>>>>>>Class cStatusPanel is a FloatingPanel
-13936>>>>>>>>>>>    
-13936>>>>>>>>>>>    Procedure Construct_Object
-13938>>>>>>>>>>>        Forward Send Construct_object
-13940>>>>>>>>>>>        
-13940>>>>>>>>>>>        Property Boolean pbCancel False
-13941>>>>>>>>>>>        
-13941>>>>>>>>>>>        Set Extended_Window_Style to WS_EX_DLGMODALFRAME True // kills sysmenu as long as there is no icon
-13942>>>>>>>>>>>        Set Icon to '' // this must be cleared so there will be no icon
-13943>>>>>>>>>>>        Set locate_mode to CENTER_ON_PANEL
-13944>>>>>>>>>>>        Set Border_Style  to Border_Dialog
-13945>>>>>>>>>>>        // should be scoped so it will not try to change the focus if there is no focusable button inside
-13945>>>>>>>>>>>        Set Scope_State to True
-13946>>>>>>>>>>>        
-13946>>>>>>>>>>>        On_Key KEXIT_APPLICATION Send Close_Panel
-13947>>>>>>>>>>>    End_Procedure
-13948>>>>>>>>>>>    
-13948>>>>>>>>>>>    // this is private and required. Never send this.
-13948>>>>>>>>>>>    Procedure Deactivate_Group
-13950>>>>>>>>>>>        If (Active_State(Self)) Begin
-13952>>>>>>>>>>>            Send SuspendGUI of Desktop False
-13953>>>>>>>>>>>        End
-13953>>>>>>>>>>>>
-13953>>>>>>>>>>>        Forward Send Deactivate_Group
-13955>>>>>>>>>>>    End_Procedure
-13956>>>>>>>>>>>    
-13956>>>>>>>>>>>    // Send this message to stop the panel
-13956>>>>>>>>>>>    Procedure Deactivate
-13958>>>>>>>>>>>        If (Active_State(Self)) Begin
-13960>>>>>>>>>>>            Send SuspendGUI of Desktop False
-13961>>>>>>>>>>>        End
-13961>>>>>>>>>>>>
-13961>>>>>>>>>>>        Forward Send Deactivate
-13963>>>>>>>>>>>    End_Procedure
-13964>>>>>>>>>>>    
-13964>>>>>>>>>>>    // Send this message to start the panel
-13964>>>>>>>>>>>    Procedure Activate
-13966>>>>>>>>>>>        If not (Active_State(Self)) Begin
-13968>>>>>>>>>>>            Set pbCancel to False
-13969>>>>>>>>>>>            Send SuspendGUI of Desktop True
-13970>>>>>>>>>>>        End
-13970>>>>>>>>>>>>
-13970>>>>>>>>>>>        Forward Send Activate
-13972>>>>>>>>>>>    End_Procedure
-13973>>>>>>>>>>>    
-13973>>>>>>>>>>>    // This allows the panel to paint when used in a tight loop, which is what status panels are
-13973>>>>>>>>>>>    // used for. Any time you update the panel or wish to check for a cancel, you should call this.
-13973>>>>>>>>>>>    Procedure ProcessEvents
-13975>>>>>>>>>>>        If (Active_State(Self)) Begin
-13977>>>>>>>>>>>            Send PumpMsgQueue of Desktop
-13978>>>>>>>>>>>        End
-13978>>>>>>>>>>>>
-13978>>>>>>>>>>>    End_Procedure
-13979>>>>>>>>>>>    
-13979>>>>>>>>>>>    // note close panel does not actually close the panel. It just sets pbCancel to True, informing the
-13979>>>>>>>>>>>    // process using this that it wants to close. It is then up the process close the panel.
-13979>>>>>>>>>>>    Procedure Close_Panel
-13981>>>>>>>>>>>        Set pbCancel to True
-13982>>>>>>>>>>>    End_Procedure
-13983>>>>>>>>>>>    
-13983>>>>>>>>>>>End_Class
-13984>>>>>>>>>
-13984>>>>>>>>>
-13984>>>>>>>>>
-13984>>>>>>>>>Class cProcessStatusPanel is a cStatusPanel
-13985>>>>>>>>>    
-13985>>>>>>>>>    Procedure Construct_Object
-13987>>>>>>>>>        Forward Send Construct_object
-13989>>>>>>>>>        // determines if panel can be canceled
-13989>>>>>>>>>        Property Boolean Allow_Cancel_State True
-13990>>>>>>>>>    End_Procedure
-13991>>>>>>>>>    
-13991>>>>>>>>>    // Any of the properties that change the text of a status panel must also send
-13991>>>>>>>>>    // ProcessEvents which allows the panel to process painting messages. The ProcessEvents
-13991>>>>>>>>>    // is essential when using status panels within a tight loop
-13991>>>>>>>>>    
-13991>>>>>>>>>    Procedure Set Caption_text String sText
-13993>>>>>>>>>        Set Label to sText
-13994>>>>>>>>>        Send ProcessEvents
-13995>>>>>>>>>    End_Procedure
-13996>>>>>>>>>    
-13996>>>>>>>>>    Function Caption_Text Returns String
-13998>>>>>>>>>        Function_Return (Label(Self))
-13999>>>>>>>>>    End_Function
-14000>>>>>>>>>    
-14000>>>>>>>>>    Procedure Set Message_Text String sText
-14002>>>>>>>>>        Send ProcessEvents
-14003>>>>>>>>>    End_Procedure
-14004>>>>>>>>>    
-14004>>>>>>>>>    Function Message_Text Returns String
-14006>>>>>>>>>    End_Function
-14007>>>>>>>>>    
-14007>>>>>>>>>    Procedure Set Action_Text String sText
-14009>>>>>>>>>        Send ProcessEvents
-14010>>>>>>>>>    End_Procedure
-14011>>>>>>>>>    
-14011>>>>>>>>>    Function Action_Text Returns String
-14013>>>>>>>>>    End_Function
-14014>>>>>>>>>    
-14014>>>>>>>>>    Procedure Set Button_Text String sText
-14016>>>>>>>>>        Send ProcessEvents
-14017>>>>>>>>>    End_Procedure
-14018>>>>>>>>>    
-14018>>>>>>>>>    Function Button_Text Returns String
-14020>>>>>>>>>    End_Function
-14021>>>>>>>>>    
-14021>>>>>>>>>    Procedure Set Title_Text String sText
-14023>>>>>>>>>        Send ProcessEvents
-14024>>>>>>>>>    End_Procedure
-14025>>>>>>>>>    
-14025>>>>>>>>>    Function Title_Text Returns String
-14027>>>>>>>>>    End_Function
-14028>>>>>>>>>    
-14028>>>>>>>>>    // initializes values for caption, title & message
-14028>>>>>>>>>    Procedure Initialize_StatusPanel String sCaption String sTitle String sMessage
-14030>>>>>>>>>        Set Caption_text to sCaption
-14031>>>>>>>>>        Set Title_Text   to sTitle
-14032>>>>>>>>>        Set Message_Text to sMessage
-14033>>>>>>>>>    End_Procedure
-14034>>>>>>>>>    
-14034>>>>>>>>>    // update the status panel's action area
-14034>>>>>>>>>    Procedure Update_StatusPanel String sAction
-14036>>>>>>>>>        Set Action_Text to sAction
-14037>>>>>>>>>    End_Procedure
-14038>>>>>>>>>    
-14038>>>>>>>>>    // stop the status panel
-14038>>>>>>>>>    Procedure Close_Panel
-14040>>>>>>>>>        If (Allow_cancel_state(Self)) Begin
-14042>>>>>>>>>            Forward Send Close_Panel
-14044>>>>>>>>>        End
-14044>>>>>>>>>>
-14044>>>>>>>>>    End_Procedure
-14045>>>>>>>>>    
-14045>>>>>>>>>    // Code must be provided in the cancel button object to enable/disable cancel button
-14045>>>>>>>>>    Procedure EnableCancelButton Boolean bEnable
-14047>>>>>>>>>    End_Procedure
-14048>>>>>>>>>    
-14048>>>>>>>>>    // check for cancel (if cancel or pbCancel is set, close the panel)
-14048>>>>>>>>>    Function Check_StatusPanel Returns Integer
-14050>>>>>>>>>        Boolean bCancel
-14050>>>>>>>>>        If (Active_state(Self)) Begin
-14052>>>>>>>>>            Send ProcessEvents
-14053>>>>>>>>>            Get pbCancel to bCancel
-14054>>>>>>>>>            If bCancel Begin
-14056>>>>>>>>>                Send Stop_StatusPanel // the old status panel removed this when canceled.
-14057>>>>>>>>>            End
-14057>>>>>>>>>>
-14057>>>>>>>>>        End
-14057>>>>>>>>>>
-14057>>>>>>>>>        Function_Return (If(bCancel, MSG_CANCEL, 0)) // the old check status panel returns msg_cancel
-14058>>>>>>>>>    End_Function
-14059>>>>>>>>>    
-14059>>>>>>>>>    // start the status panel
-14059>>>>>>>>>    Procedure Start_StatusPanel
-14061>>>>>>>>>        If not (Active_state(Self)) Begin
-14063>>>>>>>>>            Send EnableCancelButton (Allow_cancel_state(Self))
-14064>>>>>>>>>            Send Activate
-14065>>>>>>>>>        End
-14065>>>>>>>>>>
-14065>>>>>>>>>    End_Procedure
-14066>>>>>>>>>    
-14066>>>>>>>>>    // stop the status panel
-14066>>>>>>>>>    Procedure Stop_StatusPanel
-14068>>>>>>>>>        If (Active_state(Self)) Begin
-14070>>>>>>>>>            Send Deactivate
-14071>>>>>>>>>        End
-14071>>>>>>>>>>
-14071>>>>>>>>>    End_Procedure
-14072>>>>>>>>>    
-14072>>>>>>>>>End_Class
-14073>>>>>>>
-14073>>>>>>>
-14073>>>>>>>Global_Variable Handle ghoStatusPanel // will contain the ID of the global StatusPanel object
-14073>>>>>>>
-14073>>>>>>>
-14073>>>>>>>Object Status_Panel is a cProcessStatusPanel
-14075>>>>>>>    
-14075>>>>>>>    Move Self to ghoStatusPanel // this can be used throughout your applicaton to access this object
-14076>>>>>>>    
-14076>>>>>>>    Set Size to 80 166
-14077>>>>>>>    
-14077>>>>>>>    Object oTitleTxt is a TextBox
-14079>>>>>>>        Set location to 10 10
-14080>>>>>>>        Set Auto_Size_State to False
-14081>>>>>>>        Set size to 20 150
-14082>>>>>>>        Set Justification_Mode to JMode_Center
-14083>>>>>>>    End_Object
-14084>>>>>>>    
-14084>>>>>>>    Object oMessageTxt is a TextBox
-14086>>>>>>>        Set location to 25 10
-14087>>>>>>>        Set Auto_Size_State to False
-14088>>>>>>>        Set size to 20 150
-14089>>>>>>>    End_Object
-14090>>>>>>>    
-14090>>>>>>>    Object oActionTxt is a TextBox
-14092>>>>>>>        Set location to 45 10
-14093>>>>>>>    End_Object
-14094>>>>>>>    
-14094>>>>>>>    Object oStopButton is a Button
-14096>>>>>>>        Set Location to 60 58
-14097>>>>>>>        Set Label to C_$Cancel
-14098>>>>>>>        
-14098>>>>>>>        Procedure OnClick
-14101>>>>>>>            Send Close_panel
-14102>>>>>>>        End_Procedure
-14103>>>>>>>        
-14103>>>>>>>    End_Object
-14104>>>>>>>    
-14104>>>>>>>    // These messages bind the standard cProcessStatusPanel interface to the actual
-14104>>>>>>>    // objects defined within this instance of the status panel.
-14104>>>>>>>    
-14104>>>>>>>    // note: all of the messages that change text should be forwarded
-14104>>>>>>>    // as the forwarded messages allows the panel to paint when in a tight loop
-14104>>>>>>>    
-14104>>>>>>>    Procedure Set Message_Text String sText
-14107>>>>>>>        Set Label of oMessageTxt to sText
-14108>>>>>>>        Forward Set Message_Text to sText
-14110>>>>>>>    End_Procedure
-14111>>>>>>>    
-14111>>>>>>>    Function Message_Text Returns String
-14114>>>>>>>        Function_Return (Label(oMessageTxt))
-14115>>>>>>>    End_Function
-14116>>>>>>>    
-14116>>>>>>>    Procedure Set Action_Text String sText
-14119>>>>>>>        Set Label of oActionTxt to sText
-14120>>>>>>>        Forward Set Action_Text to sText
-14122>>>>>>>    End_Procedure
-14123>>>>>>>    
-14123>>>>>>>    Function Action_Text Returns String
-14126>>>>>>>        Function_Return (Label(oActionTxt))
-14127>>>>>>>    End_Function
-14128>>>>>>>    
-14128>>>>>>>    Procedure Set Button_Text String sText
-14131>>>>>>>        Set Label of oStopButton to sText
-14132>>>>>>>        Forward Set Button_Text to sText
-14134>>>>>>>    End_Procedure
-14135>>>>>>>    
-14135>>>>>>>    Function Button_Text Returns String
-14138>>>>>>>        Function_Return (Label(oStopButton))
-14139>>>>>>>    End_Function
-14140>>>>>>>    
-14140>>>>>>>    Procedure Set Title_Text String sText
-14143>>>>>>>        Set Label of oTitleTxt to sText
-14144>>>>>>>        Forward Set Title_Text to sText
-14146>>>>>>>    End_Procedure
-14147>>>>>>>    
-14147>>>>>>>    Function Title_Text Returns String
-14150>>>>>>>        Function_Return (Label(oTitleTxt))
-14151>>>>>>>    End_Function
-14152>>>>>>>    
-14152>>>>>>>    // gets called when status panel is activated passing whether a button
-14152>>>>>>>    // should appear
-14152>>>>>>>    Procedure EnableCancelButton Boolean bEnable
-14155>>>>>>>        Set Enabled_State of oStopButton to bEnable
-14156>>>>>>>    End_Procedure
-14157>>>>>>>    
-14157>>>>>>>End_Object
-14158>>>>>>>
-14158>>>>>
-14158>>>>>Use MsgBox.pkg
-14158>>>>>Use GlobalFunctionsProcedures.pkg
-14158>>>>>
-14158>>>>>// Do this so the metadata is correct for windows apps, which
-14158>>>>>// means it will be wrong for WebApps.
-14158>>>>>Class BusinessProcess is a cObject
-14159>>>>>    
-14159>>>>>    Procedure Construct_Object
-14161>>>>>        Forward Send Construct_Object
-14163>>>>>        
-14163>>>>>        // Status Panel related properties
-14163>>>>>        Property Integer Status_Panel_State        True
-14164>>>>>        Property Integer Allow_Cancel_State        False
-14165>>>>>        Property String  Process_Caption           C_$RunningProcess
-14166>>>>>        Property String  Process_Title             ""
-14167>>>>>        Property String  Process_Message           ""
-14168>>>>>        
-14168>>>>>        Property Integer Status_Panel_Id           0
-14169>>>>>        Property String  Status_Params             ''
-14170>>>>>        
-14170>>>>>        // if not web app, we want a normal status_panel object
-14170>>>>>        Set Status_Panel_Id    to (Status_Panel(Self))
-14171>>>>>        // Error related properties
-14171>>>>>        
-14171>>>>>        // if set true, errors will be forwarded to the normal
-14171>>>>>        // VDF error handler causing an error message to popup.
-14171>>>>>        // Normally you would not want this during a batch process.
-14171>>>>>        
-14171>>>>>        Property Integer Display_Error_State       False
-14172>>>>>        
-14172>>>>>        Property Integer Error_Count               0      // number of errors
-14173>>>>>        
-14173>>>>>        Property Integer Old_Error_Object_Id       0
-14174>>>>>        
-14174>>>>>        Property Integer Error_Processing_State    False  // internal use
-14175>>>>>        
-14175>>>>>        Property Integer Error_Check_State         False  // internal
-14176>>>>>        
-14176>>>>>        // Logging
-14176>>>>>        Property Integer Status_Log_State          False
-14177>>>>>        
-14177>>>>>        // If you are going to log information you must create a
-14177>>>>>        // status log object and set this property to its ID. See
-14177>>>>>        // Statlog.pkg for more information.
-14177>>>>>        Property Integer Status_Log_Id             0
-14178>>>>>        
-14178>>>>>        // This is normally not used at runtime by BPOs but it is required
-14178>>>>>        // by the IDE to figure out how to structure and relate DDOs
-14178>>>>>        Property Handle Main_DD                    0
-14179>>>>>        
-14179>>>>>    End_Procedure
-14180>>>>>    
-14180>>>>>    Procedure Update_Status String Val
-14182>>>>>        Integer StatPnl
-14182>>>>>        Get Status_Panel_Id to StatPnl
-14183>>>>>        If StatPnl ;            Send Update_StatusPanel to StatPnl Val
-14186>>>>>    End_Procedure
-14187>>>>>    
-14187>>>>>    Procedure Start_Status
-14189>>>>>        Integer StatPnl
-14189>>>>>        Set Error_Check_State to False
-14190>>>>>        If (Status_Panel_State(Self)) Begin
-14192>>>>>            Get Status_Panel_Id to StatPnl
-14193>>>>>            If StatPnl Begin
-14195>>>>>                Send Initialize_StatusPanel to StatPnl ;                    (Process_Caption(Self)) ;                    (Process_Title(Self)) ;                    (Process_Message(Self)) ;                    (Status_Params(Self))
-14196>>>>>                Set Allow_Cancel_State of StatPnl to (Allow_Cancel_State(Self))
-14197>>>>>                Send Start_StatusPanel to StatPnl
-14198>>>>>            End
-14198>>>>>>
-14198>>>>>        End
-14198>>>>>>
-14198>>>>>    End_Procedure
-14199>>>>>    
-14199>>>>>    Procedure Resume_Status
-14201>>>>>        Integer StatPnl
-14201>>>>>        Get Status_Panel_Id to StatPnl
-14202>>>>>        If StatPnl ;            Send Start_StatusPanel to StatPnl
-14205>>>>>    End_Procedure
-14206>>>>>    
-14206>>>>>    Procedure End_Status
-14208>>>>>        Integer StatPnl
-14208>>>>>        Get Status_Panel_Id to StatPnl
-14209>>>>>        If StatPnl ;            Send Stop_StatusPanel to StatPnl
-14212>>>>>    End_Procedure
-14213>>>>>    
-14213>>>>>    Procedure Start_Log
-14215>>>>>        Send Log_Status (SFormat(C_$BeginProcess, Process_Title(Self)))
-14216>>>>>    End_Procedure
-14217>>>>>    
-14217>>>>>    Procedure End_Log
-14219>>>>>        Integer ErrCount
-14219>>>>>        Get Error_Count to ErrCount
-14220>>>>>        Send Log_Status (SFormat(C_$EndProcessNumberOfErrors, Process_Title(Self), ErrCount))
-14221>>>>>    End_Procedure
-14222>>>>>    
-14222>>>>>    Procedure Error_Log_Status Integer Errnum Integer iErrLine String ErrMsg
-14224>>>>>        Send Log_Status (SFormat(C_$ErrorNum, ErrNum, ErrMsg))
-14225>>>>>    End_Procedure
-14226>>>>>    
-14226>>>>>    Procedure Log_Status String Mess
-14228>>>>>        Integer StatId
-14228>>>>>        Get Status_Log_Id to StatId
-14229>>>>>        If StatId ;            Send Log_Status to StatId Mess
-14232>>>>>    End_Procedure
-14233>>>>>    
-14233>>>>>    // This pops up a message asking if a process should
-14233>>>>>    // be canceled. Returns non-zero if cancel. This could be
-14233>>>>>    // augmented, should not be sent.
-14233>>>>>    
-14233>>>>>    Function Process_Interrupt Returns Integer
-14235>>>>>        Integer rVal
-14235>>>>>        String Mess
-14235>>>>>        If (Error_Check_State(Self)) ;            Move C_$AnErrorWasEncountered to Mess
-14238>>>>>        Else ;            Move  C_$DoYouWishToCancelThisProcess to Mess
-14240>>>>>        Move (YesNo_Box( Mess, C_$ProcessInterrupt, MB_DEFBUTTON1)) to rVal
-14241>>>>>        Function_Return (Rval=MBR_YES)
-14242>>>>>    End_Function
-14243>>>>>    
-14243>>>>>    // Public way to tell if a process should be canceled.
-14243>>>>>    // This should be sent but probably not augmented
-14243>>>>>    // check for report interrupt
-14243>>>>>    // Returns True to stop report, false to continue
-14243>>>>>    
-14243>>>>>    Function Cancel_Check Returns Integer
-14245>>>>>        Integer StatPnl StopIt
-14245>>>>>        Get Status_Panel_Id to StatPnl
-14246>>>>>        If ( Error_Check_State(Self) or ;            ( Status_Panel_State(Self) and ;            StatPnl and Check_StatusPanel(StatPnl)))  Begin
-14248>>>>>            Send End_Status
-14249>>>>>            Get Process_Interrupt to StopIt
-14250>>>>>            If not StopIt ;                Send Resume_Status
-14253>>>>>            Set Error_Check_State to False
-14254>>>>>        End
-14254>>>>>>
-14254>>>>>        Function_Return StopIt
-14255>>>>>    End_Function
-14256>>>>>    
-14256>>>>>    // All errors are directed to the main report. By Default we
-14256>>>>>    // shut off the status panel, report the error and notify the interrupt
-14256>>>>>    // mechanism to ask if the report should be canceled. VERY IMPORTANT!
-14256>>>>>    // If you augment this and you plan on doing ANY windows IO you should
-14256>>>>>    // first shut of the status panel.
-14256>>>>>    
-14256>>>>>    Procedure Error_Report Integer ErrNum Integer iErrLine String ErrMsg
-14258>>>>>        Integer id
-14258>>>>>        If (error_processing_state(Self)=False) Begin
-14260>>>>>            Set Error_processing_State to True // prevents recursion
-14261>>>>>            Set Error_Check_State to True
-14262>>>>>            Set Error_Count to (Error_Count(Self)+1)
-14263>>>>>            If (Status_Log_State(Self)) ;                Send Error_Log_Status ErrNum iErrLine ErrMsg
-14266>>>>>            If (Display_Error_State(Self)) Begin
-14268>>>>>                Get Old_Error_Object_Id to ID
-14269>>>>>                Send End_Status // YOU MUST DO THIS!!!!
-14270>>>>>                If ID ;                    Send Error_Report to Id ErrNum iErrLine ErrMsg
-14273>>>>>                Else ;                    Send Error_Report of desktop ErrNum iErrLine ErrMsg
-14275>>>>>            End
-14275>>>>>>
-14275>>>>>            Send onError ErrNum iErrLine ErrMsg
-14276>>>>>            Set Error_processing_State to False
-14277>>>>>        End
-14277>>>>>>
+14033>>>>>>>>>>>// This is an abstract class that can be used to create status panels. The interface at this level
+14033>>>>>>>>>>>// is very simple. You can start, stop, request a cancel and allow the object to paint.
+14033>>>>>>>>>>>//
+14033>>>>>>>>>>>// Look at cProcessStatusPanel.pkg to see how this is used.
+14033>>>>>>>>>>>
+14033>>>>>>>>>>>Use Windows.pkg
+14033>>>>>>>>>>>
+14033>>>>>>>>>>>
+14033>>>>>>>>>>>
+14033>>>>>>>>>>>
+14033>>>>>>>>>>>Class cStatusPanel is a FloatingPanel
+14034>>>>>>>>>>>    
+14034>>>>>>>>>>>    Procedure Construct_Object
+14036>>>>>>>>>>>        Forward Send Construct_object
+14038>>>>>>>>>>>        
+14038>>>>>>>>>>>        Property Boolean pbCancel False
+14039>>>>>>>>>>>        
+14039>>>>>>>>>>>        Set Extended_Window_Style to WS_EX_DLGMODALFRAME True // kills sysmenu as long as there is no icon
+14040>>>>>>>>>>>        Set Icon to '' // this must be cleared so there will be no icon
+14041>>>>>>>>>>>        Set locate_mode to CENTER_ON_PANEL
+14042>>>>>>>>>>>        Set Border_Style  to Border_Dialog
+14043>>>>>>>>>>>        // should be scoped so it will not try to change the focus if there is no focusable button inside
+14043>>>>>>>>>>>        Set Scope_State to True
+14044>>>>>>>>>>>        
+14044>>>>>>>>>>>        On_Key KEXIT_APPLICATION Send Close_Panel
+14045>>>>>>>>>>>    End_Procedure
+14046>>>>>>>>>>>    
+14046>>>>>>>>>>>    // this is private and required. Never send this.
+14046>>>>>>>>>>>    Procedure Deactivate_Group
+14048>>>>>>>>>>>        If (Active_State(Self)) Begin
+14050>>>>>>>>>>>            Send SuspendGUI of Desktop False
+14051>>>>>>>>>>>        End
+14051>>>>>>>>>>>>
+14051>>>>>>>>>>>        Forward Send Deactivate_Group
+14053>>>>>>>>>>>    End_Procedure
+14054>>>>>>>>>>>    
+14054>>>>>>>>>>>    // Send this message to stop the panel
+14054>>>>>>>>>>>    Procedure Deactivate
+14056>>>>>>>>>>>        If (Active_State(Self)) Begin
+14058>>>>>>>>>>>            Send SuspendGUI of Desktop False
+14059>>>>>>>>>>>        End
+14059>>>>>>>>>>>>
+14059>>>>>>>>>>>        Forward Send Deactivate
+14061>>>>>>>>>>>    End_Procedure
+14062>>>>>>>>>>>    
+14062>>>>>>>>>>>    // Send this message to start the panel
+14062>>>>>>>>>>>    Procedure Activate
+14064>>>>>>>>>>>        If not (Active_State(Self)) Begin
+14066>>>>>>>>>>>            Set pbCancel to False
+14067>>>>>>>>>>>            Send SuspendGUI of Desktop True
+14068>>>>>>>>>>>        End
+14068>>>>>>>>>>>>
+14068>>>>>>>>>>>        Forward Send Activate
+14070>>>>>>>>>>>    End_Procedure
+14071>>>>>>>>>>>    
+14071>>>>>>>>>>>    // This allows the panel to paint when used in a tight loop, which is what status panels are
+14071>>>>>>>>>>>    // used for. Any time you update the panel or wish to check for a cancel, you should call this.
+14071>>>>>>>>>>>    Procedure ProcessEvents
+14073>>>>>>>>>>>        If (Active_State(Self)) Begin
+14075>>>>>>>>>>>            Send PumpMsgQueue of Desktop
+14076>>>>>>>>>>>        End
+14076>>>>>>>>>>>>
+14076>>>>>>>>>>>    End_Procedure
+14077>>>>>>>>>>>    
+14077>>>>>>>>>>>    // note close panel does not actually close the panel. It just sets pbCancel to True, informing the
+14077>>>>>>>>>>>    // process using this that it wants to close. It is then up the process close the panel.
+14077>>>>>>>>>>>    Procedure Close_Panel
+14079>>>>>>>>>>>        Set pbCancel to True
+14080>>>>>>>>>>>    End_Procedure
+14081>>>>>>>>>>>    
+14081>>>>>>>>>>>End_Class
+14082>>>>>>>>>
+14082>>>>>>>>>
+14082>>>>>>>>>
+14082>>>>>>>>>Class cProcessStatusPanel is a cStatusPanel
+14083>>>>>>>>>    
+14083>>>>>>>>>    Procedure Construct_Object
+14085>>>>>>>>>        Forward Send Construct_object
+14087>>>>>>>>>        // determines if panel can be canceled
+14087>>>>>>>>>        Property Boolean Allow_Cancel_State True
+14088>>>>>>>>>    End_Procedure
+14089>>>>>>>>>    
+14089>>>>>>>>>    // Any of the properties that change the text of a status panel must also send
+14089>>>>>>>>>    // ProcessEvents which allows the panel to process painting messages. The ProcessEvents
+14089>>>>>>>>>    // is essential when using status panels within a tight loop
+14089>>>>>>>>>    
+14089>>>>>>>>>    Procedure Set Caption_text String sText
+14091>>>>>>>>>        Set Label to sText
+14092>>>>>>>>>        Send ProcessEvents
+14093>>>>>>>>>    End_Procedure
+14094>>>>>>>>>    
+14094>>>>>>>>>    Function Caption_Text Returns String
+14096>>>>>>>>>        Function_Return (Label(Self))
+14097>>>>>>>>>    End_Function
+14098>>>>>>>>>    
+14098>>>>>>>>>    Procedure Set Message_Text String sText
+14100>>>>>>>>>        Send ProcessEvents
+14101>>>>>>>>>    End_Procedure
+14102>>>>>>>>>    
+14102>>>>>>>>>    Function Message_Text Returns String
+14104>>>>>>>>>    End_Function
+14105>>>>>>>>>    
+14105>>>>>>>>>    Procedure Set Action_Text String sText
+14107>>>>>>>>>        Send ProcessEvents
+14108>>>>>>>>>    End_Procedure
+14109>>>>>>>>>    
+14109>>>>>>>>>    Function Action_Text Returns String
+14111>>>>>>>>>    End_Function
+14112>>>>>>>>>    
+14112>>>>>>>>>    Procedure Set Button_Text String sText
+14114>>>>>>>>>        Send ProcessEvents
+14115>>>>>>>>>    End_Procedure
+14116>>>>>>>>>    
+14116>>>>>>>>>    Function Button_Text Returns String
+14118>>>>>>>>>    End_Function
+14119>>>>>>>>>    
+14119>>>>>>>>>    Procedure Set Title_Text String sText
+14121>>>>>>>>>        Send ProcessEvents
+14122>>>>>>>>>    End_Procedure
+14123>>>>>>>>>    
+14123>>>>>>>>>    Function Title_Text Returns String
+14125>>>>>>>>>    End_Function
+14126>>>>>>>>>    
+14126>>>>>>>>>    // initializes values for caption, title & message
+14126>>>>>>>>>    Procedure Initialize_StatusPanel String sCaption String sTitle String sMessage
+14128>>>>>>>>>        Set Caption_text to sCaption
+14129>>>>>>>>>        Set Title_Text   to sTitle
+14130>>>>>>>>>        Set Message_Text to sMessage
+14131>>>>>>>>>    End_Procedure
+14132>>>>>>>>>    
+14132>>>>>>>>>    // update the status panel's action area
+14132>>>>>>>>>    Procedure Update_StatusPanel String sAction
+14134>>>>>>>>>        Set Action_Text to sAction
+14135>>>>>>>>>    End_Procedure
+14136>>>>>>>>>    
+14136>>>>>>>>>    // stop the status panel
+14136>>>>>>>>>    Procedure Close_Panel
+14138>>>>>>>>>        If (Allow_cancel_state(Self)) Begin
+14140>>>>>>>>>            Forward Send Close_Panel
+14142>>>>>>>>>        End
+14142>>>>>>>>>>
+14142>>>>>>>>>    End_Procedure
+14143>>>>>>>>>    
+14143>>>>>>>>>    // Code must be provided in the cancel button object to enable/disable cancel button
+14143>>>>>>>>>    Procedure EnableCancelButton Boolean bEnable
+14145>>>>>>>>>    End_Procedure
+14146>>>>>>>>>    
+14146>>>>>>>>>    // check for cancel (if cancel or pbCancel is set, close the panel)
+14146>>>>>>>>>    Function Check_StatusPanel Returns Integer
+14148>>>>>>>>>        Boolean bCancel
+14148>>>>>>>>>        If (Active_state(Self)) Begin
+14150>>>>>>>>>            Send ProcessEvents
+14151>>>>>>>>>            Get pbCancel to bCancel
+14152>>>>>>>>>            If bCancel Begin
+14154>>>>>>>>>                Send Stop_StatusPanel // the old status panel removed this when canceled.
+14155>>>>>>>>>            End
+14155>>>>>>>>>>
+14155>>>>>>>>>        End
+14155>>>>>>>>>>
+14155>>>>>>>>>        Function_Return (If(bCancel, MSG_CANCEL, 0)) // the old check status panel returns msg_cancel
+14156>>>>>>>>>    End_Function
+14157>>>>>>>>>    
+14157>>>>>>>>>    // start the status panel
+14157>>>>>>>>>    Procedure Start_StatusPanel
+14159>>>>>>>>>        If not (Active_state(Self)) Begin
+14161>>>>>>>>>            Send EnableCancelButton (Allow_cancel_state(Self))
+14162>>>>>>>>>            Send Activate
+14163>>>>>>>>>        End
+14163>>>>>>>>>>
+14163>>>>>>>>>    End_Procedure
+14164>>>>>>>>>    
+14164>>>>>>>>>    // stop the status panel
+14164>>>>>>>>>    Procedure Stop_StatusPanel
+14166>>>>>>>>>        If (Active_state(Self)) Begin
+14168>>>>>>>>>            Send Deactivate
+14169>>>>>>>>>        End
+14169>>>>>>>>>>
+14169>>>>>>>>>    End_Procedure
+14170>>>>>>>>>    
+14170>>>>>>>>>End_Class
+14171>>>>>>>
+14171>>>>>>>
+14171>>>>>>>Global_Variable Handle ghoStatusPanel // will contain the ID of the global StatusPanel object
+14171>>>>>>>
+14171>>>>>>>
+14171>>>>>>>Object Status_Panel is a cProcessStatusPanel
+14173>>>>>>>    
+14173>>>>>>>    Move Self to ghoStatusPanel // this can be used throughout your applicaton to access this object
+14174>>>>>>>    
+14174>>>>>>>    Set Size to 80 166
+14175>>>>>>>    
+14175>>>>>>>    Object oTitleTxt is a TextBox
+14177>>>>>>>        Set location to 10 10
+14178>>>>>>>        Set Auto_Size_State to False
+14179>>>>>>>        Set size to 20 150
+14180>>>>>>>        Set Justification_Mode to JMode_Center
+14181>>>>>>>    End_Object
+14182>>>>>>>    
+14182>>>>>>>    Object oMessageTxt is a TextBox
+14184>>>>>>>        Set location to 25 10
+14185>>>>>>>        Set Auto_Size_State to False
+14186>>>>>>>        Set size to 20 150
+14187>>>>>>>    End_Object
+14188>>>>>>>    
+14188>>>>>>>    Object oActionTxt is a TextBox
+14190>>>>>>>        Set location to 45 10
+14191>>>>>>>    End_Object
+14192>>>>>>>    
+14192>>>>>>>    Object oStopButton is a Button
+14194>>>>>>>        Set Location to 60 58
+14195>>>>>>>        Set Label to C_$Cancel
+14196>>>>>>>        
+14196>>>>>>>        Procedure OnClick
+14199>>>>>>>            Send Close_panel
+14200>>>>>>>        End_Procedure
+14201>>>>>>>        
+14201>>>>>>>    End_Object
+14202>>>>>>>    
+14202>>>>>>>    // These messages bind the standard cProcessStatusPanel interface to the actual
+14202>>>>>>>    // objects defined within this instance of the status panel.
+14202>>>>>>>    
+14202>>>>>>>    // note: all of the messages that change text should be forwarded
+14202>>>>>>>    // as the forwarded messages allows the panel to paint when in a tight loop
+14202>>>>>>>    
+14202>>>>>>>    Procedure Set Message_Text String sText
+14205>>>>>>>        Set Label of oMessageTxt to sText
+14206>>>>>>>        Forward Set Message_Text to sText
+14208>>>>>>>    End_Procedure
+14209>>>>>>>    
+14209>>>>>>>    Function Message_Text Returns String
+14212>>>>>>>        Function_Return (Label(oMessageTxt))
+14213>>>>>>>    End_Function
+14214>>>>>>>    
+14214>>>>>>>    Procedure Set Action_Text String sText
+14217>>>>>>>        Set Label of oActionTxt to sText
+14218>>>>>>>        Forward Set Action_Text to sText
+14220>>>>>>>    End_Procedure
+14221>>>>>>>    
+14221>>>>>>>    Function Action_Text Returns String
+14224>>>>>>>        Function_Return (Label(oActionTxt))
+14225>>>>>>>    End_Function
+14226>>>>>>>    
+14226>>>>>>>    Procedure Set Button_Text String sText
+14229>>>>>>>        Set Label of oStopButton to sText
+14230>>>>>>>        Forward Set Button_Text to sText
+14232>>>>>>>    End_Procedure
+14233>>>>>>>    
+14233>>>>>>>    Function Button_Text Returns String
+14236>>>>>>>        Function_Return (Label(oStopButton))
+14237>>>>>>>    End_Function
+14238>>>>>>>    
+14238>>>>>>>    Procedure Set Title_Text String sText
+14241>>>>>>>        Set Label of oTitleTxt to sText
+14242>>>>>>>        Forward Set Title_Text to sText
+14244>>>>>>>    End_Procedure
+14245>>>>>>>    
+14245>>>>>>>    Function Title_Text Returns String
+14248>>>>>>>        Function_Return (Label(oTitleTxt))
+14249>>>>>>>    End_Function
+14250>>>>>>>    
+14250>>>>>>>    // gets called when status panel is activated passing whether a button
+14250>>>>>>>    // should appear
+14250>>>>>>>    Procedure EnableCancelButton Boolean bEnable
+14253>>>>>>>        Set Enabled_State of oStopButton to bEnable
+14254>>>>>>>    End_Procedure
+14255>>>>>>>    
+14255>>>>>>>End_Object
+14256>>>>>>>
+14256>>>>>
+14256>>>>>Use MsgBox.pkg
+14256>>>>>Use GlobalFunctionsProcedures.pkg
+14256>>>>>
+14256>>>>>// Do this so the metadata is correct for windows apps, which
+14256>>>>>// means it will be wrong for WebApps.
+14256>>>>>Class BusinessProcess is a cObject
+14257>>>>>    
+14257>>>>>    Procedure Construct_Object
+14259>>>>>        Forward Send Construct_Object
+14261>>>>>        
+14261>>>>>        // Status Panel related properties
+14261>>>>>        Property Integer Status_Panel_State        True
+14262>>>>>        Property Integer Allow_Cancel_State        False
+14263>>>>>        Property String  Process_Caption           C_$RunningProcess
+14264>>>>>        Property String  Process_Title             ""
+14265>>>>>        Property String  Process_Message           ""
+14266>>>>>        
+14266>>>>>        Property Integer Status_Panel_Id           0
+14267>>>>>        Property String  Status_Params             ''
+14268>>>>>        
+14268>>>>>        // if not web app, we want a normal status_panel object
+14268>>>>>        Set Status_Panel_Id    to (Status_Panel(Self))
+14269>>>>>        // Error related properties
+14269>>>>>        
+14269>>>>>        // if set true, errors will be forwarded to the normal
+14269>>>>>        // VDF error handler causing an error message to popup.
+14269>>>>>        // Normally you would not want this during a batch process.
+14269>>>>>        
+14269>>>>>        Property Integer Display_Error_State       False
+14270>>>>>        
+14270>>>>>        Property Integer Error_Count               0      // number of errors
+14271>>>>>        
+14271>>>>>        Property Integer Old_Error_Object_Id       0
+14272>>>>>        
+14272>>>>>        Property Integer Error_Processing_State    False  // internal use
+14273>>>>>        
+14273>>>>>        Property Integer Error_Check_State         False  // internal
+14274>>>>>        
+14274>>>>>        // Logging
+14274>>>>>        Property Integer Status_Log_State          False
+14275>>>>>        
+14275>>>>>        // If you are going to log information you must create a
+14275>>>>>        // status log object and set this property to its ID. See
+14275>>>>>        // Statlog.pkg for more information.
+14275>>>>>        Property Integer Status_Log_Id             0
+14276>>>>>        
+14276>>>>>        // This is normally not used at runtime by BPOs but it is required
+14276>>>>>        // by the IDE to figure out how to structure and relate DDOs
+14276>>>>>        Property Handle Main_DD                    0
+14277>>>>>        
 14277>>>>>    End_Procedure
 14278>>>>>    
-14278>>>>>    // Event called by Error_Report. For augmentation.
-14278>>>>>    // If you are planning on doing any interactive IO and you are
-14278>>>>>    // using the status panel you must first remove the panel
-14278>>>>>    // (send End_Status).
-14278>>>>>    
-14278>>>>>    Procedure OnError Integer ErrNum Integer iErrLine String ErrMsg
-14280>>>>>    End_Procedure
-14281>>>>>    
-14281>>>>>    Procedure Start_Process
-14283>>>>>        Set Error_Count to 0
-14284>>>>>        Set Old_Error_Object_id to Error_Object_id
-14285>>>>>        Move Self to Error_Object_id
-14286>>>>>        If (Status_Log_State(Self)) ;            Send Start_Log
-14289>>>>>        Send Start_Status
-14290>>>>>    End_Procedure
-14291>>>>>    
-14291>>>>>    Procedure End_Process
-14293>>>>>        Send End_Status
-14294>>>>>        If (Status_Log_State(Self)) ;            Send End_Log
-14297>>>>>        Get Old_Error_Object_id to Error_Object_id // restore previous error object
-14298>>>>>        Set Old_Error_Object_id to 0
-14299>>>>>    End_Procedure
-14300>>>>>    
-14300>>>>>    // This runs the actual busiess process. It is expected that most
-14300>>>>>    // if not all of the custom code to run a process will be provided
-14300>>>>>    // here.
-14300>>>>>    
-14300>>>>>    Procedure OnProcess
-14302>>>>>    End_Procedure
-14303>>>>>    
-14303>>>>>    // This procedure is the main public access method into this
-14303>>>>>    // object. A process is run by sending this message. It will start
-14303>>>>>    // the process, call a user defined Hook (event) to actually do
-14303>>>>>    // the processing, and then end the process.
-14303>>>>>    
-14303>>>>>    Procedure DoProcess
-14305>>>>>        Send Start_Process   // does all process init
-14306>>>>>        Send OnProcess       // must be provided by the programmer
-14307>>>>>        Send End_Process     // does all close down
-14308>>>>>    End_Procedure
-14309>>>>>    
-14309>>>>>End_Class
-14310>>>>>
-14310>>>
-14310>>>Declare_Datafile CLASDES
+14278>>>>>    Procedure Update_Status String Val
+14280>>>>>        Integer StatPnl
+14280>>>>>        Get Status_Panel_Id to StatPnl
+14281>>>>>        If StatPnl ;            Send Update_StatusPanel to StatPnl Val
+14284>>>>>    End_Procedure
+14285>>>>>    
+14285>>>>>    Procedure Start_Status
+14287>>>>>        Integer StatPnl
+14287>>>>>        Set Error_Check_State to False
+14288>>>>>        If (Status_Panel_State(Self)) Begin
+14290>>>>>            Get Status_Panel_Id to StatPnl
+14291>>>>>            If StatPnl Begin
+14293>>>>>                Send Initialize_StatusPanel to StatPnl ;                    (Process_Caption(Self)) ;                    (Process_Title(Self)) ;                    (Process_Message(Self)) ;                    (Status_Params(Self))
+14294>>>>>                Set Allow_Cancel_State of StatPnl to (Allow_Cancel_State(Self))
+14295>>>>>                Send Start_StatusPanel to StatPnl
+14296>>>>>            End
+14296>>>>>>
+14296>>>>>        End
+14296>>>>>>
+14296>>>>>    End_Procedure
+14297>>>>>    
+14297>>>>>    Procedure Resume_Status
+14299>>>>>        Integer StatPnl
+14299>>>>>        Get Status_Panel_Id to StatPnl
+14300>>>>>        If StatPnl ;            Send Start_StatusPanel to StatPnl
+14303>>>>>    End_Procedure
+14304>>>>>    
+14304>>>>>    Procedure End_Status
+14306>>>>>        Integer StatPnl
+14306>>>>>        Get Status_Panel_Id to StatPnl
+14307>>>>>        If StatPnl ;            Send Stop_StatusPanel to StatPnl
+14310>>>>>    End_Procedure
+14311>>>>>    
+14311>>>>>    Procedure Start_Log
+14313>>>>>        Send Log_Status (SFormat(C_$BeginProcess, Process_Title(Self)))
+14314>>>>>    End_Procedure
+14315>>>>>    
+14315>>>>>    Procedure End_Log
+14317>>>>>        Integer ErrCount
+14317>>>>>        Get Error_Count to ErrCount
+14318>>>>>        Send Log_Status (SFormat(C_$EndProcessNumberOfErrors, Process_Title(Self), ErrCount))
+14319>>>>>    End_Procedure
+14320>>>>>    
+14320>>>>>    Procedure Error_Log_Status Integer Errnum Integer iErrLine String ErrMsg
+14322>>>>>        Send Log_Status (SFormat(C_$ErrorNum, ErrNum, ErrMsg))
+14323>>>>>    End_Procedure
+14324>>>>>    
+14324>>>>>    Procedure Log_Status String Mess
+14326>>>>>        Integer StatId
+14326>>>>>        Get Status_Log_Id to StatId
+14327>>>>>        If StatId ;            Send Log_Status to StatId Mess
+14330>>>>>    End_Procedure
+14331>>>>>    
+14331>>>>>    // This pops up a message asking if a process should
+14331>>>>>    // be canceled. Returns non-zero if cancel. This could be
+14331>>>>>    // augmented, should not be sent.
+14331>>>>>    
+14331>>>>>    Function Process_Interrupt Returns Integer
+14333>>>>>        Integer rVal
+14333>>>>>        String Mess
+14333>>>>>        If (Error_Check_State(Self)) ;            Move C_$AnErrorWasEncountered to Mess
+14336>>>>>        Else ;            Move  C_$DoYouWishToCancelThisProcess to Mess
+14338>>>>>        Move (YesNo_Box( Mess, C_$ProcessInterrupt, MB_DEFBUTTON1)) to rVal
+14339>>>>>        Function_Return (Rval=MBR_YES)
+14340>>>>>    End_Function
+14341>>>>>    
+14341>>>>>    // Public way to tell if a process should be canceled.
+14341>>>>>    // This should be sent but probably not augmented
+14341>>>>>    // check for report interrupt
+14341>>>>>    // Returns True to stop report, false to continue
+14341>>>>>    
+14341>>>>>    Function Cancel_Check Returns Integer
+14343>>>>>        Integer StatPnl StopIt
+14343>>>>>        Get Status_Panel_Id to StatPnl
+14344>>>>>        If ( Error_Check_State(Self) or ;            ( Status_Panel_State(Self) and ;            StatPnl and Check_StatusPanel(StatPnl)))  Begin
+14346>>>>>            Send End_Status
+14347>>>>>            Get Process_Interrupt to StopIt
+14348>>>>>            If not StopIt ;                Send Resume_Status
+14351>>>>>            Set Error_Check_State to False
+14352>>>>>        End
+14352>>>>>>
+14352>>>>>        Function_Return StopIt
+14353>>>>>    End_Function
+14354>>>>>    
+14354>>>>>    // All errors are directed to the main report. By Default we
+14354>>>>>    // shut off the status panel, report the error and notify the interrupt
+14354>>>>>    // mechanism to ask if the report should be canceled. VERY IMPORTANT!
+14354>>>>>    // If you augment this and you plan on doing ANY windows IO you should
+14354>>>>>    // first shut of the status panel.
+14354>>>>>    
+14354>>>>>    Procedure Error_Report Integer ErrNum Integer iErrLine String ErrMsg
+14356>>>>>        Integer id
+14356>>>>>        If (error_processing_state(Self)=False) Begin
+14358>>>>>            Set Error_processing_State to True // prevents recursion
+14359>>>>>            Set Error_Check_State to True
+14360>>>>>            Set Error_Count to (Error_Count(Self)+1)
+14361>>>>>            If (Status_Log_State(Self)) ;                Send Error_Log_Status ErrNum iErrLine ErrMsg
+14364>>>>>            If (Display_Error_State(Self)) Begin
+14366>>>>>                Get Old_Error_Object_Id to ID
+14367>>>>>                Send End_Status // YOU MUST DO THIS!!!!
+14368>>>>>                If ID ;                    Send Error_Report to Id ErrNum iErrLine ErrMsg
+14371>>>>>                Else ;                    Send Error_Report of desktop ErrNum iErrLine ErrMsg
+14373>>>>>            End
+14373>>>>>>
+14373>>>>>            Send onError ErrNum iErrLine ErrMsg
+14374>>>>>            Set Error_processing_State to False
+14375>>>>>        End
+14375>>>>>>
+14375>>>>>    End_Procedure
+14376>>>>>    
+14376>>>>>    // Event called by Error_Report. For augmentation.
+14376>>>>>    // If you are planning on doing any interactive IO and you are
+14376>>>>>    // using the status panel you must first remove the panel
+14376>>>>>    // (send End_Status).
+14376>>>>>    
+14376>>>>>    Procedure OnError Integer ErrNum Integer iErrLine String ErrMsg
+14378>>>>>    End_Procedure
+14379>>>>>    
+14379>>>>>    Procedure Start_Process
+14381>>>>>        Set Error_Count to 0
+14382>>>>>        Set Old_Error_Object_id to Error_Object_id
+14383>>>>>        Move Self to Error_Object_id
+14384>>>>>        If (Status_Log_State(Self)) ;            Send Start_Log
+14387>>>>>        Send Start_Status
+14388>>>>>    End_Procedure
+14389>>>>>    
+14389>>>>>    Procedure End_Process
+14391>>>>>        Send End_Status
+14392>>>>>        If (Status_Log_State(Self)) ;            Send End_Log
+14395>>>>>        Get Old_Error_Object_id to Error_Object_id // restore previous error object
+14396>>>>>        Set Old_Error_Object_id to 0
+14397>>>>>    End_Procedure
+14398>>>>>    
+14398>>>>>    // This runs the actual busiess process. It is expected that most
+14398>>>>>    // if not all of the custom code to run a process will be provided
+14398>>>>>    // here.
+14398>>>>>    
+14398>>>>>    Procedure OnProcess
+14400>>>>>    End_Procedure
+14401>>>>>    
+14401>>>>>    // This procedure is the main public access method into this
+14401>>>>>    // object. A process is run by sending this message. It will start
+14401>>>>>    // the process, call a user defined Hook (event) to actually do
+14401>>>>>    // the processing, and then end the process.
+14401>>>>>    
+14401>>>>>    Procedure DoProcess
+14403>>>>>        Send Start_Process   // does all process init
+14404>>>>>        Send OnProcess       // must be provided by the programmer
+14405>>>>>        Send End_Process     // does all close down
+14406>>>>>    End_Procedure
+14407>>>>>    
+14407>>>>>End_Class
+14408>>>>>
+14408>>>
+14408>>>Declare_Datafile CLASDES
 Including file: CLASDES.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\CLASDES.fd)
-14310>>>Declare_Datafile tcamemp
-Including file: tcamemp.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tcamemp.fd)
-14310>>>Declare_Datafile tFatNfVe
+14408>>>Declare_Datafile tcamemp
+14408>>>Declare_Datafile tFatNfVe
 Including file: tFatNfVe.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tFatNfVe.fd)
-14310>>>Declare_Datafile tfatnfcven
+14408>>>Declare_Datafile tfatnfcven
 Including file: tfatnfcven.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tfatnfcven.fd)
-14310>>>Declare_Datafile tNfserVe
+14408>>>Declare_Datafile tNfserVe
 Including file: tNfserVe.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tNfserVe.fd)
-14310>>>Declare_Datafile Tcomvend
+14408>>>Declare_Datafile Tcomvend
 Including file: Tcomvend.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\Tcomvend.fd)
-14310>>>Declare_Datafile TCliRepr
+14408>>>Declare_Datafile TCliRepr
 Including file: TCliRepr.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\TCliRepr.fd)
-14310>>>
-14310>>>Struct tTvlorFatu_Vendedores
-14310>>>    String sNumLanc
-14310>>>    String sTpLancamento
-14310>>>    String sEmp
-14310>>>    String sCdVendedor
-14310>>>End_Struct
-14310>>>
-14310>>>Struct tBiinvoice
-14310>>>    String Invoice
-14310>>>    String sCodForn
-14310>>>    Date dDataVenc
-14310>>>    Date dDataPagamento
-14310>>>    Number nValorUS
-14310>>>End_Struct
-14310>>>
-14310>>>Struct tCodeMast
-14310>>>    String sCode
-14310>>>    String sType
-14310>>>    String sDescription
-14310>>>End_Struct
-14310>>>
-14310>>>Struct tClasDes
-14310>>>    String sCode
-14310>>>    String sDescricao
-14310>>>End_Struct
-14310>>>
-14310>>>Struct tClasCont
-14310>>>    String sCode
-14310>>>    String sCode2
-14310>>>    String sDescricao
-14310>>>End_Struct
-14310>>>
-14310>>>Struct tDupAtu
-14310>>>    String sDup
-14310>>>    String sSerie
-14310>>>    String sTipo
-14310>>>End_Struct
-14310>>>
-14310>>>Struct tCadProdutos
-14310>>>    String sCodProduto 
-14310>>>    String sDescricao  
-14310>>>    String sCodFabr    
-14310>>>    String sRef        
-14310>>>    String sFamilia1   
-14310>>>    String sFamilia2   
-14310>>>    String sFamilia3   
-14310>>>    String sFamilia4   
-14310>>>    String sFamilia5   
-14310>>>    String sFamilia6   
-14310>>>    String sFamilia7   
-14310>>>    String sFamilia8   
-14310>>>    String sFamilia9   
-14310>>>    String sStatus     
-14310>>>End_Struct
-14310>>>
-14310>>>Struct tCadastroCli
-14310>>>    String sCodCli
-14310>>>    String sNmNome
-14310>>>    String sCnpjCpf
-14310>>>    String sEstado 
-14310>>>    String sCidade 
-14310>>>    String sTipo  
-14310>>>    Date dData
-14310>>>End_Struct
-14310>>>
-14310>>>Struct tFaturamento
-14310>>>    String sNumLanc           
-14310>>>    String sTpLancamento      
-14310>>>    String sEmp               
-14310>>>    String sEmpOrgVenda       
-14310>>>    Date   dData              
-14310>>>    String sDescrLanca        
-14310>>>    Number nVlLancamento      
-14310>>>    String sTipoCli           
-14310>>>    String sEstCli            
-14310>>>    String sRazao             
-14310>>>    String sCdClienteForn     
-14310>>>    String sCPFCNPJ     
-14310>>>    Integer iCdRepresentante
-14310>>>End_Struct
-14310>>>
-14310>>>Function ToUTF8 Global String sOemString Returns String
-14312>>>    Pointer aString
-14312>>>    String sUtf8String
-14312>>>    Boolean bVoid
-14312>>>    
-14312>>>    Move (AddressOf(sOemString)) to aString
-14313>>>    Move (OemToUtf8Buffer(aString, CStringLength(aString))) to aString
-14314>>>    Move (PointerToString(aString)) to sUtf8String
-14315>>>    Move (Free(aString)) to bVoid
-14316>>>    
-14316>>>    Function_Return sUtf8String
-14317>>>End_Function
-14318>>>
-14318>>>Function fTiraAcento String sString Returns String
-14320>>>    Move (Trim(sString)) to sString
-14321>>>    
-14321>>>    Move (Replaces("Á",sString,"A")) to sString
-14322>>>    Move (Replaces("á",sString,"a")) to sString
-14323>>>    Move (Replaces("À",sString,"A")) to sString
-14324>>>    Move (Replaces("à",sString,"a")) to sString
-14325>>>    Move (Replaces("Ã",sString,"A")) to sString
-14326>>>    Move (Replaces("ã",sString,"a")) to sString
-14327>>>    Move (Replaces("Â",sString,"A")) to sString
-14328>>>    Move (Replaces("â",sString,"a")) to sString
-14329>>>    
-14329>>>    Move (Replaces("È",sString,"E")) to sString
-14330>>>    Move (Replaces("é",sString,"e")) to sString
-14331>>>    Move (Replaces("ê",sString,"e")) to sString
-14332>>>    Move (Replaces("Ê",sString,"E")) to sString
-14333>>>    
-14333>>>    Move (Replaces("Õ",sString,"O")) to sString
-14334>>>    Move (Replaces("õ",sString,"o")) to sString
-14335>>>    Move (Replaces("Ô",sString,"O")) to sString
-14336>>>    Move (Replaces("ô",sString,"o")) to sString
-14337>>>    
-14337>>>    Move (Replaces("´",sString,"")) to sString
-14338>>>    Move (Replaces("^",sString,"")) to sString
-14339>>>    Move (Replaces("~",sString,"")) to sString
-14340>>>    Move (Replaces("`",sString,"")) to sString
-14341>>>    
-14341>>>    Function_Return sString
-14342>>>End_Function
-14343>>>
-14343>>>Object oCriaBaseBI_v2 is a BusinessProcess
-14345>>>
-14345>>>    // Send DoProcess to this BPO to start the business process
-14345>>>    // DoProcess is a predefined method in the BusinessProcess class
-14345>>>    // Send DoProcess of oNewBusinessProcess
-14345>>>
-14345>>>    // OnProcess
-14345>>>    // ---------
-14345>>>    // Place your processing code into Procedure OnProcess
-14345>>>    // OnProcess is a predefined method in the BusinessProcess class
-14345>>>
-14345>>>    Set Allow_Cancel_State to True
-14346>>>    Set Process_Title to "Atualizando Tabelas BI"
-14347>>>    Set Process_Caption to "CriaBaseBi"
-14348>>>    
-14348>>>    Function Cod_Tipo_Dupli String sTipo String sDescr Date dDataPro Returns String
-14351>>>        Boolean bChecked
-14351>>>        
-14351>>>        Move (Trim(sTipo)) to sTipo
-14352>>>        Move (Trim(sDescr)) to sDescr
-14353>>>        
-14353>>>        Move (Uppercase(sDescr)) to sDescr
-14354>>>        
-14354>>>        If (dDataPro <> "") Function_Return "P"
-14357>>>        If (sTipo = "E") Function_Return "A"
-14360>>>        If (sTipo = "M") Function_Return "M"
-14363>>>        If (sTipo = "X") Begin
-14365>>>            If (sDescr contains "FGTS") Function_Return "I"
-14368>>>            If (sDescr contains "INSS") Function_Return "I"
-14371>>>            If (sDescr contains "PIS ") Function_Return "I"
-14374>>>            If (sDescr contains "ICMS") Function_Return "I"
-14377>>>            If (sDescr contains "IPI ") Function_Return "I"
-14380>>>            If (sDescr contains "COFINS") Function_Return "I"
-14383>>>            If (sDescr contains "IRRF") Function_Return "I"
-14386>>>            If (sDescr contains "IRPJ") Function_Return "I"
-14389>>>            If (sDescr contains "CSLL") Function_Return "I"
-14392>>>            If (sDescr contains "SALARIO") Function_Return "L"
-14395>>>            If (sDescr contains "SALÁRIO") Function_Return "L"
-14398>>>            Function_Return "O"
-14399>>>        End
-14399>>>>
-14399>>>        If (sDescr contains "POLICOM") Function_Return "T"
-14402>>>        If (sDescr contains "PARIS CABOS") Function_Return "T"
-14405>>>        If (sDescr contains "GP CABLING") Function_Return "T"
-14408>>>        If ((sTipo = "1") or (sTipo = "2") or (sTipo = "S") or (sTipo = "0") or (sTipo = "a")or (sTipo = "b")or (sTipo = "c")or (sTipo = "d")or (sTipo = "e")or (sTipo = "f")or (sTipo = "g")) Function_Return "N"
-14411>>>        If (sTipo = "W") Function_Return "W"
-14414>>>        Function_Return "O"
-14415>>>    End_Function
+14408>>>
+14408>>>Struct tTvlorFatu_Vendedores
+14408>>>    String sNumLanc
+14408>>>    String sTpLancamento
+14408>>>    String sEmp
+14408>>>    String sCdVendedor
+14408>>>End_Struct
+14408>>>
+14408>>>Struct tBiinvoice
+14408>>>    String Invoice
+14408>>>    String sCodForn
+14408>>>    Date dDataVenc
+14408>>>    Date dDataPagamento
+14408>>>    Number nValorUS
+14408>>>End_Struct
+14408>>>
+14408>>>Struct tCodeMast
+14408>>>    String sCode
+14408>>>    String sType
+14408>>>    String sDescription
+14408>>>End_Struct
+14408>>>
+14408>>>Struct tClasDes
+14408>>>    String sCode
+14408>>>    String sDescricao
+14408>>>End_Struct
+14408>>>
+14408>>>Struct tClasCont
+14408>>>    String sCode
+14408>>>    String sCode2
+14408>>>    String sDescricao
+14408>>>End_Struct
+14408>>>
+14408>>>Struct tDupAtu
+14408>>>    String sDup
+14408>>>    String sSerie
+14408>>>    String sTipo
+14408>>>End_Struct
+14408>>>
+14408>>>Struct tCadProdutos
+14408>>>    String sCodProduto 
+14408>>>    String sDescricao  
+14408>>>    String sCodFabr    
+14408>>>    String sRef        
+14408>>>    String sFamilia1   
+14408>>>    String sFamilia2   
+14408>>>    String sFamilia3   
+14408>>>    String sFamilia4   
+14408>>>    String sFamilia5   
+14408>>>    String sFamilia6   
+14408>>>    String sFamilia7   
+14408>>>    String sFamilia8   
+14408>>>    String sFamilia9   
+14408>>>    String sStatus     
+14408>>>End_Struct
+14408>>>
+14408>>>Struct tCadastroCli
+14408>>>    String sCodCli
+14408>>>    String sNmNome
+14408>>>    String sCnpjCpf
+14408>>>    String sEstado 
+14408>>>    String sCidade 
+14408>>>    String sTipo  
+14408>>>    Date dData
+14408>>>End_Struct
+14408>>>
+14408>>>Struct tFaturamento
+14408>>>    String sNumLanc           
+14408>>>    String sTpLancamento      
+14408>>>    String sEmp               
+14408>>>    String sEmpOrgVenda       
+14408>>>    Date   dData              
+14408>>>    String sDescrLanca        
+14408>>>    Number nVlLancamento      
+14408>>>    String sTipoCli           
+14408>>>    String sEstCli            
+14408>>>    String sRazao             
+14408>>>    String sCdClienteForn     
+14408>>>    String sCPFCNPJ     
+14408>>>    Integer iCdRepresentante
+14408>>>End_Struct
+14408>>>
+14408>>>Function ToUTF8 Global String sOemString Returns String
+14410>>>    Pointer aString
+14410>>>    String sUtf8String
+14410>>>    Boolean bVoid
+14410>>>    
+14410>>>    Move (AddressOf(sOemString)) to aString
+14411>>>    Move (OemToUtf8Buffer(aString, CStringLength(aString))) to aString
+14412>>>    Move (PointerToString(aString)) to sUtf8String
+14413>>>    Move (Free(aString)) to bVoid
+14414>>>    
+14414>>>    Function_Return sUtf8String
+14415>>>End_Function
 14416>>>
-14416>>>    Function Descr_Tipo_Dupli String sCod Returns String
-14419>>>        Boolean bChecked
-14419>>>        
-14419>>>        Move (Trim(sCod)) to sCod
-14420>>>        
-14420>>>        If (sCod = "N") Function_Return "Notas"
-14423>>>        If (sCod = "A") Function_Return "Acordos"
-14426>>>        If (sCod = "M") Function_Return "Comissoes"
-14429>>>        If (sCod = "I") Function_Return "Impostos"
-14432>>>        If (sCod = "L") Function_Return "Salarios"
-14435>>>        If (sCod = "O") Function_Return "Outros"
-14438>>>        If (sCod = "T") Function_Return "Filiais"
-14441>>>        If (sCod = "P") Function_Return "Prorrogado"
-14444>>>        If (scod = "C") Function_Return "Prev. Ped. Compra Nac"
-14447>>>        If (scod = "D") Function_Return "Prev. Ped. Compra Imp"
-14450>>>        If (sCod = "F") Function_Return "Invoice"
-14453>>>        If (sCod = "B") Function_Return "Prev. Impost. Invoice"
-14456>>>        If (sCod = "E") Function_Return "Prev. Impost. Ped Imp"
-14459>>>        If (sCod = "W") Function_Return "Prop. Valid/Abert/90% Prob."
-14462>>>        Function_Return ""
-14463>>>    End_Function
-14464>>>
-14464>>>    Function TiraPonto String sVar Returns String
-14467>>>        Move (Replaces("/",sVar,"")) to sVar
-14468>>>        Move (Replaces(".",sVar,"")) to sVar
-14469>>>        Move (Replaces("-",sVar,"")) to sVar
-14470>>>        Move (Replaces(" ",sVar,"")) to sVar
-14471>>>        Function_Return sVar
-14472>>>    End_Function
-14473>>>    
-14473>>>    tCodeMast[] aCodeMast 
-14473>>>    tCodeMast[] aCodeMast 
-14473>>>    
-14473>>>    Function fCodeMast tCodeMast tCode1 tCodeMast tCode2 Returns Integer
-14476>>>        If ((tCode1.sType = tCode2.sType) and (tCode1.sCode = tCode2.sCode)) Function_Return (EQ)
-14479>>>    End_Function
-14480>>>    
-14480>>>    Function fProcuraCodeMast String sCode String sType Returns String
-14483>>>         Integer iSearchIndex
-14483>>>         tCodeMast searchCodeMast
-14483>>>         tCodeMast searchCodeMast
-14483>>>         
-14483>>>         Move sCode to searchCodeMast.sCode
-14484>>>         Move sType to searchCodeMast.sType
-14485>>>         
-14485>>>         Move (SearchArray(searchCodeMast,aCodeMast,Self,(RefFunc(fCodeMast)))) to iSearchIndex
-14486>>>        
-14486>>>        If (iSearchIndex = -1) Function_Return ""
-14489>>>        Else                   Function_Return aCodeMast[iSearchIndex].sDescription
-14491>>>    End_Function
-14492>>>    
-14492>>>    tClasDes[] aClasDes
-14492>>>    tClasDes[] aClasDes
-14492>>>    
-14492>>>    Function fClasDes tClasDes tCode1 tClasDes tCode2 Returns Integer
-14495>>>        If (tCode1.sCode = tCode2.sCode) Function_Return (EQ)
-14498>>>    End_Function
-14499>>>    
-14499>>>    Function fProcuraClasDes String sCode  Returns String
-14502>>>        Integer iSearchIndex
-14502>>>        tClasDes searchClasDes
-14502>>>        tClasDes searchClasDes
-14502>>>        
-14502>>>        Move sCode to searchClasDes.sCode
-14503>>>        
-14503>>>        Move (SearchArray(searchClasDes,aClasDes,Self,(RefFunc(fClasDes)))) to iSearchIndex
-14504>>>        
-14504>>>        If (iSearchIndex = -1) Function_Return ""
-14507>>>        Else                   Function_Return (aClasDes[iSearchIndex].sDescricao)
-14509>>>//        Else                   Function_Return (aClasDes[iSearchIndex].sCode+aClasDes[iSearchIndex].sDescricao)
-14509>>>    End_Function
-14510>>>    
-14510>>>    tClasCont[] aClasCont
-14510>>>    tClasCont[] aClasCont
-14510>>>    
-14510>>>    Function fClasCont tClasCont tCode1 tClasCont tCode2 Returns Integer
-14513>>>        If (tCode1.sCode2 = tCode2.sCode2) Function_Return (EQ)
-14516>>>    End_Function
-14517>>>    
-14517>>>    Function fProcuraClasCont String sCode2 Returns String
-14520>>>        Integer iSearchIndex
-14520>>>        tClasCont searchClasCont
-14520>>>        tClasCont searchClasCont
-14520>>>      
-14520>>>        Move sCode2 to searchClasCont.sCode2
-14521>>>         
-14521>>>        Move (SearchArray(searchClasCont,aClasCont,Self,(RefFunc(fClasCont)))) to iSearchIndex
-14522>>>        
-14522>>>        If (iSearchIndex = -1) Function_Return ""
-14525>>>        Else Function_Return (aClasCont[iSearchIndex].sDescricao)
-14527>>>//        Else Function_Return (aClasCont[iSearchIndex].sCode2+aClasCont[iSearchIndex].sDescricao)
-14527>>>    End_Function
-14528>>>
-14528>>>    tDupAtu[] aDupAtu
-14528>>>    tDupAtu[] aDupAtu
-14528>>>    
-14528>>>    Function fDupAtu tDupAtu sDup1 tDupAtu sDup2 Returns Integer
-14531>>>        If ((sDup1.sDup = sDup2.sDup) and (sDup1.sSerie = sDup2.sSerie) and (sDup1.sTipo = sDup2.sTipo)) Function_Return (EQ)
-14534>>>    End_Function
-14535>>>    
-14535>>>    Function fFazDupAtu String sNup String sSerie String sTipo Returns Boolean
-14538>>>        Integer iTamArray iSearchIndex
-14538>>>        tDupAtu searchDupAtu
-14538>>>        tDupAtu searchDupAtu
-14538>>>        
-14538>>>        Move (tcamemp.EMP+sNup) to sNup
-14539>>>        
-14539>>>        Move sNup   to searchDupAtu.sDup
-14540>>>        Move sSerie to searchDupAtu.sSerie
-14541>>>        Move sTipo  to searchDupAtu.sTipo
-14542>>>        
-14542>>>        Move (SearchArray(searchDupAtu,aDupAtu,Self,(RefFunc(fDupAtu)))) to iSearchIndex
-14543>>>        
-14543>>>        If (iSearchIndex = -1) Begin
-14545>>>            Move (SizeOfArray(aDupAtu)) to iTamArray
-14546>>>            Move (sNup)   to aDupAtu[iTamArray].sDup
-14547>>>            Move (sSerie) to aDupAtu[iTamArray].sSerie
-14548>>>            Move (sTipo)  to aDupAtu[iTamArray].sTipo
-14549>>>            Function_Return True
-14550>>>        End
-14550>>>>
-14550>>>        Else Begin
-14551>>>            Function_Return False
-14552>>>        End
-14552>>>>
-14552>>>    End_Function
-14553>>>    
-14553>>>    Procedure pCarregaCodeMast
-14556>>>        Integer iContArray
-14556>>>        
-14556>>>        Close CODEMAST
+14416>>>Function fTiraAcento String sString Returns String
+14418>>>    Move (Trim(sString)) to sString
+14419>>>    
+14419>>>    Move (Replaces("Á",sString,"A")) to sString
+14420>>>    Move (Replaces("á",sString,"a")) to sString
+14421>>>    Move (Replaces("À",sString,"A")) to sString
+14422>>>    Move (Replaces("à",sString,"a")) to sString
+14423>>>    Move (Replaces("Ã",sString,"A")) to sString
+14424>>>    Move (Replaces("ã",sString,"a")) to sString
+14425>>>    Move (Replaces("Â",sString,"A")) to sString
+14426>>>    Move (Replaces("â",sString,"a")) to sString
+14427>>>    
+14427>>>    Move (Replaces("È",sString,"E")) to sString
+14428>>>    Move (Replaces("é",sString,"e")) to sString
+14429>>>    Move (Replaces("ê",sString,"e")) to sString
+14430>>>    Move (Replaces("Ê",sString,"E")) to sString
+14431>>>    
+14431>>>    Move (Replaces("Õ",sString,"O")) to sString
+14432>>>    Move (Replaces("õ",sString,"o")) to sString
+14433>>>    Move (Replaces("Ô",sString,"O")) to sString
+14434>>>    Move (Replaces("ô",sString,"o")) to sString
+14435>>>    
+14435>>>    Move (Replaces("´",sString,"")) to sString
+14436>>>    Move (Replaces("^",sString,"")) to sString
+14437>>>    Move (Replaces("~",sString,"")) to sString
+14438>>>    Move (Replaces("`",sString,"")) to sString
+14439>>>    
+14439>>>    Function_Return sString
+14440>>>End_Function
+14441>>>
+14441>>>Object oCriaBaseBI_v2 is a BusinessProcess
+14443>>>
+14443>>>    // Send DoProcess to this BPO to start the business process
+14443>>>    // DoProcess is a predefined method in the BusinessProcess class
+14443>>>    // Send DoProcess of oNewBusinessProcess
+14443>>>
+14443>>>    // OnProcess
+14443>>>    // ---------
+14443>>>    // Place your processing code into Procedure OnProcess
+14443>>>    // OnProcess is a predefined method in the BusinessProcess class
+14443>>>
+14443>>>    Set Allow_Cancel_State to True
+14444>>>    Set Process_Title to "Atualizando Tabelas BI"
+14445>>>    Set Process_Caption to "CriaBaseBi"
+14446>>>    
+14446>>>    Function Cod_Tipo_Dupli String sTipo String sDescr Date dDataPro Returns String
+14449>>>        Boolean bChecked
+14449>>>        
+14449>>>        Move (Trim(sTipo)) to sTipo
+14450>>>        Move (Trim(sDescr)) to sDescr
+14451>>>        
+14451>>>        Move (Uppercase(sDescr)) to sDescr
+14452>>>        
+14452>>>        If (dDataPro <> "") Function_Return "P"
+14455>>>        If (sTipo = "E") Function_Return "A"
+14458>>>        If (sTipo = "M") Function_Return "M"
+14461>>>        If (sTipo = "X") Begin
+14463>>>            If (sDescr contains "FGTS") Function_Return "I"
+14466>>>            If (sDescr contains "INSS") Function_Return "I"
+14469>>>            If (sDescr contains "PIS ") Function_Return "I"
+14472>>>            If (sDescr contains "ICMS") Function_Return "I"
+14475>>>            If (sDescr contains "IPI ") Function_Return "I"
+14478>>>            If (sDescr contains "COFINS") Function_Return "I"
+14481>>>            If (sDescr contains "IRRF") Function_Return "I"
+14484>>>            If (sDescr contains "IRPJ") Function_Return "I"
+14487>>>            If (sDescr contains "CSLL") Function_Return "I"
+14490>>>            If (sDescr contains "SALARIO") Function_Return "L"
+14493>>>            If (sDescr contains "SALÁRIO") Function_Return "L"
+14496>>>            Function_Return "O"
+14497>>>        End
+14497>>>>
+14497>>>        If (sDescr contains "POLICOM") Function_Return "T"
+14500>>>        If (sDescr contains "PARIS CABOS") Function_Return "T"
+14503>>>        If (sDescr contains "GP CABLING") Function_Return "T"
+14506>>>        If ((sTipo = "1") or (sTipo = "2") or (sTipo = "S") or (sTipo = "0") or (sTipo = "a")or (sTipo = "b")or (sTipo = "c")or (sTipo = "d")or (sTipo = "e")or (sTipo = "f")or (sTipo = "g")) Function_Return "N"
+14509>>>        If (sTipo = "W") Function_Return "W"
+14512>>>        Function_Return "O"
+14513>>>    End_Function
+14514>>>
+14514>>>    Function Descr_Tipo_Dupli String sCod Returns String
+14517>>>        Boolean bChecked
+14517>>>        
+14517>>>        Move (Trim(sCod)) to sCod
+14518>>>        
+14518>>>        If (sCod = "N") Function_Return "Notas"
+14521>>>        If (sCod = "A") Function_Return "Acordos"
+14524>>>        If (sCod = "M") Function_Return "Comissoes"
+14527>>>        If (sCod = "I") Function_Return "Impostos"
+14530>>>        If (sCod = "L") Function_Return "Salarios"
+14533>>>        If (sCod = "O") Function_Return "Outros"
+14536>>>        If (sCod = "T") Function_Return "Filiais"
+14539>>>        If (sCod = "P") Function_Return "Prorrogado"
+14542>>>        If (scod = "C") Function_Return "Prev. Ped. Compra Nac"
+14545>>>        If (scod = "D") Function_Return "Prev. Ped. Compra Imp"
+14548>>>        If (sCod = "F") Function_Return "Invoice"
+14551>>>        If (sCod = "B") Function_Return "Prev. Impost. Invoice"
+14554>>>        If (sCod = "E") Function_Return "Prev. Impost. Ped Imp"
+14557>>>        If (sCod = "W") Function_Return "Prop. Valid/Abert/90% Prob."
+14560>>>        Function_Return ""
+14561>>>    End_Function
+14562>>>
+14562>>>    Function TiraPonto String sVar Returns String
+14565>>>        Move (Replaces("/",sVar,"")) to sVar
+14566>>>        Move (Replaces(".",sVar,"")) to sVar
+14567>>>        Move (Replaces("-",sVar,"")) to sVar
+14568>>>        Move (Replaces(" ",sVar,"")) to sVar
+14569>>>        Function_Return sVar
+14570>>>    End_Function
+14571>>>    
+14571>>>    tCodeMast[] aCodeMast 
+14571>>>    tCodeMast[] aCodeMast 
+14571>>>    
+14571>>>    Function fCodeMast tCodeMast tCode1 tCodeMast tCode2 Returns Integer
+14574>>>        If ((tCode1.sType = tCode2.sType) and (tCode1.sCode = tCode2.sCode)) Function_Return (EQ)
+14577>>>    End_Function
+14578>>>    
+14578>>>    Function fProcuraCodeMast String sCode String sType Returns String
+14581>>>         Integer iSearchIndex
+14581>>>         tCodeMast searchCodeMast
+14581>>>         tCodeMast searchCodeMast
+14581>>>         
+14581>>>         Move sCode to searchCodeMast.sCode
+14582>>>         Move sType to searchCodeMast.sType
+14583>>>         
+14583>>>         Move (SearchArray(searchCodeMast,aCodeMast,Self,(RefFunc(fCodeMast)))) to iSearchIndex
+14584>>>        
+14584>>>        If (iSearchIndex = -1) Function_Return ""
+14587>>>        Else                   Function_Return aCodeMast[iSearchIndex].sDescription
+14589>>>    End_Function
+14590>>>    
+14590>>>    tClasDes[] aClasDes
+14590>>>    tClasDes[] aClasDes
+14590>>>    
+14590>>>    Function fClasDes tClasDes tCode1 tClasDes tCode2 Returns Integer
+14593>>>        If (tCode1.sCode = tCode2.sCode) Function_Return (EQ)
+14596>>>    End_Function
+14597>>>    
+14597>>>    Function fProcuraClasDes String sCode  Returns String
+14600>>>        Integer iSearchIndex
+14600>>>        tClasDes searchClasDes
+14600>>>        tClasDes searchClasDes
+14600>>>        
+14600>>>        Move sCode to searchClasDes.sCode
+14601>>>        
+14601>>>        Move (SearchArray(searchClasDes,aClasDes,Self,(RefFunc(fClasDes)))) to iSearchIndex
+14602>>>        
+14602>>>        If (iSearchIndex = -1) Function_Return ""
+14605>>>        Else                   Function_Return (aClasDes[iSearchIndex].sDescricao)
+14607>>>//        Else                   Function_Return (aClasDes[iSearchIndex].sCode+aClasDes[iSearchIndex].sDescricao)
+14607>>>    End_Function
+14608>>>    
+14608>>>    tClasCont[] aClasCont
+14608>>>    tClasCont[] aClasCont
+14608>>>    
+14608>>>    Function fClasCont tClasCont tCode1 tClasCont tCode2 Returns Integer
+14611>>>        If (tCode1.sCode2 = tCode2.sCode2) Function_Return (EQ)
+14614>>>    End_Function
+14615>>>    
+14615>>>    Function fProcuraClasCont String sCode2 Returns String
+14618>>>        Integer iSearchIndex
+14618>>>        tClasCont searchClasCont
+14618>>>        tClasCont searchClasCont
+14618>>>      
+14618>>>         
+14618>>>        Move (SearchArray(searchClasCont,aClasCont,Self,(RefFunc(fClasCont)))) to iSearchIndex
+14619>>>        
+14619>>>        If (iSearchIndex = -1) Function_Return ""
+14622>>>        Else Function_Return (aClasCont[iSearchIndex].sDescricao)
+14624>>>//        Else Function_Return (aClasCont[iSearchIndex].sCode2+aClasCont[iSearchIndex].sDescricao)
+14624>>>    End_Function
+14625>>>
+14625>>>    tDupAtu[] aDupAtu
+14625>>>    tDupAtu[] aDupAtu
+14625>>>    
+14625>>>    Function fDupAtu tDupAtu sDup1 tDupAtu sDup2 Returns Integer
+14628>>>        If ((sDup1.sDup = sDup2.sDup) and (sDup1.sSerie = sDup2.sSerie) and (sDup1.sTipo = sDup2.sTipo)) Function_Return (EQ)
+14631>>>    End_Function
+14632>>>    
+14632>>>    Function fFazDupAtu String sNup String sSerie String sTipo Returns Boolean
+14635>>>        Integer iTamArray iSearchIndex
+14635>>>        tDupAtu searchDupAtu
+14635>>>        tDupAtu searchDupAtu
+14635>>>        
+14635>>>        Move (tcamemp.EMP+sNup) to sNup
+14636>>>        
+14636>>>        Move sNup   to searchDupAtu.sDup
+14637>>>        Move sSerie to searchDupAtu.sSerie
+14638>>>        Move sTipo  to searchDupAtu.sTipo
+14639>>>        
+14639>>>        Move (SearchArray(searchDupAtu,aDupAtu,Self,(RefFunc(fDupAtu)))) to iSearchIndex
+14640>>>        
+14640>>>        If (iSearchIndex = -1) Begin
+14642>>>            Move (SizeOfArray(aDupAtu)) to iTamArray
+14643>>>            Move (sNup)   to aDupAtu[iTamArray].sDup
+14644>>>            Move (sSerie) to aDupAtu[iTamArray].sSerie
+14645>>>            Move (sTipo)  to aDupAtu[iTamArray].sTipo
+14646>>>            Function_Return True
+14647>>>        End
+14647>>>>
+14647>>>        Else Begin
+14648>>>            Function_Return False
+14649>>>        End
+14649>>>>
+14649>>>    End_Function
+14650>>>    
+14650>>>    Procedure pCarregaCodeMast
+14653>>>        Integer iContArray
+14653>>>        
+14653>>>        Close CODEMAST
 Including file: CodeMast.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\CodeMast.fd)
-14557>>>        String sCaminho
-14557>>>        Move (fCaminho(ghoTCamEmp,"PO") + "CODEMAST") to sCaminho
-ERROR: 4367 Function Not Found in Expression FCAMINHO ON LINE: 305 (14557) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\AppSrc\CriaBaseBI_v2.bp
-14558>>>        Open sCaminho as CodeMast
-14560>>>        
-14560>>>        Move (ResizeArray(aCodeMast,0)) to aCodeMast
-14561>>>        
-14561>>>        Clear CodeMast
-14562>>>        Find gt CodeMast by 1
-14563>>>>
-14563>>>        
-14563>>>        While (Found)
-14567>>>            Move CodeMast.Type        to aCodeMast[iContArray].sType
-14568>>>            Move CodeMast.Code        to aCodeMast[icontarray].sCode
-14569>>>            Move CodeMast.Description to aCodeMast[iContArray].sDescription
-14570>>>            Increment iContArray
-14571>>>            Find gt CodeMast by Index.1
-14572>>>>
-14572>>>        Loop
-14573>>>>
-14573>>>        
-14573>>>        Close CodeMast
-14574>>>        Open CodeMast
-14576>>>    End_Procedure
-14577>>>   
-14577>>>   
-14577>>>   
-14577>>>   
-14577>>>   
-14577>>>   
-14577>>>   
-14577>>>   
-14577>>>   
-14577>>>   
-14577>>>   
-14577>>>   
-14577>>>   
-14577>>>    
-14577>>>End_Object
-14578>>>
-14578>>>
-ERROR: 4328 Undefined symbol in argument TCAMEMP.EMP ON LINE: 280 (14538) OF FILE: C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\AppSrc\CriaBaseBI_v2.bp
-14578>
-14578>//USUARIO DA ROTINA Do DATAFLEX
-14578>//
-14578>//CRIAR no ODBC com o Nome de :gpcablingbi 
-14578>//
-14578>//servidor:gpcablingbi.mysql.database.azure.com
-14578>//
-14578>//database:powerbi
-14578>//
-14578>//Login:gpcablingbi@gpcablingbi
-14578>//
-14578>//Senha:pJK1jUxEJ9Oigu6dfuOjj*
-14578>//
-14578>//gpcablingbi.mysql.database.azure.com
-14578>//
-14578>//DataBase:powerbi
-14578>//
-14578>//Login:gpcablingbi@gpcablingbi
-14578>//
-14578>//senha:pJK1jUxEJ9Oigu6dfuOjj*
-14578>
-14578>Send DoProcess of oCriaBaseBI_v2
-14579>
+14654>>>        String sCaminho
+14654>>>        Move (fCaminho(ghoTCamEmp,"PO") + "CODEMAST") to sCaminho
+14655>>>        Open sCaminho as CodeMast
+14657>>>        
+14657>>>        Move (ResizeArray(aCodeMast,0)) to aCodeMast
+14658>>>        
+14658>>>        Clear CodeMast
+14659>>>        Find gt CodeMast by 1
+14660>>>>
+14660>>>        
+14660>>>        While (Found)
+14664>>>            Move CodeMast.Type        to aCodeMast[iContArray].sType
+14665>>>            Move CodeMast.Code        to aCodeMast[icontarray].sCode
+14666>>>            Move CodeMast.Description to aCodeMast[iContArray].sDescription
+14667>>>            Increment iContArray
+14668>>>            Find gt CodeMast by Index.1
+14669>>>>
+14669>>>        Loop
+14670>>>>
+14670>>>        
+14670>>>        Close CodeMast
+14671>>>        Open CodeMast
+14673>>>    End_Procedure
+14674>>>    
+14674>>>    Procedure pCarregaClasDes
+14677>>>        Integer iContArray
+14677>>>        
+14677>>>        Close CLASDES
+14678>>>        
+14678>>>        String sCaminho
+14678>>>        Move (fCaminhoAnt(ghoTCamEmp,"PO") + "clasdes") to sCaminho
+14679>>>        Open sCaminho as CLASDES
+14681>>>        
+14681>>>        Move (ResizeArray(aClasDes,0)) to aClasDes
+14682>>>        
+14682>>>        Clear clasdes
+14683>>>        Find gt clasdes by 1
+14684>>>>
+14684>>>        
+14684>>>        While (Found)
+14688>>>            Move CLASDES.COD to aClasDes[iContArray].sCode
+14689>>>            Move CLASdes.DESCR to aClasDes[iContArray].sDescricao
+14690>>>        
+14690>>>            Increment iContArray
+14691>>>
+14691>>>            Find gt clasdes by 1
+14692>>>>
+14692>>>        Loop
+14693>>>>
+14693>>>        
+14693>>>        Close clasdes
+14694>>>        Open clasdes
+14696>>>    End_Procedure
+14697>>>    
+14697>>>    Procedure pCarregaClasCont
+14700>>>        Integer iContArray
+14700>>>        
+14700>>>        Close clascont
+Including file: CLASCONT.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\CLASCONT.fd)
+14701>>>        
+14701>>>        String sCaminho
+14701>>>        Move (fCaminhoAnt(ghoTCamEmp,"PO") + "clascont") to sCaminho
+14702>>>        Open sCaminho as clascont
+14704>>>        
+14704>>>        Move (ResizeArray(aclascont,0)) to aClascont
+14705>>>        
+14705>>>        Clear CLASCONT
+14706>>>        Find gt CLASCONT by 1
+14707>>>>
+14707>>>        
+14707>>>        While (Found)
+14711>>>            Move CLASCONT.COD to aClasCont[iContArray].sCode
+14712>>>            Move CLASCONT.COD12 to aClasCont[iContArray].sCode2
+14713>>>            Move CLASCONT.DESCR to aClasCont[iContArray].sDescricao
+14714>>>            
+14714>>>            Increment iContArray
+14715>>>            
+14715>>>            Find gt CLASCONT by 1
+14716>>>>
+14716>>>        Loop
+14717>>>>
+14717>>>        
+14717>>>        Close CLASCONT
+14718>>>        Open CLASCONT
+14720>>>    End_Procedure
+14721>>>    
+14721>>>    tCadProdutos[] aCadProdutos
+14721>>>    tCadProdutos[] aCadProdutos
+14721>>>    
+14721>>>    Procedure pCadastro_Produtos Date dDataInicio
+14724>>>        Integer iContArray
+14724>>>        
+14724>>>        Close tpro
+Including file: tpro.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tpro.fd)
+14725>>>        Close CI01
+Including file: CI01.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\CI01.fd)
+14726>>>        Close CI02
+Including file: CI02.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\CI02.fd)
+14727>>>        Close CI03
+Including file: CI03.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\CI03.fd)
+14728>>>        Close CI04
+Including file: CI04.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\CI04.fd)
+14729>>>        Close CI05
+Including file: CI05.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\CI05.fd)
+14730>>>        Close CI06
+Including file: CI06.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\CI06.fd)
+14731>>>        Close CI07
+Including file: CI07.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\CI07.fd)
+14732>>>        Close CI08
+Including file: CI08.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\CI08.fd)
+14733>>>        
+14733>>>        String sCaminho
+14733>>>        Move (fCaminhoAnt(ghoTCamEmp,"PO") + "prod") to sCaminho
+14734>>>        Open sCaminho as tPro        
+14736>>>        Move (fCaminho(ghoTCamEmp,"PO") + "CI01") to sCaminho
+14737>>>        Open sCaminho as CI01
+14739>>>        Move (fCaminho(ghoTCamEmp,"PO") + "CI02") to sCaminho
+14740>>>        Open sCaminho as CI02
+14742>>>        Move (fCaminho(ghoTCamEmp,"PO") + "CI03") to sCaminho
+14743>>>        Open sCaminho as CI03
+14745>>>        Move (fCaminho(ghoTCamEmp,"PO") + "CI04") to sCaminho
+14746>>>        Open sCaminho as CI04
+14748>>>        Move (fCaminho(ghoTCamEmp,"PO") + "CI05") to sCaminho
+14749>>>        Open sCaminho as CI05
+14751>>>        Move (fCaminho(ghoTCamEmp,"PO") + "CI06") to sCaminho
+14752>>>        Open sCaminho as CI06
+14754>>>        Move (fCaminho(ghoTCamEmp,"PO") + "CI07") to sCaminho
+14755>>>        Open sCaminho as CI07
+14757>>>        Move (fCaminho(ghoTCamEmp,"PO") + "CI08") to sCaminho
+14758>>>        Open sCaminho as CI08
+14760>>>        
+14760>>>        Clear tpro
+14761>>>        Find gt tPro by 1
+14762>>>>
+14762>>>        
+14762>>>        While (Found)
+14766>>>            Send Update_Status ("Processando Produtos - " + tpro.COD)
+14767>>>
+14767>>>            If (tPro.DATAALT >= dDataInicio) Begin
+14769>>>                Move tPro.COD              to aCadProdutos[iContArray].sCodProduto
+14770>>>                Move tpro.sDescrCompleta   to aCadProdutos[iContArray].sDescricao  
+14771>>>                Move tpro.CODFABR          to aCadProdutos[iContArray].sCodFabr    
+14772>>>                Move tpro.REF              to aCadProdutos[iContArray].sRef 
+14773>>>                
+14773>>>                Clear CI01
+14774>>>                Move TPro.COD1 to CI01.COD
+14775>>>                Find eq CI01 by 1
+14776>>>>
+14776>>>                Move (TRIM(CI01.DESCR))    to aCadProdutos[iContArray].sFamilia1   
+14777>>>                
+14777>>>                Clear CI02
+14778>>>                Move TPro.COD12 to CI02.COD1
+14779>>>                Find eq CI02 by 1
+14780>>>>
+14780>>>                Move (Trim(CI02.DESCR))   to aCadProdutos[iContArray].sFamilia2   
+14781>>>                
+14781>>>                Clear CI03
+14782>>>                Move TPro.COD13 to CI03.COD1
+14783>>>                Find eq CI03 by 1
+14784>>>>
+14784>>>                Move (Trim(CI03.DESCR))    to aCadProdutos[iContArray].sFamilia3   
+14785>>>            
+14785>>>                Clear CI04
+14786>>>                Move TPro.COD14 to CI04.COD1
+14787>>>                Find eq CI04 by 1
+14788>>>>
+14788>>>                Move (Trim(CI04.DESCR))    to aCadProdutos[iContArray].sFamilia4   
+14789>>>          
+14789>>>                Clear CI05
+14790>>>                Move TPro.COD15 to CI05.COD1
+14791>>>                Find eq CI05 by 1
+14792>>>>
+14792>>>                Move (Trim(CI05.DESCR))    to aCadProdutos[iContArray].sFamilia5   
+14793>>>            
+14793>>>                Clear CI06
+14794>>>                Move TPro.COD16 to CI06.COD1
+14795>>>                Find eq CI06 by 1
+14796>>>>
+14796>>>                Move (Trim(CI06.DESCR))    to aCadProdutos[iContArray].sFamilia6   
+14797>>>                
+14797>>>                Clear CI07
+14798>>>                Move TPro.COD17 to CI07.COD1
+14799>>>                Find eq CI07 by 1
+14800>>>>
+14800>>>                Move (Trim(CI07.DESCR))    to aCadProdutos[iContArray].sFamilia7   
+14801>>>                
+14801>>>                Clear CI08
+14802>>>                Move TPro.COD18 to CI08.COD1
+14803>>>                Find eq CI08 by 1
+14804>>>>
+14804>>>                Move (Trim(CI08.DESCR))    to aCadProdutos[iContArray].sFamilia8   
+14805>>>                         
+14805>>>                Increment iContArray    
+14806>>>            End    
+14806>>>>
+14806>>>                
+14806>>>            Find gt tPro by 1    
+14807>>>>
+14807>>>        Loop
+14808>>>>
+14808>>>        
+14808>>>        Close tpro
+14809>>>        Close CI01
+14810>>>        Close CI02
+14811>>>        Close CI03
+14812>>>        Close CI04
+14813>>>        Close CI05
+14814>>>        Close CI06
+14815>>>        Close CI07
+14816>>>        Close CI08
+14817>>>        
+14817>>>        Open tprodutos
+Including file: tprodutos.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tprodutos.fd)
+14819>>>        
+14819>>>        Move (iContArray-1) to iContArray
+14820>>>        
+14820>>>        While (iContArray >=0)
+14824>>>            Send Update_Status ("Cadastro de Produtos - " + aCadProdutos[iContArray].sCodProduto * (String(iContArray)))
+14825>>>            
+14825>>>            Clear tprodutos
+14826>>>            Move aCadProdutos[iContArray].sCodProduto to tprodutos.sCodProduto
+14827>>>            Find eq tprodutos by 1
+14828>>>>
+14828>>>            
+14828>>>            If (not(Found)) Clear tprodutos
+14831>>>            
+14831>>>            Move aCadProdutos[iContArray].sCodProduto to tprodutos.sCodProduto
+14832>>>            Move aCadProdutos[iContArray].sDescricao  to tprodutos.sDescricao 
+14833>>>            Move aCadProdutos[iContArray].sCodFabr    to tprodutos.sCodFabr   
+14834>>>            Move aCadProdutos[iContArray].sRef        to tprodutos.sRef       
+14835>>>            Move aCadProdutos[iContArray].sFamilia1   to tprodutos.sFamilia1  
+14836>>>            Move aCadProdutos[iContArray].sFamilia2   to tprodutos.sFamilia2  
+14837>>>            Move aCadProdutos[iContArray].sFamilia3   to tprodutos.sFamilia3  
+14838>>>            Move aCadProdutos[iContArray].sFamilia4   to tprodutos.sFamilia4  
+14839>>>            Move aCadProdutos[iContArray].sFamilia5   to tprodutos.sFamilia5  
+14840>>>            Move aCadProdutos[iContArray].sFamilia6   to tprodutos.sFamilia6  
+14841>>>            Move aCadProdutos[iContArray].sFamilia7   to tprodutos.sFamilia7  
+14842>>>            Move aCadProdutos[iContArray].sFamilia8   to tprodutos.sFamilia8  
+14843>>>            Move aCadProdutos[iContArray].sFamilia9   to tprodutos.sFamilia9  
+14844>>>            Move aCadProdutos[iContArray].sStatus     to tprodutos.sStatus    
+14845>>>            
+14845>>>            SaveRecord tprodutos
+14846>>>            Unlock
+14847>>>>
+14847>>>            
+14847>>>            Decrement iContArray            
+14848>>>        Loop
+14849>>>>
+14849>>>    End_Procedure
+14850>>>    
+14850>>>    
+14850>>>        Procedure pDuplicatas_Recebimentos Date dDataInicio Integer iPeriodo 
+14853>>>        String sCaminho
+14853>>>        Boolean bCancel
+14853>>>        
+14853>>>        Open tcamemp
+14855>>>        Clear tcamemp
+14856>>>        Open duprec
+Including file: duprec.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\duprec.fd)
+14858>>>        
+14858>>>        Find gt tcamemp by 1
+14859>>>>
+14859>>>        
+14859>>>        While (Found)
+14863>>>            If ((tcamemp.EMP = "PO") or (tcamemp.EMP = "PE") or (tcamemp.EMP = "PP") or (tcamemp.EMP = "AF")) Begin
+14865>>>                Set Process_Message to ("Atualizando Duplicatas Recebimento - " + tcamemp.EMP)
+14866>>>                
+14866>>>                Close nfdupli
+Including file: NFDUPLI.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\NFDUPLI.fd)
+14867>>>                Move (Trim(tcamemp.CAMINHOANT)) to sCaminho
+14868>>>                Move (sCaminho + "nfdupli") to sCaminho
+14869>>>                Open sCaminho as NFDUPLI
+14871>>>                
+14871>>>                Close tfatnf
+Including file: tFatnF.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tFatnF.fd)
+14872>>>                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+14873>>>                Open (sCaminho + "tFatNf") as tFatNf
+14875>>>                
+14875>>>                Close tnfserv
+Including file: tNfServ.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tNfServ.fd)
+14876>>>                Move (Trim(tcamemp.CAMINHOANT)) to sCaminho
+14877>>>                Open (sCaminho + "\tnfserv") as tnfserv
+14879>>>            
+14879>>>                Clear duprec
+14880>>>                If (iPeriodo = 1) Move (ddatainicio-30) to duprec.dDataAtu
+14883>>>                Else              Move (ddatainicio) to duprec.dDataAtu
+14885>>>                Move tcamemp.EMP to duprec.sEmp
+14886>>>                Find gt duprec by 3
+14887>>>>
+14887>>>                
+14887>>>                While (Found and (tcamemp.EMP = duprec.sEmp))
+14891>>>                    Send Update_Status ( tcamemp.EMP + " duprec Analisando - " +  (String(duprec.sNumDup)) + " - "+ (String(duprec.dDataAtu)))
+14892>>>                    
+14892>>>                    Clear NFDUPLI
+14893>>>                    Move duprec.sTnf to NFDUPLI.TNF
+14894>>>                    Move duprec.sNumDup to NFDUPLI.NDUP
+14895>>>                    Move duprec.sNumNF to NFDUPLI.NFV
+14896>>>                    Find eq NFDUPLI by 1
+14897>>>>
+14897>>>                    
+14897>>>                    If (not(Found)) Begin
+14899>>>                        Send Update_Status ( tcamemp.EMP + " duprec Delete - " +  (String(duprec.sNumDup)) + " - "+ (String(duprec.dDataAtu)))
+14900>>>                        Delete duprec
+14901>>>                    End
+14901>>>>
+14901>>>                    Find gt duprec by 3
+14902>>>>
+14902>>>                Loop
+14903>>>>
+14903>>>                
+14903>>>                Clear NFDUPLI
+14904>>>                Move dDataInicio to NFDUPLI.DATAE
+14905>>>                Find gt NFDUPLI by 4
+14906>>>>
+14906>>>                
+14906>>>                While (Found)
+14910>>>                    If (fFazDupAtu(Self,NFDUPLI.NDUP,nfdupli.TNF,"NFDUPLI")) Send Grava_Recebimento 1                    
+14913>>>                    Find gt NFDUPLI by 4
+14914>>>>
+14914>>>                Loop  
+14915>>>>
+14915>>>                
+14915>>>                If (iPeriodo = 1) Begin
+14917>>>                    Clear NFDUPLI
+14918>>>                    Move dDataInicio to NFDUPLI.DATAV
+14919>>>                    Find gt NFDUPLI by 3
+14920>>>>
+14920>>>                    
+14920>>>                    While (Found)                    
+14924>>>                        If (fFazDupAtu(Self,NFDUPLI.NDUP,nfdupli.TNF,"NFDUPLI")) Send Grava_Recebimento 2                    
+14927>>>                        Find gt NFDUPLI by Index.3
+14928>>>>
+14928>>>                    Loop
+14929>>>>
+14929>>>                    
+14929>>>                    Clear NFDUPLI
+14930>>>                    Move dDataInicio to NFDUPLI.DATAP
+14931>>>                    Find gt NFDUPLI by 6
+14932>>>>
+14932>>>                    
+14932>>>                    While (Found)
+14936>>>                        If (fFazDupAtu(Self,NFDUPLI.NDUP,nfdupli.TNF,"NFDUPLI"))  Send Grava_Recebimento 3                    
+14939>>>                        Find gt NFDUPLI by Index.6
+14940>>>>
+14940>>>                    Loop
+14941>>>>
+14941>>>                                        
+14941>>>                    Clear NFDUPLI
+14942>>>                    Move dDataInicio to NFDUPLI.DATAPRO
+14943>>>                    Find gt NFDUPLI by 9
+14944>>>>
+14944>>>                    
+14944>>>                    While (Found)
+14948>>>                        If (fFazDupAtu(Self,NFDUPLI.NDUP,nfdupli.TNF,"NFDUPLI"))  Send Grava_Recebimento 4                   
+14951>>>                        Find gt NFDUPLI by Index.9
+14952>>>>
+14952>>>                    Loop
+14953>>>>
+14953>>>                End
+14953>>>>
+14953>>>            End
+14953>>>>
+14953>>>            Find gt tcamemp by Index.1            
+14954>>>>
+14954>>>        Loop
+14955>>>>
+14955>>>                
+14955>>>        Close tcamemp
+14956>>>    End_Procedure
+14957>>>    
+14957>>>    Function fRetorna_remessas_nfdupli String sCod Returns String
+14960>>>        Move (Trim(sCod)) to sCod
+14961>>>        If (sCod = "1") Function_Return "Santander Cob. Bancaria"
+14964>>>        If (sCod = "2") Function_Return "Bradesco Cob. Bancaria"
+14967>>>        If (sCod = "3") Function_Return "Banco do Brasil Cob. Bancaria"
+14970>>>        If (sCod = "4") Function_Return "Itau Cob. Bancaria" 
+14973>>>        If (sCod = "8") Function_Return "Itau Boleto"
+14976>>>        If (sCod = "9") Function_Return "Dupli. Antecipada"  
+14979>>>        Function_Return "Não Selecionado" 
+14980>>>    End_Function
+14981>>>        
+14981>>>    Procedure Grava_Recebimento Integer iTipo
+14984>>>        Boolean bPessoaFisica
+14984>>>        String sDoc sTipo
+14984>>>        
+14984>>>        If (iTipo = 1) Send Update_Status ( tcamemp.EMP + " duprec Update Emissao - " + (String(NFDUPLI.DATAE)))
+14987>>>        If (iTipo = 2) Send Update_Status ( tcamemp.EMP + " duprec Update Vencimento- " + (String(NFDUPLI.DATAV)))
+14990>>>        If (iTipo = 3) Send Update_Status ( tcamemp.EMP + " duprec Update Pagamento - " + (String(NFDUPLI.DATAP)))
+14993>>>        If (iTipo = 4) Send Update_Status ( tcamemp.EMP + " duprec Update Prorrogado - " + (String(NFDUPLI.DATAPRO)))
+14996>>>         
+14996>>>        Clear duprec 
+14997>>>        Move NFDUPLI.NDUP to duprec.sNumDup
+14998>>>        Move NFDUPLI.TNF  to duprec.sTnf  
+14999>>>        Move tcamemp.EMP  to duprec.sEmp
+15000>>>        Find eq duprec by 1
+15001>>>>
+15001>>>        
+15001>>>        If (not(Found)) Clear duprec
+15004>>>        
+15004>>>         Move (TiraPonto(Self,NFDUPLI.COBCGC)) to sDoc
+15005>>>         If ((Length(sDoc)) <= 11) Move True to bPessoaFisica
+15008>>>         Else                      Move False to bPessoaFisica
+15010>>>        
+15010>>>         Move NFDUPLI.NDUP    to duprec.sNumDup         
+15011>>>         Move tcamemp.EMP     to duprec.sEmp
+15012>>>         Move NFDUPLI.DATAE   to duprec.dDataEmis
+15013>>>         Move NFDUPLI.DATAP   to duprec.dDataPago
+15014>>>         Move NFDUPLI.DATAV   to duprec.dDataVencimento
+15015>>>         Move NFDUPLI.DATAPRO to duprec.dDataProrrogado
+15016>>>         Move NFDUPLI.VDUP    to duprec.nVDup
+15017>>>         Move NFDUPLI.SALDOP  to duprec.nSaldoDup
+15018>>>         Move NFDUPLI.VPAGO   to duprec.nVPago
+15019>>>         Move NFDUPLI.CLIENTE to duprec.sCdCliente
+15020>>>         
+15020>>>         If (not(bPessoaFisica)) Move (TiraPonto(Self,NFDUPLI.COBCGC)) to duprec.sCnpjCpf  // 000.000.000-00  -  00.000.000/0000-00
+15023>>>         Else                    Move NFDUPLI.CLIENTE to duprec.sCnpjCpf
+15025>>>         
+15025>>>         If (not(bPessoaFisica)) Move NFDUPLI.COBDESCR to duprec.sRazaoSocial
+15028>>>         Else                    Move NFDUPLI.CLIENTE to duprec.sRazaoSocial
+15030>>>         
+15030>>>         Move NFDUPLI.TNF         to duprec.sTnf  
+15031>>>         Move NFDUPLI.NFV         to duprec.sNumNF
+15032>>>         Move (CurrentDateTime()) to duprec.dDataAtu
+15033>>>         Move NFDUPLI.DESCR       to duprec.sOcorrencia
+15034>>>         Move NFDUPLI.BANCO       to duprec.sBanco
+15035>>>         Move NFDUPLI.DESCFIN     to duprec.nDesc_Financeiro
+15036>>>         Move NFDUPLI.DESCDEV     to duprec.nDesc_Devolucao
+15037>>>         Move NFDUPLI.DESCBAN     to duprec.nDesc_Bancario
+15038>>>         Move NFDUPLI.DESCOUT     to duprec.nDesc_Outros
+15039>>>         Move NFDUPLI.DESCTOT     to duprec.nDesc_Total
+15040>>>         Move NFDUPLI.DESCPIS     to duprec.nDesc_Pis
+15041>>>         Move NFDUPLI.DESCCOF     to duprec.nDesc_Cof
+15042>>>         Move NFDUPLI.DESCIRPJ    to duprec.nDesc_IRPJ
+15043>>>         Move NFDUPLI.DESCCSSL    to duprec.nDesc_CSSL
+15044>>>        
+15044>>>        If (NFDUPLI.TNF = "S") Begin 
+15046>>>            Clear tNfServ
+15047>>>            Move NFDUPLI.NFV to tNfServ.sNumDoc
+15048>>>            Move "S"         to tNfServ.sSerieDoc
+15049>>>            Find eq tNfServ by 1
+15050>>>>
+15050>>>            
+15050>>>            If (Found) Move (fProcuraCodeMast(Self,tNfServ.iTpPagto,"PAGTO")) to duprec.sFormaPagtVenda 
+15053>>>        End
+15053>>>>
+15053>>>        Else If (NFDUPLI.TNF = "A") Move "Contrato" to duprec.sFormaPagtVenda 
+15057>>>        Else Begin
+15058>>>            Clear tFatnF
+15059>>>            Move NFDUPli.NFV to tFatnF.sCdNota
+15060>>>            Move "1" to tFatnF.sCdSerie
+15061>>>            Find eq tFatnF by 1
+15062>>>>
+15062>>>            
+15062>>>            If (Found) Move (fProcuraCodeMast(Self,TFATNF.iTpPagto,"PAGTO")) to duprec.sFormaPagtVenda 
+15065>>>        End
+15065>>>>
+15065>>>         
+15065>>>        If (NFDUPLI.BANCO = "NAOLQ") Begin
+15067>>>            Move True to duprec.iBaixadoPerda
+15068>>>            Move 0    to duprec.nVPago
+15069>>>            Move ""   to duprec.dDataPago
+15070>>>        End
+15070>>>>
+15070>>>        
+15070>>>        Move (Cod_Tipo_Dupli(Self,NFDUPLI.TNF,NFDUPLI.COBDESCR,NFDUPLI.DATAPRO)) to sTipo
+15071>>>        Move (Descr_Tipo_Dupli(Self,sTipo)) to duprec.sCategoria
+15072>>>        Move (fRetorna_remessas_nfdupli(Self,NFDUPLI.REMESSA)) to duprec.sTipoRemessa
+15073>>>        SaveRecord duprec
+15074>>>        Unlock
+15075>>>>
+15075>>>    End_Procedure
+15076>>>
+15076>>>    Procedure pDuplicatas_Pagamento Date dDataInicio Integer iPeriodo
+15079>>>        String sCaminho
+15079>>>        Boolean bCancel
+15079>>>        
+15079>>>        Open tcamemp
+15081>>>        Clear tcamemp
+15082>>>        
+15082>>>        Open duppag
+Including file: duppag.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\duppag.fd)
+15084>>>        Find gt tcamemp by 1
+15085>>>>
+15085>>>        
+15085>>>        While (Found)
+15089>>>            If ((tcamemp.EMP = "PO") or (tcamemp.EMP = "PE") or (tcamemp.EMP = "PP") or (tcamemp.EMP = "AF")) Begin
+15091>>>                Set Process_Message to ("Atualizando Duplicatas Recebimento - " + tcamemp.EMP)
+15092>>>               
+15092>>>                Close nfdupcom
+Including file: NFDUPCOM.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\NFDUPCOM.fd)
+15093>>>                Move (Trim(tcamemp.CAMINHOANT)) to sCaminho
+15094>>>                Move (sCaminho + "NFDUPCOM") to sCaminho
+15095>>>                Open sCaminho as NFDUPCOM
+15097>>>                
+15097>>>                Clear duppag
+15098>>>                If (iPeriodo = 1) Move (ddatainicio-30) to duppag.dDataAtu
+15101>>>                Else Move ddatainicio to duppag.dDataAtu
+15103>>>                Move tcamemp.EMP to duppag.sEmp
+15104>>>                Find gt duppag by 2
+15105>>>>
+15105>>>                
+15105>>>                While (Found and ( tcamemp.EMP = duppag.sEmp))
+15109>>>                    Send Update_Status ( tcamemp.EMP + " duppag Analisando - " +  (String(duppag.sNumDup)) + " - "+ (String(duppag.dDataAtu)))
+15110>>>                    Clear NFDUPCOM
+15111>>>                    Move duppag.sTnf to    NFDUPCOM.TNF
+15112>>>                    Move duppag.sNumDup to NFDUPCOM.NDUP
+15113>>>                    Move duppag.sNumNF to  NFDUPCOM.NFV
+15114>>>                    Find eq NFDUPCOM by 1
+15115>>>>
+15115>>>                    
+15115>>>                    If (not(Found)) Begin
+15117>>>                        Send Update_Status ( tcamemp.EMP + " duppag Delete - " +  (String(duppag.sNumDup)) + " - "+ (String(duppag.dDataAtu)))
+15118>>>                        Delete duppag
+15119>>>                    End
+15119>>>>
+15119>>>                    
+15119>>>                    Find gt duppag by 2
+15120>>>>
+15120>>>                Loop
+15121>>>>
+15121>>>                
+15121>>>                Open sCaminho as NFDUPCOM
+15123>>>                Clear nfdupcom
+15124>>>                Move dDataInicio to NFDUPCOM.DATAE
+15125>>>                Find gt NFDUPCOM by 4
+15126>>>>
+15126>>>                
+15126>>>                While (Found)
+15130>>>                    If (fFazDupAtu(Self,NFDUPCOM.NDUP,NFDUPCOM.TNF,"NFDUPCOM")) Send Grava_Pagamento 1       
+15133>>>                    Find gt NFDUPCOM by 4
+15134>>>>
+15134>>>                Loop
+15135>>>>
+15135>>>                
+15135>>>                If (iPeriodo = 1) Begin
+15137>>>                    Clear nfdupcom
+15138>>>                    Move dDataInicio to NFDUPCOM.DATAV
+15139>>>                    Find gt NFDUPCOM by 3
+15140>>>>
+15140>>>                    
+15140>>>                    While (Found)
+15144>>>                        If (fFazDupAtu(Self,NFDUPCOM.NDUP,NFDUPCOM.TNF,"NFDUPCOM")) Send Grava_Pagamento 2       
+15147>>>                        Find gt NFDUPCOM by 3
+15148>>>>
+15148>>>                    Loop  
+15149>>>>
+15149>>>                    
+15149>>>                    Clear nfdupcom
+15150>>>                    Move dDataInicio to NFDUPCOM.DATAP
+15151>>>                    Find gt NFDUPCOM by 6
+15152>>>>
+15152>>>                    
+15152>>>                    While (Found)
+15156>>>                        If (fFazDupAtu(Self,NFDUPCOM.NDUP,NFDUPCOM.TNF,"NFDUPCOM")) Send Grava_Pagamento 3       
+15159>>>                        Find gt NFDUPCOM by 6
+15160>>>>
+15160>>>                    Loop  
+15161>>>>
+15161>>>                    
+15161>>>                    Clear nfdupcom
+15162>>>                    Move dDataInicio to NFDUPCOM.DATAPRO
+15163>>>                    Find gt NFDUPCOM by 7
+15164>>>>
+15164>>>                    
+15164>>>                    While (Found)
+15168>>>                        If (fFazDupAtu(Self,NFDUPCOM.NDUP,NFDUPCOM.TNF,"NFDUPCOM")) Send Grava_Pagamento 4      
+15171>>>                        Find gt NFDUPCOM by 7
+15172>>>>
+15172>>>                    Loop  
+15173>>>>
+15173>>>                End
+15173>>>>
+15173>>>            End
+15173>>>>
+15173>>>            Find gt tcamemp by 1            
+15174>>>>
+15174>>>        Loop
+15175>>>>
+15175>>>        
+15175>>>        Close tcamemp
+15176>>>    End_Procedure
+15177>>>   
+15177>>>    Procedure Grava_Pagamento Integer iTipo
+15180>>>        String sTipo
+15180>>>        
+15180>>>        If (iTipo = 1) Send Update_Status (tcamemp.EMP + " dupPAG Update Emissao - " + (String(NFDUPCOM.DATAE)))
+15183>>>        If (iTipo = 2) Send Update_Status (tcamemp.EMP + " dupPAG Update Vencimento- " + (String(NFDUPCOM.DATAV)))
+15186>>>        If (iTipo = 3) Send Update_Status (tcamemp.EMP + " dupPAG Update Pagamento - " + (String(NFDUPCOM.DATAP)))
+15189>>>        If (iTipo = 4) Send Update_Status (tcamemp.EMP + " dupPAG Update Prorrogado - " + (String(NFDUPCOM.DATAPRO)))
+15192>>>
+15192>>>        Clear duppag
+15193>>>        Move NFDUPCOM.NDUP to duppag.sNumDup
+15194>>>        Move NFDUPCOM.TNF  to duppag.sTnf  
+15195>>>        Move tcamemp.EMP  to duppag.sEmp
+15196>>>        Find eq duppag by 1
+15197>>>>
+15197>>>        
+15197>>>        If (not(Found)) Clear duppag
+15200>>>        
+15200>>>        Move NFDUPCOM.NDUP                     to duppag.sNumDup
+15201>>>        Move tcamemp.EMP                       to duppag.sEmp
+15202>>>        Move NFDUPCOM.DATAE                    to duppag.dDataEmis
+15203>>>        Move NFDUPCOM.DATAP                    to duppag.dDataPago
+15204>>>        Move NFDUPCOM.DATAV                    to duppag.dDataVencimento
+15205>>>        Move NFDUPCOM.DATAPRO                  to duppag.dDataProrrogado
+15206>>>        Move NFDUPCOM.VDUP                     to duppag.nVDup
+15207>>>        Move NFDUPCOM.SALDOP                   to duppag.nSaldoDup
+15208>>>        Move NFDUPCOM.VPAGO                    to duppag.nVPago
+15209>>>        Move NFDUPCOM.for                      to duppag.sCdCliente
+15210>>>        Move (TiraPonto(Self,NFDUPCOM.COBCGC)) to duppag.sCnpjCpf
+15211>>>        Move NFDUPCOM.COBDESCR                 to duppag.sRazaoSocial
+15212>>>        Move NFDUPCOM.TNF                      to duppag.sTnf  
+15213>>>        Move NFDUPCOM.NFV                      to duppag.sNumNF
+15214>>>        Move (CurrentDateTime())               to duppag.dDataAtu
+15215>>>        Move NFDUPCOM.DESCR                    to duppag.sOcorrencia
+15216>>>        Move NFDUPCOM.BANCO                    to duppag.sBanco
+15217>>>        Move NFDUPCOM.DESCFIN                  to duppag.nDesc_Financeiro
+15218>>>        Move NFDUPCOM.DESCDEV                  to duppag.nDesc_Devolucao
+15219>>>        Move NFDUPCOM.DESCMAK                  to duppag.nDesc_Marketing
+15220>>>        Move NFDUPCOM.DESCBAN                  to duppag.nDesc_Bancario
+15221>>>        Move NFDUPCOM.DESCOUT                  to duppag.nDesc_Outros
+15222>>>        Move NFDUPCOM.DESCTOT                  to duppag.nDesc_Total
+15223>>>        
+15223>>>        Move (Cod_Tipo_Dupli(Self,NFDUPCOM.TNF,NFDUPCOM.COBDESCR,NFDUPCOM.DATAPRO)) to sTipo
+15224>>>        Move (Descr_Tipo_Dupli(Self,sTipo)) to duppag.sCategoria 
+15225>>>        
+15225>>>        SaveRecord duppag
+15226>>>        Unlock
+15227>>>>
+15227>>>    End_Procedure
+15228>>>   
+15228>>>    Procedure pItens_Entrada Date dDataInicio Integer iPeriodo
+15231>>>        String sCaminho
+15231>>>        Boolean bCancel
+15231>>>        
+15231>>>        Open tcamemp
+15233>>>        Clear tcamemp
+15234>>>        Find gt tcamemp by 1
+15235>>>>
+15235>>>        
+15235>>>        While (Found)
+15239>>>            If ((tcamemp.EMP = "PO") or (tcamemp.EMP = "PE") or (tcamemp.EMP = "PP") or (tcamemp.EMP = "AF")) Begin
+15241>>>                Close titensent
+Including file: titensent.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\titensent.fd)
+15242>>>                Sleep 1
+15243>>>                Open titensent
+15245>>>                    
+15245>>>                Set Process_Message to ("Atualizando Duplicatas Recebimento - " + tcamemp.EMP)
+15246>>>               
+15246>>>                Close tFatNfIC
+Including file: tFatNfIC.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tFatNfIC.fd)
+15247>>>                Close tfatnfc
+Including file: tFatNfC.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tFatNfC.fd)
+15248>>>                
+15248>>>                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+15249>>>               
+15249>>>                Open (sCaminho + "tFatNfIc") as tFatNfIC
+15251>>>                Open (sCaminho + "tFatNfc") as tFatNfC
+15253>>>                
+15253>>>                Clear titensent
+15254>>>                If (iPeriodo = 1) Move (ddatainicio-7) to titensent.dDataEntrada
+15257>>>                Else              Move ddatainicio to titensent.dDataEntrada
+15259>>>                Move tcamemp.EMP to titensent.sEmp
+15260>>>                Find gt titensent by 2
+15261>>>>
+15261>>>                
+15261>>>                While (Found and (tcamemp.EMP = titensent.sEmp))  
+15265>>>                    Send Update_Status ( tcamemp.EMP + " titensent Delete - " +  (String(titensent.sCodNota)) + " - "+ (String(titensent.dDataEntrada)))
+15266>>>                    Clear tFatNfIC
+15267>>>                    Move titensent.sCodNota to tFatNfIC.sCdNota
+15268>>>                    Move titensent.iCdItem  to tFatNfIC.iCdItem
+15269>>>                    Move titensent.sSerie   to tFatNfIC.sCdSerie
+15270>>>                    Find eq tFatNfIC by 1
+15271>>>>
+15271>>>                    
+15271>>>                    If (not(Found)) Begin
+15273>>>                        Delete titensent
+15274>>>                    End
+15274>>>>
+15274>>>                
+15274>>>                    Find gt titensent by 2
+15275>>>>
+15275>>>                Loop
+15276>>>>
+15276>>>                
+15276>>>                Clear tFatNfC
+15277>>>                If (iPeriodo = 1) Move (ddatainicio-7) to tFatNfC.dDtEntrada
+15280>>>                Else              Move ddatainicio     to tFatNfC.dDtEntrada
+15282>>>                Find gt tFatNfC by 4
+15283>>>>
+15283>>>                
+15283>>>                While (Found)
+15287>>>                    If (tFatNfC.iStStatus = "2") Begin
+15289>>>                        Clear tFatNfIC
+15290>>>                        Move tFatNfC.sCdNota to tFatNfiC.sCdNota
+15291>>>                        Move tFatNfC.sCdSerie to tFatNfIC.sCdSerie
+15292>>>                        Find gt tFatNfIC by 1
+15293>>>>
+15293>>>                        
+15293>>>                        While (Found and (tFatNfC.sCdNota = tFatNfiC.sCdNota))
+15297>>>                            Send pGrava_Entrada_Item
+15298>>>                            Find gt tFatNfIC by 1    
+15299>>>>
+15299>>>                        Loop
+15300>>>>
+15300>>>                    End
+15300>>>>
+15300>>>                    Find gt tFatNfC by 4
+15301>>>>
+15301>>>                Loop
+15302>>>>
+15302>>>            End
+15302>>>>
+15302>>>            Find gt tcamemp by 1
+15303>>>>
+15303>>>        Loop
+15304>>>>
+15304>>>            
+15304>>>        Close tFatNfIC
+15305>>>        Close tfatnfc
+15306>>>        Close titensent    
+15307>>>    End_Procedure
+15308>>>   
+15308>>>    Procedure pGrava_Entrada_Item
+15311>>>        Send Update_Status ( tcamemp.EMP + " tItensEntrada Update - " + (String(tFatNfIC.dDtEntrada)) * (String(tFatNfIC.sCdNota)))
+15312>>>        
+15312>>>        Clear titensent
+15313>>>        
+15313>>>        Move tFatNfIC.sCdNota to titensent.sCodNota
+15314>>>        Move tFatNfIC.iCdItem to titensent.iCdItem
+15315>>>        Move tcamemp.EMP to titensent.sEmp
+15316>>>       
+15316>>>        Find eq titensent by Index.1
+15317>>>>
+15317>>>        If (not(Found)) Clear titensent
+15320>>>        
+15320>>>        Move tfatnfic.sCdNota       to titensent.sCodNota 
+15321>>>        Move tfatnfic.iCdItem       to titensent.iCdItem 
+15322>>>        Move tcamemp.EMP            to titensent.sEmp 
+15323>>>        Move tfatnfc.nNumNf         to titensent.sNumNF 
+15324>>>        Move tfatnfc.sCdSerie       to titensent.sSerie 
+15325>>>        Move tfatnfic.iQtQuantidade to titensent.nQuant 
+15326>>>        Move tfatnfic.nVlContabil   to titensent.nVlCont 
+15327>>>        Move tfatnfic.sCFOPItem     to titensent.sCFOP 
+15328>>>        Move tfatnfic.nVlICMSSubst  to titensent.nIcmsSt 
+15329>>>        Move tfatnfic.sEstFat       to titensent.sEst 
+15330>>>        Move tfatnfc.sDcFatCid      to titensent.sCidade 
+15331>>>        Move tfatnfc.sDcFatCep      to titensent.sCEP 
+15332>>>        Move tfatnfic.sCodCli to titensent.sCodCli 
+15333>>>        Move tfatnfic.sCdProduto to titensent.sCodProd 
+15334>>>        Move tfatnfic.dDtEntrada to titensent.dDataEntrada 
+15335>>>        Move (CurrentDateTime()) to titensent.dDataAtu
+15336>>>        If ((Mid(tFatNfIC.sDcGravar,1,3)) = "E") Move "1" to titensent.bMovEst
+15339>>>        Else Move 0 to titensent.bMovEst
+15341>>>        If ((Mid(tFatNfIC.sDcClassif,1,4)) = "P") Move "Compra" to titensent.sOperacao
+15344>>>          Else If ((Mid(tFatNfIC.sDcClassif,1,4)) = "D") Move "Devolucao" to titensent.sOperacao
+15348>>>            Else If ((Mid(tFatNfIC.sDcClassif,1,4)) = "R") Move "Remessa" to titensent.sOperacao
+15352>>>                Else Move "Outros" to titensent.sOperacao
+15354>>>         
+15354>>>         SaveRecord titensent
+15355>>>         Unlock
+15356>>>>
+15356>>>    End_Procedure
+15357>>>    
+15357>>>    Procedure pItens_Saida Date dDataInicio Integer iPeriodo
+15360>>>        String sCaminho sCaminhoAnt
+15360>>>        Boolean bCancel
+15360>>>        
+15360>>>        Open tcamemp
+15362>>>        Clear tcamemp
+15363>>>        Find gt tcamemp by 1
+15364>>>>
+15364>>>        
+15364>>>        While (Found)
+15368>>>            If ((tcamemp.EMP = "PO") or (tcamemp.EMP = "PE") or (tcamemp.EMP = "PP") or (tcamemp.EMP = "AF")) Begin
+15370>>>                Set Process_Message to ("Atualizando Duplicatas Recebimento - " + tcamemp.EMP)
+15371>>>                
+15371>>>                Close titenssai
+Including file: titenssai.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\titenssai.fd)
+15372>>>                Sleep 1
+15373>>>                Open titenssai
+15375>>>                
+15375>>>                Close tFatNfIt
+Including file: tFatNfIt.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tFatNfIt.fd)
+15376>>>                Close tfatnf
+15377>>>                
+15377>>>                Close tNfServ
+15378>>>                Close titemSer
+Including file: tItemSer.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tItemSer.fd)
+15379>>>                
+15379>>>                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+15380>>>                Move (Trim(tcamemp.CAMINHOANT)) to sCaminhoAnt
+15381>>>                
+15381>>>                Open (sCaminho + "tFatNfIt") as tFatNfIt
+15383>>>                Open (sCaminho + "tFatNf") as tFatNf
+15385>>>                
+15385>>>                Open (sCaminhoAnt + "tNfServ") as tNfServ
+15387>>>                Open (sCaminho + "titemSer") as titemSer
+15389>>>        
+15389>>>                Clear titenssai
+15390>>>                If (iPeriodo = 1) Move (ddatainicio-7) to titenssai.dDataEmis
+15393>>>                Else              Move ddatainicio     to titenssai.dDataEmis
+15395>>>                Move tcamemp.EMP to titenssai.sEmp
+15396>>>                Find gt titenssai by 2
+15397>>>>
+15397>>>                
+15397>>>                While (Found and (tcamemp.EMP = titenssai.sEmp))  
+15401>>>                    Send Update_Status ( tcamemp.EMP + " titenssai Delete - " +  (String(titenssai.sCdNota)) + " - "+ (String(titenssai.dDataEmis)))
+15402>>>                    
+15402>>>                    If ((left(titenssai.sCdNota,1)) <> "S") Begin
+15404>>>                        Clear tFatNfIT
+15405>>>                        Move titenssai.sCdNota to tFatNfIT.sCdNota
+15406>>>                        Move titenssai.iCdItem to tFatNfIT.iCdItem
+15407>>>                        Move "1"               to tFatNfIT.sCdSerie
+15408>>>                        Find eq tFatNfIT by 1
+15409>>>>
+15409>>>                        If (not(Found)) Begin
+15411>>>                            Delete titenssai
+15412>>>                        End
+15412>>>>
+15412>>>                    End
+15412>>>>
+15412>>>                    Else Begin
+15413>>>                        Clear tItemSer
+15414>>>                        Move (Replace("S",titenssai.sCdNota,"")) to tItemSer.sNumDoc
+15415>>>                        Move titenssai.iCdItem to tItemSer.iItem
+15416>>>                        Move "S"               to tItemSer.sSerieDoc
+15417>>>                        Find eq tItemSer by 1
+15418>>>>
+15418>>>                        If (not(Found)) Begin
+15420>>>                            Delete titenssai
+15421>>>                        End
+15421>>>>
+15421>>>                    End
+15421>>>>
+15421>>>                    Find gt titenssai by 2
+15422>>>>
+15422>>>                Loop
+15423>>>>
+15423>>>                
+15423>>>                Clear tFatNf
+15424>>>                If (iPeriodo = 1) Move (ddatainicio-7) to tFatNf.dDtEmissao
+15427>>>                Else Move ddatainicio to tFatNf.dDtEmissao
+15429>>>                Find gt tFatNf by 4
+15430>>>>
+15430>>>                
+15430>>>                While (Found)
+15434>>>                    If (tFatNf.iStStatus = "2") Begin
+15436>>>                        Clear tFatNfIt
+15437>>>                        Move tFatNf.sCdNota to tFatNfit.sCdNota
+15438>>>                        Move tFatNf.sCdSerie to tFatNfIt.sCdSerie
+15439>>>                        Find gt tFatNfIt by 1
+15440>>>>
+15440>>>                        
+15440>>>                        While (Found and (tFatNf.sCdNota = tFatNfit.sCdNota))
+15444>>>                            Send pGrava_Saida_Item
+15445>>>                        Find gt tFatNfIt by 1    
+15446>>>>
+15446>>>                        Loop
+15447>>>>
+15447>>>                    End
+15447>>>>
+15447>>>                    Find gt tFatNf by 4
+15448>>>>
+15448>>>                Loop
+15449>>>>
+15449>>>                  
+15449>>>                Clear tNfServ
+15450>>>                If (iPeriodo = 1) Move (ddatainicio-7) to tNfServ.dDataEntrada
+15453>>>                Else Move ddatainicio to tNfServ.dDataEntrada
+15455>>>                Find gt tNfServ by 2
+15456>>>>
+15456>>>                
+15456>>>                While (Found)
+15460>>>                    If ((tNfServ.nSituacao = "2") and (tNfServ.sSerieDoc = "S")) Begin
+15462>>>                        Clear titemSer
+15463>>>                        Move tNfServ.sNumDoc to titemSer.sNumDoc
+15464>>>                        Move tNfServ.sSerieDoc to titemSer.sSerieDoc
+15465>>>                        Find gt titemSer by Index.1
+15466>>>>
+15466>>>                        While (Found and (titemSer.sNumDoc = tNfServ.sNumDoc))
+15470>>>                            Send pGrava_Saida_Item_Servico
+15471>>>                        Find gt titemSer by 1    
+15472>>>>
+15472>>>                        Loop
+15473>>>>
+15473>>>                    End
+15473>>>>
+15473>>>                    Find gt tNfServ by 2
+15474>>>>
+15474>>>                Loop
+15475>>>>
+15475>>>            End
+15475>>>>
+15475>>>            Find gt tcamemp by 1
+15476>>>>
+15476>>>        Loop
+15477>>>>
+15477>>>           
+15477>>>        Close tFatNfIt
+15478>>>        Close tfatnf
+15479>>>        Close titenssai
+15480>>>    End_Procedure
+15481>>>   
+15481>>>    Procedure pGrava_Saida_Item
+15484>>>        Send Update_Status ( tcamemp.EMP + " tItensSaida Update - " + (String(tFatNfIt.dDataNf)) * (String(tFatNfIt.sCdNota)))
+15485>>>        
+15485>>>        Clear titenssai
+15486>>>        Move tFatNfIt.sCdNota to titenssai.sCdNota
+15487>>>        Move tFatNfIt.iCdItem to titenssai.iCdItem
+15488>>>        Move tcamemp.EMP      to titenssai.sEmp
+15489>>>        Find eq titenssai by 1
+15490>>>>
+15490>>>        
+15490>>>        If (not(Found)) Clear titenssai
+15493>>>                
+15493>>>        Move tfatnfit.sCdNota       to titenssai.sCdNota 
+15494>>>        Move tfatnfit.iCdItem       to titenssai.iCdItem 
+15495>>>        Move tcamemp.EMP            to titenssai.sEmp 
+15496>>>        Move tfatnfit.iQtQuantidade to titenssai.nQuant 
+15497>>>        Move tfatnfit.nVlContabil   to titenssai.nVlCont 
+15498>>>        Move tfatnfit.sCFOPItem     to titenssai.sCFOP 
+15499>>>        Move tfatnfit.nVlICMSSubst  to titenssai.nIcmsSt 
+15500>>>        Move tfatnfit.sEstFat       to titenssai.sEst 
+15501>>>        Move tfatnf.sDcFatCid       to titenssai.sCidade 
+15502>>>        Move tfatnf.sDcFatCep       to titenssai.sCEP 
+15503>>>        Move tfatnfiT.sCodCli       to titenssai.sCodCli 
+15504>>>        Move tfatnfiT.sCdProduto    to titenssai.sCodProd 
+15505>>>        Move tfatnfiT.dDataNf       to titenssai.dDataEmis 
+15506>>>        Move (CurrentDateTime()) to titenssai.dDataAtu
+15507>>>        If ((Mid(tFatNfIC.sDcGravar,1,3)) = "B") Move "1" to titenssai.bMovEst
+15510>>>        Else                                     Move 0 to titenssai.bMovEst
+15512>>>        
+15512>>>        If ((Mid(tFatNfIT.sDcClassif,1,4)) = "P") Move "Venda" to titenssai.sOperacao
+15515>>>        Else If ((Mid(tFatNfIT.sDcClassif,1,4)) = "D") Move "Devolucao" to titenssai.sOperacao
+15519>>>        Else If ((Mid(tFatNfIT.sDcClassif,1,4)) = "R") Move "Remessa" to titenssai.sOperacao
+15523>>>        Else If (((Mid(tFatNfIT.sDcClassif,1,4)) = "X") and ( tFatNfIt.sCFOPItem = "7102")) Move "Venda" to titenssai.sOperacao
+15527>>>        Else If (((Mid(tFatNfIT.sDcClassif,1,4)) = "X") and ( tFatNfIt.sCFOPItem = "7501")) Move "Venda" to titenssai.sOperacao
+15531>>>        Else Move "Outros" to titenssai.sOperacao
+15533>>>        
+15533>>>        SaveRecord titenssai
+15534>>>        Unlock
+15535>>>>
+15535>>>    End_Procedure
+15536>>>    
+15536>>>    Procedure pGrava_Saida_Item_Servico
+15539>>>        Send Update_Status (tcamemp.EMP + " tItensSaida Update - " + (String(tNfServ.dDataEntrada)) * (String(tItemSer.sNumDoc)))
+15540>>>        
+15540>>>        Clear titenssai
+15541>>>        Move ("S"+(trim(tItemSer.sNumDoc))) to titenssai.sCdNota
+15542>>>        Move tItemSer.iItem to titenssai.iCdItem
+15543>>>        Move tcamemp.EMP to titenssai.sEmp
+15544>>>        Find eq titenssai by 1
+15545>>>>
+15545>>>        
+15545>>>        If (not(Found)) Clear titenssai
+15548>>>        
+15548>>>        Move ("S"+(trim(tItemSer.sNumDoc))) to titenssai.sCdNota 
+15549>>>        Move tItemSer.iItem                 to titenssai.iCdItem 
+15550>>>        Move tcamemp.EMP                    to titenssai.sEmp 
+15551>>>        Move tItemSer.nQuant                to titenssai.nQuant 
+15552>>>        Move tItemSer.nValorTot             to titenssai.nVlCont 
+15553>>>        Move ""                             to titenssai.sCFOP 
+15554>>>        Move 0                              to titenssai.nIcmsSt 
+15555>>>        Move tNfServ.sEstado                to titenssai.sEst 
+15556>>>        Move tNfServ.sCidade                to titenssai.sCidade 
+15557>>>        Move tNfServ.sCep                   to titenssai.sCEP 
+15558>>>        Move tNfServ.sCodForn               to titenssai.sCodCli 
+15559>>>        Move tItemSer.sCodServ              to titenssai.sCodProd 
+15560>>>        Move tNfServ.dDataEntrada           to titenssai.dDataEmis 
+15561>>>        Move (CurrentDateTime())            to titenssai.dDataAtu
+15562>>>        Move 0                              to titenssai.bMovEst
+15563>>>        
+15563>>>        If (tNfServ.sTipoServ = "A1")      Move "Serv Instalacao" to titenssai.sOperacao
+15566>>>        Else If (tNfServ.sTipoServ = "A3") Move "Serv Ass Tec"    to titenssai.sOperacao
+15570>>>        Move "Serv Software" to titenssai.sOperacao
+15571>>>        
+15571>>>        SaveRecord titenssai
+15572>>>        Unlock
+15573>>>>
+15573>>>    End_Procedure
+15574>>>    
+15574>>>    Procedure pDespesas Date dDataInicio 
+15577>>>        String sCaminho 
+15577>>>        
+15577>>>        Open desp
+Including file: desp.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\desp.fd)
+15579>>>        Open tcamemp
+15581>>>        Clear tcamemp
+15582>>>        
+15582>>>        Open duprec
+15584>>>        Find gt tcamemp by 1
+15585>>>>
+15585>>>        
+15585>>>        While (Found)
+15589>>>            If ((tcamemp.EMP = "PE") or (tcamemp.EMP = "PP") or (tcamemp.EMP = "PO") or (tcamemp.EMP = "AF")) Begin
+15591>>>                Close despesa
+Including file: DESPESA.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\DESPESA.fd)
+15592>>>                Move (Trim(tcamemp.CAMINHOANT)) to sCaminho
+15593>>>                Open (sCaminho + "\DESPESA") as DESPESA
+15595>>>                
+15595>>>                Clear DESPESA
+15596>>>                Move dDataInicio to DESPESA.DATA
+15597>>>                Find gt DESPESA by 1
+15598>>>>
+15598>>>                
+15598>>>                While (Found)
+15602>>>                    Send Grava_Despesa
+15603>>>                    Find gt DESPESA by 1                
+15604>>>>
+15604>>>                Loop      
+15605>>>>
+15605>>>            End
+15605>>>>
+15605>>>            
+15605>>>            Close despesa
+15606>>>            
+15606>>>            Find gt tcamemp by 1    
+15607>>>>
+15607>>>        Loop 
+15608>>>>
+15608>>>        
+15608>>>        Close desp
+15609>>>        Close DESPESA
+15610>>>    End_Procedure
+15611>>>   
+15611>>>    Procedure Grava_Despesa
+15614>>>        String sCartao
+15614>>>        
+15614>>>        Clear desp
+15615>>>        Move DESPESA.NUMDES to desp.iddesp
+15616>>>        Move tcamemp.EMP    to desp.sEmp
+15617>>>        Find eq desp by 1
+15618>>>>
+15618>>>        
+15618>>>        If (not(Found)) Clear desp
+15621>>>         
+15621>>>        Send Update_Status ( tcamemp.EMP + " DESPESA Update - " + (String(DESPESA.DATA)) * (String(DESPESA.NUMDES)))
+15622>>>            
+15622>>>        Move DESPESA.NUMDES        to desp.iddesp
+15623>>>        Move tcamemp.EMP           to desp.sEmp
+15624>>>        Move DESPESA.VALOR         to desp.nValor
+15625>>>        Move DESPESA.DATA          to desp.dData
+15626>>>        Move DESPESA.CLAS          to desp.sClasDes
+15627>>>        Move DESPESA.CONT          to desp.sClasCont
+15628>>>        Move ""                    to desp.sDescr
+15629>>>        Move (Trim(DESPESA.DESCR)) to desp.sDescr
+15630>>>        Move (CurrentDateTime())   to desp.dDataAtu
+15631>>>        Move despesa.DOC           to desp.sDoc
+15632>>>        
+15632>>>        Move (fProcuraClasDes(Self,DESPESA.CLAS))                 to desp.sClas
+15633>>>        Move (fProcuraClasCont(Self,(DESPESA.CLAS+DESPESA.CONT))) to desp.sCont
+15634>>>        
+15634>>>        If ((LEFT(DESPESA.DOC,4)) = "VISA") Begin
+15636>>>             Move (fProcuraCodeMast(Self,DESPESA.DOC,"CARTOES")) to sCartao
+15637>>>             Move (Trim(sCartao)) to sCartao
+15638>>>             If (sCartao <> "") Move ("VISA-"+sCartao) to desp.sDoc 
+15641>>>             Else               Move ("VISA-"+ (trim(despesa.DOC))) to desp.sDoc 
+15643>>>        End
+15643>>>>
+15643>>>    
+15643>>>        SaveRecord desp
+15644>>>        Unlock
+15645>>>>
+15645>>>    End_Procedure
+15646>>>
+15646>>>    Function fFaturamento tFaturamento tLanc1 tFaturamento tLanc2 Returns Integer
+15649>>>        If ((tLanc1.sNumLanc = tLanc2.sNumLanc) and (tLanc1.sTpLancamento = tLanc2.sTpLancamento) and (tLanc1.sEmp = tLanc2.sEmp)) Function_Return (EQ)
+15652>>>    End_Function
+15653>>>
+15653>>>    Function fEmpGrupo String sCliente Returns Boolean
+15656>>>        If (sCliente = "42000") Function_Return False
+15659>>>        If (sCliente = "21000") Function_Return False
+15662>>>        If (sCliente = "36000") Function_Return False
+15665>>>        If (sCliente = "20000") Function_Return False   
+15668>>>        If (sCliente = "33000") Function_Return False
+15671>>>        If (sCliente = "41000") Function_Return False
+15674>>>        If (sCliente = "50001") Function_Return False
+15677>>>        Function_Return True
+15678>>>    End_Function
+15679>>>    
+15679>>>    // Envio do Tfatnf - Tfatnfc - Tnfserv - TComVen
+15679>>>    Procedure pFaturamento Date dDataInicio Integer iPeriodo
+15682>>>        String sCaminho iCont sDoc
+15682>>>        Date dDataHoje dData
+15682>>>        Integer iMes iAno iSearchIndex iCount_vtTvlorFatu_Vendedores
+15682>>>        Boolean bPessoaFisica
+15682>>>        tFaturamento[] sFaturamento 
+15682>>>        tFaturamento[] sFaturamento 
+15683>>>        tFaturamento sAuxFaturamento
+15683>>>        tFaturamento sAuxFaturamento
+15683>>>        tTvlorFatu_Vendedores[] vtTvlorFatu_Vendedores
+15683>>>        tTvlorFatu_Vendedores[] vtTvlorFatu_Vendedores
+15684>>>        
+15684>>>        Move 0 to iCont
+15685>>>        Move (CurrentDateTime()) to dDataHoje
+15686>>>        
+15686>>>        If (iPeriodo = 2) Begin
+15688>>>             Move (DateSetDay(dDataHoje,1)) to dData  
+15689>>>             Move (DateGetMonth(dData)) to iMes
+15690>>>             Move (DateGetYear(dData)) to iAno
+15691>>>             
+15691>>>             If ((iMes = 1) or (iMes = 2) or (iMes = 3)) Begin
+15693>>>                If (iMes = 1) Move 10 to iMes
+15696>>>                If (iMes = 2) Move 11 to iMes
+15699>>>                If (iMes = 3) Move 12 to iMes
+15702>>>                Move (iAno - 1) to iAno
+15703>>>             End
+15703>>>>
+15703>>>             Else Move (iMes - 3) to iMes
+15705>>>             
+15705>>>             Move (DateSetMonth(dData,iMes)) to dData 
+15706>>>             Move (DateSetYear(dData,iAno)) to dData 
+15707>>>             
+15707>>>             Move dData to dDataInicio  
+15708>>>        End
+15708>>>>
+15708>>>        If (iPeriodo = 1) Begin
+15710>>>             Move (DateSetDay(dDataHoje,1)) to dData  
+15711>>>             Move (DateGetMonth(dData)) to iMes
+15712>>>             Move (DateGetYear(dData)) to iAno
+15713>>>             
+15713>>>             If (iMes = 1) Begin
+15715>>>                Move 12 to iMes
+15716>>>                Move (iAno - 1) to iAno
+15717>>>             End
+15717>>>>
+15717>>>             Else Move (iMes - 1) to iMes
+15719>>>             
+15719>>>             Move (DateSetMonth(dData,iMes)) to dData 
+15720>>>             Move (DateSetYear(dData,iAno)) to dData 
+15721>>>             
+15721>>>             Move dData to dDataInicio  
+15722>>>        End
+15722>>>>
+15722>>>        
+15722>>>        If (dDataInicio < "01/01/2018") Move "01/01/2018" to dDataInicio
+15725>>>          
+15725>>>        Open tcamemp
+15727>>>        Clear tcamemp
+15728>>>        Find gt tcamemp by Index.1
+15729>>>>
+15729>>>        
+15729>>>        While (Found)
+15733>>>            If ((tcamemp.EMP = "PO") or (tcamemp.EMP = "PP") or (tcamemp.EMP = "PE")or (tcamemp.EMP = "PA")or (tcamemp.EMP = "PR")or (tcamemp.EMP = "PC") or (tcamemp.EMP = "AF")) Begin
+15735>>>                // Notas de Saida
+15735>>>                Close tfatnf
+15736>>>                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+15737>>>                Open (sCaminho + "tFatNf") as tFatNf
+15739>>>                
+15739>>>                Close tFatNfVe
+15740>>>                Open (sCaminho + "tFatNfVe") as tFatNfVe
+15742>>>                
+15742>>>                Clear tFatnF
+15743>>>                Move dDataInicio to tfatnf.dDtEmissao
+15744>>>                Find gt tfatnf by 4
+15745>>>>
+15745>>>                
+15745>>>                While (Found)
+15749>>>                    Send Update_Status ((tCamEmp.EMP) + (" - ") + (String(tfatnf.dDtEmissao)) + " - Saida")
+15750>>>                    
+15750>>>                    If ((TFatNF.iCdDig1 = True) and (tfatnf.iStStatus = "2")) Begin
+15752>>>                        Move tFatnF.sCdNota         to sFaturamento[iCont].sNumLanc
+15753>>>                        Move "tfatnf"               to sFaturamento[iCont].sTpLancamento
+15754>>>                        Move tcamemp.EMP            to sFaturamento[iCont].sEmp
+15755>>>                        Move tfatnf.sEmpOrigVe      to sFaturamento[iCont].sEmpOrgVenda
+15756>>>                        Move tfatnf.dDtEmissao      to sFaturamento[iCont].dData
+15757>>>                        Move "Venda de Mercadorias" to sFaturamento[iCont].sDescrLanca
+15758>>>                        Move tfatnf.nVlTotalNota    to sFaturamento[iCont].nVlLancamento
+15759>>>                        Move tFatnF.sCdPrefixo      to sFaturamento[iCont].sTipoCli
+15760>>>                        Move tFatnF.sDcFatEst       to sFaturamento[iCont].sEstCli
+15761>>>                        Move tFatnF.sRazao          to sFaturamento[iCont].sRazao
+15762>>>                        Move tFatnF.sCdCliente      to sFaturamento[iCont].sCdClienteForn
+15763>>>                        Move tFatnF.sDcFatCnpj      to sFaturamento[iCont].sCPFCNPJ
+15764>>>                        Move tFatnF.sCdRepr         to sFaturamento[iCont].iCdRepresentante
+15765>>>                        Increment iCont
+15766>>>                        
+15766>>>                        // Vendedores
+15766>>>                        Clear tFatNfVe
+15767>>>                        Move tFatnF.sCdNota  to tFatNfVe.sCdNota
+15768>>>                        Move tFatnF.sCdSerie to tFatNfVe.sCdSerie
+15769>>>                        Find ge tFatNfVe by 3
+15770>>>>
+15770>>>                        
+15770>>>                        While (Found and (tFatnF.sCdNota = tFatNfVe.sCdNota and tFatnF.sCdSerie = tFatNfVe.sCdSerie))
+15774>>>                            Move tFatNfVe.sCdNota     to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sNumLanc
+15775>>>                            Move "tfatnf"             to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sTpLancamento
+15776>>>                            Move tcamemp.EMP          to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sEmp
+15777>>>                            Move tFatNfVe.iCdVendedor to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sCdVendedor
+15778>>>                            Increment iCount_vtTvlorFatu_Vendedores
+15779>>>                            Find gt tFatNfVe by 3
+15780>>>>
+15780>>>                        Loop  
+15781>>>>
+15781>>>                    End
+15781>>>>
+15781>>>                    Find gt tfatnf by 4    
+15782>>>>
+15782>>>                Loop
+15783>>>>
+15783>>>                Close tfatnf
+15784>>>                Close tFatNfVe 
+15785>>>        
+15785>>>                // Notas de Entrada
+15785>>>                Close tfatnfc
+15786>>>                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+15787>>>                Open (sCaminho + "tFatNfc") as tFatNfc
+15789>>>                
+15789>>>                Close tfatnfcven
+15790>>>                Open (sCaminho + "tfatnfcven") as tfatnfcven
+15792>>>                
+15792>>>                Clear tfatnfC
+15793>>>                Move dDataInicio to tfatnfC.dDtEntrada
+15794>>>                Find gt tfatnfC by 4
+15795>>>>
+15795>>>                
+15795>>>                While (Found)
+15799>>>                    Send Update_Status ((tCamEmp.EMP) + (" - ") + (String(TFATNFC.dDtEntrada)) + " - Entrada")
+15800>>>                    
+15800>>>                    If ((((Right(TFATNFC.sDcClassif,1))  = "D") or (((Right(TFATNFC.iCdCFOP,3))  = "353") and (TFATNFC.iTpNotaRef = 0))) and (tfatnfC.iStStatus = "2")) Begin
+15802>>>                        Move tFatnFc.sCdNota              to sFaturamento[iCont].sNumLanc
+15803>>>                        Move "tfatnfc"                    to sFaturamento[iCont].sTpLancamento
+15804>>>                        Move tcamemp.EMP                  to sFaturamento[iCont].sEmp
+15805>>>                        Move tfatnfc.sEmpOrigVe           to sFaturamento[iCont].sEmpOrgVenda
+15806>>>                        Move tfatnfc.dDtEntrada           to sFaturamento[iCont].dData
+15807>>>                        If ((Right(TFATNFC.iCdCFOP,3))  = "353") Move "Nota de Transporte" to sFaturamento[iCont].sDescrLanca
+15810>>>                        Else                                     Move "Nota de Devolucao"  to sFaturamento[iCont].sDescrLanca
+15812>>>                        Move (-(tfatnfc.nVlTotalNota))    to sFaturamento[iCont].nVlLancamento
+15813>>>                        Move tFatnFc.sCdPrefixo           to sFaturamento[iCont].sTipoCli
+15814>>>                        Move tFatnFc.sDcFatEst            to sFaturamento[iCont].sEstCli
+15815>>>                        Move tFatnFc.sRazao               to sFaturamento[iCont].sRazao
+15816>>>                        Move tFatnFc.sCdCliente           to sFaturamento[iCont].sCdClienteForn
+15817>>>                        Move tFatnFc.sDcFatCnpj           to sFaturamento[iCont].sCPFCNPJ
+15818>>>                        Move tFatnFc.sCdRepr              to sFaturamento[iCont].iCdRepresentante
+15819>>>                        
+15819>>>                        // Vendedores
+15819>>>                        Clear tfatnfcven
+15820>>>                        Move tFatNfC.sCdNota  to tfatnfcven.iCdNota
+15821>>>                        Move tFatNfC.sCdSerie to tfatnfcven.sCdSerie
+15822>>>                        Find ge tfatnfcven by 3
+15823>>>>
+15823>>>                        
+15823>>>                        While (Found and (tFatnFc.sCdNota = tfatnfcven.iCdNota and tFatNfC.sCdSerie = tfatnfcven.sCdSerie))
+15827>>>                            Move tfatnfcven.iCdNota     to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sNumLanc
+15828>>>                            Move "tfatnfc"              to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sTpLancamento
+15829>>>                            Move tcamemp.EMP            to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sEmp
+15830>>>                            Move tfatnfcven.iCdVendedor to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sCdVendedor
+15831>>>                            Increment iCount_vtTvlorFatu_Vendedores
+15832>>>                            Find gt tfatnfcven by 3
+15833>>>>
+15833>>>                        Loop  
+15834>>>>
+15834>>>                        
+15834>>>                        Increment iCont
+15835>>>                    End
+15835>>>>
+15835>>>                    Find gt tfatnfC by 4    
+15836>>>>
+15836>>>                Loop
+15837>>>>
+15837>>>                Close tfatnfC
+15838>>>                Close tfatnfcven
+15839>>>                    
+15839>>>                // Notas de Serviço
+15839>>>                Close tnfserv
+15840>>>                Move (Trim(tcamemp.CAMINHOANT)) to sCaminho
+15841>>>                Open (sCaminho + "\tnfserv") as tnfserv
+15843>>>                
+15843>>>                Close tNfserVe
+15844>>>                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+15845>>>                Open (sCaminho + "\tNfserVe") as tNfserVe
+15847>>>                
+15847>>>                Clear tNfServ
+15848>>>                Move dDataInicio to tNfServ.dDataEntrada
+15849>>>                Find gt tNfServ by 2
+15850>>>>
+15850>>>                        
+15850>>>                While (Found)
+15854>>>                    Send Update_Status  ((tCamEmp.EMP) + (" - ") + (String(tNfServ.dDataEntrada)) + " - Servico")
+15855>>>                    If ((tNfServ.sSerieDoc = "S") and ((Left(tNfServ.sTipoServ,1)) = "A") and (fEmpGrupo(Self,tNfServ.sCodForn))) Begin
+15857>>>                        Move tNfServ.sNumDoc              to sFaturamento[iCont].sNumLanc
+15858>>>                        Move "tNfServ"                    to sFaturamento[iCont].sTpLancamento
+15859>>>                        Move tcamemp.EMP                  to sFaturamento[iCont].sEmp
+15860>>>                        Move ""                           to sFaturamento[iCont].sEmpOrgVenda
+15861>>>                        Move tNfServ.dDataEntrada         to sFaturamento[iCont].dData
+15862>>>                        Move "Venda de Serviço"           to sFaturamento[iCont].sDescrLanca
+15863>>>                        Move (tNfServ.nVlorTot)           to sFaturamento[iCont].nVlLancamento
+15864>>>                        Move ""                           to sFaturamento[iCont].sTipoCli
+15865>>>                        Move tNfServ.sEstado              to sFaturamento[iCont].sEstCli
+15866>>>                        Move tNfServ.sRazaoSocial         to sFaturamento[iCont].sRazao
+15867>>>                        Move tNfServ.sCodForn             to sFaturamento[iCont].sCdClienteForn
+15868>>>                        Move tNfServ.sCnpjCPF             to sFaturamento[iCont].sCPFCNPJ
+15869>>>//                        Move tNfServ.iCdRepr              to sFaturamento[iCont].iCdRepresentante // Não existe campo de representante em nota de serviço
+15869>>>                        Increment iCont
+15870>>>                        
+15870>>>                        // Vendedores
+15870>>>                        Clear tNfserVe
+15871>>>                        Move tNfServ.sNumDoc   to tNfserVe.sCdNota
+15872>>>                        Move tNfServ.sSerieDoc to tNfserVe.sCdSerie
+15873>>>                        Find ge tNfserVe by 3
+15874>>>>
+15874>>>                        
+15874>>>                        While (Found and (tNfServ.sNumDoc = tNfserVe.sCdNota and tNfServ.sSerieDoc = tNfserVe.sCdSerie))
+15878>>>                            Move tNfserVe.sCdNota     to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sNumLanc
+15879>>>                            Move "tNfServ"           to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sTpLancamento
+15880>>>                            Move tcamemp.EMP          to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sEmp
+15881>>>                            Move tNfserVe.iCdVendedor to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sCdVendedor
+15882>>>                            Increment iCount_vtTvlorFatu_Vendedores
+15883>>>                            Find gt tNfserVe by 3
+15884>>>>
+15884>>>                        Loop  
+15885>>>>
+15885>>>                    End
+15885>>>>
+15885>>>                    
+15885>>>                    Find gt tNfServ by Index.2   
+15886>>>>
+15886>>>                Loop
+15887>>>>
+15887>>>                Close tNfServ
+15888>>>                Close tNfserVe
+15889>>>                
+15889>>>                // Comissões
+15889>>>                Close TComVen
+Including file: tComVen.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tComVen.fd)
+15890>>>                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+15891>>>                Open (sCaminho + "TComVen") as tComVen
+15893>>>                
+15893>>>                Close TComVend
+15894>>>                Move (Trim(tcamemp.CAMINHO)) to sCaminho
+15895>>>                Open (sCaminho + "TComVend") as TComVend
+15897>>>                
+15897>>>                Clear TCOMVEN
+15898>>>                Move dDataInicio to TCOMVEN.dDtLancamento
+15899>>>                Find GT TCOMVEN by Index.2
+15900>>>>
+15900>>>                
+15900>>>                While (Found)
+15904>>>                    Send Update_Status  ((tCamEmp.EMP) + (" - ") + (String(TCOMVEN.dDtLancamento)) + " - Comissao")
+15905>>>                    If (TCOMVEN.iStStatus = "1") Begin             
+15907>>>                        Move TCOMVEN.iCdComissao          to sFaturamento[iCont].sNumLanc
+15908>>>                        Move "TCOMVEN"                    to sFaturamento[iCont].sTpLancamento
+15909>>>                        Move tcamemp.EMP                  to sFaturamento[iCont].sEmp
+15910>>>                        Move ""                           to sFaturamento[iCont].sEmpOrgVenda
+15911>>>                        Move TCOMVEN.dDtLancamento        to sFaturamento[iCont].dData
+15912>>>                        Move "Comissão de Venda"          to sFaturamento[iCont].sDescrLanca
+15913>>>                        Move (-(TCOMVEN.nVlSaldo))        to sFaturamento[iCont].nVlLancamento
+15914>>>                        Move ""                           to sFaturamento[iCont].sTipoCli
+15915>>>                        Move ""                           to sFaturamento[iCont].sEstCli
+15916>>>                        Move ""                           to sFaturamento[iCont].sRazao
+15917>>>                        Move tComVen.sCdCliente           to sFaturamento[iCont].sCdClienteForn
+15918>>>                        Move ""                           to sFaturamento[iCont].sCPFCNPJ
+15919>>>                        Move tComVen.sCodRep              to sFaturamento[iCont].iCdRepresentante
+15920>>>                        Increment iCont 
+15921>>>                        
+15921>>>                        // Vendedores
+15921>>>                        Clear TComVend
+15922>>>                        Move TCOMVEN.iCdComissao to TComVend.iCdComissao
+15923>>>                        Find ge TComVend by 3
+15924>>>>
+15924>>>                        
+15924>>>                        While (Found and (TCOMVEN.iCdComissao = TComVend.iCdComissao))
+15928>>>                            Move TComVend.iCdComissao to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sNumLanc
+15929>>>                            Move "TCOMVEN"            to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sTpLancamento
+15930>>>                            Move tcamemp.EMP          to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sEmp
+15931>>>                            Move TComVend.sCdVendedor to vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sCdVendedor
+15932>>>                            Increment iCount_vtTvlorFatu_Vendedores
+15933>>>                            Find gt TComVend by 3
+15934>>>>
+15934>>>                        Loop  
+15935>>>>
+15935>>>                    End
+15935>>>>
+15935>>>                    Find GT TCOMVEN by Index.2   
+15936>>>>
+15936>>>                Loop
+15937>>>>
+15937>>>                Close tComVen
+15938>>>            End
+15938>>>>
+15938>>>            Find gt tcamemp by Index.1
+15939>>>>
+15939>>>        Loop
+15940>>>>
+15940>>>
+15940>>>        // Gravação do array sFaturamento
+15940>>>        Close tcamemp
+15941>>>        Open tvlorfatu
+Including file: tvlorfatu.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tvlorfatu.fd)
+15943>>>        Clear tvlorfatu
+15944>>>
+15944>>>        Clear tvlorfatu
+15945>>>        Move dDataInicio to tvlorfatu.dData
+15946>>>        Find gt tvlorfatu by 2
+15947>>>>
+15947>>>        
+15947>>>        While (Found)
+15951>>>            Send Update_Status  (("Deletando Notas") + (" - ") + (String(tvlorfatu.dData)) * (String(tvlorfatu.sNumLanc)))
+15952>>>            
+15952>>>            If ((tvlorfatu.sEmp = "PP") or (tvlorfatu.sEmp = "PO")  or (tvlorfatu.sEmp = "PE") or (tvlorfatu.sEmp = "PA") or (tvlorfatu.sEmp = "PR") or (tvlorfatu.sEmp = "PC") or (tvlorfatu.sEmp = "AF")) Begin
+15954>>>                Move tvlorfatu.sNumLanc      to sAuxFaturamento.sNumLanc
+15955>>>                Move tvlorfatu.sTpLancamento to sAuxFaturamento.sTpLancamento
+15956>>>                Move tvlorfatu.sEmp          to sAuxFaturamento.sEmp
+15957>>>                
+15957>>>                Move (SearchArray(sAuxFaturamento,sFaturamento,Self,(RefFunc(fFaturamento)))) to iSearchIndex
+15958>>>                If (iSearchIndex = -1) Delete tvlorfatu
+15961>>>            End
+15961>>>>
+15961>>>            Find gt tvlorfatu by Index.2    
+15962>>>>
+15962>>>        Loop
+15963>>>>
+15963>>>
+15963>>>        While (iCont >= 0)
+15967>>>            Send Update_Status  ("Gravando Notas" * (sFaturamento[iCont].sEmp) + (" - ") + (String(sFaturamento[iCont].sTpLancamento)) * (String(sFaturamento[iCont].dData)))
+15968>>>           Clear tvlorfatu    
+15969>>>            Move sFaturamento[iCont].sNumLanc        to tvlorfatu.sNumLanc            
+15970>>>            Move sFaturamento[iCont].sTpLancamento   to tvlorfatu.sTpLancamento       
+15971>>>            Move sFaturamento[iCont].sEmp            to tvlorfatu.sEmp
+15972>>>            Find eq tvlorfatu by 1
+15973>>>>
+15973>>>            
+15973>>>            If (not(Found)) Begin
+15975>>>                Clear tvlorfatu
+15976>>>                Move sFaturamento[iCont].sNumLanc      to tvlorfatu.sNumLanc            
+15977>>>                Move sFaturamento[iCont].sTpLancamento to tvlorfatu.sTpLancamento       
+15978>>>                Move sFaturamento[iCont].sEmp          to tvlorfatu.sEmp
+15979>>>            End
+15979>>>>
+15979>>>        
+15979>>>            Move (TiraPonto(Self,sFaturamento[iCont].sCPFCNPJ)) to sDoc
+15980>>>            If ((Length(sDoc)) <= 11) Move True to bPessoaFisica
+15983>>>            Else                      Move False to bPessoaFisica
+15985>>>            
+15985>>>            If (not(bPessoaFisica)) Move sFaturamento[iCont].sRazao         to tvlorfatu.sRazao 
+15988>>>            Else                    Move sFaturamento[iCont].sCdClienteForn to tvlorfatu.sRazao 
+15990>>>                            
+15990>>>            Move sFaturamento[iCont].sEmpOrgVenda     to tvlorfatu.sEmpOrgVenda        
+15991>>>            Move sFaturamento[iCont].dData            to tvlorfatu.dData               
+15992>>>            Move sFaturamento[iCont].sDescrLanca      to tvlorfatu.sDescrLanca         
+15993>>>            Move sFaturamento[iCont].nVlLancamento    to tvlorfatu.nVlLancamento       
+15994>>>            Move sFaturamento[iCont].sTipoCli         to tvlorfatu.sTipoCli            
+15995>>>            Move sFaturamento[iCont].sEstCli          to tvlorfatu.sEstCli             
+15996>>>            Move sFaturamento[iCont].sRazao           to tvlorfatu.sRazao              
+15997>>>            Move sFaturamento[iCont].sCdClienteForn   to tvlorfatu.sCdClienteForn
+15998>>>            Move sFaturamento[iCont].iCdRepresentante to tvlorfatu.iCdRepresentante            
+15999>>>            SaveRecord tvlorfatu   
+16000>>>            
+16000>>>            Decrement iCont  
+16001>>>        Loop
+16002>>>>
+16002>>>        
+16002>>>        Close tvlorfatu
+16003>>>        
+16003>>>        // Gravação do array vtTvlorFatu_Vendedores
+16003>>>        Open tvlorfatu_vendedores
+Including file: tvlorfatu_vendedores.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tvlorfatu_vendedores.fd)
+16005>>>        
+16005>>>        For iCount_vtTvlorFatu_Vendedores from 0 to (SizeOfArray(vtTvlorFatu_Vendedores)-1)
+16011>>>>
+16011>>>            Send Update_Status  ("Vendedores das Notas -" * vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sEmp * "-" * vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sNumLanc)
+16012>>>            
+16012>>>            Clear tvlorfatu_vendedores
+16013>>>            Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sNumLanc       to tvlorfatu_vendedores.sNumLanc       
+16014>>>            Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sTpLancamento  to tvlorfatu_vendedores.sTpLancamento
+16015>>>            Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sEmp           to tvlorfatu_vendedores.sEmp         
+16016>>>            Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sCdVendedor    to tvlorfatu_vendedores.sCdVendedor  
+16017>>>            Find eq tvlorfatu_vendedores by 1
+16018>>>>
+16018>>>            
+16018>>>            If (not(Found)) Begin                
+16020>>>                Clear tvlorfatu_vendedores
+16021>>>                Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sNumLanc       to tvlorfatu_vendedores.sNumLanc       
+16022>>>                Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sTpLancamento  to tvlorfatu_vendedores.sTpLancamento
+16023>>>                Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sEmp           to tvlorfatu_vendedores.sEmp         
+16024>>>                Move vtTvlorFatu_Vendedores[iCount_vtTvlorFatu_Vendedores].sCdVendedor    to tvlorfatu_vendedores.sCdVendedor  
+16025>>>                SaveRecord tvlorfatu_vendedores    
+16026>>>            End
+16026>>>>
+16026>>>        Loop
+16027>>>>
+16027>>>        
+16027>>>        Close tvlorfatu_vendedores
+16028>>>    End_Procedure
+16029>>>
+16029>>>    Procedure pCadastro_Clientes
+16032>>>        Integer iContArray
+16032>>>        String sDoc
+16032>>>        Boolean bPessoaFisica
+16032>>>        Date dData
+16032>>>        
+16032>>>        Sysdate dData
+16033>>>        
+16033>>>        Move (dData - 30) to dData
+16034>>>        
+16034>>>        Close tclicad
+Including file: tCliCad.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tCliCad.fd)
+16035>>>        String sCaminho
+16035>>>        Move (fCaminho(ghoTCamEmp,"PO") + "tclicad") to sCaminho
+16036>>>        Open sCaminho as tclicad
+16038>>>        
+16038>>>        tCadastroCli[] aCadastroCli 
+16038>>>        tCadastroCli[] aCadastroCli 
+16039>>>        
+16039>>>        Move (ResizeArray(aCadastroCli,0)) to aCadastroCli
+16040>>>        
+16040>>>        Clear tCliCad
+16041>>>        Find gt tCliCad by 1
+16042>>>>
+16042>>>        
+16042>>>        While (Found)
+16046>>>            Send Update_Status  ("Lendo TCliCad" * tCliCad.iCdCodigo  + (" - ") + tCliCad.sNmNome)
+16047>>>            
+16047>>>            If (tCliCad.dDtAlteracao >= dData) Begin
+16049>>>                Move tCliCad.iCdCodigo   to aCadastroCli[iContArray].sCodCli
+16050>>>                Move tCliCad.sNmNome     to aCadastroCli[iContArray].sNmNome
+16051>>>                Move tCliCad.sDcEstado   to aCadastroCli[iContArray].sEstado
+16052>>>                Move tCliCad.sDcCidade   to aCadastroCli[iContArray].sCidade
+16053>>>                Move tCliCad.sFlTipo     to aCadastroCli[iContArray].sTipo  
+16054>>>                Move tCliCad.dDtAlteracao to aCadastroCli[iContArray].dData
+16055>>>                
+16055>>>                Move (TiraPonto(Self,tCliCad.sDcCnpjCpf)) to sDoc
+16056>>>                
+16056>>>                If ((Length(sDoc)) <= 11) Move True to bPessoaFisica
+16059>>>                Else                      Move False to bPessoaFisica
+16061>>>                
+16061>>>                If (not(bPessoaFisica)) Begin
+16063>>>                     Move (TiraPonto(Self,tCliCad.sDcCnpjCpf)) to aCadastroCli[iContArray].sCnpjCpf     // 000.000.000-00  -  00.000.000/0000-00
+16064>>>                     Move tCliCad.sNmNome     to aCadastroCli[iContArray].sNmNome
+16065>>>                End
+16065>>>>
+16065>>>                Else Begin
+16066>>>                     Move tCliCad.iCdCodigo to aCadastroCli[iContArray].sCnpjCpf
+16067>>>                     Move tCliCad.iCdCodigo to aCadastroCli[iContArray].sNmNome
+16068>>>                End
+16068>>>>
+16068>>>                
+16068>>>                Increment iContArray
+16069>>>            End
+16069>>>>
+16069>>>
+16069>>>            Find gt tCliCad by 1
+16070>>>>
+16070>>>        Loop
+16071>>>>
+16071>>>        
+16071>>>        Close tCliCad
+16072>>>        Open cadcliente
+Including file: cadcliente.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\cadcliente.fd)
+16074>>>        
+16074>>>        While (iContArray >= 0)
+16078>>>            Send Update_Status  ("Gravando TClicad" * cadcliente.idCadCliente  + (" - ") + cadcliente.sNmNome)
+16079>>>            
+16079>>>            Clear cadcliente
+16080>>>            Move aCadastroCli[iContArray].sCodCli to cadcliente.idCadCliente 
+16081>>>            Find eq cadcliente by 1
+16082>>>>
+16082>>>            
+16082>>>            If (not(Found)) Clear cadcliente
+16085>>>            
+16085>>>            Move aCadastroCli[iContArray].sTipo    to cadcliente.sTipo
+16086>>>            Move aCadastroCli[iContArray].sCodCli  to cadcliente.idCadCliente
+16087>>>            Move aCadastroCli[iContArray].sNmNome  to cadcliente.sNmNome
+16088>>>            Move aCadastroCli[iContArray].sEstado  to cadcliente.sEstado
+16089>>>            Move aCadastroCli[iContArray].sCidade  to cadcliente.sCidade
+16090>>>            Move aCadastroCli[iContArray].sTipo    to cadcliente.sTipo
+16091>>>            Move aCadastroCli[iContArray].sCnpjCpf to cadcliente.sCnpjCPf
+16092>>>            Move aCadastroCli[iContArray].dData    to cadcliente.dDataAlt
+16093>>>            Move (CurrentDateTime())               to cadcliente.dDataAtualizacao
+16094>>>            
+16094>>>            SaveRecord cadcliente  
+16095>>>            Unlock  
+16096>>>>
+16096>>>            Decrement iContArray  
+16097>>>        Loop
+16098>>>>
+16098>>>        
+16098>>>        Close cadcliente
+16099>>>    End_Procedure
+16100>>>   
+16100>>>    Procedure pInvoice
+16103>>>        Integer iContArray
+16103>>>        tBiinvoice[] aInvoice
+16103>>>        tBiinvoice[] aInvoice
+16104>>>        
+16104>>>        Close invoice
+Including file: Invoice.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\Invoice.fd)
+16105>>>        String sCaminho
+16105>>>        Move (fCaminhoAnt(ghoTCamEmp,"PO") + "invoice") to sCaminho
+16106>>>        Open sCaminho as invoice
+16108>>>        Move "01/01/2021" to Invoice.DATA
+16109>>>        Find gt invoice by 2
+16110>>>>
+16110>>>        
+16110>>>        While (Found)
+16114>>>            Send Update_Status  ("Lendo Invoice " + (String(invoice.Invoice))  + (" - ") + (String(Invoice.DATA)))
+16115>>>            
+16115>>>            Move invoice.Invoice   to aInvoice[iContArray].Invoice
+16116>>>            Move Invoice.sCdFornec to aInvoice[iContArray].sCodForn
+16117>>>            Move Invoice.DATAV     to aInvoice[iContArray].dDataVenc
+16118>>>            Move Invoice.PAGAM     to aInvoice[iContArray].dDataPagamento
+16119>>>            Move Invoice.VALOR     to aInvoice[iContArray].nValorUS
+16120>>>            Increment iContArray
+16121>>>            
+16121>>>            Find gt invoice by 2    
+16122>>>>
+16122>>>        Loop
+16123>>>>
+16123>>>        
+16123>>>        Close invoice
+16124>>>        
+16124>>>        Open biinvoice
+Including file: biinvoice.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\biinvoice.fd)
+16126>>>        Decrement iContArray
+16127>>>        
+16127>>>        While (iContArray >=0) 
+16131>>>            Send Update_Status  ("Gravando Invoice" * (String(aInvoice[iContArray].Invoice))  + (" - ") + (String(aInvoice[iContArray].dDataVenc)))
+16132>>>            
+16132>>>            Clear biinvoice
+16133>>>            Move aInvoice[iContArray].Invoice to biinvoice.Invoice
+16134>>>            Find eq biinvoice by 1
+16135>>>>
+16135>>>            
+16135>>>            If (not(Found)) Clear biinvoice
+16138>>>            
+16138>>>            Move aInvoice[iContArray].Invoice        to biinvoice.Invoice
+16139>>>            Move aInvoice[iContArray].sCodForn       to biinvoice.sCodForn
+16140>>>            Move aInvoice[iContArray].dDataVenc      to biinvoice.dDataVenc
+16141>>>            Move aInvoice[iContArray].dDataPagamento to biinvoice.dDataPagamento
+16142>>>            Move aInvoice[iContArray].nValorUS       to biinvoice.nValorUS
+16143>>>            Move (CurrentDateTime())                 to biinvoice.dDataAtu
+16144>>>            
+16144>>>            SaveRecord biinvoice
+16145>>>            Unlock
+16146>>>>
+16146>>>            
+16146>>>            Decrement iContArray
+16147>>>        Loop
+16148>>>>
+16148>>>        
+16148>>>        Close biinvoice        
+16149>>>    End_Procedure
+16150>>>    
+16150>>>    Procedure pCadastro_Vendedores
+16153>>>        Integer iContArray
+16153>>>        String sCaminho
+16153>>>        
+16153>>>        Move (fCaminho(ghoTCamEmp,"PO")) to sCaminho
+16154>>>        Move (sCaminho + "tclivende.dat") to sCaminho
+16155>>>        
+16155>>>        Close tclivend
+Including file: tCliVend.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tCliVend.fd)
+16156>>>        Open sCaminho as tCliVend
+16158>>>        
+16158>>>        Open tcadvendedor
+Including file: tcadvendedor.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tcadvendedor.fd)
+16160>>>        Find gt tclivend by Index.1
+16161>>>>
+16161>>>        
+16161>>>        While (Found)
+16165>>>            Send Update_Status  ("Cadastro Vendedor" * (String(tCliVend.iCdCodigo)))
+16166>>>            
+16166>>>            Move tCliVend.iCdCodigo to tcadvendedor.iCdCodigo
+16167>>>            Find eq tcadvendedor by Index.1
+16168>>>>
+16168>>>            
+16168>>>            If (not(Found)) Clear tcadvendedor
+16171>>>            
+16171>>>            Move tCliVend.iCdCodigo to tcadvendedor.iCdCodigo
+16172>>>            Move tCliVend.sNmNome   to tcadvendedor.sNmNome
+16173>>>            SaveRecord tcadvendedor
+16174>>>            
+16174>>>            Find gt tclivend by 1    
+16175>>>>
+16175>>>        Loop
+16176>>>>
+16176>>>        
+16176>>>        Close tcadvendedor
+16177>>>        Close tCliVend
+16178>>>    End_Procedure
+16179>>>    
+16179>>>    Procedure pCadastro_Representantes
+16182>>>        Integer iContArray
+16182>>>        String sCaminho
+16182>>>        
+16182>>>        Move (fCaminho(ghoTCamEmp,"PO")) to sCaminho
+16183>>>        Move (sCaminho + "tclirepres.dat") to sCaminho
+16184>>>        
+16184>>>        Close TCliRepr
+16185>>>        Open sCaminho as TCliRepr
+16187>>>        
+16187>>>        Open tcadrepresentante
+Including file: tcadrepresentante.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tcadrepresentante.fd)
+16189>>>        
+16189>>>        Clear TCliRepr
+16190>>>        Find gt TCliRepr by Index.1
+16191>>>>
+16191>>>        
+16191>>>        While (Found)
+16195>>>            Send Update_Status  ("Cadastro Representante " + (String(TCliRepr.iCdCodigo)))
+16196>>>            
+16196>>>            Clear tcadrepresentante
+16197>>>            Move TCliRepr.iCdCodigo to tcadrepresentante.iCdCodigo
+16198>>>            Find eq tcadrepresentante by 1
+16199>>>>
+16199>>>            
+16199>>>            If (Found) Begin
+16201>>>                Reread tcadrepresentante
+16205>>>                    Move TCliRepr.iCdCodigo       to tcadrepresentante.iCdCodigo
+16206>>>                    Move TCliRepr.sDcDesc         to tcadrepresentante.sDcDesc
+16207>>>                    Move TCliRepr.sIDSY           to tcadrepresentante.sIDSY
+16208>>>                    Move TCliRepr.sCdCliPrincipal to tcadrepresentante.sCdCliPrincipal
+16209>>>                    SaveRecord tcadrepresentante
+16210>>>                Unlock
+16211>>>>
+16211>>>            End
+16211>>>>
+16211>>>            Else Begin
+16212>>>                Clear tcadrepresentante
+16213>>>                Move TCliRepr.iCdCodigo       to tcadrepresentante.iCdCodigo
+16214>>>                Move TCliRepr.sDcDesc         to tcadrepresentante.sDcDesc
+16215>>>                Move TCliRepr.sIDSY           to tcadrepresentante.sIDSY
+16216>>>                Move TCliRepr.sCdCliPrincipal to tcadrepresentante.sCdCliPrincipal
+16217>>>                SaveRecord tcadrepresentante
+16218>>>            End
+16218>>>>
+16218>>>            
+16218>>>            Find gt TCliRepr by 1    
+16219>>>>
+16219>>>        Loop
+16220>>>>
+16220>>>        
+16220>>>        Close tcadrepresentante
+16221>>>        Close TCliRepr
+16222>>>    End_Procedure
+16223>>>    
+16223>>>    Procedure pGrava_TinfoAtu String sObs Integer iPeriodo
+16226>>>        Open tinfatu
+Including file: tinfatu.fd    (C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Base_BI_MySql\DDSrc\tinfatu.fd)
+16228>>>        Clear tinfatu
+16229>>>        Move (CurrentDateTime()) to tinfatu.dDataTime
+16230>>>        Move (Trim(sObs))        to tinfatu.sObs
+16231>>>        Move iPeriodo            to tinfatu.iPeriodo
+16232>>>        SaveRecord tinfatu
+16233>>>    End_Procedure
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    
+16234>>>    Procedure OnProcess
+16237>>>       Date dDataInicio
+16237>>>       DateTime dDataTime
+16237>>>       Integer iHora iPeriodo
+16237>>>       
+16237>>>       Open tcamemp
+16239>>>       Clear tcamemp
+16240>>>       Find gt tcamemp by 1
+16241>>>>
+16241>>>       
+16241>>>       If (not(Found)) Procedure_Return    
+16244>>>
+16244>>>       Move (CurrentDateTime()) to dDataTime 
+16245>>>       Move dDataTime to dDataInicio
+16246>>>       Move (DateGetHour(dDataTime)) to iHora
+16247>>>       
+16247>>>        If ((iHora > 8) and (iHora < 18)) Begin
+16249>>>            Move (dDataInicio - 3) to dDataInicio
+16250>>>            Move 1 to iPeriodo  // Periodo da das 8 as 18 horas
+16251>>>        End
+16251>>>>
+16251>>>        Else Begin
+16252>>>            Move (dDataInicio - 180) to dDataInicio  // 2190=6 anos   | 1825=5 anos  
+16253>>>            Move 2 to iPeriodo                     // Periodo das 18 até as 8 da manhã
+16254>>>        End
+16254>>>>
+16254>>>        
+16254>>>//        // fds
+16254>>>//        If (DateGetDayOfWeek(dDataInicio) = 1 or DateGetDayOfWeek(dDataInicio) = 7) Begin
+16254>>>//            Move (dDataInicio - 365) to dDataInicio  // 2190=6 anos   | 1825=5 anos  
+16254>>>//            Move 2 to iPeriodo                       // Periodo das 18 até as 8 da manhã 
+16254>>>//        End
+16254>>>        
+16254>>>//        Move (Date("01/08/2022")) to dDataInicio
+16254>>>//        Move 0 to iPeriodo
+16254>>>
+16254>>>//        Move (Date("01/01/2020")) to dDataInicio        
+16254>>>//        Send pDespesas dDataInicio // Respeita a data de inicio
+16254>>>//        Abort
+16254>>>
+16254>>>        Move (Date("01/01/2022")) to dDataInicio   
+16255>>>        Send pFaturamento dDataInicio 0
+16256>>>        Abort
+16257>>>>
+16257>>> 
+16257>>>        Send pGrava_TinfoAtu "Inicio" iPeriodo   
+16258>>>     
+16258>>>        Send pCarregaCodeMast // Completo
+16259>>>        Send pCarregaClasCont // Completo
+16260>>>        Send pCarregaClasDes  // Completo
+16261>>>        
+16261>>>        Send pGrava_TinfoAtu "Inicio Faturamento" iPeriodo
+16262>>>        Send pFaturamento dDataInicio iPeriodo
+16263>>>        // iPeriodo = 1 -> Um mês
+16263>>>        // iPeriodo = 2 -> Três meses
+16263>>>        // Quando utilizado, ele ignora a variavel dDataInicio
+16263>>>        
+16263>>>//        Send pGrava_TinfoAtu "Inicio Recebimentos" iPeriodo
+16263>>>//        Send pDuplicatas_Recebimentos dDataInicio iPeriodo // Periodo 1 = Um mês ou dDataInicio
+16263>>>        
+16263>>>//        Move (ResizeArray(aDupAtu,0)) to aDupAtu
+16263>>>        
+16263>>>//        Send pGrava_TinfoAtu "Inicio Pagamento" iPeriodo
+16263>>>//        Send pDuplicatas_Pagamento dDataInicio iPeriodo
+16263>>>       
+16263>>>        If (iPeriodo = 2) Begin
+16265>>>//           Send pGrava_TinfoAtu "Inicio Vendedores" iPeriodo
+16265>>>//           Send pCadastro_Vendedores // Tudo
+16265>>>//           
+16265>>>//           Send pGrava_TinfoAtu "Inicio Representantes" iPeriodo 
+16265>>>//           Send pCadastro_Representantes // Tudo
+16265>>>//           
+16265>>>//           Send pGrava_TinfoAtu "Inicio Produtos" iPeriodo
+16265>>>//           Send pCadastro_Produtos dDataInicio // Respeita a data de inicio (somente alterados no periodo)
+16265>>>//        
+16265>>>//           Send pGrava_TinfoAtu "Inicio Clientes" iPeriodo
+16265>>>//           Send pCadastro_Clientes // Fixo 30 dias
+16265>>>//        
+16265>>>//           Send pGrava_TinfoAtu "Inicio Invoice" iPeriodo
+16265>>>//           Send pInvoice // Fixo a partir de 01/01/2021
+16265>>>//             
+16265>>>//           Send pGrava_TinfoAtu "Inicio Despesas" iPeriodo
+16265>>>//           Send pDespesas dDataInicio // Respeita a data de inicio
+16265>>>//           
+16265>>>//           Send pGrava_TinfoAtu "Inicio Itens Entrada" iPeriodo
+16265>>>//           Send pItens_Entrada dDataInicio iPeriodo // periodo 2 = respeita | Periodo 1 = 7 dias
+16265>>>//           
+16265>>>//           Send pGrava_TinfoAtu "Inicio Itens Saida" iPeriodo
+16265>>>//           Send pItens_Saida dDataInicio iPeriodo // periodo 2 = respeita | Periodo 1 = 7 dias
+16265>>>        End
+16265>>>>
+16265>>>
+16265>>>        //Send tCliAtr dDataInicio iPeriodo // Clientes em Atrasos 
+16265>>>        
+16265>>>        Send pGrava_TinfoAtu "Fim Atualizacao" iPeriodo 
+16266>>>    End_Procedure
+16267>>>    
+16267>>>End_Object
+16268>>>
+16268>
+16268>//USUARIO DA ROTINA Do DATAFLEX
+16268>//
+16268>//CRIAR no ODBC com o Nome de :gpcablingbi 
+16268>//
+16268>//servidor:gpcablingbi.mysql.database.azure.com
+16268>//
+16268>//database:powerbi
+16268>//
+16268>//Login:gpcablingbi@gpcablingbi
+16268>//
+16268>//Senha:pJK1jUxEJ9Oigu6dfuOjj*
+16268>//
+16268>//gpcablingbi.mysql.database.azure.com
+16268>//
+16268>//DataBase:powerbi
+16268>//
+16268>//Login:gpcablingbi@gpcablingbi
+16268>//
+16268>//senha:pJK1jUxEJ9Oigu6dfuOjj*
+16268>
+16268>Send DoProcess of oCriaBaseBI_v2
+16269>
 Summary
-Memory Available: 4269645824
+Memory Available: 5584646144
 Total Warnings : 0
-Total Errors   : 2
-Total Symbols  : 13230
+Total Errors   : 0
+Total Symbols  : 14720
 Total Resources: 0
-Total Commands : 14578
+Total Commands : 16268
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 172949
-Message area   : 76086
-Total Blocks   : 7726
-2 ERRORS HAVE BEEN FOUND.
+Static Data    : 192043
+Message area   : 77351
+Total Blocks   : 8428
