@@ -1795,33 +1795,6 @@ Object oCriaBaseBI_v2 is a BusinessProcess
         SaveRecord tinfatu
     End_Procedure
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     Procedure OnProcess
        Date dDataInicio
        DateTime dDataTime
