@@ -1,0 +1,13 @@
+﻿Use cWebService.pkg
+
+Object oWsCookbook is a cWebService
+    
+    // psDocumentation provides high level documentation of your web service.
+    // Clients using this service will see and use this documentation.
+    // This will also display as the function description when users browse to the .WSO URL
+    Set psDocumentation to ;
+        ("DataFlex Web Service .... " +;
+          " ... " +  ;
+          "documentation")
+    
+End_Object

@@ -514,8 +514,7 @@ Object oCriaBaseBI_v2 is a BusinessProcess
         Loop
     End_Procedure
     
-    
-        Procedure pDuplicatas_Recebimentos Date dDataInicio Integer iPeriodo 
+    Procedure pDuplicatas_Recebimentos Date dDataInicio Integer iPeriodo 
         String sCaminho
         Boolean bCancel
         
@@ -1832,7 +1831,7 @@ Object oCriaBaseBI_v2 is a BusinessProcess
 //        Send pDespesas dDataInicio // Respeita a data de inicio
 //        Abort
 
-        Move (Date("01/01/2022")) to dDataInicio   
+        Move (Date("01/12/2022")) to dDataInicio   
         Send pFaturamento dDataInicio 0
         Abort
  

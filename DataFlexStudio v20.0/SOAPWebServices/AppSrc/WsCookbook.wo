@@ -1,0 +1,18 @@
+﻿Use cWebService.pkg
+
+Object oWsCookbook is a cWebService
+    
+    // psDocumentation provides high level documentation of your web service.
+    // Clients using this service will see and use this documentation.
+    // This will also display as the function description when users browse to the .WSO URL
+    Set psDocumentation to "This the cookbook webservice"
+    Set psServiceTitle to "CookbookWs"
+ 
+    {Published = True}
+    {Description = "Returns a simple hello message"}
+    
+    Function Hello Returns String
+          Function_Return "Hello from the other side!"
+    End_Function
+    
+End_Object
