@@ -1,0 +1,23 @@
+﻿Use cWebService.pkg
+
+Object oWsCookbookMobile is a cWebService
+    
+    // psDocumentation provides high level documentation of your web service.
+    // Clients using this service will see and use this documentation.
+    // This will also display as the function description when users browse to the .WSO URL
+    Set psDocumentation to "DataFlex Web Service documentation"
+    Set psServiceTitle to "DataFlexWebService"
+          
+    {Published = True}
+    {Description = "Returns a simple hello message"}
+    Function Hello Returns String
+          Function_Return "Hello from the other side!"
+    End_Function
+    
+    {Published = True}
+    {Description = "Adds 2 numbers and returns the result"}
+    Function AddNumbers Integer iA Integer iB Returns Integer
+          Function_Return (iA + iB)
+    End_Function
+          
+End_Object

@@ -1,0 +1,18 @@
+Use AllWebAppClasses.pkg
+Use cConnection.pkg
+
+Object oApplication is a cApplication
+
+    Object oConnection is a cConnection
+        Use LoginEncryption.pkg
+    End_Object
+
+End_Object
+
+Object oWebApp is a cWebAppBasic
+    Use ServiceHome.wo
+    Use Products.wo
+ 
+End_Object
+
+Send StartWebApp of oWebApp

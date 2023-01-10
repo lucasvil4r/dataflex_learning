@@ -1,0 +1,29 @@
+﻿Use cWebHttpHandler.pkg
+
+//  With the cWebHttpHandler you handle complete HTTP requests.
+Object oServiceHome is a cWebHttpHandler
+    //  The psPath property determines the path in the URL for which requests will be handled.
+    Set psPath to "RestService"
+    //  Use psVerbs to filter based on the HTTP Verbs. 
+    Set psVerbs to "GET"    
+
+    Procedure OnHttpGet String sPath String sAcceptType
+        
+        If (sPath = "/") Begin
+        //Forward Send OnHttpGet sPath sAcceptType
+        Send AddHttpResponseHeader "Content-Type" "text/html"
+        
+        Send OutputString '<html>'
+        Send OutputString '<head><title>Order Entry Service</title></head>'
+        Send OutputString '<body>'
+        Send OutputString '<h1>REST Services</h1>'
+        Send OutputString '<a href="Products/">Products</a><br/>'
+        Send OutputString '</body>'
+        Send OutputString '</html>'    
+        End
+        Else Begin
+            Send SetResponseStatus 404 "Not found" 0
+        End
+    End_Procedure
+    
+End_Object

@@ -1,0 +1,61 @@
+﻿Use cWebHttpHandler.pkg
+Use cJsonObject.pkg
+Use cVendorDataDictionary.dd
+Use cInventoryDataDictionary.dd
+
+//  With the cWebHttpHandler you handle complete HTTP requests.
+Object oProducts is a cWebHttpHandler
+    Object oVendor_DD is a cVendorDataDictionary
+    End_Object
+
+    Object oInventory_DD is a cInventoryDataDictionary
+        Set Constrain_file to Vendor.File_number
+        Set DDO_Server to oVendor_DD
+    End_Object
+
+    Set Main_DD to oVendor_DD
+    
+    //  The psPath property determines the path in the URL for which requests will be handled.
+    Set psPath to "RestService/Products"
+    //  Use psVerbs to filter based on the HTTP Verbs. 
+    Set psVerbs to "GET"
+    
+    Function JsonProduct Returns Handle
+        Handle hoProduct
+        
+        Get Create (RefClass(cJsonObject)) to hoProduct
+        Send InitializeJsonType of hoProduct jsonTypeObject
+        
+        Send SetMemberValue of hoProduct "ID" jsonTypeString (Trim(Inventory.Item_ID))
+        Send SetMemberValue of hoProduct "Description" jsonTypeString (Trim(Inventory.Description))
+        Send SetMemberValue of hoProduct "Vendor Name" jsonTypeString (Trim(Vendor.Name))
+        Send SetMemberValue of hoProduct "Vendor Part ID" jsonTypeString (Trim(Inventory.Vendor_Part_ID))
+        
+        Function_Return hoProduct
+    End_Function
+
+    Procedure OnHttpGet String sPath String sAcceptType        
+        Handle hoProducts hoProduct
+        Integer iIndex
+        UChar[] ucResponse
+        
+        Get Create (RefClass(cJsonObject)) to hoProduct
+        Send InitializeJsonType of hoProduct jsonTypeArray
+        
+        Move 1 to iIndex
+        Send Find of oInventory_DD NEXT_RECORD iIndex
+        While (Found)
+            Get JsonProduct to hoProduct
+            Send AddMember of hoProducts hoProduct
+            Send Destroy of hoProduct
+            Send Find of oInventory_DD NEXT_RECORD iIndex   
+        Loop
+        
+        Send AddHttpResponseHeader "Content-Type" "applicantion/json"
+        Get StringifyUtf8 of hoProducts to ucResponse
+        Send OutputUChar ucResponse
+        
+        Send Destroy of hoProducts 
+    End_Procedure
+    
+End_Object

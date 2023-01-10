@@ -1,6 +1,6 @@
 [WebService]
-Application=CookbookWebService
-Object=oWsCookbook
+Application=CookbookWebServiceMobile
+Object=oWsCookbookMobile
 ServicePageGenerator=DefaultWebServiceHomePage.xslt
 TestPageGenerator=DefaultWebServiceMethodPage.xslt
 WSDLGenerator=DefaultWebServiceDescription.xslt

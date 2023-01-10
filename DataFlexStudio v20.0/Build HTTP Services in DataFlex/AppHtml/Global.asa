@@ -3,10 +3,8 @@
 
 <SCRIPT LANGUAGE=VBScript RUNAT=Server>
 SUB Session_OnStart
-    WebAppServerSession.PageScopedSession=True
-    WebAppServerSession.Initialize("CookbookWebService")
+    WebAppServerSession.Initialize("DFLCHttpHandler")
     Session.Timeout=1
-
 END SUB
 </SCRIPT>
 
