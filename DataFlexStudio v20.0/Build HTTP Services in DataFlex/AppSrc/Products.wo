@@ -38,11 +38,17 @@ Object oProducts is a cWebHttpHandler
         Handle hoProducts hoProduct
         Integer iIndex
         UChar[] ucResponse
+        String sOrderBy
         
         Get Create (RefClass(cJsonObject)) to hoProduct
         Send InitializeJsonType of hoProduct jsonTypeArray
         
         Move 1 to iIndex
+        
+        Get UrlParameter "OrderBy" to sOrderBy
+        If (Lowercase(sOrderBy) = "description") ;
+            Move 3 to iIndex
+        
         Send Find of oInventory_DD NEXT_RECORD iIndex
         While (Found)
             Get JsonProduct to hoProduct

@@ -1,17 +1,5 @@
-<?xml version="1.0"?>
 <DataDictionaryList xmlns="http://www.dataaccess.com/VisualDataFlex/2008/DataDictionaryList/">
 	<Tables>
-		<Table>
-			<tableNumber>20</tableNumber>
-			<tableName>OrderSystem</tableName>
-			<DDClasses>
-				<DDClass>
-					<className>cOrderSystemDataDictionary</className>
-					<classFile>cOrderSystemDataDictionary.dd</classFile>
-					<preferred>true</preferred>
-				</DDClass>
-			</DDClasses>
-		</Table>
 		<Table>
 			<tableNumber>21</tableNumber>
 			<tableName>Vendor</tableName>
@@ -30,6 +18,28 @@
 				<DDClass>
 					<className>cInventoryDataDictionary</className>
 					<classFile>cInventoryDataDictionary.dd</classFile>
+					<preferred>true</preferred>
+				</DDClass>
+			</DDClasses>
+		</Table>
+		<Table>
+			<tableNumber>25</tableNumber>
+			<tableName>Customer</tableName>
+			<DDClasses>
+				<DDClass>
+					<className>cCustomerDataDictionary</className>
+					<classFile>cCustomerDataDictionary.dd</classFile>
+					<preferred>true</preferred>
+				</DDClass>
+			</DDClasses>
+		</Table>
+		<Table>
+			<tableNumber>27</tableNumber>
+			<tableName>SalesPerson</tableName>
+			<DDClasses>
+				<DDClass>
+					<className>cSalesPersonDataDictionary</className>
+					<classFile>cSalesPersonDataDictionary.dd</classFile>
 					<preferred>true</preferred>
 				</DDClass>
 			</DDClasses>
