@@ -7,13 +7,66 @@ GroupCount=1
 HorizontalGroups=1
 [TabGroup0]
 GroupSize=40
-SelectedTab=0
+SelectedTab=2
 [Window0]
 Filename=Start Center
 ViewType=100
 Top=21
 Left=0
 Bottom=892
-Right=1402
+Right=1301
 TabIndex=0
+TabGroup=0
+[Window1]
+Filename=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConsultaDiretorio.vw
+ViewType=1
+Top=21
+Left=0
+Bottom=892
+Right=1301
+CursorLine=30
+CursorColumn=33
+TabIndex=3
+TabGroup=0
+[Window2]
+Filename=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\TestFunction.vw
+ViewType=2
+Top=21
+Left=0
+Bottom=892
+Right=1301
+TabIndex=4
+TabGroup=0
+[Window3]
+Filename=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ProjectTeste.src
+ViewType=1
+Top=21
+Left=0
+Bottom=892
+Right=1301
+CursorLine=355
+CursorColumn=0
+TabIndex=5
+TabGroup=0
+[Window4]
+Filename=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\FunctionDeleteFiles.vw
+ViewType=1
+Top=21
+Left=0
+Bottom=892
+Right=1301
+CursorLine=38
+CursorColumn=41
+TabIndex=1
+TabGroup=0
+[Window5]
+Filename=C:\xampp\htdocs\dataflex_learning\DataFlexStudio v20.0\Policom\AppSrc\ConteudoDiretorio.vw
+ViewType=1
+Top=21
+Left=0
+Bottom=892
+Right=1301
+CursorLine=19
+CursorColumn=39
+TabIndex=2
 TabGroup=0

@@ -85,7 +85,7 @@ Object oConteudoDiretorio is a dbView
 
           Send LoadData
         End_Procedure
-        
+      
         Procedure LoadData 
             tDataSourceRow[] TheData
             String [] aFiles
@@ -107,7 +107,6 @@ Object oConteudoDiretorio is a dbView
             Get piColumnId of oCJGridColumnRowIndicator1 to iIndicador
             Get piColumnId of oCustomer_Name to iName
     
-            Move 0 to iIndex 
             For iIndex from 0 to (SizeOfArray(aFiles) - 1)   
                 If not (aFiles[iIndex] = "[.]" or aFiles[iIndex] = "[..]" or aFiles[iIndex] = "") Begin
                     Move aFiles[iIndex] to TheData[iRows].sValue[iName] 
