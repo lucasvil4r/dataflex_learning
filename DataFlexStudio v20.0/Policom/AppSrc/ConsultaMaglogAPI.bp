@@ -118,16 +118,8 @@ Object oConsultaMaglogAPI is a cWsBusinessProcess
         
         //  Aviso da atualização por email
         String sAssunto sEmails 
-        Move (fRetornaListaEmails()) to sEmails
         
-        If (nCotacaoDolar) Begin
-            Send pProcessaDados dData nCotacaoDolar 
-            Move ("Pedidos Maglog atualizado automaticamente:" * String(dData) * "- Cotação:" * String(nCotacaoDolar)) to sAssunto 
-        End
-        Else Move ("Erro: Pedidos Maglog não foi atualizado automaticamente:" * String(dData)) to sAssunto 
-        
-        Send EnviaEmail of oEmail sEmails sAssunto  "" "" "" "lucas@gpcabling.com.br"
+        Move ("Pedidos Maglog atualizado automaticamente:" * String(dData) to sAssunto 
+        Send EnviaEmail of oEmail "lucas@gpcabling.com.br,richard@quintana" sAssunto  "" "" ""
     End_Procedure
-    
 End_Object
-
