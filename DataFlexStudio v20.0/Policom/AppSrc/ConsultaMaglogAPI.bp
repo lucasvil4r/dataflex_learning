@@ -1,0 +1,133 @@
+﻿Use Batchdd.pkg
+Use cWsBusinessProcess.pkg
+Use Email.bp
+Use cWsIntegracaoMaglog.pkg
+
+Declare_Datafile TPedVCad
+
+// Processo para atualizar pedidos de venda com base na API maglog
+Object oConsultaMaglogAPI is a cWsBusinessProcess
+
+    Set psNomeFonte to "AtualizaPedidosMAglog"
+    Set Process_Title to "Atualização dos Pedidos MagLog"
+    
+    //Pedidos devem ter 3 meses de criação.
+    Function fValidadaDataPedido Returns Date
+       Date dDataInicio
+       DateTime dDataTime
+       Integer iHora
+       
+       If (not(Found)) Procedure_Return    
+
+       Move (CurrentDateTime()) to dDataTime 
+       Move dDataTime to dDataInicio
+       Move (DateGetHour(dDataTime)) to iHora
+       
+        If ((iHora > 8) and (iHora < 18)) Begin
+            Move (dDataInicio - 90) to dDataInicio  // 2190=6 anos   | 1825=5 anos | 90=3 meses 
+        End
+        
+        Function_Return dDataInicio
+    End_Function
+    
+    //Pedido não pode estar faturado "status = i" na base de dados.
+    Function fValidaStatusPedido Returns Boolean
+        If ((Uppercase(TPedVCad.sStStatus)) = "I") Begin
+            Function_Return True
+        End
+        Function_Return False
+    End_Function
+    
+    //Pedidos devem ter “id_maglog <> 0” na base de dados.
+    Function fValidaIdMaglog Returns Boolean
+        If (TPedVCad.iCdIdMaglog <> 0) Begin
+            Function_Return True
+        End
+        Function_Return False
+    End_Function
+    
+    //Somente pedidos com faturamento PP.
+    Function fValidaFaturamento Returns Boolean
+        If ((Uppercase(TPedVCad.sLocalFaturamento)) = "PP") Begin
+            Function_Return True
+        End
+        Function_Return False
+    End_Function
+    
+    //Peso e volume "igual = 0" na base de dados.
+    Function fValidaPesoVol Returns Boolean
+        If (TPedVCad.iDcVolumes = 0 and TPedVCad.nDcPeso = 0) Begin
+            Function_Return True
+        End
+        Function_Return False
+    End_Function
+    
+    Procedure pAtualizaPedidos
+        Date dDataInicio
+        Boolean bRetornoFunction
+        Integer iCountReturnFunction
+        tConsultaPedidoExpedicao vtConsultaPedidoExpedicao
+
+        Get fValidadaDataPedido to dDataInicio
+   
+        Open TPedVCad
+        Clear TPedVCad
+        Move dDataInicio to TPedVCad.nDtPedVenda
+        Find ge TPedVCad by 9
+         
+        While (Found)   
+            Get fValidaStatusPedido to bRetornoFunction
+            If (bRetornoFunction) Increment iCountReturnFunction
+            
+            Get fValidaIdMaglog to bRetornoFunction
+            If (bRetornoFunction) Increment iCountReturnFunction
+            
+            Get fValidaFaturamento to bRetornoFunction
+            If (bRetornoFunction) Increment iCountReturnFunction
+            
+            Get fValidaPesoVol to bRetornoFunction
+            If (bRetornoFunction) Increment iCountReturnFunction
+            
+            If (iCountReturnFunction = 4) Begin
+                Get fConsultaPedidoExpedicaoByID of ghoIntegracaoMaglog TPedVCad.iCdIdMaglog to vtConsultaPedidoExpedicao
+                
+                // Guarda peso e volume
+                Reread TPedVCad
+                    Move vtConsultaPedidoExpedicao.peso    to TPedVCad.nDcPeso
+                    Move vtConsultaPedidoExpedicao.volumes to TPedVCad.iDcVolumes
+                    SaveRecord TPedVCad
+                Unlock
+            End
+            
+            Move 0 to iCountReturnFunction
+            Find gt TPedVCad by 9
+        Loop
+                       
+        Close TPedVCad
+    End_Procedure
+    
+    Procedure OnProcess        
+        Date dData
+        
+        Send Update_Status "Atualizando Pedidos..."
+        Send pAtualizaPedidos 
+        
+        // Volta a data original
+        Sysdate dData
+        Move (dData - 1) to dData
+        
+        //  Aviso da atualização por email
+        String sAssunto sEmails 
+        Move (fRetornaListaEmails()) to sEmails
+        
+        If (nCotacaoDolar) Begin
+            Send pProcessaDados dData nCotacaoDolar 
+            Move ("Pedidos Maglog atualizado automaticamente:" * String(dData) * "- Cotação:" * String(nCotacaoDolar)) to sAssunto 
+        End
+        Else Move ("Erro: Pedidos Maglog não foi atualizado automaticamente:" * String(dData)) to sAssunto 
+        
+        Send EnviaEmail of oEmail sEmails sAssunto  "" "" "" "lucas@gpcabling.com.br"
+    End_Procedure
+    
+End_Object
+
