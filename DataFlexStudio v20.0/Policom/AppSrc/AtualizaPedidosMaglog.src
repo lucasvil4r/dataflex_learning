@@ -1,0 +1,19 @@
+Use Windows.pkg
+Use cHtmlHelp.pkg
+Use cApplication.pkg
+
+Object oHtmlHelp is a cHtmlHelp
+End_Object
+
+Object oApplication is a cApplication
+    Set peHelpType to htHtmlHelp
+End_Object
+
+Use ObjetosGlobais.pkg
+
+String gsCodEmp gsLogin gsCodLogin gsCodEst
+Move "PO" to gsCodEmp
+
+Use ConsultaMaglogAPI.bp
+
+Send DoProcess of oConsultaMaglogAPI
