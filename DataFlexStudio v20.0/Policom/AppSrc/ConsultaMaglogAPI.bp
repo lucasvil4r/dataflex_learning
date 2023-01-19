@@ -7,24 +7,22 @@ Declare_Datafile TPedVCad
 
 // Processo para atualizar pedidos de venda com base na API maglog
 Object oConsultaMaglogAPI is a cWsBusinessProcess
-
+    
     Set psNomeFonte to "AtualizaPedidosMAglog"
     Set Process_Title to "Atualização dos Pedidos MagLog"
     
-    //Pedidos devem ter 3 meses de criação.
+    //Pedidos devem ter 1 meses de criação.
     Function fValidadaDataPedido Returns Date
        Date dDataInicio
        DateTime dDataTime
        Integer iHora
-       
-       If (not(Found)) Procedure_Return    
-
+      
        Move (CurrentDateTime()) to dDataTime 
        Move dDataTime to dDataInicio
        Move (DateGetHour(dDataTime)) to iHora
        
         If ((iHora > 8) and (iHora < 18)) Begin
-            Move (dDataInicio - 90) to dDataInicio  // 2190=6 anos   | 1825=5 anos | 90=3 meses 
+            Move (dDataInicio - 30) to dDataInicio  // 2190=6 anos   | 1825=5 anos | 90=3 meses 
         End
         
         Function_Return dDataInicio
@@ -32,7 +30,7 @@ Object oConsultaMaglogAPI is a cWsBusinessProcess
     
     //Pedido não pode estar faturado "status = i" na base de dados.
     Function fValidaStatusPedido Returns Boolean
-        If ((Uppercase(TPedVCad.sStStatus)) = "I") Begin
+        If ((Uppercase(TPedVCad.sStStatus)) <> "C") Begin
             Function_Return True
         End
         Function_Return False
@@ -62,18 +60,33 @@ Object oConsultaMaglogAPI is a cWsBusinessProcess
         Function_Return False
     End_Function
     
-    Procedure pAtualizaPedidos
+    //Conferencia e Logistica 'igual = ""' na base de dados.
+    Function fValidaConferenciaLogistica Returns Boolean
+        If (TPedVCad.sNmLogistica = "" and TPedVCad.sNmConferencia = "") Begin
+            Function_Return True
+        End
+        Function_Return False
+    End_Function
+    
+    Function fAtualizaPedidos Returns Integer
         Date dDataInicio
         Boolean bRetornoFunction
-        Integer iCountReturnFunction
+        Integer iCountReturnFunction iCountPedidos iIndex
         tConsultaPedidoExpedicao vtConsultaPedidoExpedicao
 
         Get fValidadaDataPedido to dDataInicio
    
         Open TPedVCad
-        Clear TPedVCad
-        Move dDataInicio to TPedVCad.nDtPedVenda
-        Find ge TPedVCad by 9
+//        Clear TPedVCad
+//        Move dDataInicio to TPedVCad.nDtPedVenda
+//        Find ge TPedVCad by 9
+
+        Constraint_Set 1                             
+        Constrain TPedVCad.nDtPedVenda ge dDataInicio
+        Constrain TPedVCad.sLocalFaturamento eq "PP" 
+        Constrain TPedVCad.sStStatus ne "C"           
+        Constrain TPedVCad.iCdIdMaglog ne 0
+        Constrained_Find First TPedVCad by 9           
          
         While (Found)   
             Get fValidaStatusPedido to bRetornoFunction
@@ -85,41 +98,111 @@ Object oConsultaMaglogAPI is a cWsBusinessProcess
             Get fValidaFaturamento to bRetornoFunction
             If (bRetornoFunction) Increment iCountReturnFunction
             
-            Get fValidaPesoVol to bRetornoFunction
-            If (bRetornoFunction) Increment iCountReturnFunction
-            
-            If (iCountReturnFunction = 4) Begin
+            If (iCountReturnFunction = 3) Begin
                 Get fConsultaPedidoExpedicaoByID of ghoIntegracaoMaglog TPedVCad.iCdIdMaglog to vtConsultaPedidoExpedicao
                 
-                // Guarda peso e volume
-                Reread TPedVCad
-                    Move vtConsultaPedidoExpedicao.peso    to TPedVCad.nDcPeso
-                    Move vtConsultaPedidoExpedicao.volumes to TPedVCad.iDcVolumes
-                    SaveRecord TPedVCad
-                Unlock
-            End
+                Get fValidaPesoVol to bRetornoFunction
+                If (bRetornoFunction) Begin
+                    Send Update_Status ("Atualizando Peso & Volume..." * String(TPedVCad.iCdPedVenda))
+                      
+                    Reread TPedVCad
+                        Move vtConsultaPedidoExpedicao.peso    to TPedVCad.nDcPeso
+                        Move vtConsultaPedidoExpedicao.volumes to TPedVCad.iDcVolumes
+                        SaveRecord TPedVCad
+                    Unlock 
+                End
+
+                Get fValidaConferenciaLogistica to bRetornoFunction
+                If (bRetornoFunction) Begin 
+                    Send Update_Status ("Atualizando Conferência..." * String(TPedVCad.iCdPedVenda))
+                    
+                    For iIndex from 0 to (SizeOfArray(vtConsultaPedidoExpedicao.eventos)-1) 
+                        If ((vtConsultaPedidoExpedicao.eventos[iIndex].evento) contains "Embalagem") Begin
+                            Reread TPedVCad
+                                Move "MAIQUE" to TPedVCad.sNmLogistica
+                                SaveRecord TPedVCad
+                            Unlock
+                        End
+                
+                        If ((vtConsultaPedidoExpedicao.eventos[iIndex].evento) contains "Expe") Begin
+                            Reread TPedVCad
+                                Move "MAIQUE"  to TPedVCad.sNmConferencia
+                                SaveRecord TPedVCad
+                            Unlock
+                        End
+                    Loop
+                End
+                Increment iCountPedidos
+            End   
             
             Move 0 to iCountReturnFunction
-            Find gt TPedVCad by 9
+//            Find gt TPedVCad by 9
+            Constrained_Find Next
         Loop
-                       
+
+        Constraint_Set 1 Clear 
+        Constraint_Set 1 Delete
+        
         Close TPedVCad
-    End_Procedure
+        
+        Function_Return iCountPedidos
+    End_Function
+    
+//    Procedure pAtualizaPedidos_Constrain
+//        Date dDataInicio
+//        Boolean bRetornoFunction
+//        Integer iCountReturnFunction
+//        tConsultaPedidoExpedicao vtConsultaPedidoExpedicao
+//
+//        Get fValidadaDataPedido to dDataInicio
+//   
+//        Open TPedVCad
+//        
+//        Constraint_Set 1
+//        Constrain TPedVCad.nDtPedVenda ge dDataInicio
+//        Constrain TPedVCad.sLocalFaturamento eq "PP"
+//        Constrain TPedVCad.sStStatus ne "C"
+//        Constrain TPedVCad.iCdIdMaglog ne 0
+//        Constrain TPedVCad.iDcVolumes eq 0
+//        Constrain TPedVCad.nDcPeso eq 0
+//        Constrained_Find First TPedVCad by 9
+//         
+//        While (Found)  
+//            Showln TPedVCad.iCdPedVenda
+//            Send Update_Status ("Atualizando Pedidos..." * String(TPedVCad.iCdPedVenda))
+//              
+//            Get fConsultaPedidoExpedicaoByID of ghoIntegracaoMaglog TPedVCad.iCdIdMaglog to vtConsultaPedidoExpedicao
+//            
+//            // Guarda peso e volume
+//            Reread TPedVCad
+//                Move vtConsultaPedidoExpedicao.peso    to TPedVCad.nDcPeso
+//                Move vtConsultaPedidoExpedicao.volumes to TPedVCad.iDcVolumes
+//                SaveRecord TPedVCad
+//            Unlock
+//            
+//            Constrained_Find Next
+//        Loop
+//        
+//        Constraint_Set 1 Clear
+//        Constraint_Set 1 Delete
+//                       
+//        Close TPedVCad
+//    End_Procedure
     
     Procedure OnProcess        
         Date dData
+        Integer iCountPedidos
         
         Send Update_Status "Atualizando Pedidos..."
-        Send pAtualizaPedidos 
-        
+        Get fAtualizaPedidos to iCountPedidos
+        Send Info_Box ("Foram atualizados" * String(iCountPedidos) * "pedidos") "Info"
+                
         // Volta a data original
         Sysdate dData
-        Move (dData - 1) to dData
-        
         //  Aviso da atualização por email
         String sAssunto sEmails 
         
-        Move ("Pedidos Maglog atualizado automaticamente:" * String(dData) to sAssunto 
-        Send EnviaEmail of oEmail "lucas@gpcabling.com.br,richard@quintana" sAssunto  "" "" ""
+        Move ("Pedidos Maglog atualizado automaticamente:" * String(dData)) to sAssunto 
+        Send EnviaEmail of oEmail "lucas@gpcabling.com.br" sAssunto ("Foram atualizados" * String(iCountPedidos) * "pedidos") "" ""
     End_Procedure
 End_Object

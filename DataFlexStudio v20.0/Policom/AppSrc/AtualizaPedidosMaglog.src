@@ -11,7 +11,7 @@ End_Object
 
 Use ObjetosGlobais.pkg
 
-String gsCodEmp gsLogin gsCodLogin gsCodEst
+String gsCodEmp
 Move "PO" to gsCodEmp
 
 Use ConsultaMaglogAPI.bp
