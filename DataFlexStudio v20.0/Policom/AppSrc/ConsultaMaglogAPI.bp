@@ -67,7 +67,17 @@ Object oConsultaMaglogAPI is a cWsBusinessProcess
         End
         Function_Return False
     End_Function
-           
+    
+    //Confere se retorno volta com status cancelado cancelado.
+    Function fValidaIdCancelado tConsultaPedidoExpedicao vtConsultaPedidoExpedicao Returns Boolean
+        Integer iIndex
+        
+        For iIndex from 0 to (SizeOfArray(vtConsultaPedidoExpedicao.eventos)-1)  
+            If (vtConsultaPedidoExpedicao.eventos[iIndex].evento contains "Cancelada") Function_Return True
+        Loop
+        Function_Return False
+    End_Function
+               
     Function fAtualizaPedidos Returns Integer
         Date dDataInicio
         Boolean bRetornoFunction
@@ -101,11 +111,8 @@ Object oConsultaMaglogAPI is a cWsBusinessProcess
             If (iCountReturnFunction = 3) Begin
                 Get fConsultaPedidoExpedicaoByID of ghoIntegracaoMaglog TPedVCad.iCdIdMaglog to vtConsultaPedidoExpedicao
                 
-                For iIndex from 0 to (SizeOfArray(vtConsultaPedidoExpedicao.eventos)-1) 
-                    If ((vtConsultaPedidoExpedicao.eventos[iIndex].evento) contains "Cancelado") Begin
-                        Break
-                    End
-                Loop
+                Get fValidaIdCancelado vtConsultaPedidoExpedicao to bRetornoFunction
+                If (bRetornoFunction) Break
                 
                 Get fValidaPesoVol to bRetornoFunction
                 If (bRetornoFunction) Begin
