@@ -1,6 +1,7 @@
 Use Windows.pkg
 Use cHtmlHelp.pkg
 Use cApplication.pkg
+Use Thinfinity.VirtualUI.pkg
 
 Object oHtmlHelp is a cHtmlHelp
 End_Object
@@ -9,9 +10,9 @@ Object oApplication is a cApplication
     Set peHelpType to htHtmlHelp
 End_Object
 
+Use VariaveisGlobais.pkg
 Use ObjetosGlobais.pkg
 
-String gsCodEmp
 Move "PO" to gsCodEmp
 
 Use ConsultaMaglogAPI.bp
