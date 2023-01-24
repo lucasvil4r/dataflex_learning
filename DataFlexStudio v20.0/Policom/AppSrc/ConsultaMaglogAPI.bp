@@ -27,9 +27,9 @@ Object oConsultaMaglogAPI is a cWsBusinessProcess
        
         If ((iHora > 8) and (iHora < 18)) Begin
             Move (dDataInicio - 30) to dDataInicio  // 2190=6 anos   | 1825=5 anos | 90=3 meses 
+            Function_Return dDataInicio
         End
-        
-        Function_Return dDataInicio
+        Else Abort
     End_Function
     
     //Pedido não pode estar faturado "status = i" na base de dados.
@@ -80,7 +80,7 @@ Object oConsultaMaglogAPI is a cWsBusinessProcess
         Function_Return False
     End_Function
     
-    //valida se retorno volta com status cancelado cancelado.
+    //valida se retorno volta com status cancelado.
     Function fValidaIdCancelado tConsultaPedidoExpedicao vtConsultaPedidoExpedicao Returns Boolean
         Integer iIndex
         
@@ -170,87 +170,98 @@ Object oConsultaMaglogAPI is a cWsBusinessProcess
             If (bRetornoFunction) Increment iCountReturnFunction
             
             If (iCountReturnFunction = 3) Begin
-                Get fConsultaPedidoExpedicaoByID of ghoIntegracaoMaglog TPedVCad.iCdIdMaglog to vtConsultaPedidoExpedicao
                 
-                //Valida se API retornou alguns status cancelado
+                Get fConsultaPedidoExpedicaoByID of ghoIntegracaoMaglog TPedVCad.iCdIdMaglog to vtConsultaPedidoExpedicao              
+                
+                //Valida se API retornou alguns status cancelado ou API retornou vazia
                 Get fValidaIdCancelado vtConsultaPedidoExpedicao to bRetornoFunction
                 If (not(bRetornoFunction)) Begin
+                    If (not(SizeOfArray(vtConsultaPedidoExpedicao.eventos)) = 0) Begin
                     
-                    Get fValidaPesoVol to bRetornoFunction
-                    If (bRetornoFunction) Begin
-                        Send Update_Status ("Atualizando Peso & Volume..." * String(TPedVCad.iCdPedVenda))
-                          
-                        Reread TPedVCad
-                            Move vtConsultaPedidoExpedicao.peso    to TPedVCad.nDcPeso
-                            Move vtConsultaPedidoExpedicao.volumes to TPedVCad.iDcVolumes
-                            SaveRecord TPedVCad
-                        Unlock 
-                    End
-    
-                    Get fValidaLogistica to bRetornoFunction
-                    If (bRetornoFunction) Begin 
-                        Send Update_Status ("Atualizando Logistica..." * String(TPedVCad.iCdPedVenda))
-                        
-                        For iIndex from 0 to (SizeOfArray(vtConsultaPedidoExpedicao.eventos)-1) 
-                            If ((Uppercase(vtConsultaPedidoExpedicao.eventos[iIndex].evento)) contains "EMBALAGEM") Begin
+                        Move 0 to iCountReturnFunction
+                        Get fValidaPesoVol to bRetornoFunction
+                        If (bRetornoFunction) Begin
+                            Send Update_Status ("Atualizando Peso & Volume..." * String(TPedVCad.iCdPedVenda))
+                              
+                            If ((not(vtConsultaPedidoExpedicao.peso) = 0) and (not(vtConsultaPedidoExpedicao.volumes) = 0)) Begin
                                 Reread TPedVCad
-                                    Move "MAIQUE" to TPedVCad.sNmLogistica
+                                    Move vtConsultaPedidoExpedicao.peso    to TPedVCad.nDcPeso
+                                    Move vtConsultaPedidoExpedicao.volumes to TPedVCad.iDcVolumes
                                     SaveRecord TPedVCad
-                                Unlock
-                            End
-                        Loop
-                    End
-                    
-                    Get fValidaConferencia to bRetornoFunction
-                    If (bRetornoFunction) Begin 
-                        Send Update_Status ("Atualizando Conferência..." * String(TPedVCad.iCdPedVenda))
-                        
-                        For iIndex from 0 to (SizeOfArray(vtConsultaPedidoExpedicao.eventos)-1) 
-                            If ((Uppercase(vtConsultaPedidoExpedicao.eventos[iIndex].evento)) contains "EXPE") Begin
-                                Reread TPedVCad
-                                    Move "MAIQUE" to TPedVCad.sNmConferencia
-                                    SaveRecord TPedVCad
-                                Unlock
-                            End
-                        Loop
-                    End
-                      
-                    Get fValidaColetado vtConsultaPedidoExpedicao to bRetornoFunction
-                    If (bRetornoFunction and (Uppercase(TPedVCad.sLocalFaturamento)) = "PP") Begin
-                        Move TPedVCad.sLocalFaturamento to sEmpresa
-
-                        // Notas de produto
-                        Move (fCaminho(ghoTCamEmp,sEmpresa) + "tfatnf") to sCaminho // Use ObjetosGlobais.pkg para ter o fCaminho
-                        Close tfatnf
-                        Open sCaminho as tfatnf
-            
-                        Clear tfatnf
-                        Move TPedVCad.iCdPedVenda to tfatnf.iCdPedido
-                        Find ge tfatnf by 3
-                        
-                        If (Found and TPedVCad.iCdPedVenda = tfatnf.iCdPedido) Begin       
-                            If (tfatnf.dDtEnvio = "") Begin
-                                Get fRevelaIndiceStatusColetado vtConsultaPedidoExpedicao to iCountReturnFunction
-                                
-                                Move (Left(vtConsultaPedidoExpedicao.eventos[iCountReturnFunction].data, 10)) to sHours
-                                Move ((Mid(sHours,10,9)) + "-" + (Mid(sHours,2,6)) + "-" + (Mid(sHours,4,1))) to sHours
-                                
-                                Get fRetornaEmail to sEmails
-                                
-                                Reread tfatnf
-                                    Move (Date(sHours)) to tfatnf.dDtEnvio
-                                    SaveRecord tfatnf
-                                Unlock
-                                                                
-                                Get fRetornaEmail to sEmails
-                                Send pEnviaStatusEmailPedido of oProcessosPedidoVenda TPedVCad.iCdPedVenda "coletado" TPedVCad.nDtPedVenda sEmails
+                                Unlock 
+                                Increment iCountReturnFunction
                             End
                         End
+        
+                        Get fValidaLogistica to bRetornoFunction
+                        If (bRetornoFunction) Begin 
+                            Send Update_Status ("Atualizando Logistica..." * String(TPedVCad.iCdPedVenda))
+                            
+                            for iIndex from 0 to (SizeOfArray(vtConsultaPedidoExpedicao.eventos)-1) 
+                                If ((Uppercase(vtConsultaPedidoExpedicao.eventos[iIndex].evento)) contains "EMBALAGEM") Begin
+                                    Reread TPedVCad
+                                        Move "MAIQUE" to TPedVCad.sNmLogistica
+                                        SaveRecord TPedVCad
+                                    Unlock
+                                    Increment iCountReturnFunction
+                                End
+                            Loop
+                        End
+                        
+                        Get fValidaConferencia to bRetornoFunction
+                        If (bRetornoFunction) Begin 
+                            Send Update_Status ("Atualizando Conferência..." * String(TPedVCad.iCdPedVenda))
+                            
+                            for iIndex from 0 to (SizeOfArray(vtConsultaPedidoExpedicao.eventos)-1) 
+                                If ((Uppercase(vtConsultaPedidoExpedicao.eventos[iIndex].evento)) contains "EXPE") Begin
+                                    Reread TPedVCad
+                                        Move "MAIQUE" to TPedVCad.sNmConferencia
+                                        SaveRecord TPedVCad
+                                    Unlock
+                                    Increment iCountReturnFunction
+                                End
+                            Loop
+                        End
+                          
+                        Get fValidaColetado vtConsultaPedidoExpedicao to bRetornoFunction
+                        If (bRetornoFunction and (Uppercase(TPedVCad.sLocalFaturamento)) = "PP") Begin
+                            Move TPedVCad.sLocalFaturamento to sEmpresa
+    
+                            // Notas de produto
+                            Move (fCaminho(ghoTCamEmp,sEmpresa) + "tfatnf") to sCaminho // Use ObjetosGlobais.pkg para ter o fCaminho
+                            Close tfatnf
+                            Open sCaminho as tfatnf
+                
+                            Clear tfatnf
+                            Move TPedVCad.iCdPedVenda to tfatnf.iCdPedido
+                            Find ge tfatnf by 3
+                            
+                            If (Found and TPedVCad.iCdPedVenda = tfatnf.iCdPedido) Begin       
+                                If (tfatnf.dDtEnvio = "") Begin
+                                    Send Update_Status ("Atualizando Data Coleta..." * String(TPedVCad.iCdPedVenda))
+                                    
+                                    Get fRevelaIndiceStatusColetado vtConsultaPedidoExpedicao to iIndex
+                                    Move (Left(vtConsultaPedidoExpedicao.eventos[iIndex].data, 10)) to sHours
+                                    Move ((Mid(sHours,10,9)) + "-" + (Mid(sHours,2,6)) + "-" + (Mid(sHours,4,1))) to sHours
+                                    
+                                    Get fRetornaEmail to sEmails
+                                    
+                                    Reread tfatnf
+                                        Move (Date(sHours)) to tfatnf.dDtEnvio
+                                        SaveRecord tfatnf
+                                    Unlock                              
+                                    Increment iCountReturnFunction
+                                                                    
+                                    Get fRetornaEmail to sEmails
+                                    Send pEnviaStatusEmailPedido of oProcessosPedidoVenda TPedVCad.iCdPedVenda "coletado" TPedVCad.nDtPedVenda sEmails
+                                End
+                            End
+                        End
+                        If (iCountReturnFunction > 0) Increment iCountPedidos
                     End
-                    
-                    Increment iCountPedidos
+                    Else Send Update_Status ("API retornou vazia" * (String(TPedVCad.iCdPedVenda)))
                 End
-                Else Send Update_Status ("Cancelado..." * String(TPedVCad.iCdPedVenda))
+                Else Send Update_Status ("Cancelado..." * (String(TPedVCad.iCdPedVenda)))
             End
             
             Move 0 to iCountReturnFunction
