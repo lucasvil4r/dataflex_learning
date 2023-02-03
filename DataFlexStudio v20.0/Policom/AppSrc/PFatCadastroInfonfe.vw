@@ -28,6 +28,7 @@ Object oPFatCadastroInfonfe is a cWsDbView
     Set Label to "Cadastro do InfoNFe"
     Set piMinSize to 246 421
     Set piMaxSize to 246 421
+    Set Auto_Clear_DEO_State to False
 
     Object oContainer3d1 is a cWsContainer3D
         Set Size to 34 425
@@ -253,13 +254,10 @@ Object oPFatCadastroInfonfe is a cWsDbView
             Procedure OnClick
                 Handle hoXML hoNode
                 Boolean bExist bOK
-                String sPathXMLfile sNameSpace sNfe sDhEmi sCnpj sDhRecbto sMotivo sProt sArqXML sPathNFe sAmbiente sAno sMes sSerieNFe
+                String sPathXMLfile sNameSpace sNfe sDhEmi sCnpj sDhRecbto sMotivo sProt sArqXML sPathNFe sAmbiente sAno sMes sSerieNFe sIDNFe
                 Integer iCount
                 Number nResposta
                 Date dDataEmis
-                
-//                Get Field_Current_Value of oINFONFE_DD Field INFONFE.ARQXML to sXMLfile
-//                If (sXMLfile = "") Get psFileName of oINFONFE_ARQXML to sXMLfile
 
                 Get Value of oINFONFE_ARQXML to sPathXMLfile
                 File_Exist sPathXMLfile bExist
@@ -310,6 +308,10 @@ Object oPFatCadastroInfonfe is a cWsDbView
                     If (not(hoNode = 0)) Get psText of hoNode to sProt
                     Else Send Info_Box "Não foi possível encontrar Tag <nProt>" "Info"
                     
+                    Get FindNode of hoXML "q:nfeProc/q:protNFe/q:infProt/q:chNFe" to hoNode
+                    If (not(hoNode = 0)) Get psText of hoNode to sIDNFe
+                    Else Send Info_Box "Não foi possível encontrar Tag <nProt>" "Info"
+                    
                     Get FindNode of hoXML "q:nfeProc/q:NFe/q:infNFe/q:ide/q:serie" to hoNode
                     If (not(hoNode = 0)) Get psText of hoNode to sSerieNFe
                     Else Send Info_Box "Não foi possível encontrar Tag <serie>" "Info"
@@ -317,6 +319,8 @@ Object oPFatCadastroInfonfe is a cWsDbView
                     Send Destroy of hoNode
                     Send Destroy of hoXML
                                    
+                    Move ((Mid(sDhEmi,2,9)) + "-" + (Mid(sDhEmi,2,6)) + "-" + (Mid(sDhEmi,4,1))) to sDhEmi
+                    
                     Open TCamEmp
                     Open tfatnf
                     
@@ -352,41 +356,42 @@ Object oPFatCadastroInfonfe is a cWsDbView
                     End
                     
                     Move (YesNo_Box("Informaçoes carregadas com sucesso do XML, deseja gravar ?", "Atenção", MB_DEFBUTTON2)) to nResposta
-                    If (nResposta = MBR_Yes) Begin
+                    If (nResposta = MBR_Yes) Begin            
+//                        Get Pambiente of oEnvianfe to sAmbiente
+//                        Get RetornaPastaXml dDataEmis sAmbiente of oEnvianfe to sPathNFe 
+//                        Get VerificaPastaXML sPathNFe of oEnvianfe to bExist
                         
-                        Get Pambiente of oEnvianfe to sAmbiente
-                        Get RetornaPastaXml dDataEmis sAmbiente of oEnvianfe to sPathNFe 
-                        Get VerificaPastaXML sPathNFe of oEnvianfe to bExist
+                        //Não consegui ultilizar as functions acima
                         
-//                        If ((not(sAmbiente = "1"))) Move "1" to sAmbiente
-//                        
-//                        Move TFATNF.dDtEmissao to dDataEmis
-//                        Move (DateGetMonth(dDataEmis)) to sMes
-//                        Move (DateGetYear(dDataEmis)) to sAno
-//                        Move ("00" + (trim(sMes))) to sMes
-//                        Move (Right(sMes,2)) to sMes
-//                        
-//                        If (gsCodEmp = "PP") Begin
-//                            If (sAmbiente = "1") Move (Lowercase("\\poliserv\dataflex\DFPP\NFEenviadas\"+sAno+sMes)) to sPathNFe
-//                            Else                Move (Lowercase(gsPastaNFe))              to sPathNFe
-//                        End
-//                        Else If (gsCodEmp = "PE") Begin
-//                            If (sAmbiente = "1") Move (Lowercase("\\poliserv\dataflex\SisVisualPE\NFE\"+sAno+sMes)) to sPathNFe
-//                            Else                Move (Lowercase(gsPastaNFe))             to sPathNFe
-//                        End
-//                        Else Begin
-//                            If (sAmbiente = "1") Move (Lowercase("G:\DF\NFEenviadas\"+sAno+sMes)) to sPathNFe
-//                            Else                Move (Lowercase(gsPastaNFe))            to sPathNFe
-//                        End
-//                        
-//                        File_Exist sPathNFe bExist
-//                        Move (sPathNFe + "\") to sPathNFe 
-//                        
-//                        If (not(bExist)) Begin
-//                            Make_Directory sPathNFe
-//                            Sleep 2
-//                            File_Exist sPathNFe bExist
-//                        End
+                        If ((not(sAmbiente = "1"))) Move "1" to sAmbiente
+                        
+                        Move TFATNF.dDtEmissao to dDataEmis
+                        Move (DateGetMonth(dDataEmis)) to sMes
+                        Move (DateGetYear(dDataEmis)) to sAno
+                        Move ("00" + (trim(sMes))) to sMes
+                        Move (Right(sMes,2)) to sMes
+                        
+                        If (gsCodEmp = "PP") Begin
+                            If (sAmbiente = "1") Move (Lowercase("\\poliserv\dataflex\DFPP\NFEenviadas\"+sAno+sMes)) to sPathNFe
+                            Else                Move (Lowercase(gsPastaNFe))              to sPathNFe
+                        End
+                        Else If (gsCodEmp = "PE") Begin
+                            If (sAmbiente = "1") Move (Lowercase("\\poliserv\dataflex\SisVisualPE\NFE\"+sAno+sMes)) to sPathNFe
+                            Else                Move (Lowercase(gsPastaNFe))             to sPathNFe
+                        End
+                        Else Begin
+                            If (sAmbiente = "1") Move (Lowercase("G:\DF\NFEenviadas\"+sAno+sMes)) to sPathNFe
+                            Else                Move (Lowercase(gsPastaNFe))            to sPathNFe
+                        End
+                        
+                        File_Exist sPathNFe bExist
+                        Move (sPathNFe + "\") to sPathNFe 
+                        
+                        If (not(bExist)) Begin
+                            Make_Directory sPathNFe
+                            Sleep 2
+                            File_Exist sPathNFe bExist
+                        End
                         
                         If (bExist) Begin
                             Move (String((Lowercase(gsCodEmp + "nfe" + sNfe + ".xml")))) to sArqXML
@@ -402,17 +407,20 @@ Object oPFatCadastroInfonfe is a cWsDbView
                         Send Refind_Records of oINFONFE_DD
                         
                         If (INFONFE.NUMNF = sNfe) Begin
-                            Send Info_Box "Caiu no IF para salvar" "Info"
-//                            Reread INFONFE
-//                                Move sDhEmi to INFONFE.DATAEMIS  // data de emissão
-//                                Move "" to INFONFE.ID  // id da NFe
-//                                Move "A" to INFONFE.SITUACAO  // e= enviado  c= cancelado a=autorizado r= rejeitado
-//                                Move DATAHJ to INFONFE.DATASITU // data da situação
-//                                Move (Trim(nrorec)) to INFONFE.RECENVIO // recibo de envio
-//                                Move sDhEmi to INFONFE.DATAEMIS
-//                                Move sPathXMLfile to INFONFE.ARQXML
-//                                SaveRecord INFONFE
-//                            Unlock
+                            Reread INFONFE
+                                Move sIDNFe to INFONFE.ID  // id da NFe
+                                Move "A" to INFONFE.SITUACAO  // e= enviado  c= cancelado a=autorizado r= rejeitado
+                                Move sProt to INFONFE.PROTENVIO
+                                Move sPathXMLfile to INFONFE.ARQXML
+                                Move (Date(sDhEmi)) to INFONFE.DATASITU // data da situação
+                                Move (Date(sDhEmi)) to INFONFE.DATAEMIS  // data de emissão
+
+                                SaveRecord INFONFE
+                            Unlock
+
+                            // Load data
+                            Send Request_Assign of oINFONFE_DD
+                            Send Info_Box "Dados exportados do XML com sucesso!" "Info"
                         End
                         Else Begin
                             Send Stop_Box "Não foi possível gravar os dados, número da nota fiscal divergente dos registros gravados na base de dados" "Info"
@@ -429,9 +437,9 @@ Object oPFatCadastroInfonfe is a cWsDbView
                     Close TCamEmp
                     Close TFATNF
                 End
-                Else Send Info_Box "Não foi possível carregar o XML indicado" "Info"
+                Else Send Stop_Box "Não foi possível carregar o XML indicado" "Info"
+                
             End_Procedure
-            
         End_Object
     End_Object
     
