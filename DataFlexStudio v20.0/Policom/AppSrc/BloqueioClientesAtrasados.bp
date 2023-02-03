@@ -1,0 +1,402 @@
+﻿Use cWsBusinessProcess.pkg
+Use cWsTCamEmp.pkg
+Use FuncoesGenericas.pkg
+Use Email.bp
+Use func.pkg
+
+// RQ
+// Agendar o disparo para diário, as 9 da manha
+
+Object oBloqueioClientesAtrasados is a cWsBusinessProcess
+    Property String  psEmpresa       "PO"
+    Property String  psEmpresaSigla  "SP"
+    Property String  psEmpresaDesc   "Policom SP + GP Cabling"
+    Property Integer piLimiteDias     5
+    Property Boolean pbAmbienteTeste False
+    
+    Set psNomeFonte to "BloqueioClientesAtrasados.bp"
+    Set Process_Title to "Bloqueio Automatico de Clientes Atrasados - Financeiro"
+    Set Display_Error_State to True
+    
+    Function fRetornaListaEmails Global String sEmpresa Returns String
+        String sEnderecos sEnderecosPP sEnderecosPA sEnderecosPC sEnderecosPR sEnderecosFinanceiroPE sEnderecosFinanceiroPO sEnderecosFinanceiroPA sEnderecosTI sEnderecosFinanceiroPR sEnderecosFinanceiroPC
+        String sEnderecoesVendExternos
+        
+        If (pbAmbienteTeste(Self)) Function_Return "lucas@gpcabling.com.br"
+
+        // Endereços Financeiro
+        Move ("nei@gpcabling.com.br,bruna@gpcabling.com.br,aline@gpcabling.com.br")  to sEnderecosFinanceiroPO        
+        Move ("nei@gpcabling.com.br,bruna@gpcabling.com.br,aline@gpcabling.com.br")  to sEnderecosFinanceiroPA
+        Move ("nei@gpcabling.com.br,bruna@gpcabling.com.br,aline@gpcabling.com.br")  to sEnderecosFinanceiroPC
+        Move ("nei@gpcabling.com.br,bruna@gpcabling.com.br,aline@gpcabling.com.br")  to sEnderecosFinanceiroPR
+        
+        // Endereços Genericos
+        Move (",richard@gpcabling.com.br,lucas@gpcabling.com.br")                                 to sEnderecosTI
+        Move (",sandro@gpcabling.com.br,luisfernando@gpcabling.com.br,alexandre@gpcabling.com.br") to sEnderecos
+        // RQ 19-12-2018
+        // Vendedores externos
+        Move (",luciano@gpcabling.com.br,ricardo.antonelli@gpcabling.com") to sEnderecoesVendExternos
+        
+        Case Begin
+            Case (sEmpresa = "PO")
+                Function_Return (sEnderecosFinanceiroPO + sEnderecosTI + sEnderecos + sEnderecoesVendExternos)
+                Case Break
+            Case (sEmpresa = "PA")
+                Function_Return (sEnderecosFinanceiroPA + sEnderecosTI + sEnderecos)
+                Case Break
+            Case (sEmpresa = "PC")
+                Function_Return (sEnderecosFinanceiroPC + sEnderecosTI + sEnderecos)
+                Case Break
+            Case (sEmpresa = "PR")
+                Function_Return (sEnderecosFinanceiroPR + sEnderecosTI + sEnderecos)
+                Case Break
+        Case End
+    End_Function
+    
+    // Whitelist (empresas do grupo)
+    // False = Empresa faz parte do grupo
+    // True  = Empresa não faz parte
+    Function fValidaEmpresa Global String sCdCliente Returns Boolean
+        String[] sEmpresas
+        
+        If (psEmpresa(Self) = "PO") Begin
+            Move "33000" to sEmpresas[0] // Parana     
+            Move "41000" to sEmpresas[1] // Policom SP 
+            Move "50001" to sEmpresas[2] // Policom Cabos
+            Move "36000" to sEmpresas[3] // KDM
+            Move "21000" to sEmpresas[4] // RJ
+            Move "20000" to sEmpresas[5] // Paris
+            Move "42000" to sEmpresas[6] // GP Cabling
+            //Move "30000" to sEmpresas[6] // RS         
+        End
+        
+
+        If (psEmpresa(Self) = "PA") Begin
+            Move "33000" to sEmpresas[0] // Parana
+            Move "41000" to sEmpresas[1] // Policom SP
+            Move "02220" to sEmpresas[2] // Policom Cabos
+            Move "8914A" to sEmpresas[3] // KDM
+            Move "2220E" to sEmpresas[4] // RJ
+            Move "09999" to sEmpresas[5] // Paris
+            Move "42000" to sEmpresas[6] // GP Cabling
+            //Move "02252" to sEmpresas[6] // RS
+        End
+        
+        If (psEmpresa(Self) = "PR") Begin
+            Move "33000" to sEmpresas[0] // Parana
+            Move "41000" to sEmpresas[1] // Policom SP
+            Move "50000" to sEmpresas[2] // Policom Cabos
+            Move "R2076" to sEmpresas[3] // KDM
+            Move "21000" to sEmpresas[4] // RJ
+            Move "72576" to sEmpresas[5] // Paris REVENDA
+            Move "72584" to sEmpresas[6] // Paris CF
+            Move "20000" to sEmpresas[7] // Paris
+            Move "50001" to sEmpresas[8] // Policom SP
+            Move "42000" to sEmpresas[9] // GP Cabling
+            //Move "R1958" to sEmpresas[9] // RS
+        End
+        
+        If (psEmpresa(Self) = "PC") Begin
+            Move "50001" to sEmpresas[0] // Parana
+            Move "10173" to sEmpresas[1] // Policom SP
+            Move "00482" to sEmpresas[2] // Policom Cabos
+            Move "10892" to sEmpresas[3] // KDM
+            Move "00735" to sEmpresas[4] // RJ
+            Move "00157" to sEmpresas[5] // Paris
+            Move "42000" to sEmpresas[6] // GP Cabling
+            // Move "02234" to sEmpresas[6] // RS            
+        End
+
+        Function_Return ((SearchArray(sCdCliente,sEmpresas))= -1)
+    End_Function
+    
+    Function fRetornaVendedor Global String sCdVendedor Returns String
+        Open TCliVend
+        Move (Trim(sCdVendedor)) to TCliVend.iCdCodigo
+        Move (psEmpresa(Self))   to TCliVend.sCdEmpresa
+        Find eq TCliVend by 1
+        
+        Function_Return (Trim(TCliVend.sNmNome))
+    End_Function
+    
+    Procedure pEnviaRelatorioEmail String[][] sClientes
+        Integer iChOut iRet iCount
+        String sTem sTemp3
+        Handle hoBlat
+        
+        Open TAdmImap
+
+//        Get Create u_cBlat to hoBlat
+
+        String sAssunto sEmails sHtml
+
+//        Set psEmailPara of hoBlat      to (fRetornaListaEmails(psEmpresa(Self)))
+          Move (fRetornaListaEmails(psEmpresa(Self))) to sEmails
+//        Set psAssunto of hoBlat        to ("Lista de Clientes Bloqueados Automaticamente -" * (psEmpresaDesc(Self)))
+          Move ("Lista de Clientes Bloqueados Automaticamente -" * (psEmpresaDesc(Self))) to sAssunto
+//        Set piPorta of hoBlat          to (Trim(TAdmImap.sDcPorta))
+//        Set psEmailDe of hoBlat        to ("sistema@gpcabling.com.br")
+//        Set psEmailRemetente of hoBlat to ("sistema@gpcabling.com.br")
+//        Set psSMTPServer of hoBlat     to (Trim(TAdmImap.sDcSMTPServer))
+//        Set psSenha of hoBlat          to (Trim(TAdmImap.sDcPassword))
+//        Set psUsuario of hoBlat        to (trim(TAdmImap.sDcUser))
+        
+        If (pbAmbienteTeste(Self)) Begin
+//            Set psAssunto of hoBlat to ("Lista de Clientes Bloqueados Automaticamente -" * (psEmpresaDesc(Self)) * "Ambiente de Teste")
+            Move ("Lista de Clientes Bloqueados Automaticamente -" * (psEmpresaDesc(Self)) * "Ambiente de Teste") to sAssunto
+        End
+        
+        Move (Seq_New_Channel()) to iChOut
+        Move (fGetWindowsTemp()) to sTem
+        Move (sTem + "\ClientesBloqueados.html") to sTemp3
+        
+        EraseFile sTemp3
+        
+        Direct_Output channel iChOut sTemp3
+        
+        Writeln channel iChOut "<html>"
+        
+        Writeln channel iChOut "<head>"
+        Writeln channel iChOut "<style>"
+        Writeln channel iChOut "table, td {"
+        Writeln channel iChOut "border: 1px solid black;"
+        Writeln channel iChOut "}"
+        
+        Writeln channel iChOut "th	{"
+        Writeln channel iChOut "background-color: black;"
+        Writeln channel iChOut "text-color: white;"
+        Writeln channel iChOut "font-size: 120%;"
+        Writeln channel iChOut "}"
+    
+        Writeln channel iChOut "td	{"
+        Writeln channel iChOut "font-size: 100%;"
+        Writeln channel iChOut "}"
+        
+        Writeln channel iChOut "</style>"
+        Writeln channel iChOut "</head>"
+
+        Writeln channel iChOut '<body>'
+        
+        Writeln channel iChOut '<div style="text-align:center">'
+        
+        Writeln channel iChOut '<h1>Lista de Clientes Bloqueados Automaticamente por Atraso no Pagamento de Duplicatas</h1>'
+        Writeln channel iChOut ('<h2>(Mais que' * (String(piLimiteDias(Self))) * 'dias em atraso)</h2>')
+             
+        Writeln channel iChOut '<table>'
+        
+        Writeln channel iChOut "<tr>"
+        Writeln channel iChOut "<th>CODIGO</th>"
+        Writeln channel iChOut "<th>NOME</th>"
+        Writeln channel iChOut "<th>VENDEDOR</th>"
+        Writeln channel iChOut "</tr>"
+  
+        // Gera Tabela de Inadimplentes
+        For iCount from 0 to (SizeOfArray(sClientes)-1)
+            Writeln channel iChOut "<tr>"
+            Writeln channel iChOut ("<td>" + sClientes[iCount][0] + "</td><td>" + sClientes[iCount][1] + "</td><td>" + sClientes[iCount][2] + "</td>")
+            Writeln channel iChOut "</tr>"
+        Loop
+        Writeln channel iChOut "</table>"
+
+        Writeln channel iChOut ('<p>Mensagem enviada automaticamente atraves do Sistema GP Cabling</p>')
+        
+        Writeln channel iChOut ('<p>' + (Left(String(CurrentDateTime()),19)) + '</p>')        
+        
+        Writeln channel iChOut '</div>'
+        
+        Writeln channel iChOut "</body>"
+        Writeln channel iChOut "</html>"
+        
+        Close_Output channel iChOut
+        Send Seq_Release_Channel iChOut 
+        
+        Integer iSize 
+        
+        Move (Seq_New_Channel()) to iChOut
+        
+        Direct_Input channel iChOut sTemp3
+            Get_Channel_Size iChOut to iSize
+            Read_Block sHtml iSize
+        Close_Input
+        Send Seq_Release_Channel iChOut
+                
+        
+        Send EnviaEmail of oEmail sEmails sAssunto  "" sHtml "" "richard@gpcabling.com.br,lucas@gpcabling.com.br"
+        
+        //  Set pbHtml     of hoBlat to True
+        //  Set psArquivo  of hoBlat to sTemp3
+        //  Get EnviaEmail of hoBlat to iRet
+        //  Send Destroy of hoBlat
+    End_Procedure
+
+    Procedure OnProcess
+        String sCdCodigo sVlorDupli sCaminhoAntPP
+        Number nVlorDupli
+        Date dtAtual
+        Boolean bDeveBloquear
+        Handle hoTCamEmp
+        String[][] sClientesBloqueados
+        Integer iCount_ClientesBloqueados        
+        
+        Date dDataFinal
+        
+        Sysdate dtAtual
+        Sysdate dDataFinal
+        
+        Move (dDataFinal- 365) to dDataFinal        
+        
+        Get Create u_cWsTCamEmp to hoTCamEmp
+        
+        Open TCliCad
+        Open NFDUPLI
+        
+        Open USERLOG
+        
+        Clear TCliCad
+        Constraint_Set 1
+        Constrain TCliCad.sFlTipo eq "C" // apenas clientes
+//        Constrain TCliCad.iCdCodigo eq "00601" // apenas clientes
+        Constrained_Find First TCliCad by 14
+
+        While (Found)           
+            Send Update_Status ("Verificando Duplicatas do Cliente" * TCliCad.iCdCodigo)
+
+            Move False to bDeveBloquear
+
+            If (TCliCad.iFlStatus <> 2 and TCliCad.iFlStatus <> 4) Begin
+                // Tratamento para PO/PP
+                If (psEmpresa(Self) = "PO") Begin
+                    Move (fCaminhoAnt(hoTCamEmp,"PP")) to sCaminhoAntPP
+                    
+                    Close NFDUPLI
+                    Open (sCaminhoAntPP + "NFDUPLI.DAT") as NFDUPLI
+                        
+                    Clear NFDUPLI
+                    Move TCliCad.iCdCodigo to NFDUPLI.CLIENTE
+                    Move dtAtual to NFDUPLI.DATAV
+                    Find GT NFDUPLI by Index.8
+                   
+                    While (Found and (NFDUPLI.CLIENTE = TCliCad.iCdCodigo) and (not(bDeveBloquear))  and (dDataFinal < NFDUPLI.DATAV))
+                        If (((trim(NFDUPLI.CLAS) = "") and (NFDUPLI.SALDOP <> 0)) and (NFDUPLI.DATAV + (piLimiteDias(Self))) <= dtAtual) Begin                                                        
+                            If (fValidaEmpresa((trim(TCliCad.iCdCodigo)))) Begin  
+                                Move True to bDeveBloquear
+                                Move (trim(TCliCad.iCdCodigo))               to sClientesBloqueados[iCount_ClientesBloqueados][0]
+                                Move (trim(TCliCad.sNmNome))                 to sClientesBloqueados[iCount_ClientesBloqueados][1]
+                                Move (fRetornaVendedor(TCliCad.iCdVendedor)) to sClientesBloqueados[iCount_ClientesBloqueados][2]
+                                Increment iCount_ClientesBloqueados
+                            End
+                        End
+                        Find Gt NFDUPLI by Index.8
+                    Loop 
+                    
+                    Close NFDUPLI
+                    
+                    // Tratamento para PE
+                    Move (fCaminhoAnt(hoTCamEmp,"PE")) to sCaminhoAntPP
+                    
+                    Close NFDUPLI
+                    Open (sCaminhoAntPP + "NFDUPLI.DAT") as NFDUPLI
+                        
+                    Clear NFDUPLI
+                    Move TCliCad.iCdCodigo to NFDUPLI.CLIENTE
+                    Move dtAtual to NFDUPLI.DATAV
+                    Find GT NFDUPLI by Index.8
+                   
+                    While (Found and (NFDUPLI.CLIENTE = TCliCad.iCdCodigo) and (not(bDeveBloquear))  and (dDataFinal < NFDUPLI.DATAV))
+                        If (((trim(NFDUPLI.CLAS) = "") and (NFDUPLI.SALDOP <> 0)) and (NFDUPLI.DATAV + (piLimiteDias(Self))) <= dtAtual) Begin                            
+                            
+                            If (fValidaEmpresa((trim(TCliCad.iCdCodigo)))) Begin  
+                                Move True to bDeveBloquear
+                                Move (trim(TCliCad.iCdCodigo))               to sClientesBloqueados[iCount_ClientesBloqueados][0]
+                                Move (trim(TCliCad.sNmNome))                 to sClientesBloqueados[iCount_ClientesBloqueados][1]
+                                Move (fRetornaVendedor(TCliCad.iCdVendedor)) to sClientesBloqueados[iCount_ClientesBloqueados][2]
+                                Increment iCount_ClientesBloqueados
+                            End
+                        End
+                        Find Gt NFDUPLI by Index.8
+                    Loop 
+                    
+                    Close NFDUPLI
+                    Open  NFDUPLI
+                End
+    
+                If (not(bDeveBloquear)) Begin 
+                    Clear NFDUPLI
+                    Move TCliCad.iCdCodigo to NFDUPLI.CLIENTE
+                    Move dtAtual to NFDUPLI.DATAV
+                    Find GT NFDUPLI by Index.8
+                   
+                    While (Found and (NFDUPLI.CLIENTE = TCliCad.iCdCodigo) and (not(bDeveBloquear))  and (dDataFinal < NFDUPLI.DATAV))
+                        If (((trim(NFDUPLI.CLAS) = "") and (NFDUPLI.SALDOP <> 0)) and (NFDUPLI.DATAV + (piLimiteDias(Self))) <= dtAtual) Begin                                                        
+                            If (fValidaEmpresa((trim(TCliCad.iCdCodigo)))) Begin                        
+                                Move True to bDeveBloquear
+                                Move (trim(TCliCad.iCdCodigo))               to sClientesBloqueados[iCount_ClientesBloqueados][0]
+                                Move (trim(TCliCad.sNmNome))                 to sClientesBloqueados[iCount_ClientesBloqueados][1]
+                                Move (fRetornaVendedor(TCliCad.iCdVendedor)) to sClientesBloqueados[iCount_ClientesBloqueados][2]
+                                Increment iCount_ClientesBloqueados
+                            End
+                        End
+                        Find Gt NFDUPLI by Index.8
+                    Loop 
+                End
+            End
+            
+            If (not(pbAmbienteTeste(Self))) Begin 
+                // grava o bloqueio, se necessario
+                If (bDeveBloquear) Begin
+                    Reread TCliCad
+                        Move 2 to TCliCad.iFlStatus
+                        SaveRecord TCliCad
+                    Unlock
+                End
+                
+                If (TCliCad.dDataConf < (dtAtual - 365)) Begin
+                    Clear USERLOG
+                    Sysdate                           USERLOG.DT_USERLOG
+                    Move (Uppercase("BLOQUEIOCLIENTESATRASADOS.BP"))      to USERLOG.NM_PROGRAMA
+                    Move ""                        to USERLOG.NM_USUARIO
+                    Move (Get_Current_Time(False)) to USERLOG.HR_USERLOG
+                    Move (Uppercase("ALTERACAO"))  to USERLOG.TP_OPERACAO
+                    Move "207"                     to USERLOG.ID_FILE
+                    Move "TCLICAD"                 to USERLOG.DS_FILE
+                    Move "46"                      to USERLOG.ID_FIELD
+                    Move "iConfTipo"               to USERLOG.DS_FIELD
+                    Move TCliCad.Recnum            to USERLOG.ID_RECNUM
+                    Move TCliCad.iConfTipo         to USERLOG.DS_FIELD_BEFORE
+                    Move "0"                       to USERLOG.DS_FIELD_AFTER
+                    SaveRecord USERLOG
+                    
+                    Clear USERLOG
+                    Sysdate                           USERLOG.DT_USERLOG
+                    Move (Uppercase("BLOQUEIOCLIENTESATRASADOS.BP")) to USERLOG.NM_PROGRAMA
+                    Move ""                        to USERLOG.NM_USUARIO
+                    Move (Get_Current_Time(False)) to USERLOG.HR_USERLOG
+                    Move (Uppercase("ALTERACAO"))  to USERLOG.TP_OPERACAO
+                    Move "207"                     to USERLOG.ID_FILE
+                    Move "TCLICAD"                 to USERLOG.DS_FILE
+                    Move "47"                      to USERLOG.ID_FIELD
+                    Move "dDataConf"               to USERLOG.DS_FIELD
+                    Move TCliCad.Recnum            to USERLOG.ID_RECNUM
+                    Move TCliCad.dDataConf         to USERLOG.DS_FIELD_BEFORE
+                    Move "0"                       to USERLOG.DS_FIELD_AFTER
+                    SaveRecord USERLOG
+                    
+                    Reread TCliCad
+                        Move 0 to TCliCad.iConfTipo
+                        Move 0 to TCliCad.dDataConf
+                        SaveRecord TCliCad
+                    Unlock
+                End
+            End
+           Constrained_Find Next
+        Loop
+        
+        Constraint_Set 1 Delete
+      
+        Send Update_Status ("Enviando Relatório Final via E-mail")
+      
+        Send pEnviaRelatorioEmail sClientesBloqueados
+        
+        Send Destroy of hoTCamEmp
+    End_Procedure   
+End_Object
