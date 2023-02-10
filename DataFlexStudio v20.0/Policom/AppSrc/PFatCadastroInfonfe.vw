@@ -13,6 +13,8 @@ Use cWsOpenDialog.pkg
 Use FuncoesGenericas.pkg
 Use Flexml.pkg
 Use envianfe.bp
+Use Thinfinity.VirtualUI.pkg
+Use NFe_Util_2G.pkg
 
 Deferred_View Activate_oPFatCadastroInfonfe for ;
 Object oPFatCadastroInfonfe is a cWsDbView
@@ -169,31 +171,7 @@ Object oPFatCadastroInfonfe is a cWsDbView
             Set Location to 62 190
             Set Size to 13 220
             Set Label to "Arquivo XML:"
-            Set Prompt_Button_Mode to PB_PromptOn
-                    
-            Procedure Prompt
-                Forward Send Prompt
-                
-                Handle hoOpenDg 
-                Date dDataEntrada
-                Boolean bSave bExist
-                String sFileName sTemp sFolder sFile sNroNF sSerie sDoc sAno sCnpj
-                
-                // tratamento do arquivo de origem
-                Get Create (RefClass(cWsOpenDialog)) to hoOpenDg
-                Set Filter_String  of hoOpenDg to 'Arquivo XML|*.XML'
-                Set Dialog_Caption of hoOpenDg to 'Selecione o local de origem...'
-                Set Initial_Folder of hoOpenDg to (fGetWindowsUserDesktop())
-                Get Show_Dialog of hoOpenDg to bSave
-                If (bSave) Get File_Name  of hoOpenDg to sFileName
-                Send Destroy of hoOpenDg
-
-                // Copia o arquivo para o diretório/arquivo padrão
-                Move ((sFileName)) to sFileName
-                File_Exist sFileName bExist 
-                If bExist Set Value to sFileName
-            End_Procedure
-
+            Set Enabled_State to False    
         End_Object
         
         Object oINFONFE_MSGSEFAZ is a cWsDbForm
@@ -252,17 +230,30 @@ Object oPFatCadastroInfonfe is a cWsDbView
             Set MultiLineState to True
                     
             Procedure OnClick
-                Handle hoXML hoNode
-                Boolean bExist bOK
-                String sPathXMLfile sNameSpace sNfe sDhEmi sCnpj sDhRecbto sMotivo sProt sArqXML sPathNFe sAmbiente sAno sMes sSerieNFe sIDNFe
-                Integer iCount
+                Handle hoXML hoNode hoOpenDg hoNfeUtil
+                Boolean bExist bOK bSave
+                String sPathXMLfile sNameSpace sNfe sDhEmi sCnpj sDhRecbto sMotivo sProt sArqXML sPathNFe sAmbiente sAno sMes sSerieNFe sIDNFe sRetorno sTempFile sArquivoDanfePDF sRetorno_Danfe
+                Integer iRet iRetorno_Danfe
                 Number nResposta
-                Date dDataEmis
-
-                Get Value of oINFONFE_ARQXML to sPathXMLfile
-                File_Exist sPathXMLfile bExist
+                Date dDataEmis dDataEntrada dDhEmi
+                Time tmDhAuto
                 
-                If (bExist) Begin          
+                // tratamento do arquivo de origem
+                Get Create (RefClass(cWsOpenDialog)) to hoOpenDg
+                Set Filter_String  of hoOpenDg to 'Arquivo XML|*.XML'
+                Set Dialog_Caption of hoOpenDg to 'Selecione o local de origem...'
+                Set Initial_Folder of hoOpenDg to (fGetWindowsUserDesktop())
+                Get Show_Dialog of hoOpenDg to bSave
+                If (bSave) Get File_Name of hoOpenDg to sPathXMLfile
+                Send Destroy of hoOpenDg
+               
+                If not ((Lowercase((Right(sPathXMLfile, 4)))) = ".xml") Begin
+                    Send Info_Box "Extensão XML não encontrada, por favor renomeie arquivo" "Info"
+                    Procedure_Return
+                End
+                File_Exist sPathXMLfile bExist
+                                
+                If (bExist) Begin
                     // Create document object
                     Get Create (RefClass(cXmlDomDocument)) to hoXML
             
@@ -275,8 +266,8 @@ Object oPFatCadastroInfonfe is a cWsDbView
              
                     // If the document fails to load, abort the program
                     If not bOK Begin
-                        Send BasicParseErrorReport of hoXML
                         Send Destroy of hoXML
+                        Send Info_Box "Não foi possível carregar arquivo XML, verifique se arquivo é valido" "Info"
                         Procedure_Return
                     End
                     
@@ -286,41 +277,63 @@ Object oPFatCadastroInfonfe is a cWsDbView
                     
                     Get FindNode of hoXML "q:nfeProc/q:NFe/q:infNFe/q:ide/q:nNF" to hoNode
                     If (not(hoNode = 0)) Get psText of hoNode to sNfe    
-                    Else Send Info_Box "Não foi possível encontrar Tag <nNF>" "Info"                                      
+                    Else Begin
+                        Send Info_Box "Não foi possível encontrar Tag <nNF>, verifique XML" "Info"
+                        Procedure_Return             
+                    End
                     
                     Get FindNode of hoXML "q:nfeProc/q:NFe/q:infNFe/q:ide/q:dhEmi" to hoNode
                     If (not(hoNode = 0)) Get psText of hoNode to sDhEmi 
-                    Else Send Info_Box "Não foi possível encontrar Tag <dhEmi>" "Info"
+                    Else Begin
+                        Send Info_Box "Não foi possível encontrar Tag <dhEmi>, verifique XML" "Info"
+                        Procedure_Return             
+                    End
 
                     Get FindNode of hoXML "q:nfeProc/q:NFe/q:infNFe/q:emit/q:CNPJ" to hoNode
                     If (not(hoNode = 0)) Get psText of hoNode to sCnpj 
-                    Else Send Info_Box "Não foi possível encontrar Tag <CNPJ>" "Info" 
+                    Else Begin
+                        Send Info_Box "Não foi possível encontrar Tag <CNPJ>, verifique XML" "Info"
+                        Procedure_Return             
+                    End
                     
                     Get FindNode of hoXML "q:nfeProc/q:protNFe/q:infProt/q:dhRecbto" to hoNode
                     If (not(hoNode = 0)) Get psText of hoNode to sDhRecbto   
-                    Else Send Info_Box "Não foi possível encontrar Tag <dhRecbto>" "Info"
+                    Else Begin
+                        Send Info_Box "Não foi possível encontrar Tag <dhRecbto>, verifique XML" "Info"
+                        Procedure_Return             
+                    End
                     
                     Get FindNode of hoXML "q:nfeProc/q:protNFe/q:infProt/q:xMotivo" to hoNode
                     If (not(hoNode = 0)) Get psText of hoNode to sMotivo  
-                    Else Send Info_Box "Não foi possível encontrar Tag <xMotivo>" "Info" 
+                    Else Begin
+                        Send Info_Box "Não foi possível encontrar Tag <xMotivo>, verifique XML" "Info"
+                        Procedure_Return             
+                    End
                     
                     Get FindNode of hoXML "q:nfeProc/q:protNFe/q:infProt/q:nProt" to hoNode
                     If (not(hoNode = 0)) Get psText of hoNode to sProt
-                    Else Send Info_Box "Não foi possível encontrar Tag <nProt>" "Info"
+                    Else Begin
+                        Send Info_Box "Não foi possível encontrar Tag <nProt>, verifique XML" "Info"
+                        Procedure_Return             
+                    End
                     
                     Get FindNode of hoXML "q:nfeProc/q:protNFe/q:infProt/q:chNFe" to hoNode
                     If (not(hoNode = 0)) Get psText of hoNode to sIDNFe
-                    Else Send Info_Box "Não foi possível encontrar Tag <nProt>" "Info"
+                    Else Begin
+                        Send Info_Box "Não foi possível encontrar Tag <chNFe>, verifique XML" "Info"
+                        Procedure_Return             
+                    End
                     
                     Get FindNode of hoXML "q:nfeProc/q:NFe/q:infNFe/q:ide/q:serie" to hoNode
                     If (not(hoNode = 0)) Get psText of hoNode to sSerieNFe
-                    Else Send Info_Box "Não foi possível encontrar Tag <serie>" "Info"
+                    Else Begin
+                        Send Info_Box "Não foi possível encontrar Tag <serie>, verifique XML" "Info"
+                        Procedure_Return             
+                    End
                     
                     Send Destroy of hoNode
                     Send Destroy of hoXML
-                                   
-                    Move ((Mid(sDhEmi,2,9)) + "-" + (Mid(sDhEmi,2,6)) + "-" + (Mid(sDhEmi,4,1))) to sDhEmi
-                    
+                                                       
                     Open TCamEmp
                     Open tfatnf
                     
@@ -395,26 +408,40 @@ Object oPFatCadastroInfonfe is a cWsDbView
                         
                         If (bExist) Begin
                             Move (String((Lowercase(gsCodEmp + "nfe" + sNfe + ".xml")))) to sArqXML
-                            RenameFile sPathXMLfile to sArqXML
-                            
-                            //atualizando caminho com arquivo xml
-                            Move (sPathNFe + sArqXML) to sPathXMLfile
+                            RenameFile sPathXMLfile to sArqXML         
 
-                            CopyFile sArqXML to sPathNFe
+                            Move (sPathNFe + sArqXML) to sPathXMLfile
+                            
+                            File_Exist sPathXMLfile bExist
+                            If (bExist) Begin
+                                Get DeleteDbFiles sPathXMLfile sArqXML to iRet
+                                EraseFile sPathXMLfile
+                            End
+                            
                             Send pCopyFile sArqXML sPathXMLfile
+                            CopyFile sArqXML to sPathNFe
                         End      
 
                         Send Refind_Records of oINFONFE_DD
                         
                         If (INFONFE.NUMNF = sNfe) Begin
                             Reread INFONFE
+                                Move dDataEmis to INFONFE.DATAEMIS  // data de emissão
+                                Move dDataEmis to INFONFE.DATAAUTO  // data de autorização
+                                
+                                //Declara time data autorização
+                                Move (DateSetHour  (tmDhAuto, (Mid(sDhRecbto,2,12))) ) to tmDhAuto
+                                Move (DateSetMinute(tmDhAuto, (Mid(sDhRecbto,2,15))) ) to tmDhAuto
+                                Move (DateSetSecond(tmDhAuto, (Mid(sDhRecbto,2,18))) ) to tmDhAuto
+                                Move tmDhAuto to INFONFE.HORAAUTO
+                                
+                                Move sProt to INFONFE.PROTENVIO
                                 Move sIDNFe to INFONFE.ID  // id da NFe
                                 Move "A" to INFONFE.SITUACAO  // e= enviado  c= cancelado a=autorizado r= rejeitado
-                                Move sProt to INFONFE.PROTENVIO
+                                Move dDataEmis to INFONFE.DATASITU // data da situação
                                 Move sPathXMLfile to INFONFE.ARQXML
-                                Move (Date(sDhEmi)) to INFONFE.DATASITU // data da situação
-                                Move (Date(sDhEmi)) to INFONFE.DATAEMIS  // data de emissão
-
+                                Move sMotivo to INFONFE.MSGSEFAZ
+                                
                                 SaveRecord INFONFE
                             Unlock
 
@@ -427,7 +454,7 @@ Object oPFatCadastroInfonfe is a cWsDbView
                         End
                     End
                     Else Begin
-                        Send Stop_Box "Nada foi alterado!" "Info"
+                        Send Stop_Box "Nada foi alterado!" "Info" 
                         Procedure_Return
                     End
                     
@@ -436,9 +463,57 @@ Object oPFatCadastroInfonfe is a cWsDbView
 
                     Close TCamEmp
                     Close TFATNF
+                    
+                    Move (YesNo_Box("Deseja gerar PDF ?", "Atenção", MB_DEFBUTTON2)) to nResposta
+                    
+                    If (nResposta = MBR_Yes) Begin
+                        
+                        Get Create (RefClass(cXMLDOMDocument)) to hoXML
+                        
+                        If (hoXML) Begin
+                            Set psDocumentName of hoXML to sPathXMLfile
+                            Get LoadXMLDocument of hoXML to bOK
+                            
+                            If (bOK) Begin
+                                Get psXML of hoXML to sPathXMLfile
+                                Send Destroy of hoXML
+                                
+                                Get Create (RefClass(cComUtil)) to hoNfeUtil
+                                Send CreateComObject to hoNfeUtil
+                                
+                                If (IsComObjectCreated(hoNfeUtil)) Begin
+                                    
+                                    Move (Gera_Nome_Pdf_Infonfe(sNfe,dDataEmis,gsCodEmp)) to sArquivoDanfePDF
+                                    Move False to bExist
+                                    File_Exist sArquivoDanfePDF bExist
+                                    
+                                    If (bExist) Begin
+                                        Send Info_Box "PDF dessa nota fiscal já está disponível, não será necessário gerar novamente!" "Info"
+                                        If (hoVirtualUI) Send ComPreviewPdf of hoVirtualUI sArquivoDanfePDF
+                                        Else Runprogram Shell Background sArquivoDanfePDF
+                                        Procedure_Return
+                                    End
+                                    
+                                    Get ComGeraPdfDANFE of hoNfeUtil sPathXMLfile "" "S" "S" "N" "" "L" ("[ARQUIVO=" + sArquivoDanfePDF + "][VISUALIZAR][MOSTRARICMSST][QUADROPRODUTO]") (&sRetorno_Danfe) to iRetorno_Danfe 
+                                    
+                                    Move False to bExist
+                                    File_Exist sArquivoDanfePDF bExist
+                                    If (bExist) Begin
+                                        Send Info_Box "PDF foi gerado!" "Info"
+                                        If (hoVirtualUI) Send ComPreviewPdf of hoVirtualUI sArquivoDanfePDF
+                                        Else Runprogram Shell Background sArquivoDanfePDF
+                                    End
+                                    Else Begin
+                                        Send Info_Box "Houve um erro ao gerar PDF, Procuro Depto de TI!" "Info"
+                                    End
+                                End
+                                
+                            End
+                        End
+                        Else Send Stop_Box "Não foi possível carregar o XML indicado" "Informação"  
+                    End
                 End
-                Else Send Stop_Box "Não foi possível carregar o XML indicado" "Info"
-                
+                Else Send Stop_Box "Caminho não encontrado. por favor verificar" "Info"
             End_Procedure
         End_Object
     End_Object
