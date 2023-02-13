@@ -374,7 +374,6 @@ Object oPFatCadastroInfonfe is a cWsDbView
 //                        Get RetornaPastaXml dDataEmis sAmbiente of oEnvianfe to sPathNFe 
 //                        Get VerificaPastaXML sPathNFe of oEnvianfe to bExist
                         //Não consegui utilizar as functions acima métodos alternativos abaixo
-                        
                         If ((not(sAmbiente = "1"))) Move "1" to sAmbiente
                         
                         Move TFATNF.dDtEmissao to dDataEmis
@@ -405,20 +404,24 @@ Object oPFatCadastroInfonfe is a cWsDbView
                             File_Exist sPathNFe bExist
                         End
                         
+                        // sPathXMLfile -> origem c:\...
+                        // sArqXML      -> destino G:\...
                         If (bExist) Begin
                             Move (String((Lowercase(gsCodEmp + "nfe" + sNfe + ".xml")))) to sArqXML
-                            RenameFile sPathXMLfile to sArqXML         
-
-                            Move (sPathNFe + sArqXML) to sPathXMLfile
+                            Move (sPathNFe + sArqXML) to sArqXML
                             
-                            File_Exist sPathXMLfile bExist
+                            // deleta arquivo existente no destino
+                            File_Exist sArqXML bExist
                             If (bExist) Begin
-                                Get DeleteDbFiles sPathXMLfile sArqXML to iRet
-                                EraseFile sPathXMLfile
+                                Send pDeleteFile sArqXML
+                                EraseFile sArqXML
                             End
                             
-                            Send pCopyFile sArqXML sPathXMLfile
-                            CopyFile sArqXML to sPathNFe
+                            Send pCopyFile sPathXMLfile sArqXML 
+                            CopyFile sPathNFe to sArqXML
+                            
+                            //Altera caminho para original do servidor
+                            Move sArqXML to sPathXMLfile
                         End      
 
                         Send Refind_Records of oINFONFE_DD
