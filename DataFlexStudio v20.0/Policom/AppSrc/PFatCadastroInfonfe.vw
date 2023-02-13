@@ -248,7 +248,7 @@ Object oPFatCadastroInfonfe is a cWsDbView
                 Send Destroy of hoOpenDg
                
                 If not ((Lowercase((Right(sPathXMLfile, 4)))) = ".xml") Begin
-                    Send Info_Box "Extensão XML não encontrada, por favor renomeie arquivo" "Info"
+                    Send Info_Box "Arquivo XML não encontrado, por favor renomeie arquivo ou selecione novamente!" "Info"
                     Procedure_Return
                 End
                 File_Exist sPathXMLfile bExist
@@ -373,8 +373,7 @@ Object oPFatCadastroInfonfe is a cWsDbView
 //                        Get Pambiente of oEnvianfe to sAmbiente
 //                        Get RetornaPastaXml dDataEmis sAmbiente of oEnvianfe to sPathNFe 
 //                        Get VerificaPastaXML sPathNFe of oEnvianfe to bExist
-                        
-                        //Não consegui ultilizar as functions acima
+                        //Não consegui utilizar as functions acima métodos alternativos abaixo
                         
                         If ((not(sAmbiente = "1"))) Move "1" to sAmbiente
                         
@@ -447,10 +446,11 @@ Object oPFatCadastroInfonfe is a cWsDbView
 
                             // Load data
                             Send Request_Assign of oINFONFE_DD
-                            Send Info_Box "Dados exportados do XML com sucesso!" "Info"
+                            Send Info_Box "Dados exportados do XML e gravados com sucesso!" "Info"
                         End
                         Else Begin
                             Send Stop_Box "Não foi possível gravar os dados, número da nota fiscal divergente dos registros gravados na base de dados" "Info"
+                            Procedure_Return
                         End
                     End
                     Else Begin
@@ -488,26 +488,31 @@ Object oPFatCadastroInfonfe is a cWsDbView
                                     File_Exist sArquivoDanfePDF bExist
                                     
                                     If (bExist) Begin
-                                        Send Info_Box "PDF dessa nota fiscal já está disponível, não será necessário gerar novamente!" "Info"
-                                        If (hoVirtualUI) Send ComPreviewPdf of hoVirtualUI sArquivoDanfePDF
-                                        Else Runprogram Shell Background sArquivoDanfePDF
-                                        Procedure_Return
-                                    End
-                                    
-                                    Get ComGeraPdfDANFE of hoNfeUtil sPathXMLfile "" "S" "S" "N" "" "L" ("[ARQUIVO=" + sArquivoDanfePDF + "][VISUALIZAR][MOSTRARICMSST][QUADROPRODUTO]") (&sRetorno_Danfe) to iRetorno_Danfe 
-                                    
-                                    Move False to bExist
-                                    File_Exist sArquivoDanfePDF bExist
-                                    If (bExist) Begin
-                                        Send Info_Box "PDF foi gerado!" "Info"
-                                        If (hoVirtualUI) Send ComPreviewPdf of hoVirtualUI sArquivoDanfePDF
-                                        Else Runprogram Shell Background sArquivoDanfePDF
+                                        Move (YesNo_Box("PDF dessa nota fiscal já está disponível, deseja visualizar?", "Atenção", MB_DEFBUTTON2)) to nResposta
+                                        
+                                        If (nResposta = MBR_Yes) Begin
+                                            If (hoVirtualUI) Send ComPreviewPdf of hoVirtualUI sArquivoDanfePDF
+                                            Else Runprogram Shell Background sArquivoDanfePDF
+                                        End                                                                             
                                     End
                                     Else Begin
-                                        Send Info_Box "Houve um erro ao gerar PDF, Procuro Depto de TI!" "Info"
+                                        Get ComGeraPdfDANFE of hoNfeUtil sPathXMLfile "" "S" "S" "N" "" "L" ("[ARQUIVO=" + sArquivoDanfePDF + "][VISUALIZAR][MOSTRARICMSST][QUADROPRODUTO]") (&sRetorno_Danfe) to iRetorno_Danfe 
+                                        
+                                        Move False to bExist
+                                        File_Exist sArquivoDanfePDF bExist
+                                        If (bExist) Begin
+                                            Move (YesNo_Box("PDF foi gerado, deseja visualizar?", "Atenção", MB_DEFBUTTON2)) to nResposta
+                                                                                        
+                                            If (nResposta = MBR_Yes) Begin
+                                                If (hoVirtualUI) Send ComPreviewPdf of hoVirtualUI sArquivoDanfePDF
+                                                Else Runprogram Shell Background sArquivoDanfePDF
+                                            End
+                                        End
+                                        Else Begin
+                                            Send Info_Box "Houve um erro ao gerar PDF, Procuro Depto de TI!" "Info"
+                                        End
                                     End
                                 End
-                                
                             End
                         End
                         Else Send Stop_Box "Não foi possível carregar o XML indicado" "Informação"  
