@@ -1,0 +1,14 @@
+﻿Use UI
+
+Class HostedService is a cObject
+    
+    Procedure StartBackgroundService
+        Forward Send StartBackgroundService
+        
+        While (True)
+            Send Info_Box "Executando tarefa em segundo plano..." "StartBackgroundService"
+            Sleep 5
+        Loop
+        
+    End_Procedure
+End_Class
